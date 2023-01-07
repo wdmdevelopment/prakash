@@ -39,4 +39,11 @@ public class UserServiceimpl implements UserService {
 		
 	}
 
+
+	@Override
+	public UserAccount updateUser(RequestUserAccount user, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -34,5 +34,19 @@ public class CategoryServiceimpl implements CategoryService {
 		categoryRepo.deleteById(id);
 		
 	}
+
+
+	@Override
+	public Category getCategory() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Category updatecategory(RequestCategory requestCategory, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

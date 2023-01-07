@@ -46,4 +46,18 @@ public class SuperMarketServiceimpl implements SuperMarketService {
 		
 	}
 
+
+	@Override
+	public Supermarket getSupermarket() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Supermarket updatesupermarket(RequestSuperMarket request, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

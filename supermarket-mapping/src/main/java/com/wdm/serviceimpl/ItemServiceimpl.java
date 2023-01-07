@@ -35,4 +35,26 @@ public class ItemServiceimpl implements ItemService  {
 		itemRepo.deleteById(id);
 	}
 
+
+
+
+
+
+	@Override
+	public Items getItems(RequestItems requestitem, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+
+	@Override
+	public Items getItems() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -30,5 +30,19 @@ public class OrderServiceimpl implements OrderService{
 		
 		OrderRepo.deleteById(id);
 	}
+
+
+	@Override
+	public Orders updateOrder(RequestOrder requestOrder, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Orders getAllOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

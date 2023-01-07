@@ -35,4 +35,18 @@ public class ProductServiceimpl implements ProductService {
 		productRepo.deleteById(id);
 	}
 
+
+	@Override
+	public Product getAllproduct() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Product updateProduct(RequestProduct requestProduct, long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
