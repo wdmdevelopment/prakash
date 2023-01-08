@@ -20,7 +20,7 @@ public class OrderServiceimpl implements OrderService{
 	OrderRepository OrderRepo;
 
 	
-	public Orders saveOrder(RequestOrder requestOrder) {
+	public Orders placeOrder(RequestOrder requestOrder) {
 		Orders orders = new Orders();
 		
 		orders.setTotalPrice(requestOrder.getTotalPrice());
@@ -51,10 +51,7 @@ public class OrderServiceimpl implements OrderService{
 
 
 	 
-	public Orders placeOrder(RequestOrder requestOrder) {
-		 
-		return null;
-	}
+	 
 
 
 	 
