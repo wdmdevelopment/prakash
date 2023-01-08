@@ -43,7 +43,7 @@ public class CartServiceimpl implements CartService {
 
 	@Override
 	public Cart updateCart(RequestCart requestCart, long id) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -54,7 +54,7 @@ public class CartServiceimpl implements CartService {
 
 	@Override
 	public Cart getCart() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

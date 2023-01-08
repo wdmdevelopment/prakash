@@ -1,11 +1,15 @@
 package com.wdm.serviceimpl;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Orders;
+import com.wdm.exception.OrderCustomException;
 import com.wdm.model.RequestOrder;
 import com.wdm.repository.OrderRepository;
+import com.wdm.response.OrderResponse;
 import com.wdm.service.OrderService;
 
 @Service
@@ -32,17 +36,58 @@ public class OrderServiceimpl implements OrderService{
 	}
 
 
-	@Override
+	 
 	public Orders updateOrder(RequestOrder requestOrder, long id) {
-		// TODO Auto-generated method stub
+		 
 		return null;
 	}
 
 
-	@Override
+	 
 	public Orders getAllOrders() {
-		// TODO Auto-generated method stub
+		 
 		return null;
 	}
+
+
+	 
+	public Orders placeOrder(RequestOrder requestOrder) {
+		 
+		return null;
+	}
+
+
+	 
+	public OrderResponse getOrderDetails(long orderId) throws Exception {
+		
+		Optional<Orders> order;
+		try {
+			order = OrderRepo.findById(orderId);
+		}
+		 
+		catch(OrderCustomException e) {
+			
+			throw new OrderCustomException("Order not found for the order Id:" + orderId,  "NOT_FOUND", 404);
+		}
+		
+		catch(Exception e) {
+			throw new Exception("Invaild Request");
+		}
+		
+		
+			return mapToOrder(order);
+	}
+
+
+	private OrderResponse mapToOrder(Optional<Orders> order) {
+		 
+		//new OrderResponse().setOrderStatus(order.);
+		
+		return null;
+	}
+	
+	
+	
+	
 	
 }

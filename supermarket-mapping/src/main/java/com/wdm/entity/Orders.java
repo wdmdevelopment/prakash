@@ -30,6 +30,8 @@ public class Orders {
 	@Column(name = "ordertime")
 	private LocalDateTime ordertime;
 	
+	@Column(name = "STATUS")
+    private String orderStatus;
 	
 	@OneToOne
 	@JoinColumn(name = "Cart",referencedColumnName = "cartId")
@@ -91,6 +93,22 @@ public class Orders {
 	
 	public Orders() {
 		
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 	
 	

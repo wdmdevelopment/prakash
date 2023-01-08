@@ -17,4 +17,9 @@ public interface ItemService {
 	
 	public Items getItems();
 	
+	
+	public void reduceQuantity(long itemId, int quantity);
+	
+	public void addQuantity(long itemId, int quantity);
+	
 }

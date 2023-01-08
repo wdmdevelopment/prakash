@@ -26,7 +26,7 @@ public class OrderController {
 	
 	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestProduct) {
 
-		return new ResponseEntity<> (orderService.saveOrder(resquestProduct), HttpStatus.CREATED);
+		return new ResponseEntity<> (orderService.placeOrder(resquestProduct), HttpStatus.CREATED);
 	}
 	
 	
