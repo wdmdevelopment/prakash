@@ -1,5 +1,7 @@
 package com.wdm.serviceimpl;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,52 +12,51 @@ import com.wdm.service.CartService;
 
 @Service
 public class CartServiceimpl implements CartService {
-	
+
 	@Autowired
-	
+
 	CartRepository cartRepo;
-	
-	
-	
+
 	public Cart saveCart(RequestCart requestCart) {
 		Cart cart = new Cart();
-		
+
 		cart.setTotalPrice(requestCart.getTotalPrice());
-		
-		return cartRepo.save(cart);
+		 
+		 return cartRepo.save(cart);
 	}
 
 	
-	
-	
-	 
 	
 	public void deleteById(long id) {
-		
+
 		cartRepo.deleteById(id);
-		
+
 	}
+	
+	
+	
 
+	public Cart updateCart(Cart Cart, long id) {
 
-
-
-
-
-	@Override
-	public Cart updateCart(RequestCart requestCart, long id) {
-		
-		return null;
+		return cartRepo.save(Cart);
 	}
+	
+	
 
-
-
-
-
-
-	@Override
 	public Cart getCart() {
-		
-		return null;
+
+		return (Cart) cartRepo.findAll().stream().map(c -> {
+			return mapToCart(c);
+		}).collect(Collectors.toList());
 	}
 
+
+
+	private RequestCart mapToCart(Cart c) {
+		RequestCart cart = new RequestCart();
+		cart.setTotalPrice(c.getTotalPrice());
+		return cart;
+	}
+
+ 
 }

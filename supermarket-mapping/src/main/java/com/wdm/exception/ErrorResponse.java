@@ -13,16 +13,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ErrorResponse {
 	
-	private int statuserrorCode;
+	private String statuserrorCode;
 	private String message;
 	
 	 private  long timeStamp;
 
-	public int getStatuserrorCode() {
+	 
+
+	public String getStatuserrorCode() {
 		return statuserrorCode;
 	}
 
-	public void setStatuserrorCode(int statuserrorCode) {
+	public void setStatuserrorCode(String statuserrorCode) {
 		this.statuserrorCode = statuserrorCode;
 	}
 
@@ -40,6 +42,16 @@ public class ErrorResponse {
 
 	public void setTimeStamp(long timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+
+	public ErrorResponse(String statuserrorCode, String message) {
+		super();
+		this.statuserrorCode = statuserrorCode;
+		this.message = message;
+	}
+
+	public ErrorResponse() {
+		 
 	}
 
 	 

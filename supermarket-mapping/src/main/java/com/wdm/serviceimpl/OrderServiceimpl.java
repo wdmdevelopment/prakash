@@ -1,11 +1,14 @@
 package com.wdm.serviceimpl;
 
-import java.util.Optional;
+import java.util.List;
+ 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Orders;
+import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.OrderCustomException;
 import com.wdm.model.RequestOrder;
 import com.wdm.repository.OrderRepository;
@@ -13,78 +16,69 @@ import com.wdm.response.OrderResponse;
 import com.wdm.service.OrderService;
 
 @Service
-public class OrderServiceimpl implements OrderService{
-	
-	
+public class OrderServiceimpl implements OrderService {
+
 	@Autowired
 	OrderRepository OrderRepo;
 
-	
 	public Orders placeOrder(RequestOrder requestOrder) {
 		Orders orders = new Orders();
-		
+
 		orders.setTotalPrice(requestOrder.getTotalPrice());
 		orders.setOrdertime(requestOrder.getOrdertime());
-		
+
 		return OrderRepo.save(orders);
 	}
 
-
-	public void deleteByid(long id) {
-		
-		OrderRepo.deleteById(id);
-	}
-
-
-	 
-	public Orders updateOrder(RequestOrder requestOrder, long id) {
-		 
-		return null;
-	}
-
-
-	 
-	public Orders getAllOrders() {
-		 
-		return null;
-	}
-
-
-	 
-	 
-
-
-	 
-	public OrderResponse getOrderDetails(long orderId) throws Exception {
-		
-		Optional<Orders> order;
+	public void cancelOrder(long id) throws Exception {
 		try {
-			order = OrderRepo.findById(orderId);
+			OrderRepo.deleteById(id);
 		}
-		 
-		catch(OrderCustomException e) {
-			
-			throw new OrderCustomException("Order not found for the order Id:" + orderId,  "NOT_FOUND", 404);
+		catch (IdNotFoundException idNotFoundException) {
+			throw new IdNotFoundException("Id not found"+ idNotFoundException);
 		}
-		
-		catch(Exception e) {
-			throw new Exception("Invaild Request");
+		catch (Exception exception) {
+			throw new Exception(exception);
 		}
-		
-		
-			return mapToOrder(order);
 	}
 
+	public Orders updateOrder(Orders order, long id) {
 
-	private OrderResponse mapToOrder(Optional<Orders> order) {
-		 
-		//new OrderResponse().setOrderStatus(order.);
-		
-		return null;
+		return OrderRepo.save(order);
 	}
-	
-	
-	
-	
-	
+
+	public List<Orders> getAllOrders() {
+
+		return OrderRepo.findAll();
+	}
+
+	public OrderResponse getOrderDetails(long orderId) throws Exception {
+
+		Orders order;
+		try {
+			order = OrderRepo.findById(orderId).get();
+		}
+
+		catch (OrderCustomException e) {
+
+			throw new OrderCustomException("Order not found for the order Id:" + orderId,
+					HttpStatus.NOT_FOUND.toString(), HttpStatus.NOT_FOUND.value());
+		}
+
+		catch (Exception e) {
+			throw new Exception("Invaild Request"+e);
+		}
+
+		return mapToOrder(order);
+	}
+
+	private OrderResponse mapToOrder(Orders order) {
+
+		OrderResponse orederRes = new OrderResponse();
+		orederRes.setOrderStatus(order.getOrderStatus());
+		orederRes.setTotalamount(order.getTotalPrice());
+
+		return orederRes;
+	}
+
 }

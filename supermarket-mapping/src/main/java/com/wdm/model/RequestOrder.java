@@ -16,6 +16,8 @@ public class RequestOrder {
 	private int quantity;
 	
 	
+	
+	
 	public int getQuantity() {
 		return quantity;
 	}

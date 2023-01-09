@@ -18,17 +18,12 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cartId;
-	
+
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	
+
 	private List<Items> item;
 
 	private double totalPrice;
-	
-	
-	
-	
-	
 
 	public long getCartId() {
 		return cartId;
@@ -53,9 +48,5 @@ public class Cart {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
-	
-	
-	
 
 }

@@ -8,6 +8,9 @@ public class SupermarketMappingApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SupermarketMappingApplication.class, args);
+		
+		
+		  //LOGGER.info("Info level log message");
 	}
 
 }

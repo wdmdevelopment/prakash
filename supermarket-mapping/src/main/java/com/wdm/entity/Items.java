@@ -14,23 +14,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table
 public class Items {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long itemId;
-	
-	 
+
 	private int quantity;
-	
+
 	private double price;
-	
+
 	@OneToOne
-	@JoinColumn(name = "product",referencedColumnName = "product_Id")
+	@JoinColumn(name = "product", referencedColumnName = "product_Id")
 	private Product product;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "itemId", insertable=false, updatable=false)
-	//@JsonIgnore
+	@JoinColumn(name = "itemId", insertable = false, updatable = false)
+	// @JsonIgnore
 	private Cart cart;
 
 	public long getItemId() {
@@ -40,8 +39,6 @@ public class Items {
 	public void setItemId(long itemId) {
 		this.itemId = itemId;
 	}
-
-	
 
 	public int getQuantity() {
 		return quantity;
@@ -66,19 +63,5 @@ public class Items {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

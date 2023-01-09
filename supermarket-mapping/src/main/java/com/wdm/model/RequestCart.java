@@ -3,14 +3,10 @@ package com.wdm.model;
 import java.util.List;
 
 public class RequestCart {
-	
-	
+
 	private List<RequestItems> item;
 
 	private double totalPrice;
-	
-	
-	
 
 	public List<RequestItems> getItem() {
 		return item;
@@ -27,8 +23,5 @@ public class RequestCart {
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	
-	
-	
 
 }

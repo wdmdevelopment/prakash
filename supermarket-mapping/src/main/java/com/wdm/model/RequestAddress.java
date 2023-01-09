@@ -3,20 +3,19 @@ package com.wdm.model;
 import javax.validation.constraints.NotNull;
 
 public class RequestAddress {
-	
-	
+
 	@NotNull
 	private int No;
-	
+
 	@NotNull
 	private String street;
-	
+
 	@NotNull
 	private String city;
-	
+
 	@NotNull
 	private String state;
-	
+
 	@NotNull
 	private String country;
 
@@ -59,9 +58,5 @@ public class RequestAddress {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-
-	
-	
-	
 
 }

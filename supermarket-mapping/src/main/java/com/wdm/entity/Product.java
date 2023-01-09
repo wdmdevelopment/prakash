@@ -1,11 +1,14 @@
 package com.wdm.entity; 
  
+import java.sql.Blob;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -36,9 +39,48 @@ public class Product {
 	
 	
 	
+	@Column
+	private String name;
+	@Column
+	private String type;
 	
+	@Lob
+	
+	private Blob data;
 	
  	
+
+	public String getStockDetails() {
+		return stockDetails;
+	}
+
+	public void setStockDetails(String stockDetails) {
+		this.stockDetails = stockDetails;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Blob getData() {
+		return data;
+	}
+
+	public void setData(Blob data) {
+		this.data = data;
+	}
 
 	public Category getCategory() {
 		return category;

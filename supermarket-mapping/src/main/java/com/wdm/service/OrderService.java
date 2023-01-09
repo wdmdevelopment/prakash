@@ -1,5 +1,7 @@
 package com.wdm.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Orders;
@@ -11,11 +13,11 @@ public interface OrderService {
 	
 	public Orders placeOrder(RequestOrder requestOrder);
 	
-	public void deleteByid(long id);
+	public void cancelOrder(long id) throws Exception;
 	
-	public Orders updateOrder(RequestOrder requestOrder, long id);
+	public Orders updateOrder(Orders order, long id);
 	
-	public Orders getAllOrders();
+	public List<Orders> getAllOrders();
 	
 	public OrderResponse  getOrderDetails(long orderId) throws Exception;
 	

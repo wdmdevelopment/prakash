@@ -10,36 +10,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Address")
 public class Address {
-	
-	
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name ="address_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "address_id")
 	private long addressId;
-	
-	@Column(name ="doorNo")
+
+	@Column(name = "doorNo")
 	private int doorNo;
-	
-	@Column(name ="street")
+
+	@Column(name = "street")
 	private String street;
-	
-	@Column(name ="city")
+
+	@Column(name = "city")
 	private String city;
-	
-	@Column(name ="state")
+
+	@Column(name = "state")
 	private String state;
-	
-	@Column(name ="country")
+
+	@Column(name = "country")
 	private String country;
-	
-	
+
 	public Address() {
-		
+
 	}
-	
-	
-	
+
 	public long getAddressId() {
 		return addressId;
 	}

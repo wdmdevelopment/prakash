@@ -1,21 +1,27 @@
 package com.wdm.response;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
+ 
 import com.wdm.model.RequestCategory;
 
 public class ProductResponse {
 	
 	
-	@NotNull
+	
 	private String ProductName;
 	
-	@NotBlank
+	
 	private String stockDetails;
 	 
-	@NotBlank
+	
 	private RequestCategory category;
+	
+	
+	
+	private String type;
+
+	private String name;
+	
+	private String data;
+	
 	
 	public String getProductName() {
 		return ProductName;
@@ -39,6 +45,30 @@ public class ProductResponse {
 
 	public void setCategory(RequestCategory category) {
 		this.category = category;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 
 	

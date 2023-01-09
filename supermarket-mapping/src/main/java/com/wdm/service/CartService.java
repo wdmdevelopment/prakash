@@ -13,7 +13,7 @@ public interface CartService {
 	
 	public void deleteById(long id);
 	
-	public Cart updateCart(RequestCart requestCart, long id);
+	public Cart updateCart(Cart requestCart, long id);
 	
 	public Cart getCart();
 	

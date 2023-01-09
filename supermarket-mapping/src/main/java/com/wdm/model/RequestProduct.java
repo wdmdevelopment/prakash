@@ -1,10 +1,10 @@
 package com.wdm.model;
  
 
+ 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.wdm.entity.Category;
 
 
 
@@ -21,6 +21,10 @@ public class RequestProduct {
 	
 	private RequestCategory category;
 	
+	
+	
+	@NotNull
+	private String Data;
 	 
 
 	public RequestCategory getCategory() {
