@@ -40,17 +40,17 @@ public class ProductController {
 	ProductService productService;
 	private static final Logger logger = LogManager.getLogger(ProductController.class);
 
-	@PostMapping("/save")
+	@PostMapping
 	public ResponseEntity<Product> save(@Valid @RequestBody RequestProduct resquestProduct) {
 
 		logger.info("Info level logger");
 		return new ResponseEntity<>(productService.saveProduct(resquestProduct), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/get")
-	public ResponseEntity<Product> getAll() {
+	@GetMapping
+	public ResponseEntity<Object> getAll() {
 
-		return new ResponseEntity<Product>(productService.getAllproduct(), HttpStatus.OK);
+		return new ResponseEntity<>(productService.getAllproduct(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
@@ -64,8 +64,16 @@ public class ProductController {
 		}
 
 	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Product> updateProduct(Product product, @PathVariable("id")long id){
+		
+		return new ResponseEntity<Product>(productService.updateProduct(product, id), HttpStatus.OK);
+	}
+	
+	
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
 			
 			productService.deletebyId(id);

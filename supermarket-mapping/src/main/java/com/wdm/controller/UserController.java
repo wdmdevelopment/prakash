@@ -41,7 +41,7 @@ public class UserController {
 		return new ResponseEntity<>(userService.saveuser(resquestProduct), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/get")
+	@GetMapping
 	public ResponseEntity<List<UserAccount>> getAll() {
 
 		return new ResponseEntity<List<UserAccount>>(userService.getAlluser(), HttpStatus.OK);
@@ -59,7 +59,7 @@ public class UserController {
  
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
 			
 			userService.delete(id);

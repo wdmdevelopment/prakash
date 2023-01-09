@@ -1,13 +1,12 @@
 package com.wdm.serviceimpl;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Category;
 import com.wdm.exception.ProductCustomException;
-import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestCategory;
 import com.wdm.repository.CategoryRepository;
 import com.wdm.service.CategoryService;
@@ -33,6 +32,9 @@ public class CategoryServiceimpl implements CategoryService {
 		categoryRepo.deleteById(id);
 
 	}
+	
+	 
+	
 
 	public Category getCategory(long id) {
 		
@@ -49,7 +51,9 @@ public class CategoryServiceimpl implements CategoryService {
 		return category;
 	}
 	
-
+	public List<Category> getAllcategory() {
+		return categoryRepo.findAll();
+	}
 	 
 	public Category updatecategory(Category category, long id) {
 

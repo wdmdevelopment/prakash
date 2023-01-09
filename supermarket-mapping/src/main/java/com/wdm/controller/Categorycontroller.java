@@ -1,5 +1,7 @@
 package com.wdm.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -14,10 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
- 
 import com.wdm.entity.Category;
 import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestCategory;
@@ -44,10 +44,10 @@ public class Categorycontroller {
 	
 	
 	
-	@GetMapping("/get")
-	public ResponseEntity<Category> getbycategory(long id) {
+	@GetMapping
+	public ResponseEntity<List<Category>> getbycategory() {
 
-		return new ResponseEntity<Category>(categoryservice.getCategory(id), HttpStatus.OK);
+		return new ResponseEntity<List<Category>>(categoryservice.getAllcategory(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
@@ -62,7 +62,7 @@ public class Categorycontroller {
 
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
 					
 			categoryservice.deleteById(id);

@@ -34,27 +34,27 @@ public class ItemsController {
 	private static final Logger logger = LogManager.getLogger(ItemsController.class);
 	
 	
-	@PostMapping("/save")
+	@PostMapping
 	public ResponseEntity<Items> saveItem(@Valid @RequestBody RequestItems resquestProduct) {
 		logger.info("Info level logger");
 		return new ResponseEntity<>(itemservice.saveItems(resquestProduct), HttpStatus.CREATED);
 	}
 	
 	
-	@GetMapping("/get")
+	@GetMapping
 	public ResponseEntity<List<Items>> getItems(){
 		 
 		return new ResponseEntity<>(itemservice.getItems(), HttpStatus.OK);
 	 
 	}
 	
-	@GetMapping("/get/id")
+	@GetMapping("/{id}")
 	public ResponseEntity<Items> getBookingById(@PathVariable("id") long id) throws Exception {
 		
 		return new ResponseEntity<>(itemservice.getItemsByid(id), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/id")
+	@DeleteMapping("/{id}")
 	
 	public void deleteItembyid(@PathVariable("id") long id) {
 		

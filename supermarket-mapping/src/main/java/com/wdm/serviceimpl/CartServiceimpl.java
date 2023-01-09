@@ -1,6 +1,7 @@
 package com.wdm.serviceimpl;
 
-import java.util.stream.Collectors;
+import java.util.List;
+ 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,11 +44,11 @@ public class CartServiceimpl implements CartService {
 	
 	
 
-	public Cart getCart() {
+	public List<Cart> getAllCart() {
 
-		return (Cart) cartRepo.findAll().stream().map(c -> {
-			return mapToCart(c);
-		}).collect(Collectors.toList());
+		return cartRepo.findAll();
+				
+				
 	}
 
 

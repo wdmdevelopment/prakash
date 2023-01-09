@@ -10,7 +10,6 @@ public class SupermarketMappingApplication {
 		SpringApplication.run(SupermarketMappingApplication.class, args);
 		
 		
-		  //LOGGER.info("Info level log message");
-	}
+		  	}
 
 }

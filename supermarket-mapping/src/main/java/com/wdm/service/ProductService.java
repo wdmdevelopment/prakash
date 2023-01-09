@@ -24,7 +24,7 @@ public interface ProductService {
 	
 	public void deletebyId(long id);
 	
-	public Product getAllproduct();
+	public List<Product> getAllproduct();
 	
 	public Product updateProduct(Product product, long id);
 	

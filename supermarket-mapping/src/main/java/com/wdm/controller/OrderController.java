@@ -33,7 +33,6 @@ public class OrderController {
 	private static final Logger logger = LogManager.getLogger(OrderController.class);
 	
 	@PostMapping
-
 	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestProduct) {
 		
 		logger.info("Info level logger");
@@ -41,14 +40,14 @@ public class OrderController {
 		return new ResponseEntity<>(orderService.placeOrder(resquestProduct), HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping("/cancelOrder/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> orderCancel(@PathVariable("id") long id) throws Exception{
 			orderService.cancelOrder(id);
 		return new  ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	
-	@PutMapping("/additem/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, @PathVariable("id") long id)	{
 		
 		return new  ResponseEntity<>(orderService.updateOrder(order, id), HttpStatus.OK);
@@ -57,14 +56,14 @@ public class OrderController {
 	
 	
 	
-	@GetMapping("/Allorder")
+	@GetMapping
 	public ResponseEntity<List<Orders>> getAllorders() {
 
 		return new ResponseEntity<List<Orders>>(orderService.getAllOrders(), HttpStatus.OK);
 	}
 	
 	
-	@GetMapping("/orderdetail")
+	@GetMapping("/{id}")
 	public ResponseEntity<OrderResponse> getorder(long id) throws Exception {
 		
 		return new ResponseEntity<OrderResponse>(orderService.getOrderDetails(id), HttpStatus.OK);

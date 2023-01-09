@@ -1,9 +1,11 @@
 package com.wdm.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.Cart;
-
 import com.wdm.model.RequestCart;
 import com.wdm.service.CartService;
 
@@ -30,26 +30,27 @@ public class CartController {
 
 	CartService cartservice;
 	
-	private static final Logger logger = LogManager.getLogger(CartController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@PostMapping
 	public ResponseEntity<Cart> saveCart(@Valid @RequestBody RequestCart resquestProduct) {
 		
-		logger.info("Info level logger");
+		logger.info("created cart");
 		
 		return new ResponseEntity<>(cartservice.saveCart(resquestProduct), HttpStatus.CREATED);
 	}
 	
 	
-	@GetMapping("/get")
-	public ResponseEntity<Cart> getAll() {
-
-		return new ResponseEntity<Cart>(cartservice.getCart(), HttpStatus.OK);
+	@GetMapping
+	public ResponseEntity<Object> getAll() {
+		logger.info("get all cart");
+		
+		return new ResponseEntity<Object>( cartservice.getAllCart(), HttpStatus.OK);
 	}
 
 	
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteCart(@PathVariable("id") long id) {
 					
 			cartservice.deleteById(id);

@@ -39,21 +39,21 @@ public ResponseEntity<Supermarket> saveSuperMarket(@Valid @RequestBody RequestSu
 		return new ResponseEntity<>(superMarketService.saveSuperMarket(resquestProduct), HttpStatus.CREATED);
 	}
 	
-	@PutMapping("/update")
+	@PutMapping("/{id}")
 	
 	public ResponseEntity<Supermarket> updatedetails(@RequestBody Supermarket Supermarket, long id){
 		
 		return new ResponseEntity<Supermarket>(superMarketService.updatesupermarket(Supermarket, id), HttpStatus.OK);
 	}
 	
-	@GetMapping("/get")
+	@GetMapping
 	public ResponseEntity<Supermarket> getDetails(){
 		
 		return new ResponseEntity<Supermarket>(superMarketService.getSupermarket(), HttpStatus.OK);
 	}
 	
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	
 	public ResponseEntity<Void> delete(@PathVariable("id") long id){
 		

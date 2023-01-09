@@ -2,6 +2,8 @@ package com.wdm.service;
 
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Category;
@@ -19,6 +21,8 @@ public interface CategoryService {
 	public Category updatecategory(Category Category, long id);
 
 	public void deleteById(long id);
+
+	public List<Category> getAllcategory();
 	
 		
 }

@@ -64,11 +64,13 @@ public class ProductServiceimpl implements ProductService {
 
 	}
 
-	public Product getAllproduct() {
+	public List<Product> getAllproduct() {
 
-		return (Product) productRepo.findAll().stream().map(t -> {
-			return mapToProduct(t);
-		}).collect(Collectors.toList());
+		return  productRepo.findAll();
+		
+//		.stream().map(t -> {
+//			return mapToProduct(t);
+//		}).collect(Collectors.toList());
 	}
 
 

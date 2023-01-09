@@ -1,5 +1,7 @@
 package com.wdm.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Cart;
@@ -15,7 +17,7 @@ public interface CartService {
 	
 	public Cart updateCart(Cart requestCart, long id);
 	
-	public Cart getCart();
+	public List<Cart> getAllCart();
 	
 	
 }
