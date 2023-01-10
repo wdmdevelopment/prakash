@@ -6,18 +6,19 @@ import org.springframework.stereotype.Service;
 
 import com.wdm.entity.UserAccount;
 import com.wdm.model.RequestUserAccount;
+import com.wdm.response.UserResponse;
 
 @Service
 public interface UserService {
 
 	public UserAccount saveuser(RequestUserAccount user);
 
-	public void delete(long id);
+	public void delete(long id) throws Exception;
 	
 	public UserAccount updateUser(UserAccount user, long id);
 	
 	public List<UserAccount> getAlluser();
 	
-	public UserAccount getuserId(long id);
+	public UserResponse getuserId(long id);
 
 }

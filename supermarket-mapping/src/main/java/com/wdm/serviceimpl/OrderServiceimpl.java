@@ -1,15 +1,17 @@
 package com.wdm.serviceimpl;
 
 import java.util.List;
- 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.wdm.entity.Items;
 import com.wdm.entity.Orders;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.OrderCustomException;
+import com.wdm.exception.ProductCustomException;
+import com.wdm.model.RequestItems;
 import com.wdm.model.RequestOrder;
 import com.wdm.repository.OrderRepository;
 import com.wdm.response.OrderResponse;
@@ -26,13 +28,26 @@ public class OrderServiceimpl implements OrderService {
 
 		orders.setTotalPrice(requestOrder.getTotalPrice());
 		orders.setOrdertime(requestOrder.getOrdertime());
+		
+		Items item = new Items();
+		RequestItems req = new RequestItems();
+		
+		if(item.getQuantity() < req.getQuantity()) {
+            throw new ProductCustomException("INSUFFICIENT_QUANTITY");
+        }
 
+		item.setQuantity(item.getQuantity() - req.getQuantity());
+		
 		return OrderRepo.save(orders);
 	}
 
 	public void cancelOrder(long id) throws Exception {
 		try {
 			OrderRepo.deleteById(id);
+			Items item = new Items();
+			RequestItems req = new RequestItems();
+			
+			item.setQuantity(item.getQuantity() + req.getQuantity());
 		}
 		catch (IdNotFoundException idNotFoundException) {
 			throw new IdNotFoundException("Id not found"+ idNotFoundException);
@@ -66,7 +81,7 @@ public class OrderServiceimpl implements OrderService {
 		}
 
 		catch (Exception e) {
-			throw new Exception("Invaild Request"+e);
+			throw new Exception(e);
 		}
 
 		return mapToOrder(order);

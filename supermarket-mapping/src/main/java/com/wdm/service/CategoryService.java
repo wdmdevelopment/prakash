@@ -12,15 +12,15 @@ import com.wdm.model.RequestCategory;
 @Service
 public interface CategoryService {
 	
-	public Category saveCategory(RequestCategory requestCategory);
+	public Category saveCategory(RequestCategory requestCategory, long userId);
 	
-	public void deleteCategory(long id);
+	 
 	
 	public Category getCategory(long id);
 	
 	public Category updatecategory(Category Category, long id);
 
-	public void deleteById(long id);
+	public long deleteById(long id);
 
 	public List<Category> getAllcategory();
 	

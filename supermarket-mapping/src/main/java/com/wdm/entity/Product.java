@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  
 
@@ -34,88 +36,55 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
-	@JsonIgnoreProperties
+	 
 	private Category category;
 	
 	
 	
-	@Column
-	private String name;
-	@Column
-	private String type;
+	@Column(name = "product_image") 
 	
-	@Lob
+	private Blob productImage;
+	 
 	
-	private Blob data;
 	
- 	
-
-	public String getStockDetails() {
-		return stockDetails;
-	}
-
-	public void setStockDetails(String stockDetails) {
-		this.stockDetails = stockDetails;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public Blob getData() {
-		return data;
-	}
-
-	public void setData(Blob data) {
-		this.data = data;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+	
+	
+	
+	
+	
+	
+	
 
 	public long getProductId() {
 		return productId;
 	}
-
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
-
 	public String getProductName() {
 		return ProductName;
 	}
-
 	public void setProductName(String productName) {
 		ProductName = productName;
 	}
-
-	public String getstock() {
+	public String getStockDetails() {
 		return stockDetails;
 	}
-
-	public void setstock(String stockDetails) {
+	public void setStockDetails(String stockDetails) {
 		this.stockDetails = stockDetails;
 	}
-
-	 
-
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public Blob getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(Blob productImage) {
+		this.productImage = productImage;
+	}
 	public Product(long productId, String productName, String stockDetails, Category category) {
 		super();
 		this.productId = productId;

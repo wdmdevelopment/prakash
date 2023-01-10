@@ -35,20 +35,25 @@ public class OrderController {
 	@PostMapping
 	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestProduct) {
 		
-		logger.info("Info level logger");
+		logger.info("Place the order given item"+orderService.placeOrder(resquestProduct));
 		
 		return new ResponseEntity<>(orderService.placeOrder(resquestProduct), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> orderCancel(@PathVariable("id") long id) throws Exception{
+		 
 			orderService.cancelOrder(id);
-		return new  ResponseEntity<>(HttpStatus.OK);
+			
+			logger.info("if Place the order cancelled");
+		return new  ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, @PathVariable("id") long id)	{
+		
+		logger.info("If user add extra item "+orderService.updateOrder(order, id));
 		
 		return new  ResponseEntity<>(orderService.updateOrder(order, id), HttpStatus.OK);
 	}
@@ -58,13 +63,17 @@ public class OrderController {
 	
 	@GetMapping
 	public ResponseEntity<List<Orders>> getAllorders() {
-
+		
+		logger.info("To get all orders"+orderService.getAllOrders());
+		
 		return new ResponseEntity<List<Orders>>(orderService.getAllOrders(), HttpStatus.OK);
 	}
 	
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<OrderResponse> getorder(long id) throws Exception {
+		
+		logger.info("To get order with given id"+id);
 		
 		return new ResponseEntity<OrderResponse>(orderService.getOrderDetails(id), HttpStatus.OK);
 	}

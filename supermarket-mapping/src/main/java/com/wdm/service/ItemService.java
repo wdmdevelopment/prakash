@@ -20,11 +20,7 @@ public interface ItemService {
 	
 	public List<Items> getItems();
 	
-	
-	public Items reduceQuantity(long itemId, int quantity);
-	
-	public Items addQuantity(long itemId, int quantity);
-	
+	 
 	
 	public List<Items> getMaxPrice(double maxprice);
 

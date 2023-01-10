@@ -27,20 +27,11 @@ public class Supermarket {
 	private Address address;
 
 	
-	@OneToMany(mappedBy = "supermarketmapping")
-
-	private List<Category> category;
-	
+	 
 	
 	
 
-	public List<Category> getCategory() {
-		return category;
-	}
-
-	public void setCategory(List<Category> category) {
-		this.category = category;
-	}
+	 
 
 	public long getSuperId() {
 		return superId;
@@ -66,12 +57,12 @@ public class Supermarket {
 		this.address = address;
 	}
 
-	public Supermarket(long superId, String superMarketName, Address address, List<Category> category) {
+	public Supermarket(long superId, String superMarketName, Address address) {
 		super();
 		this.superId = superId;
 		this.superMarketName = superMarketName;
 		this.address = address;
-		this.category = category;
+		 
 	}
 	
 	public Supermarket() {

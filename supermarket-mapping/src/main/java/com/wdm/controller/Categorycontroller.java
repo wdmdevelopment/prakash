@@ -1,5 +1,6 @@
 package com.wdm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -32,12 +33,14 @@ public class Categorycontroller {
 	
 	private static final Logger logger = LogManager.getLogger(Categorycontroller.class);
 
-	@PostMapping
+	@PostMapping("/{userId}")
 
-	public ResponseEntity<Category> saveCategory(@Valid @RequestBody RequestCategory resquestProduct) {
+	public ResponseEntity<Category> saveCategory(@Valid @RequestBody RequestCategory resquestProduct, 
+				@PathVariable("userId")long userId) {
 		
-		logger.info("Info level logger");
-		return new ResponseEntity<>(categoryservice.saveCategory(resquestProduct), HttpStatus.CREATED);
+		logger.info("add to category");
+		
+		return new ResponseEntity<>(categoryservice.saveCategory(resquestProduct, userId), HttpStatus.CREATED);
 	}
 	
 	
@@ -45,29 +48,52 @@ public class Categorycontroller {
 	
 	
 	@GetMapping
-	public ResponseEntity<List<Category>> getbycategory() {
-
-		return new ResponseEntity<List<Category>>(categoryservice.getAllcategory(), HttpStatus.OK);
+	public ResponseEntity<List<RequestCategory>> getbycategory() {
+		
+		logger.info("get the list of category"+categoryservice.getAllcategory());
+		
+		List<Category> category1 = categoryservice.getAllcategory();
+		
+		List<RequestCategory> req = new ArrayList<>();
+		for(Category category:category1) {
+			
+			RequestCategory reqc = new RequestCategory();
+			reqc.setCategoryName(category.getCategoryName());
+			
+			req.add(reqc);
+		}
+		
+		return new ResponseEntity<List<RequestCategory>>(req, HttpStatus.OK);
 	}
+	
+	
+	
+	
+	
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getByid(@PathVariable("id") long id) {
-		try {
+		
+		
+		
+		 
+				logger.info("get  category"+categoryservice.getCategory(id));
+			
 			return new ResponseEntity<Object>(categoryservice.getCategory(id), HttpStatus.OK);
-		}
+		 
 
-		catch (ProductNotFoundException productNotFoundException) {
-			return new ResponseEntity<Object>(productNotFoundException.getMessage(), HttpStatus.CONFLICT);
-		}
+		
 
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
+	public ResponseEntity<Long> deleteproduct(@PathVariable("id") long id) {
 					
-			categoryservice.deleteById(id);
-			
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		long del =	categoryservice.deleteById(id);
+		
+		logger.info("delete the category"+id);
+		
+		return new ResponseEntity<Long>(del, HttpStatus.NO_CONTENT);
 
 	}
 	
@@ -76,7 +102,7 @@ public class Categorycontroller {
 	public ResponseEntity<Void> updateCategory(@RequestBody Category Category, @PathVariable("id") long id) {
 
 		categoryservice.updatecategory(Category, id);
-
+		logger.info("Categorycontroller | update the category"+id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

@@ -1,6 +1,7 @@
 package com.wdm.serviceimpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,14 @@ public class ItemServiceimpl implements ItemService {
 	}
 
 	public void deleteByid(long id) {
-
-		itemRepo.deleteById(id);
+		
+			Optional<Items> findById = itemRepo.findById(id);
+		if(findById.isPresent()) {
+			itemRepo.deleteById(id);
+		}
+		else {
+			throw new IdNotFoundException("Id not present");
+		}
 	}
 
 	public Items getItemsByid(long id) throws Exception {
@@ -72,30 +79,7 @@ public class ItemServiceimpl implements ItemService {
 //		return items;
 //	}
 
-	public Items reduceQuantity(long itemId, int quantity) {
-		
-		Items item  = itemRepo.findById(itemId).get();
-		 
-		if(item.getQuantity() < quantity) {
-			
-			throw new ProductCustomException("Item does not have sufficient Quantity");
-		}
-		item.setQuantity(item.getQuantity() - quantity);
-		
-		return itemRepo.save(item);
-		
-	}
-
-	public Items addQuantity(long itemId, int quantity) {
-		
-		Items item  = itemRepo.findById(itemId).get();
-		 
-		
-		item.setQuantity(item.getQuantity() + quantity);
-		
-		return itemRepo.save(item);
-		
-	}
+	
 
 	 
 	

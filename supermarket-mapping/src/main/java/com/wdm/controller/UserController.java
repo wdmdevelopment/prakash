@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
- 
 import com.wdm.model.RequestUserAccount;
+import com.wdm.response.UserResponse;
 import com.wdm.service.UserService;
 
 @RestController
@@ -36,34 +36,38 @@ public class UserController {
 
 	public ResponseEntity<UserAccount> saveuser(@Valid @RequestBody RequestUserAccount resquestProduct) {
 		
-		logger.info("Info level logger");
+		logger.info("To create account by user/customer");
 		
 		return new ResponseEntity<>(userService.saveuser(resquestProduct), HttpStatus.CREATED);
 	}
 	
 	@GetMapping
 	public ResponseEntity<List<UserAccount>> getAll() {
-
+		logger.info("To get all by user/customer");
 		return new ResponseEntity<List<UserAccount>>(userService.getAlluser(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<UserAccount> getByid(@PathVariable("id") long id) {
-		UserAccount user = userService.getuserId(id);
+	public ResponseEntity<UserResponse> getByid(@PathVariable("id") long id) {
+		UserResponse user = userService.getuserId(id);
+		logger.info("To get  by id user/customer"+id);
 			if(user==null){
+				
+				logger.info("if user id is null"+id);
+				
 				throw new IdNotFoundException("Id not found"+user);
 		}
 		 
-		return new ResponseEntity<UserAccount>(userService.getuserId(id), HttpStatus.OK);
+		return new ResponseEntity<UserResponse>(userService.getuserId(id), HttpStatus.OK);
 		
  
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
-			
+	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) throws Exception {
+		logger.info("user account will delete"+id);
 			userService.delete(id);
-		return new ResponseEntity<Void>(HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
 	}
 

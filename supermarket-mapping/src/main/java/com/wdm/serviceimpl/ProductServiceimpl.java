@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.wdm.entity.Product;
 
 import com.wdm.exception.IdNotFoundException;
-import com.wdm.exception.ProductAlreadyExistsException;
+ 
 import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestProduct;
 import com.wdm.repository.ProductMappingRespository;
@@ -24,12 +24,12 @@ import com.wdm.response.ProductResponse;
 import com.wdm.service.ProductService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
+ 
 import lombok.extern.log4j.Log4j2;
 
 @Service
-@Log4j2
-@RequiredArgsConstructor
+ 
+ 
 public class ProductServiceimpl implements ProductService {
 
 	@Autowired
@@ -43,13 +43,9 @@ public class ProductServiceimpl implements ProductService {
 
 		product.setProductName(requestProduct.getProductName());
 
-		product.setstock(requestProduct.getStockDetails());
-
-		if (productRepo.existsById(product.getProductId())) {
-
-			throw new ProductAlreadyExistsException("Product Already Exist");
-		}
-
+		product.setStockDetails(requestProduct.getStockDetails());
+			
+		
 		return productRepo.save(product);
 	}
 
@@ -58,7 +54,7 @@ public class ProductServiceimpl implements ProductService {
 			productRepo.deleteById(id);
 		} catch (Exception e) {
 
-			throw new IdNotFoundException("Product with given with Id: " + id + " not found");
+			throw new IdNotFoundException("Product with given with Id: " + id +e);
 
 		}
 
@@ -66,19 +62,32 @@ public class ProductServiceimpl implements ProductService {
 
 	public List<Product> getAllproduct() {
 
-		return  productRepo.findAll();
-		
-//		.stream().map(t -> {
-//			return mapToProduct(t);
-//		}).collect(Collectors.toList());
+		return productRepo.findAll();
+		   
+				 
+				  
+		   
+ 
 	}
 
 
 
 
-	public Product updateProduct(Product product, long id) {
-
-		return productRepo.save(product);
+	public Product updateProduct(RequestProduct product, long id) {
+		
+		Optional<Product> findById = productRepo.findById(id);
+		Product p = new Product();
+		if(findById.isPresent()) {
+			findById.get();
+			p.setProductName(product.getProductName());
+			p.setStockDetails(product.getStockDetails());
+			
+			p.setCategory(product.getCategory());
+			 
+			
+		}
+		return productRepo.save(p);
+		
 	}
 	
 	
@@ -91,18 +100,18 @@ public class ProductServiceimpl implements ProductService {
 		}
 
 		catch (Exception e) {
-			throw new ProductNotFoundException("Product Not found" + productId);
+			throw new ProductNotFoundException("Product Not found" + productId + e);
 		}
 
 		return product;
 	}
 
-	public RequestProduct mapToProduct(Product product) {
+	public ProductResponse mapToProduct(Product product) {
 
-		RequestProduct requestProduct = new RequestProduct();
+		ProductResponse requestProduct = new ProductResponse();
 
 		requestProduct.setProductName(product.getProductName());
-		requestProduct.setStockDetails(product.getstock());
+		requestProduct.setStockDetails(product.getStockDetails());
 
 		return requestProduct;
 	}
@@ -112,14 +121,12 @@ public class ProductServiceimpl implements ProductService {
 		
 		try {
 		Product product = new Product();
-			product.setData(new SerialBlob(file.getBytes()));
-			product.setName(file.getOriginalFilename());
-			product.setType(file.getContentType());
-			
+			product.setProductImage(new SerialBlob(file.getBytes()));
+		
 			return productRepo.save(product);
 	}
 		catch (Exception e) {
-			 throw new ProductNotFoundException("FIle Not Found");
+			 throw new ProductNotFoundException("File Not Found");
 		}
 	}
 	

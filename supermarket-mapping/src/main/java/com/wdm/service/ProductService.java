@@ -1,5 +1,6 @@
 package com.wdm.service;
 
+ 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,11 +11,10 @@ import javax.sql.rowset.serial.SerialException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
- 
 import com.wdm.entity.Product;
  
 import com.wdm.model.RequestProduct;
-import com.wdm.response.ProductResponse;
+ 
 
 @Service
 public interface ProductService {
@@ -26,7 +26,7 @@ public interface ProductService {
 	
 	public List<Product> getAllproduct();
 	
-	public Product updateProduct(Product product, long id);
+	public Product updateProduct(RequestProduct product, long id);
 	
 	public Optional<Product> getProductById(long productId);
 	

@@ -9,7 +9,7 @@ public class ProductCustomException extends RuntimeException {
 	private String errorCode;
 
 
-	public ProductCustomException(String string) {
+	public ProductCustomException(String errorcode) {
 		
 	}
 

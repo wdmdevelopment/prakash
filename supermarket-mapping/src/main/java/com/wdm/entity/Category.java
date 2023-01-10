@@ -33,10 +33,7 @@ public class Category {
 	private List<Product> product;
 
 	
-	@ManyToOne
-	@JoinColumn(name = "superId")
-	@JsonIgnoreProperties
-	private Supermarket supermarketmapping;
+	
 	
 	
 	
@@ -60,13 +57,7 @@ public class Category {
 		this.categoryName = categoryName;
 	}
 
-	public Supermarket getSupermarketmapping() {
-		return supermarketmapping;
-	}
-
-	public void setSupermarketmapping(Supermarket supermarketmapping) {
-		this.supermarketmapping = supermarketmapping;
-	}
+	 
 
 	public List<Product> getProduct() {
 		return product;

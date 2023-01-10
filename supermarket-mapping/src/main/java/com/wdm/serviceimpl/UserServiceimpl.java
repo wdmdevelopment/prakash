@@ -10,6 +10,7 @@ import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.UserNotFoundException;
 import com.wdm.model.RequestUserAccount;
 import com.wdm.repository.UserAccountRespository;
+import com.wdm.response.UserResponse;
 import com.wdm.service.UserService;
 
 @Service
@@ -34,9 +35,17 @@ public class UserServiceimpl implements UserService {
 		return userRepo.save(userAccount);
 	}
 
-	public void delete(long id) {
-
-		userRepo.deleteById(id);
+	public void delete(long id) throws Exception {
+		try {
+			userRepo.deleteById(id);	
+		}
+		catch (IdNotFoundException e) {
+			throw new IdNotFoundException("Id not found"+e);
+			
+		}
+		catch (Exception e) {
+			throw new Exception(e);
+		}
 
 	}
 
@@ -52,17 +61,22 @@ public class UserServiceimpl implements UserService {
 	}
 
 	 
-	public UserAccount getuserId(long id) {
+	public UserResponse getuserId(long id) {
 		UserAccount user;
 		try { 
+			
 			user = userRepo.findById(id).get();
+			
+		
 		}
 		catch (Exception notfoundException) {
 			 throw new UserNotFoundException("Not found"+ notfoundException);
 		}
 		
-		
-		return user;
+		UserResponse userRes = new UserResponse();
+		userRes.setFirstName(user.getFirstName());
+		userRes.setUserRole(user.getuserRoll());
+		return userRes;
 	}
 
 }

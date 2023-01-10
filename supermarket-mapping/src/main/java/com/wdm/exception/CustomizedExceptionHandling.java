@@ -109,7 +109,7 @@ public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler 
 
 		errorResponse.setMessage(exception.getMessage());
 		errorResponse.setTimeStamp(System.currentTimeMillis());
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_GATEWAY);
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(ProductCustomException.class)
@@ -131,7 +131,7 @@ public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler 
 
 		errorResponse.setMessage(exception.getMessage());
 		errorResponse.setTimeStamp(System.currentTimeMillis());
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_GATEWAY);
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 	
 	
@@ -155,7 +155,7 @@ public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler 
 
 		errorResponse.setMessage(exception.getMessage());
 		errorResponse.setTimeStamp(System.currentTimeMillis());
-		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_GATEWAY);
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
 	}
 	
 	

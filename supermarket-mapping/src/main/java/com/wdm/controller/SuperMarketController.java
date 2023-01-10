@@ -34,7 +34,7 @@ public class SuperMarketController {
 	@PostMapping
 public ResponseEntity<Supermarket> saveSuperMarket(@Valid @RequestBody RequestSuperMarket resquestProduct) {
 		
-		logger.info("Info level logger");
+		logger.info("To add new supermarket"+resquestProduct);
 		
 		return new ResponseEntity<>(superMarketService.saveSuperMarket(resquestProduct), HttpStatus.CREATED);
 	}
@@ -42,13 +42,13 @@ public ResponseEntity<Supermarket> saveSuperMarket(@Valid @RequestBody RequestSu
 	@PutMapping("/{id}")
 	
 	public ResponseEntity<Supermarket> updatedetails(@RequestBody Supermarket Supermarket, long id){
-		
+		logger.info("To add new supermarket"+id);
 		return new ResponseEntity<Supermarket>(superMarketService.updatesupermarket(Supermarket, id), HttpStatus.OK);
 	}
 	
 	@GetMapping
 	public ResponseEntity<Supermarket> getDetails(){
-		
+		logger.info("To add new supermarket"+superMarketService.getSupermarket());
 		return new ResponseEntity<Supermarket>(superMarketService.getSupermarket(), HttpStatus.OK);
 	}
 	
@@ -58,7 +58,10 @@ public ResponseEntity<Supermarket> saveSuperMarket(@Valid @RequestBody RequestSu
 	public ResponseEntity<Void> delete(@PathVariable("id") long id){
 		
 		superMarketService.delete(id);
-		return new ResponseEntity<>(HttpStatus.OK);		
+		
+		logger.info("To delete supermarket");
+		
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);		
 	}
 	
 	

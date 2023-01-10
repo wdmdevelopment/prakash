@@ -2,8 +2,14 @@ package com.wdm.model;
  
 
  
+import java.sql.Blob;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.wdm.entity.Category;
 
 
 
@@ -18,22 +24,11 @@ public class RequestProduct {
 	@NotBlank
 	private String stockDetails;
 	 
-	
-	private RequestCategory category;
-	
-	
+	@NotNull
+	private Category category;
 	
 	@NotNull
-	private String Data;
-	 
-
-	public RequestCategory getCategory() {
-		return category;
-	}
-
-	public void setCategory(RequestCategory category) {
-		this.category = category;
-	}
+	private Blob productImage;
 
 	public String getProductName() {
 		return ProductName;
@@ -51,7 +46,24 @@ public class RequestProduct {
 		this.stockDetails = stockDetails;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Blob getProductImage() {
+		return productImage;
+	}
+
+	public void setProductImage(Blob productImage) {
+		this.productImage = productImage;
+	}
 	
+	
+	  
 	
 	
 	
