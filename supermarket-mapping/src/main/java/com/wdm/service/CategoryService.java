@@ -18,11 +18,13 @@ public interface CategoryService {
 	
 	public Category getCategory(long id);
 	
-	public Category updatecategory(Category Category, long id);
+	public Category updatecategory(RequestCategory Category, long id);
 
-	public long deleteById(long id);
+	public void deleteById(long id);
 
 	public List<Category> getAllcategory();
+	
+	public List<Category> findbyOrder();
 	
 		
 }

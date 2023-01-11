@@ -1,5 +1,7 @@
 package com.wdm.serviceimpl;
 
+ 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Address;
 import com.wdm.entity.Supermarket;
+import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestSuperMarket;
 import com.wdm.repository.SuperMarkerRespository;
 import com.wdm.service.SuperMarketService;
@@ -18,23 +21,35 @@ public class SuperMarketServiceimpl implements SuperMarketService {
 
 	SuperMarkerRespository SupermarketRepo;
 
-	public Supermarket saveSuperMarket(RequestSuperMarket request) {
+	
+	public Supermarket saveSuperMarket(RequestSuperMarket requestSuperMarket) throws Exception {
 
+	try {	
+//		Address address = new Address(requestSuperMarket.getDoorNo(), requestSuperMarket.getStreet(),
+//				requestSuperMarket.getCity(), requestSuperMarket.getState(), requestSuperMarket.getCountry());
+		 
+		
 		Supermarket supermarket = new Supermarket();
 
-		supermarket.setSuperMarketName(request.getSuperMarketName());
-
+		supermarket.setSuperMarketName(requestSuperMarket.getSuperMarketName());
 		Address address = new Address();
-		address.setCity(request.getCity());
-		address.setCountry(request.getCountry());
-		address.setdoorNo(request.getDoorNo());
-		address.setState(request.getState());
-		address.setStreet(request.getStreet());
-
+		address.setdoorNo(requestSuperMarket.getDoorNo());
+		address.setState(requestSuperMarket.getState());
+		
+		address.setStreet(requestSuperMarket.getStreet());
+		address.setCity(requestSuperMarket.getCity());
+		address.setCountry(requestSuperMarket.getCountry());
+		
 		supermarket.setAddress(address);
 
 		return SupermarketRepo.save(supermarket);
 	}
+	catch (Exception e) {
+		throw new ProductCustomException("Invalid"+e.getMessage());
+	}
+	}
+	
+	
 
 	public void delete(long id) {
 
@@ -42,9 +57,9 @@ public class SuperMarketServiceimpl implements SuperMarketService {
 
 	}
 
-	public Supermarket getSupermarket() {
+	public List<Supermarket> getSupermarket() {
 
-		return (Supermarket) SupermarketRepo.findAll();
+		return  SupermarketRepo.findAll();
 	}
 
 	public Supermarket updatesupermarket(Supermarket supermarket, long id) {

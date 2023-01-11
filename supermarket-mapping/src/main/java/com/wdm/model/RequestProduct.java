@@ -25,7 +25,7 @@ public class RequestProduct {
 	private String stockDetails;
 	 
 	@NotNull
-	private Category category;
+	private String category;
 	
 	@NotNull
 	private Blob productImage;
@@ -46,11 +46,11 @@ public class RequestProduct {
 		this.stockDetails = stockDetails;
 	}
 
-	public Category getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 

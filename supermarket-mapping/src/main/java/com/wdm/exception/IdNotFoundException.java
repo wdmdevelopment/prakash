@@ -11,8 +11,8 @@ public class IdNotFoundException extends  RuntimeException{
 	 private String errorCode;
 
 
-	public IdNotFoundException(String string) {
-		
+	public IdNotFoundException(String errorCode) {
+		super(errorCode);
 	}
 
 

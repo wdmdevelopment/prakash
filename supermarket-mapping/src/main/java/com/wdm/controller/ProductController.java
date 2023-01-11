@@ -1,10 +1,8 @@
 package com.wdm.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
-import javax.sql.rowset.serial.SerialException;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -18,18 +16,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
-import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestProduct;
 import com.wdm.service.ProductService;
 
 @RestController
+
 @RequestMapping("/product")
 public class ProductController {
 
@@ -37,21 +36,26 @@ public class ProductController {
 	ProductService productService;
 	private static final Logger logger = LogManager.getLogger(ProductController.class);
 
-	@PostMapping("/save")
-	public ResponseEntity<Product> save(@Valid @RequestBody RequestProduct resquestProduct) {
+	@PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	
+	public ResponseEntity<ImageProduct> save(@Valid @RequestPart RequestProduct resquestProduct, @RequestPart("imagefile")
+		MultipartFile file) throws IOException {
  
-		logger.info("save new product - productName={},category= {} " , resquestProduct.getProductName(), resquestProduct.getCategory());
+		logger.info("save new product - productName={},category= {}, file={} ", file.getOriginalFilename()
+				, resquestProduct.getProductName(), resquestProduct.getCategory(), resquestProduct.getProductImage());
 		
-		return new ResponseEntity<>(productService.saveProduct(resquestProduct), HttpStatus.CREATED);
+		ImageProduct saveProduct = productService.saveProduct(resquestProduct, file);
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(saveProduct);
 	}
 
 	@GetMapping
 	public ResponseEntity<List<Product>> getAll() {
 		
-		logger.info("ProductController | getProduct  is called");
+		 
 		
 	
-		logger.info("ProductController | getAllproduct | product : " + getAll());
+		logger.info(" getAllproduct product : " + getAll());
 		
 		return new ResponseEntity<List<Product>>(productService.getAllproduct(), HttpStatus.OK);
 	}
@@ -60,9 +64,9 @@ public class ProductController {
 	public ResponseEntity<Object> getByid(@PathVariable("id") long id) {
 		
 			
-			logger.info("ProductController | getProductById is called");
+			 
 
-			logger.info("ProductController | getProductById | productId : " + id);
+			logger.info("getProductById  productId : " + id);
 			
 			return new ResponseEntity<Object>(productService.getProductById(id), HttpStatus.OK);
 		 
@@ -71,10 +75,10 @@ public class ProductController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Product> updateProduct(RequestProduct product, @PathVariable("id")long id){
 		
-		logger.info("ProductController | updateProduct is called");
+		 
 
-		logger.info("ProductController | updateProduct | productId : " + id);
-		logger.info("ProductController | updateProduct | product : " + product);
+	 
+		logger.info("updateProduct  product : " + product.getProductName(), product.getStockDetails());
 		
 		
 		
@@ -85,37 +89,25 @@ public class ProductController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
-		logger.info("ProductController | deleteproduct | product : " + id);
+		
+		logger.info("deleteproduct  product : " + id);
+		
 			  productService.deletebyId(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
 	}
-	
-	
-	
-	
-	@PostMapping(consumes = MediaType.ALL_VALUE)
-	
-	public 	Product uploadFile(@RequestPart MultipartFile file)
-			throws IOException, SerialException, SQLException, ProductNotFoundException {
+ 
+	@GetMapping("/name")
+	public ResponseEntity<List<Product>> filterbyproduct(@RequestParam(value="name") String name) {
 		
-		logger.info("ProductController |  | product image : " + file);
-		
-		if (file.isEmpty()) {
 			
-			logger.info("ProductController |  | product image is empty : " + file);
-			
-			throw new ProductNotFoundException("Please upload file");
-		}
+			 
 
-		else {
+			logger.info("getProductById  productId : " + name);
 			
-			return productService.store(file);
-		}
+			return new ResponseEntity<List<Product>>(productService.filterbyId(name), HttpStatus.OK);
+		 
 	}
-	
-	
-	
 	
 	
 	

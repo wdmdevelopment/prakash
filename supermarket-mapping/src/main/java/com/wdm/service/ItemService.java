@@ -25,6 +25,6 @@ public interface ItemService {
 	public List<Items> getMaxPrice(double maxprice);
 
 	
-	
+	public Items updatecategory(RequestItems items, long id);
 	
 }

@@ -67,6 +67,14 @@ public class Categorycontroller {
 	}
 	
 	
+	@GetMapping("/ordercategory")
+	public ResponseEntity<List<Category>> getbyfiltercategory() {
+	 
+		return new ResponseEntity<List<Category>>(categoryservice.findbyOrder(), HttpStatus.OK);
+	}
+	
+	
+	
 	
 	
 	
@@ -87,23 +95,26 @@ public class Categorycontroller {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Long> deleteproduct(@PathVariable("id") long id) {
+	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
 					
-		long del =	categoryservice.deleteById(id);
+		 categoryservice.deleteById(id);
 		
 		logger.info("delete the category"+id);
 		
-		return new ResponseEntity<Long>(del, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
 	}
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> updateCategory(@RequestBody Category Category, @PathVariable("id") long id) {
+	public ResponseEntity<Void> updateCategory(@RequestBody RequestCategory Category, @PathVariable("id") long id) {
 
 		categoryservice.updatecategory(Category, id);
-		logger.info("Categorycontroller | update the category"+id);
+		logger.info("update the category"+id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	
+	
 
 }

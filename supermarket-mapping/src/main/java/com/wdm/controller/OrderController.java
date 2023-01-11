@@ -33,11 +33,12 @@ public class OrderController {
 	private static final Logger logger = LogManager.getLogger(OrderController.class);
 	
 	@PostMapping
-	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestProduct) {
+	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestOrder, long userId) {
 		
-		logger.info("Place the order given item"+orderService.placeOrder(resquestProduct));
+		logger.info("Place the order given item TotalPrice={}, Ordertime={}" ,
+				resquestOrder.getTotalPrice(), resquestOrder.getOrdertime());
 		
-		return new ResponseEntity<>(orderService.placeOrder(resquestProduct), HttpStatus.CREATED);
+		return new ResponseEntity<>(orderService.placeOrder(resquestOrder, userId), HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -45,7 +46,7 @@ public class OrderController {
 		 
 			orderService.cancelOrder(id);
 			
-			logger.info("if Place the order cancelled");
+			logger.info("if Place the order cancelled", id);
 		return new  ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
@@ -53,7 +54,7 @@ public class OrderController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, @PathVariable("id") long id)	{
 		
-		logger.info("If user add extra item "+orderService.updateOrder(order, id));
+		logger.info("If user add extra item ", order.getOrderStatus(), order.getCart().getTotalPrice());
 		
 		return new  ResponseEntity<>(orderService.updateOrder(order, id), HttpStatus.OK);
 	}
@@ -64,7 +65,7 @@ public class OrderController {
 	@GetMapping
 	public ResponseEntity<List<Orders>> getAllorders() {
 		
-		logger.info("To get all orders"+orderService.getAllOrders());
+		logger.info("To get all orders");
 		
 		return new ResponseEntity<List<Orders>>(orderService.getAllOrders(), HttpStatus.OK);
 	}

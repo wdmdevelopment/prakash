@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Category;
+import com.wdm.entity.Product;
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
@@ -36,7 +37,7 @@ public class CategoryServiceimpl implements CategoryService {
 				UserAccount userAccount = findById.get();
 			
 			String getuserRoll = userAccount.getuserRoll();
-			if(getuserRoll=="admin") {
+			if(getuserRoll.equalsIgnoreCase("admin")) {
 				
 
 				Category category = new Category();
@@ -51,11 +52,7 @@ public class CategoryServiceimpl implements CategoryService {
 			}
 		}
 		return save;
-		
-		
-		
-		
-		
+	 		
 	}
  
 	
@@ -80,42 +77,44 @@ public class CategoryServiceimpl implements CategoryService {
 	
 	public List<Category> getAllcategory() {
 		return categoryRepo.findAll().stream().filter(cat -> cat.getProduct().isEmpty()).filter(cat ->cat.getProduct().stream()
-				.anyMatch(p -> !p.getStockDetails().isBlank())).collect(Collectors.toList());
+				.anyMatch(p -> !p.getProductName().isBlank())).collect(Collectors.toList());
 				
 	}
 	
 	public List<Category> SortByAllCategory(){
 		
 		List<Category> findAll = categoryRepo.findAll();
-		findAll.stream().sorted(Comparator.comparing(Category:: getCategoryName).reversed());
+		findAll.stream().sorted(Comparator.comparing(Category:: getCategoryName));
 	
 	return findAll;
 	}
 	
 	 
-	public Category updatecategory(Category category, long id) {
-		try {
-			return categoryRepo.save(category);
-		}
-		catch (Exception e) {
-			throw new ProductCustomException("Insufficient"+e);
-		}
+	public Category updatecategory(RequestCategory category, long id) {
+		
+		Category category2 = categoryRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found"+id));
+			
+		category2.setCategoryName(category.getCategoryName());
+		 
+		 	return categoryRepo.save(category2);
+		 
+		 
 	}
 
 	 
-	public long deleteById(long id) {
-		try {
-			 categoryRepo.deleteById(id);
+	public void deleteById(long id) {
+		
+		categoryRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found"+id));
+			
+		categoryRepo.deleteById(id);
+		 
 			 
 	}
-		catch (Exception e) {
-			throw new IdNotFoundException("Insufficient id"+e);
-		}
-		return id;
-	}
 
 	 
-	
+	public List<Category> findbyOrder(){
+		return categoryRepo.findByOrdercategory();
+	}
 	 
 	
 

@@ -2,6 +2,9 @@ package com.wdm.controller;
 
 
 
+
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -28,41 +31,44 @@ public class SuperMarketController {
 
 	@Autowired
 	SuperMarketService superMarketService;
-	
+
 	private static final Logger logger = LogManager.getLogger(SuperMarketController.class);
-	
+
 	@PostMapping
-public ResponseEntity<Supermarket> saveSuperMarket(@Valid @RequestBody RequestSuperMarket resquestProduct) {
-		
-		logger.info("To add new supermarket"+resquestProduct);
-		
-		return new ResponseEntity<>(superMarketService.saveSuperMarket(resquestProduct), HttpStatus.CREATED);
+	public ResponseEntity<Supermarket> saveSuperMarket(@Valid @RequestBody RequestSuperMarket 
+			resquestsupermarket) throws Exception {
+
+		logger.info("To add new supermarket" + resquestsupermarket.getSuperMarketName());
+
+		return new ResponseEntity<>(superMarketService.saveSuperMarket(resquestsupermarket), HttpStatus.CREATED);
 	}
-	
+
 	@PutMapping("/{id}")
-	
-	public ResponseEntity<Supermarket> updatedetails(@RequestBody Supermarket Supermarket, long id){
-		logger.info("To add new supermarket"+id);
+
+	public ResponseEntity<Supermarket> updatedetails(@RequestBody Supermarket Supermarket, long id) {
+
+		logger.info("To add new supermarket", id, Supermarket.getSuperMarketName(), Supermarket.getAddress());
+
 		return new ResponseEntity<Supermarket>(superMarketService.updatesupermarket(Supermarket, id), HttpStatus.OK);
 	}
-	
+
 	@GetMapping
-	public ResponseEntity<Supermarket> getDetails(){
-		logger.info("To add new supermarket"+superMarketService.getSupermarket());
-		return new ResponseEntity<Supermarket>(superMarketService.getSupermarket(), HttpStatus.OK);
+	public ResponseEntity<List<Supermarket>> getDetails() {
+
+		logger.info("To add new supermarket" + superMarketService.getSupermarket());
+
+		return new ResponseEntity<List<Supermarket>>(superMarketService.getSupermarket(), HttpStatus.OK);
 	}
-	
-	
+
 	@DeleteMapping("/{id}")
-	
-	public ResponseEntity<Void> delete(@PathVariable("id") long id){
-		
+
+	public ResponseEntity<Void> delete(@PathVariable("id") long id) {
+
 		superMarketService.delete(id);
-		
-		logger.info("To delete supermarket");
-		
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);		
+
+		logger.info("To delete supermarket", id);
+
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
-	
+
 }

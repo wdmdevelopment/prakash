@@ -13,7 +13,8 @@ public class OrderCustomException extends RuntimeException {
 	private int status;
 
 	    public OrderCustomException(String message, String errorCode, int status) {
-	        super(message);
+	        super(errorCode);
+	       
 	        this.setErrorCode(errorCode);
 	        this.setStatus(status);
 	    }

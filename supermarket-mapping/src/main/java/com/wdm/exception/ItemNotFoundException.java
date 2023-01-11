@@ -11,7 +11,8 @@ public class ItemNotFoundException extends RuntimeException {
 	private String errorCode;
 
 
-	public ItemNotFoundException(String string) {
+	public ItemNotFoundException(String errorCode) {
+		super(errorCode);
 		
 	}
 

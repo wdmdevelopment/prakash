@@ -11,6 +11,7 @@ import javax.sql.rowset.serial.SerialException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
  
 import com.wdm.model.RequestProduct;
@@ -20,7 +21,7 @@ import com.wdm.model.RequestProduct;
 public interface ProductService {
 	
 	
-	public Product saveProduct (RequestProduct requestProduct);
+	public ImageProduct saveProduct (RequestProduct requestProduct, MultipartFile file) throws IOException;
 	
 	public void deletebyId(long id);
 	
@@ -30,7 +31,7 @@ public interface ProductService {
 	
 	public Optional<Product> getProductById(long productId);
 	
-	
+	public List<Product> filterbyId(String pName);
 	
 	
 	public Product store(MultipartFile file) throws IOException, SerialException, SQLException;

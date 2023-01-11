@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table
@@ -56,6 +56,14 @@ public class Items {
 		this.price = price;
 	}
 
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -63,5 +71,7 @@ public class Items {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
+
+	 
 
 }

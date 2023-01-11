@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wdm.controller.CartController;
 import com.wdm.entity.Cart;
+import com.wdm.entity.Items;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.model.RequestCart;
 import com.wdm.repository.CartRepository;
@@ -48,11 +48,17 @@ public class CartServiceimpl implements CartService {
 		}
 	}
 
-	public Cart updateCart(Cart Cart, long id) {
+	public Cart updateCart(RequestCart cart, long id) {
 
 		logger.info("update the cart like add more items");
-
-		return cartRepo.save(Cart);
+		
+		Cart findById = cartRepo.findById(id).orElseThrow(()-> new IdNotFoundException("Not Found"+id));
+		
+		findById.setTotalPrice(cart.getTotalPrice());
+		findById.getItem();
+		
+		 	
+		return cartRepo.save(findById);
 	}
 
 	public List<Cart> getAllCart() {

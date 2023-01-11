@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class RequestOrder {
 	
 	
-	@NotNull
+
 	private int quantity;
 	
 	
@@ -26,10 +26,10 @@ public class RequestOrder {
 		this.quantity = quantity;
 	}
 
-	@NotEmpty
+	
 	private double totalPrice;
 	
-	@NotBlank
+	 
 	private LocalDateTime ordertime;
 	
 	

@@ -1,39 +1,29 @@
 package com.wdm.model;
 
-import javax.validation.constraints.NotNull;
-
-
 
 
 public class RequestSuperMarket {
 
-	@NotNull
+	//@NotNull
 	private String superMarketName;
 	
 
-	@NotNull
+	//@NotNull
 	private int doorNo;
 	
-	@NotNull
+	//@NotNull
 	private String street;
 	
-	@NotNull
+	//@NotNull
 	private String city;
 	
-	@NotNull
+	//@NotNull
 	private String state;
 	
-	@NotNull
+	//@NotNull
 	private String country;
 	
-
-	
-	 
-	
-	
-
-	
-
+ 
 
 	public String getSuperMarketName() {
 		return superMarketName;
@@ -44,9 +34,7 @@ public class RequestSuperMarket {
 		this.superMarketName = superMarketName;
 	}
 
-
-	
-
+ 
 
 	public int getDoorNo() {
 		return doorNo;

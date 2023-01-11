@@ -1,5 +1,6 @@
 package com.wdm.exception;
 
+import java.rmi.ServerException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -160,18 +161,33 @@ public class CustomizedExceptionHandling extends ResponseEntityExceptionHandler 
 	
 	
 	
+	 
 	
 	
 	
+	@ExceptionHandler(InvalidDataException.class)
+	public ResponseEntity<ErrorResponse> handleInvalidDataException(
+			ProductCustomException userNotFoundException) {
+
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setStatuserrorCode(HttpStatus.INTERNAL_SERVER_ERROR.toString());
+
+		errorResponse.setMessage(userNotFoundException.getMessage());
+		errorResponse.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+	public ResponseEntity<ErrorResponse> handleInvalidDataException(Exception exception) {
+
+		ErrorResponse errorResponse = new ErrorResponse();
+		errorResponse.setStatuserrorCode(HttpStatus.BAD_REQUEST.toString());
+
+		errorResponse.setMessage(exception.getMessage());
+		errorResponse.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
 //	@ExceptionHandler({MethodArgumentNotValidException.class, HttpMessageNotReadableException.class})
 //    public ResponseEntity<ErrorResponse> handleBindingErrors(MethodArgumentNotValidException ex) {
 //		List<String> errorList = ex

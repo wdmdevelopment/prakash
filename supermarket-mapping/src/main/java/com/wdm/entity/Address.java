@@ -34,6 +34,28 @@ public class Address {
 	public Address() {
 
 	}
+	
+	
+	 
+
+	public Address( int doorNo, String street, String city, String state, String country) {
+		super();
+		 
+		this.doorNo = doorNo;
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.country = country;
+	}
+
+
+
+
+
+
+
+
+
 
 	public long getAddressId() {
 		return addressId;
@@ -48,7 +70,7 @@ public class Address {
 	}
 
 	public void setdoorNo(int doorNo) {
-		doorNo = doorNo;
+		this.doorNo = doorNo;
 	}
 
 	public String getStreet() {

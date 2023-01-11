@@ -10,7 +10,7 @@ public class ProductCustomException extends RuntimeException {
 
 
 	public ProductCustomException(String errorcode) {
-		
+		super(errorcode);
 	}
 
 

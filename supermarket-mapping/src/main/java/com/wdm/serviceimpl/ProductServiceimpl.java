@@ -1,31 +1,30 @@
 package com.wdm.serviceimpl;
 
+ 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
-import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
- 
-import com.wdm.entity.Product;
 
+import com.wdm.entity.ImageProduct;
+import com.wdm.entity.Product;
 import com.wdm.exception.IdNotFoundException;
- 
+import com.wdm.exception.InvalidDataException;
 import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestProduct;
+import com.wdm.repository.ImageProductRepository;
 import com.wdm.repository.ProductMappingRespository;
 import com.wdm.response.ProductResponse;
 import com.wdm.service.ProductService;
-
-import lombok.RequiredArgsConstructor;
- 
-import lombok.extern.log4j.Log4j2;
 
 @Service
  
@@ -34,19 +33,32 @@ public class ProductServiceimpl implements ProductService {
 
 	@Autowired
 	ProductMappingRespository productRepo;
-
-	public Product saveProduct(RequestProduct requestProduct) {
+	
+	@Autowired
+	ImageProductRepository imageRepo;
+	
+	@Transactional
+	public ImageProduct saveProduct(RequestProduct requestProduct, MultipartFile file) throws IOException {
 		
-		// log.info("ProductServiceimpl | addProduct is called");
+		 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		
-		Product product = new Product();
+		 ImageProduct img = new ImageProduct();
+		 img.setImageName(fileName);
+		 img.setImageType(file.getContentType());
+		 img.setImageData(file.getBytes());
+		
+		 Product product = new Product();
 
 		product.setProductName(requestProduct.getProductName());
 
 		product.setStockDetails(requestProduct.getStockDetails());
 			
+		productRepo.save(product);
 		
-		return productRepo.save(product);
+		img.setProduct(product);
+			
+		
+		return imageRepo.save(img);
 	}
 
 	public void deletebyId(long id) {
@@ -82,7 +94,7 @@ public class ProductServiceimpl implements ProductService {
 			p.setProductName(product.getProductName());
 			p.setStockDetails(product.getStockDetails());
 			
-			p.setCategory(product.getCategory());
+			//p.setCategory(product.getCategory());
 			 
 			
 		}
@@ -121,7 +133,7 @@ public class ProductServiceimpl implements ProductService {
 		
 		try {
 		Product product = new Product();
-			product.setProductImage(new SerialBlob(file.getBytes()));
+			//product.setProductImage(new SerialBlob(file.getBytes()));
 		
 			return productRepo.save(product);
 	}
@@ -173,7 +185,20 @@ public class ProductServiceimpl implements ProductService {
 
 	 
 
-	 
+	public List<Product> filterbyId(String pName) {
+		List<Product> findByfilterproduct = null;
+		try {
+			findByfilterproduct = productRepo.findByfilterproduct(pName);	
+		} catch (Exception e) {
+			throw new InvalidDataException(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.toString());
+		}
+		
+		return 	findByfilterproduct;	
+		 
+		 
+			 
+	}
+ 
 	
 	
 	

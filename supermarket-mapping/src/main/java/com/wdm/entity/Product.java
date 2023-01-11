@@ -1,20 +1,21 @@
 package com.wdm.entity; 
  
-import java.sql.Blob;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+ 
  
 
 @Entity
@@ -41,16 +42,11 @@ public class Product {
 	
 	
 	
-	@Column(name = "product_image") 
-	
-	private Blob productImage;
+	 @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	private Set<ImageProduct> productImage;
 	 
 	
-	
-	
-	
-	
-	
+	 
 	
 	
 	
@@ -79,10 +75,10 @@ public class Product {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public Blob getProductImage() {
+	public Set<ImageProduct> getProductImage() {
 		return productImage;
 	}
-	public void setProductImage(Blob productImage) {
+	public void setProductImage(Set<ImageProduct> productImage) {
 		this.productImage = productImage;
 	}
 	public Product(long productId, String productName, String stockDetails, Category category) {
