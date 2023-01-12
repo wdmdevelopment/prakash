@@ -25,9 +25,7 @@ public class SuperMarketServiceimpl implements SuperMarketService {
 	public Supermarket saveSuperMarket(RequestSuperMarket requestSuperMarket) throws Exception {
 
 	try {	
-//		Address address = new Address(requestSuperMarket.getDoorNo(), requestSuperMarket.getStreet(),
-//				requestSuperMarket.getCity(), requestSuperMarket.getState(), requestSuperMarket.getCountry());
-		 
+	 
 		
 		Supermarket supermarket = new Supermarket();
 

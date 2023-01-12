@@ -1,34 +1,20 @@
 package com.wdm.model;
- 
 
- 
-import java.sql.Blob;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import org.springframework.web.multipart.MultipartFile;
-
-import com.wdm.entity.Category;
-
-
-
-
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestProduct {
 	
-	@NotNull
+	@JsonProperty("ProductName")
 	private String ProductName;
 	
-	@NotBlank
+	@JsonProperty("stockDetails")
 	private String stockDetails;
 	 
-	@NotNull
+	@JsonProperty("category")
 	private String category;
 	
-	@NotNull
-	private Blob productImage;
+	
+	
 
 	public String getProductName() {
 		return ProductName;
@@ -54,13 +40,7 @@ public class RequestProduct {
 		this.category = category;
 	}
 
-	public Blob getProductImage() {
-		return productImage;
-	}
-
-	public void setProductImage(Blob productImage) {
-		this.productImage = productImage;
-	}
+	 
 	
 	
 	  

@@ -7,15 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
 import com.wdm.entity.Orders;
+import com.wdm.entity.Product;
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.OrderCustomException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestItems;
 import com.wdm.model.RequestOrder;
+import com.wdm.repository.CartRepository;
+import com.wdm.repository.ItemsRepository;
 import com.wdm.repository.OrderRepository;
+import com.wdm.repository.ProductMappingRespository;
 import com.wdm.repository.UserAccountRespository;
 import com.wdm.response.OrderResponse;
 import com.wdm.service.OrderService;
@@ -28,18 +33,49 @@ public class OrderServiceimpl implements OrderService {
 	
 	@Autowired
 	UserAccountRespository userRepo;
+	
+	@Autowired
+	ProductMappingRespository productRepo;
+	
+	@Autowired
+	CartRepository cartRepo;
+	
+	@Autowired
+	ItemsRepository itemRepo;
 
+	@SuppressWarnings("unchecked")
 	public Orders placeOrder(RequestOrder requestOrder, long userId) {
 		
-UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoundException("Not Found"+userId));
-		
+UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
+
+
+		try {
+			
+			
 		String getuserRoll = findById.getuserRoll();
 		Orders orders = new Orders();
 			 
-		if(getuserRoll.equalsIgnoreCase("admin")) {
+		if(getuserRoll.equalsIgnoreCase("customer") || getuserRoll.equalsIgnoreCase("admin")) {
+			
+			Cart findBycart = cartRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
+	
+			Items findByItem = itemRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
+			
+			Product findByproduct = productRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
+			
+			orders.setCart(findBycart);
+			
+			findBycart.setItem((List<Items>) findByItem);
+			
+			findByItem.setProduct(findByproduct);
+			
+		 
 		 
 		orders.setTotalPrice(requestOrder.getTotalPrice());
+		
 		orders.setOrdertime(requestOrder.getOrdertime());
+		
+		orders.setOrderStatus(requestOrder.getOrderStatus());
 		
 		Items item = new Items();
 		RequestItems req = new RequestItems();
@@ -48,21 +84,31 @@ UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoun
             throw new ProductCustomException("INSUFFICIENT_QUANTITY");
         }
 
-		item.setQuantity(item.getQuantity() - req.getQuantity());
+			item.setQuantity(item.getQuantity() - req.getQuantity());
 		}
 		
 		return  OrderRepo.save(orders);
+		
+		}
+		
+		catch (Exception e) {
+			throw new ProductCustomException("Invalid "+e.getMessage());
+		}
 	}
 
 	public void cancelOrder(long id) throws Exception {
 		try {
 			Optional<Orders> findById = OrderRepo.findById(id);
+			
 			if(findById.isPresent()) {
 				OrderRepo.deleteById(id);
 			}
-			else {
+			
+			else
+			{
 				throw new IdNotFoundException("Not Found");
 			}
+			
 			Items item = new Items();
 			RequestItems req = new RequestItems();
 			

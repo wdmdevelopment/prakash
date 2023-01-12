@@ -9,20 +9,11 @@ public class RequestItems {
 	@NotNull
 	private int quantity;
 	
-
-	
-	
+ 
 	@NotNull
 	private double price;
 	
-	
-	
-	@NotNull
-	private double totalPrice;
-
-
-	
-
+	 
 
 	public int getQuantity() {
 		return quantity;

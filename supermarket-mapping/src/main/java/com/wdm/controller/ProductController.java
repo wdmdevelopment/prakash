@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.wdm.entity.ImageProduct;
+ 
 import com.wdm.entity.Product;
 import com.wdm.model.RequestProduct;
 import com.wdm.service.ProductService;
@@ -38,13 +38,12 @@ public class ProductController {
 
 	@PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	
-	public ResponseEntity<ImageProduct> save(@Valid @RequestPart RequestProduct resquestProduct, @RequestPart("imagefile")
+	public ResponseEntity<Product> save(@Valid @RequestPart String resquestProduct, @RequestPart("imagefile")
 		MultipartFile file) throws IOException {
  
-		logger.info("save new product - productName={},category= {}, file={} ", file.getOriginalFilename()
-				, resquestProduct.getProductName(), resquestProduct.getCategory(), resquestProduct.getProductImage());
+		logger.info("save new product - resquestProduct= {}, file={} ", resquestProduct , file.getOriginalFilename());
 		
-		ImageProduct saveProduct = productService.saveProduct(resquestProduct, file);
+		Product saveProduct = productService.saveProduct(resquestProduct, file);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveProduct);
 	}
@@ -55,7 +54,7 @@ public class ProductController {
 		 
 		
 	
-		logger.info(" getAllproduct product : " + getAll());
+		logger.info(" getAllproduct product :");
 		
 		return new ResponseEntity<List<Product>>(productService.getAllproduct(), HttpStatus.OK);
 	}

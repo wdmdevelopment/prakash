@@ -37,19 +37,7 @@ public class Address {
 	
 	
 	 
-
-	public Address( int doorNo, String street, String city, String state, String country) {
-		super();
-		 
-		this.doorNo = doorNo;
-		this.street = street;
-		this.city = city;
-		this.state = state;
-		this.country = country;
-	}
-
-
-
+ 
 
 
 

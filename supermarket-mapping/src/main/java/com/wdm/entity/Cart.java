@@ -2,9 +2,9 @@ package com.wdm.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+ 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+ 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,8 +19,7 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cartId;
 
-	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-
+	@OneToMany(mappedBy = "cart")
 	private List<Items> item;
 
 	private double totalPrice;

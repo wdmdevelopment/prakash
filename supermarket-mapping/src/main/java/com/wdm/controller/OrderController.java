@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.Orders;
@@ -29,66 +30,50 @@ public class OrderController {
 
 	@Autowired
 	OrderService orderService;
-	
+
 	private static final Logger logger = LogManager.getLogger(OrderController.class);
-	
-	@PostMapping
-	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestOrder, long userId) {
-		
-		logger.info("Place the order given item TotalPrice={}, Ordertime={}" ,
-				resquestOrder.getTotalPrice(), resquestOrder.getOrdertime());
-		
+
+	@PostMapping("/user")
+	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestOrder,
+			@RequestParam("user") long userId) {
+
+		logger.info("Place the order given item TotalPrice={}, Ordertime={}", resquestOrder.getTotalPrice(),
+				resquestOrder.getOrdertime());
+
 		return new ResponseEntity<>(orderService.placeOrder(resquestOrder, userId), HttpStatus.CREATED);
 	}
-	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> orderCancel(@PathVariable("id") long id) throws Exception{
-		 
-			orderService.cancelOrder(id);
-			
-			logger.info("if Place the order cancelled", id);
-		return new  ResponseEntity<>(HttpStatus.NO_CONTENT);
+	public ResponseEntity<Void> orderCancel(@PathVariable("id") long id) throws Exception {
+
+		orderService.cancelOrder(id);
+
+		logger.info("if Place the order cancelled", id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, @PathVariable("id") long id)	{
-		
+	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, @PathVariable("id") long id) {
+
 		logger.info("If user add extra item ", order.getOrderStatus(), order.getCart().getTotalPrice());
-		
-		return new  ResponseEntity<>(orderService.updateOrder(order, id), HttpStatus.OK);
+
+		return new ResponseEntity<>(orderService.updateOrder(order, id), HttpStatus.OK);
 	}
-	
-	
-	
-	
+
 	@GetMapping
 	public ResponseEntity<List<Orders>> getAllorders() {
-		
+
 		logger.info("To get all orders");
-		
+
 		return new ResponseEntity<List<Orders>>(orderService.getAllOrders(), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<OrderResponse> getorder(long id) throws Exception {
-		
-		logger.info("To get order with given id"+id);
-		
+
+		logger.info("To get order with given id" + id);
+
 		return new ResponseEntity<OrderResponse>(orderService.getOrderDetails(id), HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

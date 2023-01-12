@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Cart;
-import com.wdm.entity.Items;
+ 
 import com.wdm.exception.IdNotFoundException;
+import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestCart;
 import com.wdm.repository.CartRepository;
 import com.wdm.service.CartService;
@@ -26,12 +27,16 @@ public class CartServiceimpl implements CartService {
 	public Cart saveCart(RequestCart requestCart) {
 
 		logger.info("CartServiceimpl | cart is called");
-
+		try {
 		Cart cart = new Cart();
 
 		cart.setTotalPrice(requestCart.getTotalPrice());
 
 		return cartRepo.save(cart);
+		}
+		catch (Exception e) {
+			throw new ProductCustomException("Invalid"+e.getMessage());
+		}
 	}
 
 	public void deleteById(long id) {
@@ -69,10 +74,5 @@ public class CartServiceimpl implements CartService {
 
 	}
 
-	private RequestCart mapToCart(Cart c) {
-		RequestCart cart = new RequestCart();
-		cart.setTotalPrice(c.getTotalPrice());
-		return cart;
-	}
-
+	 
 }

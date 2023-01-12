@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RequestUserAccount {
 	
-	@NotNull
+	//@NotNull
 	private String firstName;
-	@NotNull
+	//@NotNull
 	private String lastName;
-	@Email
+	//@Email
 	private String emailId;
 	
-	@NotNull
-	@Size(min = 8, max = 20)
+//	@NotNull
+//	@Size(min = 8, max = 20)
 	private String password;
-	@NotNull
+	//@NotNull
 	private String userRoll;
 
 	

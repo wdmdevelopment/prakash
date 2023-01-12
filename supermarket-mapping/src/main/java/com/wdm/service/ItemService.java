@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Items;
-import com.wdm.entity.Product;
+ 
 import com.wdm.model.RequestItems;
 
 @Service

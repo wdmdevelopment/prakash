@@ -1,23 +1,48 @@
 package com.wdm.model;
 
-import java.time.LocalDateTime;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+ 
 
 import lombok.NoArgsConstructor;
  
 @NoArgsConstructor
 public class RequestOrder {
 	
-	
+	private long cartId;
+	private long itemId;
+	private long product;
 
 	private int quantity;
+
+	private String orderStatus;
 	
 	
 	
 	
+	
+	public long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+
+	public long getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(long itemId) {
+		this.itemId = itemId;
+	}
+
+	public long getProduct() {
+		return product;
+	}
+
+	public void setProduct(long product) {
+		this.product = product;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}
@@ -30,7 +55,7 @@ public class RequestOrder {
 	private double totalPrice;
 	
 	 
-	private LocalDateTime ordertime;
+	private String ordertime;
 	
 	
 
@@ -42,12 +67,20 @@ public class RequestOrder {
 		this.totalPrice = totalPrice;
 	}
 
-	public LocalDateTime getOrdertime() {
+	public String getOrdertime() {
 		return ordertime;
 	}
 
-	public void setOrdertime(LocalDateTime ordertime) {
+	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
+	}
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 

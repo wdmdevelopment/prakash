@@ -1,15 +1,15 @@
 package com.wdm.serviceimpl;
 
-import java.util.Comparator;
+ 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+ 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Category;
-import com.wdm.entity.Product;
+ 
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
@@ -30,7 +30,7 @@ public class CategoryServiceimpl implements CategoryService {
 	UserAccountRespository userRepo;
 
 	public Category saveCategory(RequestCategory requestCategory, long userId) {
-
+		try {
 		Optional<UserAccount> findById = userRepo.findById(userId);
 		Category save = null;
 		if(findById.isPresent()) {
@@ -45,6 +45,7 @@ public class CategoryServiceimpl implements CategoryService {
 				category.setCategoryName(requestCategory.getCategoryName());
 
 				save = categoryRepo.save(category);
+				
 			}
 			
 			else {
@@ -52,6 +53,10 @@ public class CategoryServiceimpl implements CategoryService {
 			}
 		}
 		return save;
+		}
+		catch (Exception e) {
+			throw new ProductCustomException("Invalid"+e.getMessage());
+		}
 	 		
 	}
  
@@ -76,19 +81,11 @@ public class CategoryServiceimpl implements CategoryService {
 	}
 	
 	public List<Category> getAllcategory() {
-		return categoryRepo.findAll().stream().filter(cat -> cat.getProduct().isEmpty()).filter(cat ->cat.getProduct().stream()
-				.anyMatch(p -> !p.getProductName().isBlank())).collect(Collectors.toList());
+		return categoryRepo.findAll();
 				
 	}
 	
-	public List<Category> SortByAllCategory(){
-		
-		List<Category> findAll = categoryRepo.findAll();
-		findAll.stream().sorted(Comparator.comparing(Category:: getCategoryName));
-	
-	return findAll;
-	}
-	
+	 
 	 
 	public Category updatecategory(RequestCategory category, long id) {
 		

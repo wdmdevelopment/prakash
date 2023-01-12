@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
+import com.wdm.exception.ProductCustomException;
 import com.wdm.exception.UserNotFoundException;
 import com.wdm.model.RequestUserAccount;
 import com.wdm.repository.UserAccountRespository;
@@ -20,7 +21,7 @@ public class UserServiceimpl implements UserService {
 	UserAccountRespository userRepo;
 
 	public UserAccount saveuser(RequestUserAccount user) {
-
+		try {
 		UserAccount userAccount = new UserAccount();
 
 		userAccount.setFirstName(user.getFirstName());
@@ -33,6 +34,10 @@ public class UserServiceimpl implements UserService {
 		userAccount.setuserRoll(user.getUserRoll());
 
 		return userRepo.save(userAccount);
+		}
+		catch (Exception e) {
+			throw new ProductCustomException(e.getMessage());
+		}
 	}
 
 	public void delete(long id) throws Exception {
@@ -69,8 +74,8 @@ public class UserServiceimpl implements UserService {
 			
 		
 		}
-		catch (Exception notfoundException) {
-			 throw new UserNotFoundException("Not found"+ notfoundException);
+		catch (UserNotFoundException notfoundException) {
+			 throw new UserNotFoundException("Not found "+ notfoundException.getMessage());
 		}
 		
 		UserResponse userRes = new UserResponse();

@@ -1,24 +1,30 @@
 package com.wdm.serviceimpl;
 
- 
 import java.io.IOException;
-import java.sql.SQLException;
+ 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-
-import javax.sql.rowset.serial.SerialException;
+ 
+import java.util.stream.Collectors;
+ 
 import javax.transaction.Transactional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
+ 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wdm.controller.ProductController;
 import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
-import com.wdm.exception.IdNotFoundException;
+ 
 import com.wdm.exception.InvalidDataException;
+import com.wdm.exception.ProductCustomException;
 import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestProduct;
 import com.wdm.repository.ImageProductRepository;
@@ -27,83 +33,88 @@ import com.wdm.response.ProductResponse;
 import com.wdm.service.ProductService;
 
 @Service
- 
- 
+
 public class ProductServiceimpl implements ProductService {
 
+	
+	private static final Logger logger = LogManager.getLogger(ProductServiceimpl.class);
 	@Autowired
 	ProductMappingRespository productRepo;
-	
+
 	@Autowired
 	ImageProductRepository imageRepo;
-	
+
 	@Transactional
-	public ImageProduct saveProduct(RequestProduct requestProduct, MultipartFile file) throws IOException {
-		
-		 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		
-		 ImageProduct img = new ImageProduct();
-		 img.setImageName(fileName);
-		 img.setImageType(file.getContentType());
-		 img.setImageData(file.getBytes());
-		
-		 Product product = new Product();
+	public Product saveProduct(String requestProduct, MultipartFile file) throws IOException {
 
-		product.setProductName(requestProduct.getProductName());
+		ObjectMapper mapper = new ObjectMapper();
 
-		product.setStockDetails(requestProduct.getStockDetails());
-			
-		productRepo.save(product);
-		
-		img.setProduct(product);
-			
-		
-		return imageRepo.save(img);
+		try {
+
+			RequestProduct product = mapper.readValue(requestProduct, RequestProduct.class);
+
+			Product product1 = new Product();
+
+			product1.setProductName(product.getProductName());
+
+			product1.setStockDetails(product.getStockDetails());
+
+			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+			ImageProduct img = new ImageProduct();
+			img.setImageName(fileName);
+			img.setImageType(file.getContentType());
+			img.setImageData(file.getBytes());
+//			Base64.getEncoder().encodeToString(file.getBytes());
+//			System.out.println(Base64.getEncoder().encodeToString(file.getBytes()));
+
+			img.setProduct(product1);
+			imageRepo.save(img);
+
+			return productRepo.save(product1);
+
+		} catch (Exception e) {
+			throw new ProductCustomException("Invalid" + e.getMessage());
+		}
 	}
 
 	public void deletebyId(long id) {
-		try {
-			productRepo.deleteById(id);
-		} catch (Exception e) {
 
-			throw new IdNotFoundException("Product with given with Id: " + id +e);
+		productRepo.findById(id).orElseThrow(() -> new ProductCustomException("Not Found"));
 
-		}
+		productRepo.deleteById(id);
 
 	}
 
 	public List<Product> getAllproduct() {
 
+		Product productImage = productRepo.findAll().get(0);
+		List<String> collect = productImage.getProductImage().stream()
+				.map(e -> "data:image/png;base64,/" + Base64.getEncoder().encodeToString(e.getImageData()))
+				.collect(Collectors.toList());
+
+		logger.info("save new product 	file={} ", collect);
+		 
+
 		return productRepo.findAll();
-		   
-				 
-				  
-		   
- 
+
 	}
 
-
-
-
 	public Product updateProduct(RequestProduct product, long id) {
-		
+
 		Optional<Product> findById = productRepo.findById(id);
 		Product p = new Product();
-		if(findById.isPresent()) {
+		if (findById.isPresent()) {
 			findById.get();
 			p.setProductName(product.getProductName());
 			p.setStockDetails(product.getStockDetails());
-			
-			//p.setCategory(product.getCategory());
-			 
-			
+
+			// p.setCategory(product.getCategory());
+
 		}
 		return productRepo.save(p);
-		
+
 	}
-	
-	
-	
 
 	public Optional<Product> getProductById(long productId) {
 		Optional<Product> product;
@@ -128,93 +139,16 @@ public class ProductServiceimpl implements ProductService {
 		return requestProduct;
 	}
 
-	
-	public Product store(MultipartFile file) throws IOException, SerialException, SQLException {
-		
-		try {
-		Product product = new Product();
-			//product.setProductImage(new SerialBlob(file.getBytes()));
-		
-			return productRepo.save(product);
-	}
-		catch (Exception e) {
-			 throw new ProductNotFoundException("File Not Found");
-		}
-	}
-	
-	
-	
-//	public List<ProductResponse> getFileList() {
-//		return productRepo.findAll().stream().map(t -> {
-//			try {
-//				return mapToFileResponse(t);
-//			} catch (IOException e) {
-//				
-//				e.printStackTrace();
-//			} catch (SQLException e) {
-//				
-//				e.printStackTrace();
-//			}
-//			return null;
-//		}).collect(Collectors.toList());
-//		
-//	}
-	
-	
-	
-	
-
-	
-//	public ProductResponse getFileById(long id) throws IOException, SQLException {
-//		 	
-//		Optional<Product> product = productRepo.findById(id);
-//		if(product.isEmpty()) {
-//			return mapToFileResponse(product.get());
-//		}
-//		return null;
-//	}
-
-	 
-//	public ProductResponse mapToFileResponse(Product product)  throws IOException, SQLException{
-//		ProductResponse productresponse = new ProductResponse();
-//		productresponse.getData();
-//		productresponse.getName();
-//		productresponse.getType();
-//		return productresponse;
-//	}
-
-	 
-
 	public List<Product> filterbyId(String pName) {
 		List<Product> findByfilterproduct = null;
 		try {
-			findByfilterproduct = productRepo.findByfilterproduct(pName);	
+			findByfilterproduct = productRepo.findByfilterproduct(pName);
 		} catch (Exception e) {
 			throw new InvalidDataException(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.toString());
 		}
-		
-		return 	findByfilterproduct;	
-		 
-		 
-			 
+
+		return findByfilterproduct;
+
 	}
- 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

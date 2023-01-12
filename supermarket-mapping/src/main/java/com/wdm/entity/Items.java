@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -24,14 +26,17 @@ public class Items {
 	private double price;
 
 	@OneToOne
-	@JoinColumn(name = "product", referencedColumnName = "product_Id")
+	@JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
 	private Product product;
 
 	@ManyToOne
-	@JoinColumn(name = "itemId", insertable = false, updatable = false)
-	// @JsonIgnore
+	@JoinColumn(name = "cartId")
+	@JsonIgnore
 	private Cart cart;
 
+	
+	
+	
 	public long getItemId() {
 		return itemId;
 	}

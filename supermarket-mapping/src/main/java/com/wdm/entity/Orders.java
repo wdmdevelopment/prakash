@@ -1,6 +1,6 @@
 package com.wdm.entity;
 
-import java.time.LocalDateTime;
+ 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,13 +28,13 @@ public class Orders {
 	private double totalPrice;
 	
 	@Column(name = "ordertime")
-	private LocalDateTime ordertime;
+	private String ordertime;
 	
 	@Column(name = "STATUS")
     private String orderStatus;
 	
 	@OneToOne
-	@JoinColumn(name = "Cart",referencedColumnName = "cartId")
+	@JoinColumn(name = "cartId",referencedColumnName = "cartId")
 	private Cart cart;
 	
 	 @ManyToOne
@@ -70,17 +70,17 @@ public class Orders {
 		this.totalPrice = totalPrice;
 	}
 
-	public LocalDateTime getOrdertime() {
+	public String getOrdertime() {
 		return ordertime;
 	}
 
-	public void setOrdertime(LocalDateTime ordertime) {
+	public void setOrdertime(String ordertime) {
 		this.ordertime = ordertime;
 	}
 
 	
 
-	public Orders(long orderId, double totalPrice, LocalDateTime ordertime, Cart cart, UserAccount user) {
+	public Orders(long orderId, double totalPrice, String ordertime, Cart cart, UserAccount user) {
 		super();
 		this.orderId = orderId;
 		this.totalPrice = totalPrice;

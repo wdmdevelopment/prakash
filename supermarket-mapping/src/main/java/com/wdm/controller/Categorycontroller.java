@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.Category;
-import com.wdm.exception.ProductNotFoundException;
+ 
 import com.wdm.model.RequestCategory;
 import com.wdm.service.CategoryService;
 

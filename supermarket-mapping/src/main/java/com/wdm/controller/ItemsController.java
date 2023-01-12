@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.Items;
 import com.wdm.exception.IdNotFoundException;
-import com.wdm.model.RequestCategory;
+ 
 import com.wdm.model.RequestItems;
 import com.wdm.service.ItemService;
 
