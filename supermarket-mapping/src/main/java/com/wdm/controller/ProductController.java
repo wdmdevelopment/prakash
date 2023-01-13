@@ -97,7 +97,7 @@ public class ProductController {
 	}
  
 	@GetMapping("/name")
-	public ResponseEntity<List<Product>> filterbyproduct(@RequestParam(value="name") String name) {
+	public ResponseEntity<List<Product>> filterbyproduct(@RequestParam("product_name") String name) {
 		
 			
 			 

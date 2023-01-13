@@ -11,8 +11,8 @@ import com.wdm.entity.Product;
 
 public interface ProductMappingRespository extends JpaRepository<Product, Long> {
 	
-	@Query(value = "select p from product p where c.product_name LIKE '%product_name%';", nativeQuery = true)
-	public List<Product> findByfilterproduct(String value);
-
+	@Query(value = "select * from testproject.product  WHERE product_name LIKE %:name%", nativeQuery = true)
+	public List<Product> findByfilterproduct(String name);
+	 
 	
 }

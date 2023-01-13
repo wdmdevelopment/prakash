@@ -10,7 +10,7 @@ import com.wdm.entity.Category;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 	
-	@Query(value ="select * from Category ORDER BY name ASC;" , nativeQuery = true )
+	@Query(value ="SELECT * FROM catagory ORDER BY name ASC" , nativeQuery = true )
 	public List<Category> findByOrdercategory();
 
 }

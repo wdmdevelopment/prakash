@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wdm.controller.ProductController;
 import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
- 
+import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.InvalidDataException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.exception.ProductNotFoundException;
@@ -109,7 +109,7 @@ public class ProductServiceimpl implements ProductService {
 			p.setProductName(product.getProductName());
 			p.setStockDetails(product.getStockDetails());
 
-			// p.setCategory(product.getCategory());
+			//p.setCategory(product.getCategory());
 
 		}
 		return productRepo.save(p);
@@ -142,9 +142,10 @@ public class ProductServiceimpl implements ProductService {
 	public List<Product> filterbyId(String pName) {
 		List<Product> findByfilterproduct = null;
 		try {
+			
 			findByfilterproduct = productRepo.findByfilterproduct(pName);
 		} catch (Exception e) {
-			throw new InvalidDataException(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.toString());
+			throw new ProductCustomException(e.getMessage());
 		}
 
 		return findByfilterproduct;
