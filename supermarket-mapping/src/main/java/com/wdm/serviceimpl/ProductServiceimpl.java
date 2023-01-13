@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
  
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wdm.controller.ProductController;
+import com.wdm.entity.Category;
 import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
 import com.wdm.exception.IdNotFoundException;
@@ -58,7 +59,15 @@ public class ProductServiceimpl implements ProductService {
 			product1.setProductName(product.getProductName());
 
 			product1.setStockDetails(product.getStockDetails());
+			
+			Category cat = new Category();
+			
+			cat.setCategoryName(product.getCategory());
+			
+			product1.setCategory(cat);
 
+			
+			
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
 			ImageProduct img = new ImageProduct();

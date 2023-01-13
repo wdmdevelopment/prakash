@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Items;
-
+import com.wdm.entity.Product;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestItems;
@@ -26,6 +26,11 @@ public class ItemServiceimpl implements ItemService {
 
 			items.setQuantity(requestitem.getQuantity());
 			items.setPrice(requestitem.getPrice());
+			
+			Product product = new Product();
+			
+			product.setProductName(requestitem.getProductName());
+			items.setProduct(product);
 
 			return itemRepo.save(items);
 		} catch (Exception e) {

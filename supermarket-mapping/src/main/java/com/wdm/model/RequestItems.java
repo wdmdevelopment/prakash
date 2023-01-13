@@ -13,6 +13,8 @@ public class RequestItems {
 	@NotNull
 	private double price;
 	
+	@NotNull
+	private String productName;
 	 
 
 	public int getQuantity() {
@@ -32,6 +34,16 @@ public class RequestItems {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+
+	public String getProductName() {
+		return productName;
+	}
+
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 

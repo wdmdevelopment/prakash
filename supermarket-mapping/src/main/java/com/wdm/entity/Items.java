@@ -1,5 +1,6 @@
 package com.wdm.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,7 @@ public class Items {
 
 	private double price;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
 	private Product product;
 

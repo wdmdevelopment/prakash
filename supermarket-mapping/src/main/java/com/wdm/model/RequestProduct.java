@@ -11,7 +11,7 @@ public class RequestProduct {
 	private String stockDetails;
 	 
 	@JsonProperty("category")
-	private String category;
+	private String categoryName;
 	
 	
 	
@@ -33,11 +33,11 @@ public class RequestProduct {
 	}
 
 	public String getCategory() {
-		return category;
+		return categoryName;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategory(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	 
