@@ -8,6 +8,7 @@
    
    <!-- font icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                                         
   
   
 	 <link rel="stylesheet" href="../CSS/styles.css">
@@ -18,14 +19,14 @@
 	 
 	
 	<header>
-			
+			<div class="bg-blur">
 			 
-		<nav id="navbar1" class="navbar navbar-expand-lg fixed-top me-5">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
 			<div class="container">
 			<a class="navbar-brand" href="#Home-1">
 				<img src="../images/logo.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
 			</a>
-			</a>
+			
 			
 			<!-- Navigation menu -->
 			
@@ -36,16 +37,18 @@
 					
 					 
 					
-				<input class="form-control " type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-warning my-4 my-sm-2" type="submit">Search</button>
+				
 					
 			
 					   
 					
 				
 			<div class="collapse navbar-collapse" id="navbarScroll">
+				<input class="form-control " type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-warning my-4 my-sm-2" type="submit">Search</button>
 				
-			<ul class="navbar-nav ms-auto d-flex">
+			<ul class="navbar-nav  d-flex">
+				
 				<li class="nav-item">
 					<a class="nav-link t" href="#Home-1" aria-current="page">Home</a>
 				</li>
@@ -56,8 +59,12 @@
 					<a class="nav-link" href="#Category-1">Category</a>
 				</li>
 			<li class="nav-item">
-				<a class="nav-link" href="">Hi! firstName lastName </a>
+				<a class="navbar-brand 	" href="#Home-1">
+					Hi! firstName lastName <img src="../images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
+				</a>
+				
 			</li>
+			
 					
 		</ul>
 		
@@ -67,6 +74,119 @@
 			
 			</nav>
 		</header>	
-        
-	</body>
+	</div>
+
+
+
+<script>
+	// Register the supermarket
+$(document).ready (function () {
+		var url = "http://localhost:8080/supermarket";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "POST",
+			
+		success: function (requestText) {
+					
+		}
+
+	})
+
+})
+
+// see info of supermarket
+$(document).ready (function () {
+		var url = "http://localhost:8080/supermarket";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "GET",
+			
+		success: function (responseSuperMarket) {
+					
+		}
+
+	})
+
+})
+
+
+// add product with image product
+
+$(document).ready (function () {
+		var url = "http://localhost:8080/product";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "POST",
+			
+		success: function (requestProduct) {
+					
+		}
+
+	})
+
+})
+
+// To get the information of products and its category
+
+$(document).ready (function () {
+		var url = "http://localhost:8080/product";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "GET",
+			
+		success: function (requestProduct) {
+					
+		}
+
+	})
+
+})
+
+
+$(document).ready (function () {
+		var url = "http://localhost:8080/items";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "POST",
+			
+		success: function (requestProduct) {
+					
+		}
+
+	})
+
+})
+
+
+
+
+
+$(document).ready (function () {
+		var url = "http://localhost:8080/items";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "GET",
+			
+		success: function (requestProduct) {
+					
+		}
+
+	})
+
+})
+
+
+
+</script>
+</body>
+
+
+
+
     </html>

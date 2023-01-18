@@ -103,5 +103,91 @@
   </div>
 </section>
 </div>
+<script>
+  $(document).ready (function () {
+    $("input").submit(function (event) {
+    var formData = {
+      firstname: $("#firstname").val(),
+      lastname: $("#lastname").val(),
+      email: $("#email").val(),
+      password: $("#password").val(),
+      };
+    })
+    $("select").select(function(eventSelect){
+        var selectData = {
+          customer: $("customer").val(),
+          admin: $("admin").val(),
+           
+        } 
+      }); 
+      
+
+
+		  var url = "http://localhost:8080/user";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "POST",
+			
+		success: function (requestProduct) {
+					
+		}
+
+	})
+
+})
+
+
+$(document).ready (function () {
+		var url = "http://localhost:8080/user";
+	$.ajax({
+			dataTypa: "JSON",
+			url: url,
+			type: "GET",
+			
+		success: function (requestProduct) {
+					
+		}
+
+	})
+
+})
+
+$(document).ready(function(){
+
+    $("#butsubmit").click(function(){
+        var username = ("#uname").val().trim();
+        var password = $("#password").val().trim();
+
+        if(username !="" && password !=""){
+          $.ajax({
+                url:'http://localhost:8080/user',
+                type:'post',
+                data:{username:username,password:password},
+                success:function(response){
+                  var msg="";
+                  if(response==1){
+                    window.location="HomePage.html";
+                    
+                  }else{
+                    msg="InValid username and password";
+
+                  }
+                  $("#message").html(msg);
+                }
+        }
+
+    })
+
+})
+
+
+
+
+
+</script>
+
+
+
     </body>
 </html>
