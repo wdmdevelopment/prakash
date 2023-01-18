@@ -8,8 +8,28 @@
    
    <!-- font icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                                         
+ 	                             
   
+<link rel="stylesheet"
+          href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+  </script>
+    <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+    </script>
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+
+
+
+
+
+
+
+
   
 	 <link rel="stylesheet" href="../CSS/styles.css">
 	 
@@ -18,11 +38,11 @@
 <body>
 	 
 	
-	<header>
+	
 			<div class="bg-blur">
+				<header>	 
+		<nav id="navbarScroll" class="navbar navbar-expand-lg navbar-dark bg-dark"> 
 			 
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> 
-			<div class="container">
 			<a class="navbar-brand" href="#Home-1">
 				<img src="../images/logo.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
 			</a>
@@ -59,26 +79,236 @@
 					<a class="nav-link" href="#Category-1">Category</a>
 				</li>
 			<li class="nav-item">
-				<a class="navbar-brand 	" href="#Home-1">
+				<a class="navbar-brand 	" href="#Home.html">
 					Hi! firstName lastName <img src="../images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
 				</a>
 				
 			</li>
-			
+			<li class="nav-item">
+				<a class="nav-link" href="Login.html">Logout</a>
+				
+			</li>
 					
 		</ul>
 		
 		
 		</div>		
-			</div>
+			 
 			
 			</nav>
 		</header>	
-	</div>
+ 
 
+		<!-- Button trigger modal -->
+		
+	<button type="button" class="btn btn-warning float-right mt-3" data-toggle="modal" data-target="#exampleModalCenter">
+	Add Product</button>
+
+  
+  <!-- Modal -->
+  
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" 		   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="exampleModalLongTitle">Adding Product</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+
+			<div class="container">
+				<div class="row d-flex justify-content-center">
+				  <div class="col-12">
+					<div class="card" style="border-radius: 1rem;">
+					  <div class="card-body p-5">
+			
+				<div class="form-label">
+				<label class="form-label" for="product">ProductName</label>
+				<input type="text" id="product" class="form-control form-control-lg" />
+			   
+			 	 </div>
+
+				  <div class="form-label">
+					<label class="form-label" for="product">Stock detials</label>
+					<input type="text" id="stock" class="form-control form-control-lg" />
+				   
+					  </div>
+					  <div class="form-label">
+						<label class="form-label" for="product">Category Name</label>
+						<input type="text" id="category" class="form-control form-control-lg" />
+					   
+						  </div>	  
+						  <p>Choose your product image </p>
+
+						  <div class="form-label">
+							<input type="file" id="myFile" name="filename">
+							 
+						  </div>
+					</div>
+					</div>
+					</div>
+					</div>
+					</div>
+			</div>
+			
+		
+				
+
+
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+		  <button id="addproduct" type="button" class="btn btn-warning">ADD</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+
+
+
+
+
+		
+		<h1 class="display-4 text-xs-center m-y-3 text-muted text-center" id="speakers">Products</h1>
+		<div class="container-fluid">
+		<div class="row">
+		  <div class="col-md-6 col-lg-4">
+			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
+			  <div class="card-block">
+				<h4 class="card-title text-center" >Apple</h4>
+		
+				
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					<span><strong>Edit</strong></span>            
+				</a>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					 <span><strong>Delete</strong></span>            
+				 </a>
+
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="col-md-6 col-lg-4">
+			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
+			  <div class="card-block">
+				<h4 class="card-title">Orange</h4>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					<span><strong>Edit</strong></span>            
+				</a>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					 <span><strong>Delete</strong></span>            
+				 </a>
+				
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="col-md-6 col-lg-4">
+			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
+			  <div class="card-block">
+				<h4 class="card-title">Pine Apple</h4>
+		
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					<span><strong>Edit</strong></span>            
+				</a>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					 <span><strong>Delete</strong></span>            
+				 </a>
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="col-md-6 col-lg-4 mt-3">
+			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
+			  <div class="card-block">
+				<h4 class="card-title">Pomegrenate</h4>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					<span><strong>Edit</strong></span>            
+				</a>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					 <span><strong>Delete</strong></span>            
+				 </a>
+				
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="col-md-6 col-lg-4 mt-3">
+			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
+			  <div class="card-block">
+				<h4 class="card-title">Mango</h4>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					<span><strong>Edit</strong></span>            
+				</a>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					 <span><strong>Delete</strong></span>            
+				 </a>
+				
+			  </div>
+			</div>
+		  </div>
+		
+		  <div class="col-md-6 col-lg-4 mt-3">
+			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
+			  <div class="card-block">
+				<h4 class="card-title">More Flavors</h4>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+					<span><strong>Edit</strong></span>            
+				</a>
+				<a href="#" class="btn btn-warning a-btn-slide-text">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					 <span><strong>Delete</strong></span>            
+				 </a>
+				
+			  </div>
+			</div>
+		  </div>
+		</div>
+		</div>
+
+
+ 
 
 
 <script>
+
+var header = document.querySelector('#navbarScroll');
+
+		window.onscroll = function() {
+    var top = window.scrollY;
+    if(top >=100) {
+        header.classList.add('BgColour');
+    }
+    else {
+        header.classList.remove('BgColour');
+    }
+}
+
+
+$("#login").click(function () {
+            var text = $("#textarea").val();
+            $("#modal_body").html(text);
+        });
+
+
+
+
+
 	// Register the supermarket
 $(document).ready (function () {
 		var url = "http://localhost:8080/supermarket";
@@ -115,35 +345,108 @@ $(document).ready (function () {
 // add product with image product
 
 $(document).ready (function () {
+	$(#addproduct).click(function(){
 		var url = "http://localhost:8080/product";
-	$.ajax({
-			dataTypa: "JSON",
-			url: url,
-			type: "POST",
+
+		
+		var formData = new FormData();
+		formData.append('productimg', productImg);
+		var objArr = [];
+
+		objArr.push({"productname": productname, "stockdetails": stockdetails, "category": category});
+
+		formData.append(objArr, JSON.stringify(objArr));
+
+
+		$.ajax({
+		type: "POST",
+		url: url,
+		data: formData,
+		contentType:false,
+		processData:false,
+		 
+ 		 success: function (requestProduct) {
 			
-		success: function (requestProduct) {
-					
-		}
+			alert("success");
+
+				}
+			
+			})
+});
+			
+
+		
 
 	})
 
-})
+
 
 // To get the information of products and its category
 
 $(document).ready (function () {
 		var url = "http://localhost:8080/product";
+		var result = null;
 	$.ajax({
-			dataTypa: "JSON",
+			dataType: "JSON",
 			url: url,
 			type: "GET",
+			async:false,
+			crossDomain:true,
 			
-		success: function (requestProduct) {
-					
+		success: function (requestProduct, status) {
+				result = requestProduct;
+				var productData = "";
+				$.each(responseText, function (index, item ) {
+				
+				
+					productData +='<div class="col-md-6 col-lg-4 mt-3"><div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="'+item.imageData+'" /><div class="card-block"><h4 class="card-title text-center">'+item.ProductName+'</h4><div class=""d-flex justify-content-between"><span>Stock details</span><span>"'+item.stockdetails+'"</span> </div><div class=""d-flex justify-content-between"><span>Category</span><span>"'+item.category+'"</span> </div><a href="#" id="editsubmit" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span><strong></strong></span></a><a href="#" id="deletesubmit" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong></strong></span></a></div></div></div>';
+
+
+				   });
+				
+				$(#product).empty();
+				$(#product).append(productData);
+
+
 		}
 
 	})
 
+	$("#editsubmit").click(function(){
+		var url = "http://localhost:8080/product";
+		var editResut = null;
+	$.ajax({
+			dataType: "JSON",
+			url: url,
+			type: "PUT",
+			async:false,
+			crossDomain:true,
+			
+		success: function (responseText, status) {
+
+		}
+	})
+	
+})
+
+
+
+	$("#deletesubmit").click(function(){
+
+	var url = "http://localhost:8080/product";
+		var deletedata = null;
+	$.ajax({
+			dataType: "JSON",
+			url: url,
+			type: "DELETE",
+			async:false,
+			crossDomain:true,
+			
+		success: function (responseText, status) {
+
+		}
+	})
+	
 })
 
 
@@ -185,8 +488,4 @@ $(document).ready (function () {
 
 </script>
 </body>
-
-
-
-
-    </html>
+</html>
