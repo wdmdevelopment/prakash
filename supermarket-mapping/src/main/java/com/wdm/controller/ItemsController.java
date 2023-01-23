@@ -100,18 +100,7 @@ public class ItemsController {
 	
 	
 	
-	@GetMapping("/maxPrice/{price}")
-	public ResponseEntity<Items> maxPrice(@PathVariable("price") double price) {
-		
-		logger.info("To get Maximum item data"+ itemservice.getMaxPrice(price));
-		
-		Items theitem = (Items) itemservice.getMaxPrice(price);
-		if(theitem==null) {
-			logger.info("The given price is null"+ price);
-			throw new IdNotFoundException("id not found");
-		}
-		return new ResponseEntity<Items>(theitem, HttpStatus.OK);
-	}
+	 
 	
 	
 	

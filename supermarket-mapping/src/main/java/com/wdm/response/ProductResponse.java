@@ -11,12 +11,12 @@ public class ProductResponse {
 	private String ProductName;
 	
 	
-	private String stockDetails;
+	private String quantity;
 	 
 	
 	private String categoryname;
 	
-	
+	private double price;
 	
 	
 	
@@ -31,14 +31,7 @@ public class ProductResponse {
 		ProductName = productName;
 	}
 
-	public String getStockDetails() {
-		return stockDetails;
-	}
-
-	public void setStockDetails(String stockDetails) {
-		this.stockDetails = stockDetails;
-	}
-
+	 
 	  
 	
 	
@@ -46,6 +39,14 @@ public class ProductResponse {
 	
 	
 	
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
 
 	public long getProductId() {
 		return productId;
@@ -72,16 +73,32 @@ public class ProductResponse {
 	public void setData(Set<ImageProduct> data) {
 		this.data = data;
 	}
+	
+	
+	
+	
+	
 
-	public ProductResponse(long productId, String productName, String stockDetails, String categoryname,
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public ProductResponse(long productId, String productName, String quantity, String categoryname, double price,
 			Set<ImageProduct> data) {
 		super();
 		this.productId = productId;
 		ProductName = productName;
-		this.stockDetails = stockDetails;
+		this.quantity = quantity;
 		this.categoryname = categoryname;
+		this.price = price;
 		this.data = data;
 	}
+
+	 
 
 	 
 	

@@ -34,9 +34,11 @@ public class Product {
 	@Column(name = "product_Name") 
 	private String productName;
 	
-	@Column(name = "stock") 
-	private String stockDetails;
-	  
+	@Column(name = "quantity") 
+	private String quantity;
+	
+	@Column(name = "price") 
+	private double price;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "categoryId")
@@ -75,14 +77,32 @@ public class Product {
 
 
 
-	public String getStockDetails() {
-		return stockDetails;
+	 
+	
+	
+	
+
+
+	public String getQuantity() {
+		return quantity;
 	}
 
 
 
-	public void setStockDetails(String stockDetails) {
-		this.stockDetails = stockDetails;
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 
@@ -110,20 +130,24 @@ public class Product {
 	}
 
 
-
-	public Product(long productId, String productName, String stockDetails, Category category,
+ 
+	 
+	
+	 
+	
+	public Product(long productId, String productName, String quantity, double price, Category category,
 			Set<ImageProduct> productImage) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
-		this.stockDetails = stockDetails;
+		this.quantity = quantity;
+		this.price = price;
 		this.category = category;
 		this.productImage = productImage;
 	}
-	 
-	
-	 
-	
+
+
+
 	public Product() {
 		
 	}

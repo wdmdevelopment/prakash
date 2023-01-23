@@ -7,10 +7,11 @@ public class ResponseUpdateProduct {
 	@JsonProperty("productName")
 	private String productName;
 	
-	@JsonProperty("stockDetails")
-	private String stockDetails;
+	@JsonProperty("quantity")
+	private String quantity;
 	 
-	 
+	@JsonProperty("price")
+	private double price;
 	
 	@JsonProperty("categoryId")
 	private long categoryId;
@@ -34,13 +35,23 @@ public class ResponseUpdateProduct {
 	}
 
 
-	public String getStockDetails() {
-		return stockDetails;
+	public String getQuantity() {
+		return quantity;
 	}
 
 
-	public void setStockDetails(String stockDetails) {
-		this.stockDetails = stockDetails;
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 
@@ -72,6 +83,15 @@ public class ResponseUpdateProduct {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
+
+
+	 
+	
+	
+	
+	
+	
+	
 	
 	
 	

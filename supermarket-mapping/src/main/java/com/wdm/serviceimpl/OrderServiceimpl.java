@@ -104,7 +104,7 @@ public class OrderServiceimpl implements OrderService {
 			
 			Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new IdNotFoundException("cart not found"));
 			
-			Stream<Object> map = cart.getItem().stream().map(e -> e.getItemId());		
+			Stream<Object> map = cart.getItem().stream().map(e -> e.getQuantity());
 			
 			
 			Items item = new Items();

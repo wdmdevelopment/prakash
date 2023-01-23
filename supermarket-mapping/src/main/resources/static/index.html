@@ -129,10 +129,14 @@
 			 	 </div>
 
 				  <div class="form-label">
-					<label class="form-label" for="product">Stock detials</label>
+					<label class="form-label" for="product">Quantity</label>
 					<input type="text" id="stock" class="form-control form-control-lg" />
 				   
 					  </div>
+					  <div class="form-label">
+						<label class="form-label" for="product">price</label>
+						<input type="text" id="price" class="form-control form-control-lg" />
+					   </div>	  
 					  <div class="form-label">
 						<label class="form-label" for="product">Category Name</label>
 						<input type="text" id="category" class="form-control form-control-lg" />
@@ -190,13 +194,17 @@ $(document).ready(function(){
 		var file = $('#myFile').prop("files")[0];
 
 			var productname = $("#product").val();
-			var stock = $("#stock").val();
+			var quantity = $("#stock").val();
 			var category = $("#category").val();
+			var price = $("#price").val();
+			
   
       formData.append('data', JSON.stringify({
-        "ProductName": productname,
-		"stockDetails": stock,
+        "productName": productname,
+		"quantity": quantity,
 		"categoryId": category,
+			 "price":price,
+		"userId": localStorage.getItem("userId")
 
 	})),
 		console.log(formData);
@@ -237,6 +245,9 @@ function product(){
 				
 				
 			$.each(responseText, function (index, item ) {
+
+				 
+
 	
 			 productData += ' <div class="col-md-6 col-lg-4"><div class="card">' ;
 				
@@ -249,7 +260,17 @@ function product(){
 					 
 					 
 				});
-					productData += '<div class="card-block"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stockDetails: "+item.stockDetails+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><button id="editProduct" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span><strong>Edit</strong></span></button> <button id="deleteprodt" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span> </button></div></div></div>'; 
+	productData += '<div class="card-block"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stockDetails: "+item.quantity+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+						
+						if(localStorage.getItem('userRoll') == 'admin'){
+						
+						productData +='<button onclick="editProduct('+item.productId+')" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span><strong>Edit</strong></span></button> <button onclick="deleteProduct('+item.productId+')" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span> </button>';
+						
+						}
+						else{
+							productData +='<button class="btn btn-outline-warning" type="button" id="Order">Order</button>';
+						}
+						productData +='</div></div></div>'; 
 				
 				});
 				 	
@@ -259,12 +280,26 @@ function product(){
 		});
 }
 
-$(document).ready(function(){
-	$("#editProduct").click(function(){
+ 
+	function editProduct(productId){
 
-		var url = "http://localhost:8080/product";
+		var url = "http://localhost:8080/product/"+productId;
 		
-		var editResut
+		$.ajax({
+			dataType: "JSON",
+			url: url,
+			type: "GET",
+ 
+			success: function (response){
+
+				$("#product").val(response.productName);
+				$("#stock").val(response.stockDetails);
+				$("#category").val(response.categoryname);
+
+				}
+		})
+
+		 
 	
 		$.ajax({
 			dataType: "JSON",
@@ -278,9 +313,9 @@ $(document).ready(function(){
 		}
 	})
 	
-})
 
-})
+
+}
 
 
 $(document).ready(function(){

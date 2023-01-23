@@ -7,8 +7,8 @@ public class RequestProduct {
 	@JsonProperty("productName")
 	private String productName;
 	
-	@JsonProperty("stockDetails")
-	private String stockDetails;
+	@JsonProperty("quantity")
+	private String quantity;
 	 
 	 
 	
@@ -20,6 +20,18 @@ public class RequestProduct {
 	private long userId;
 
 
+	@JsonProperty("price")
+	private double price;
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
 	public String getProductName() {
 		return productName;
 	}
@@ -30,14 +42,7 @@ public class RequestProduct {
 	}
 
 
-	public String getStockDetails() {
-		return stockDetails;
-	}
-
-
-	public void setStockDetails(String stockDetails) {
-		this.stockDetails = stockDetails;
-	}
+	 
 
 
 	public long getCategoryId() {
@@ -57,6 +62,26 @@ public class RequestProduct {
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+
+
+	public String getQuantity() {
+		return quantity;
+	}
+
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 	 
