@@ -74,9 +74,5 @@ public class ItemServiceimpl implements ItemService {
 		return itemRepo.findAll();
 	}
 
-	public List<Items> getMaxPrice(double maxprice) {
-
-		return itemRepo.findProductsWithMaxPrice(maxprice);
-	}
-
+	 
 }

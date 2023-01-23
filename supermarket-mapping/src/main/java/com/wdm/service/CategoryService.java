@@ -22,7 +22,7 @@ public interface CategoryService {
 
 	public void deleteById(long id);
 
-	public List<Category> getAllcategory();
+	 
 	
 	public List<Category> findbyOrder();
 	

@@ -32,7 +32,7 @@ public class Product {
 	private long productId;
 
 	@Column(name = "product_Name") 
-	private String ProductName;
+	private String productName;
 	
 	@Column(name = "stock") 
 	private String stockDetails;
@@ -40,7 +40,7 @@ public class Product {
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "categoryId")
-	 @JsonIgnore
+	@JsonIgnore
 	private Category category;
 	
 	
@@ -48,54 +48,86 @@ public class Product {
 	 @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	
 	private Set<ImageProduct> productImage;
-	 
-	
-	 
-	
-	
-	
+
+
 
 	public long getProductId() {
 		return productId;
 	}
+
+
+
 	public void setProductId(long productId) {
 		this.productId = productId;
 	}
+
+
+
 	public String getProductName() {
-		return ProductName;
+		return productName;
 	}
+
+
+
 	public void setProductName(String productName) {
-		ProductName = productName;
+		this.productName = productName;
 	}
+
+
+
 	public String getStockDetails() {
 		return stockDetails;
 	}
+
+
+
 	public void setStockDetails(String stockDetails) {
 		this.stockDetails = stockDetails;
 	}
+
+
+
 	public Category getCategory() {
 		return category;
 	}
+
+
+
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+
+
+
 	public Set<ImageProduct> getProductImage() {
 		return productImage;
 	}
+
+
+
 	public void setProductImage(Set<ImageProduct> productImage) {
 		this.productImage = productImage;
 	}
-	public Product(long productId, String productName, String stockDetails, Category category) {
+
+
+
+	public Product(long productId, String productName, String stockDetails, Category category,
+			Set<ImageProduct> productImage) {
 		super();
 		this.productId = productId;
-		ProductName = productName;
+		this.productName = productName;
 		this.stockDetails = stockDetails;
 		this.category = category;
-		
+		this.productImage = productImage;
 	}
+	 
+	
+	 
+	
 	public Product() {
 		
 	}
+	 
 	
 	
 }

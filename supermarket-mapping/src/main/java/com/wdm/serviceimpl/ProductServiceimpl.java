@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
  
 import java.util.stream.Collectors;
- 
+import java.util.stream.Stream;
+
 import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
@@ -17,20 +18,25 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
- 
+import org.webjars.NotFoundException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wdm.controller.ProductController;
 import com.wdm.entity.Category;
 import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
+import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.InvalidDataException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestProduct;
+import com.wdm.repository.CategoryRepository;
 import com.wdm.repository.ImageProductRepository;
 import com.wdm.repository.ProductMappingRespository;
+import com.wdm.repository.UserAccountRespository;
 import com.wdm.response.ProductResponse;
+import com.wdm.response.ResponseUpdateProduct;
 import com.wdm.service.ProductService;
 
 @Service
@@ -44,48 +50,67 @@ public class ProductServiceimpl implements ProductService {
 
 	@Autowired
 	ImageProductRepository imageRepo;
+	
+	@Autowired
+	CategoryRepository categoryRepo;
+	
+	@Autowired
+	UserAccountRespository useraccountRepo;
 
+	ObjectMapper mapper = new ObjectMapper();
+	
 	@Transactional
 	public Product saveProduct(String requestProduct, MultipartFile file) throws IOException {
-
-		ObjectMapper mapper = new ObjectMapper();
+ 
 
 		try {
-
+			
+			 
 			RequestProduct product = mapper.readValue(requestProduct, RequestProduct.class);
-
-			Product product1 = new Product();
-
-			product1.setProductName(product.getProductName());
-
-			product1.setStockDetails(product.getStockDetails());
 			
-			Category cat = new Category();
+			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
+					.orElseThrow(() -> new IdNotFoundException("Id Not Found"));
 			
-			cat.setCategoryName(product.getCategory());
-			
-			product1.setCategory(cat);
+			String userId = useraccount.getuserRoll();
+			 	 
+			if(userId.equalsIgnoreCase("admin")) {
+				Product product1 = new Product();
 
-			
-			
-			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+				product1.setProductName(product.getProductName());
 
-			ImageProduct img = new ImageProduct();
-			img.setImageName(fileName);
-			img.setImageType(file.getContentType());
-			img.setImageData(file.getBytes());
-//			Base64.getEncoder().encodeToString(file.getBytes());
-//			System.out.println(Base64.getEncoder().encodeToString(file.getBytes()));
+				product1.setStockDetails(product.getStockDetails());
+				
+				Category category = categoryRepo.findById(product.getCategoryId())
+						.orElseThrow(() -> new IdNotFoundException("Id not found"));
+				 
+				product1.setCategory(category);
+				
+				 
+				
+				String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-			img.setProduct(product1);
-			imageRepo.save(img);
+				ImageProduct img = new ImageProduct();
+				img.setImageName(fileName);
+				img.setImageType(file.getContentType());
+				img.setImageData(file.getBytes());
 
-			return productRepo.save(product1);
+
+				img.setProduct(product1);
+				imageRepo.save(img);
+
+				return productRepo.save(product1);
+			}
+
+			else {
+				throw new ProductCustomException("you are not admin can't add product"+userId);
+			}
 
 		} catch (Exception e) {
 			throw new ProductCustomException("Invalid" + e.getMessage());
 		}
 	}
+	
+	 
 
 	public void deletebyId(long id) {
 
@@ -95,34 +120,75 @@ public class ProductServiceimpl implements ProductService {
 
 	}
 
-	public List<Product> getAllproduct() {
-
-		Product productImage = productRepo.findAll().get(0);
-		List<String> collect = productImage.getProductImage().stream()
-				.map(e -> "data:image/png;base64,/" + Base64.getEncoder().encodeToString(e.getImageData()))
-				.collect(Collectors.toList());
-
-		logger.info("save new product 	file={} ", collect);
+	public List<ProductResponse> getAllproduct() {
+		
+		try {
+		
+			List<ProductResponse> collect = productRepo.findAll().stream().map(e -> new ProductResponse(e.getProductId(),
+					e.getProductName(), e.getStockDetails(),
+e.getCategory().getCategoryName(), e.getProductImage())).collect(Collectors.toList());
+			
+			System.out.println(collect);
+			return collect;
+			
+		}
+		catch (NotFoundException e) {
+			throw new NotFoundException(e.getMessage());
+		}
+			 
 		 
 
-		return productRepo.findAll();
+		 
 
 	}
 
-	public Product updateProduct(RequestProduct product, long id) {
+	public Product updateProduct(String updateProduct, MultipartFile file, long id) throws Exception {
+		
+		
+		ResponseUpdateProduct product = mapper.readValue(updateProduct, ResponseUpdateProduct.class);
+		
+		UserAccount useraccount = useraccountRepo.findById(product.getUserId())
+				.orElseThrow(() -> new IdNotFoundException("userId Not Found"+product.getUserId()));
+		
+		String userId = useraccount.getuserRoll();
+		 	 
+		if(userId.equalsIgnoreCase("admin")) {
+		
 
-		Optional<Product> findById = productRepo.findById(id);
-		Product p = new Product();
-		if (findById.isPresent()) {
-			findById.get();
-			p.setProductName(product.getProductName());
-			p.setStockDetails(product.getStockDetails());
+		Product findById = productRepo.findById(id).orElseThrow(() -> new IdNotFoundException("id not found"));
+		
+			findById.setProductName(product.getProductName());
+		
+			Category category = categoryRepo.findById(product.getCategoryId())
+					.orElseThrow(() -> new IdNotFoundException("categoryId not found"+product.getCategoryId()));
+			 
+			findById.setCategory(category);	 
+			
+			
+			findById.setStockDetails(product.getStockDetails());
+			
+			
+			if(file !=null) {
+			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
-			//p.setCategory(product.getCategory());
+			ImageProduct img = imageRepo.findById(product.getImageId())
+					.orElseThrow(() -> new IdNotFoundException("imageId not found"+ product.getImageId()));
+			 		
+			img.setImageName(fileName);
+			img.setImageType(file.getContentType());
+			img.setImageData(file.getBytes());
 
+			img.setProduct(findById);
+			imageRepo.save(img);
+			}
+			
+
+			return productRepo.save(findById);
 		}
-		return productRepo.save(p);
-
+		
+		else {
+			throw new ProductCustomException("You are not updated in this product"+userId);
+		}
 	}
 
 	public Optional<Product> getProductById(long productId) {
@@ -132,21 +198,13 @@ public class ProductServiceimpl implements ProductService {
 		}
 
 		catch (Exception e) {
-			throw new ProductNotFoundException("Product Not found" + productId + e);
+			throw new ProductNotFoundException("Product Not found" + productId + e.getMessage());
 		}
 
 		return product;
 	}
 
-	public ProductResponse mapToProduct(Product product) {
-
-		ProductResponse requestProduct = new ProductResponse();
-
-		requestProduct.setProductName(product.getProductName());
-		requestProduct.setStockDetails(product.getStockDetails());
-
-		return requestProduct;
-	}
+	 
 
 	public List<Product> filterbyId(String pName) {
 		List<Product> findByfilterproduct = null;

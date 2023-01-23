@@ -11,10 +11,7 @@ import com.wdm.entity.Items;
 
 public interface ItemsRepository extends JpaRepository<Items, Long> {
 	
-	@Query(value = "SELECT * FROM products WHERE price < :maxPrice", nativeQuery = true)
-	public List<Items> findProductsWithMaxPrice(double maxPrice);
-
-	
+	 
 
 
 }

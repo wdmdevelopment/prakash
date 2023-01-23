@@ -74,23 +74,21 @@ public class CategoryServiceimpl implements CategoryService {
 
 		catch (Exception productNotFoundException) {
 			
-			throw new ProductNotFoundException(productNotFoundException);
+			throw new ProductNotFoundException(productNotFoundException.getMessage());
 		}
 
 		return category;
 	}
 	
-	public List<Category> getAllcategory() {
-		return categoryRepo.findAll();
-				
-	}
-	
+	 
 	 
 	 
 	public Category updatecategory(RequestCategory category, long id) {
 		
 		Category category2 = categoryRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found"+id));
 			
+		
+		
 		category2.setCategoryName(category.getCategoryName());
 		 
 		 	return categoryRepo.save(category2);

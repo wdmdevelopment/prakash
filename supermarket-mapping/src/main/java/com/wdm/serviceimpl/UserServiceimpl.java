@@ -22,6 +22,7 @@ public class UserServiceimpl implements UserService {
 
 	public UserAccount saveuser(RequestUserAccount user) {
 		try {
+			
 		UserAccount userAccount = new UserAccount();
 
 		userAccount.setFirstName(user.getFirstName());
@@ -31,6 +32,7 @@ public class UserServiceimpl implements UserService {
 		userAccount.setEmailId(user.getEmailId());
 
 		userAccount.setPassword(user.getPassword());
+		
 		userAccount.setuserRoll(user.getUserRoll());
 
 		return userRepo.save(userAccount);
@@ -83,5 +85,18 @@ public class UserServiceimpl implements UserService {
 		userRes.setUserRole(user.getuserRoll());
 		return userRes;
 	}
+	
+	public UserAccount getuserbyEmail(String email, String password) throws Exception {
+		
+		UserAccount user = userRepo.findByEmailIdAndPassword(email, password);
+		
+		if(user==null) {
+			throw new UserNotFoundException("Your Email and password is incorrect");
+		}
+		return user;
+	}
+		
+
+	
 
 }

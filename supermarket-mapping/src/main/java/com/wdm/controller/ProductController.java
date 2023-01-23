@@ -11,11 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -25,11 +27,13 @@ import org.springframework.web.multipart.MultipartFile;
  
 import com.wdm.entity.Product;
 import com.wdm.model.RequestProduct;
+import com.wdm.response.ProductResponse;
 import com.wdm.service.ProductService;
 
 @RestController
 
 @RequestMapping("/product")
+@CrossOrigin
 public class ProductController {
 
 	@Autowired
@@ -38,7 +42,7 @@ public class ProductController {
 
 	@PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	
-	public ResponseEntity<Product> save(@Valid @RequestPart String resquestProduct, @RequestPart("imagefile")
+	public ResponseEntity<Product> save(@Valid @RequestPart("data") String resquestProduct, @RequestPart("imagefile")
 		MultipartFile file) throws IOException {
  
 		logger.info("save new product - resquestProduct= {}, file={} ", resquestProduct , file.getOriginalFilename());
@@ -49,14 +53,14 @@ public class ProductController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Product>> getAll() {
+	public ResponseEntity<List<ProductResponse>> getAll() {
 		
 		 
 		
 	
 		logger.info(" getAllproduct product :");
 		
-		return new ResponseEntity<List<Product>>(productService.getAllproduct(), HttpStatus.OK);
+		return new ResponseEntity<List<ProductResponse>>(productService.getAllproduct(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
@@ -71,17 +75,18 @@ public class ProductController {
 		 
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Product> updateProduct(RequestProduct product, @PathVariable("id")long id){
+	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<Product> updateProduct(@Valid @RequestPart("data") String resquestProduct, @RequestPart("imagefile")
+	MultipartFile file, long id) throws Exception{
 		
 		 
 
 	 
-		logger.info("updateProduct  product : " + product.getProductName(), product.getStockDetails());
+		logger.info("updateProduct  product : " + resquestProduct);
 		
 		
 		
-		return new ResponseEntity<Product>(productService.updateProduct(product, id), HttpStatus.OK);
+		return new ResponseEntity<Product>(productService.updateProduct(resquestProduct, file, id), HttpStatus.OK);
 	}
 	
 	

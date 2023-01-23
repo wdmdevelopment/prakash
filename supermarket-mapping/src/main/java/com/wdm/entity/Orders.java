@@ -2,6 +2,7 @@ package com.wdm.entity;
 
  
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,7 @@ public class Orders {
 	@JoinColumn(name = "cartId",referencedColumnName = "cartId")
 	private Cart cart;
 	
-	 @ManyToOne
+	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name = "userId")
 	 @JsonIgnore
 	 private UserAccount user;

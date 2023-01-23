@@ -20,5 +20,7 @@ public interface UserService {
 	public List<UserAccount> getAlluser();
 	
 	public UserResponse getuserId(long id);
+	
+	public UserAccount getuserbyEmail(String email, String password) throws Exception;
 
 }

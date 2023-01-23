@@ -1,8 +1,8 @@
-package com.wdm.model;
+package com.wdm.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class RequestProduct {
+public class ResponseUpdateProduct {
 	
 	@JsonProperty("productName")
 	private String productName;
@@ -14,6 +14,10 @@ public class RequestProduct {
 	
 	@JsonProperty("categoryId")
 	private long categoryId;
+	
+	
+	@JsonProperty("imageId")
+	private long imageId;
 	
 	
 	@JsonProperty("userId")
@@ -50,6 +54,16 @@ public class RequestProduct {
 	}
 
 
+	public long getImageId() {
+		return imageId;
+	}
+
+
+	public void setImageId(long imageId) {
+		this.imageId = imageId;
+	}
+
+
 	public long getUserId() {
 		return userId;
 	}
@@ -59,24 +73,9 @@ public class RequestProduct {
 		this.userId = userId;
 	}
 	
-	 
+	
+	
+	
+	
 
-	 
-
-	 
-	
-	
-	  
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

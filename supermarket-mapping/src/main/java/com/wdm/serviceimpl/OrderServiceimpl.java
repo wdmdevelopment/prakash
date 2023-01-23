@@ -2,6 +2,8 @@ package com.wdm.serviceimpl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,10 +45,10 @@ public class OrderServiceimpl implements OrderService {
 	@Autowired
 	ItemsRepository itemRepo;
 
-	@SuppressWarnings("unchecked")
+	
 	public Orders placeOrder(RequestOrder requestOrder, long userId) {
 		
-UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
+		UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
 
 
 		try {
@@ -77,14 +79,12 @@ UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoun
 		
 		orders.setOrderStatus(requestOrder.getOrderStatus());
 		
-		Items item = new Items();
-		RequestItems req = new RequestItems();
-		
-		if(item.getQuantity() < req.getQuantity()) {
+		  
+		if(findByItem.getQuantity() < requestOrder.getQuantity()) {
             throw new ProductCustomException("INSUFFICIENT_QUANTITY");
         }
 
-			item.setQuantity(item.getQuantity() - req.getQuantity());
+		findByItem.setQuantity(findByItem.getQuantity() - requestOrder.getQuantity());
 		}
 		
 		return  OrderRepo.save(orders);
@@ -98,21 +98,21 @@ UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoun
 
 	public void cancelOrder(long id) throws Exception {
 		try {
-			Optional<Orders> findById = OrderRepo.findById(id);
+			Orders findById = OrderRepo.findById(id).orElseThrow(() -> new IdNotFoundException("order not found"));
 			
-			if(findById.isPresent()) {
-				OrderRepo.deleteById(id);
-			}
+			long cartId = findById.getCart().getCartId();
 			
-			else
-			{
-				throw new IdNotFoundException("Not Found");
-			}
+			Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new IdNotFoundException("cart not found"));
+			
+			Stream<Object> map = cart.getItem().stream().map(e -> e.getItemId());		
+			
 			
 			Items item = new Items();
 			RequestItems req = new RequestItems();
 			
 			item.setQuantity(item.getQuantity() + req.getQuantity());
+			
+			OrderRepo.deleteById(id);
 		}
 		catch (IdNotFoundException idNotFoundException) {
 			throw new IdNotFoundException("Id not found"+ idNotFoundException);

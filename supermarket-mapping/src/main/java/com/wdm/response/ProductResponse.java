@@ -1,10 +1,12 @@
 package com.wdm.response;
- 
-import com.wdm.model.RequestCategory;
+
+import java.util.Set;
+
+import com.wdm.entity.ImageProduct;
 
 public class ProductResponse {
 	
-	
+	private long productId;
 	
 	private String ProductName;
 	
@@ -12,15 +14,13 @@ public class ProductResponse {
 	private String stockDetails;
 	 
 	
-	private RequestCategory category;
+	private String categoryname;
 	
 	
 	
-	private String type;
-
-	private String name;
 	
-	private String data;
+	
+	private Set<ImageProduct> data;
 	
 	
 	public String getProductName() {
@@ -39,38 +39,58 @@ public class ProductResponse {
 		this.stockDetails = stockDetails;
 	}
 
-	public RequestCategory getCategory() {
-		return category;
+	  
+	
+	
+	
+	
+	
+	
+
+	public long getProductId() {
+		return productId;
 	}
 
-	public void setCategory(RequestCategory category) {
-		this.category = category;
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 
-	public String getType() {
-		return type;
+	public String getCategoryname() {
+		return categoryname;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
 	}
 
-	public String getName() {
-		return name;
-	}
+	 
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getData() {
+	public Set<ImageProduct> getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Set<ImageProduct> data) {
 		this.data = data;
 	}
 
+	public ProductResponse(long productId, String productName, String stockDetails, String categoryname,
+			Set<ImageProduct> data) {
+		super();
+		this.productId = productId;
+		ProductName = productName;
+		this.stockDetails = stockDetails;
+		this.categoryname = categoryname;
+		this.data = data;
+	}
+
+	 
+	
+	
+	
+	
+	
+	
+	
 	
 
 }
