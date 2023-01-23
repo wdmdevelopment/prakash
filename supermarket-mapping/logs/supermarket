@@ -1826,3 +1826,833 @@ java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a par
 2023-01-23 16:36:02,947 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
 2023-01-23 16:36:02,949 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
 2023-01-23 16:36:03,193 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 16:37:29,819 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:38:19,517 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 16:41:32,120 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 16:41:45,571 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 16:41:58,076 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 16:41:58,735 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:42:26,990 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 16:42:35,816 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:44:36,700 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 16:44:39,387 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:44:39,844 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 16:44:40,191 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 16:44:47,885 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 16:44:49,060 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 16:45:00,532 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:46:16,867 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:47:53,974 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:47:54,410 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:47:54,626 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:47:54,810 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 16:47:55,101 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 16:47:55,263 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 16:47:55,455 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:47:55,642 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:48:08,366 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:48:27,772 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:48:28,392 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 16:48:28,584 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 16:48:54,510 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 16:48:54,627 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 16:48:54,834 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:48:55,027 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:48:55,203 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 16:48:55,406 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 16:48:55,584 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 16:48:55,727 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:48:55,826 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 16:49:40,213 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:50:48,306 INFO com.wdm.controller.UserController [http-nio-8080-exec-6] To get all by user/customer
+2023-01-23 16:51:27,944 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 16:51:37,465 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:52:17,093 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-01-23 16:52:17,117 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 9372 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 16:52:17,118 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 16:52:17,244 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-01-23 16:52:17,245 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-01-23 16:52:19,652 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 16:52:19,874 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 200 ms. Found 9 JPA repository interfaces.
+2023-01-23 16:52:21,469 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 16:52:21,497 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 16:52:21,500 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 16:52:21,500 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 16:52:21,666 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 16:52:21,667 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4419 ms
+2023-01-23 16:52:22,054 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 16:52:22,185 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-01-23 16:52:22,547 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-23 16:52:22,758 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-01-23 16:52:22,769 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 16:52:23,379 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-01-23 16:52:23,423 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 16:52:25,337 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 16:52:25,356 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 16:52:26,985 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-23 16:52:27,296 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-01-23 16:52:28,928 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-01-23 16:52:28,961 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-23 16:52:29,006 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-23 16:52:29,031 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 12.81 seconds (JVM running for 13.767)
+2023-01-23 16:52:31,638 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-23 16:52:31,639 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-01-23 16:52:31,642 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-01-23 16:52:32,004 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 16:52:36,367 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:52:36,673 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:52:36,951 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 16:52:51,919 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:53:53,931 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 16:53:54,207 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:53:54,591 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:53:54,906 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:53:55,347 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 16:53:55,712 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 16:53:56,173 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 16:53:56,597 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 16:53:57,071 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 16:53:57,295 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 16:53:57,685 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 16:53:58,088 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 16:54:22,774 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 16:55:56,754 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 16:58:19,974 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.IncorrectResultSizeDataAccessException: query did not return a unique result: 2; nested exception is javax.persistence.NonUniqueResultException: query did not return a unique result: 2] with root cause
+javax.persistence.NonUniqueResultException: query did not return a unique result: 2
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:128)
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1672)
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getSingleResult(CriteriaQueryTypeQueryAdapter.java:111)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:198)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:156)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:144)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:160)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:81)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at jdk.proxy3/jdk.proxy3.$Proxy127.findByEmailIdAndPassword(Unknown Source)
+	at com.wdm.serviceimpl.UserServiceimpl.getuserbyEmail(UserServiceimpl.java:91)
+	at com.wdm.controller.UserController.loggingValidation(UserController.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-01-23 16:58:20,805 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-5] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.IncorrectResultSizeDataAccessException: query did not return a unique result: 2; nested exception is javax.persistence.NonUniqueResultException: query did not return a unique result: 2] with root cause
+javax.persistence.NonUniqueResultException: query did not return a unique result: 2
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:128)
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1672)
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getSingleResult(CriteriaQueryTypeQueryAdapter.java:111)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:198)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:156)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:144)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:160)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:81)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at jdk.proxy3/jdk.proxy3.$Proxy127.findByEmailIdAndPassword(Unknown Source)
+	at com.wdm.serviceimpl.UserServiceimpl.getuserbyEmail(UserServiceimpl.java:91)
+	at com.wdm.controller.UserController.loggingValidation(UserController.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-01-23 16:58:21,000 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.IncorrectResultSizeDataAccessException: query did not return a unique result: 2; nested exception is javax.persistence.NonUniqueResultException: query did not return a unique result: 2] with root cause
+javax.persistence.NonUniqueResultException: query did not return a unique result: 2
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:128)
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1672)
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getSingleResult(CriteriaQueryTypeQueryAdapter.java:111)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:198)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:156)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:144)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:160)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:81)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at jdk.proxy3/jdk.proxy3.$Proxy127.findByEmailIdAndPassword(Unknown Source)
+	at com.wdm.serviceimpl.UserServiceimpl.getuserbyEmail(UserServiceimpl.java:91)
+	at com.wdm.controller.UserController.loggingValidation(UserController.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-01-23 16:59:54,291 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-4] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.IncorrectResultSizeDataAccessException: query did not return a unique result: 2; nested exception is javax.persistence.NonUniqueResultException: query did not return a unique result: 2] with root cause
+javax.persistence.NonUniqueResultException: query did not return a unique result: 2
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:128)
+	at org.hibernate.query.internal.AbstractProducedQuery.getSingleResult(AbstractProducedQuery.java:1672)
+	at org.hibernate.query.criteria.internal.compile.CriteriaQueryTypeQueryAdapter.getSingleResult(CriteriaQueryTypeQueryAdapter.java:111)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$SingleEntityExecution.doExecute(JpaQueryExecution.java:198)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:156)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:144)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:160)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:81)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:145)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at jdk.proxy3/jdk.proxy3.$Proxy127.findByEmailIdAndPassword(Unknown Source)
+	at com.wdm.serviceimpl.UserServiceimpl.getuserbyEmail(UserServiceimpl.java:91)
+	at com.wdm.controller.UserController.loggingValidation(UserController.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:696)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-01-23 17:00:38,019 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 17:01:09,283 INFO com.wdm.controller.UserController [http-nio-8080-exec-2] To create account by user/customer
+2023-01-23 17:01:29,320 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:02:32,656 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:02:33,101 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:02:48,170 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:04:40,717 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 17:04:47,127 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:04:59,867 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 17:05:34,252 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:05:46,860 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 17:06:26,435 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:06:59,882 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:07:26,882 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:11:35,516 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:11:35,742 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:11:35,966 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:11:36,172 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 17:12:12,768 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:12:55,845 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 17:13:03,320 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:13:09,502 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:13:47,462 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:16:02,778 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 17:16:04,233 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:16:04,488 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:16:04,872 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:16:21,156 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:16:36,312 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 17:16:36,511 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:16:36,704 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:16:36,878 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 17:16:37,041 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:16:37,171 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:16:37,423 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 17:16:37,686 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 17:16:44,098 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 17:16:44,692 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:17:14,924 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 17:17:23,594 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 17:21:53,221 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8080-exec-5] Init duration for springdoc-openapi is: 803 ms
+2023-01-23 17:22:18,057 INFO com.wdm.controller.UserController [http-nio-8080-exec-4] user account will delete1
+2023-01-23 17:22:29,093 INFO com.wdm.controller.UserController [http-nio-8080-exec-2] user account will delete3
+2023-01-23 17:22:29,104 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.Exception: org.springframework.dao.EmptyResultDataAccessException: No class com.wdm.entity.UserAccount entity with id 3 exists!] with root cause
+org.springframework.dao.EmptyResultDataAccessException: No class com.wdm.entity.UserAccount entity with id 3 exists!
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.lambda$deleteById$0(SimpleJpaRepository.java:173)
+	at java.base/java.util.Optional.orElseThrow(Optional.java:403)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.deleteById(SimpleJpaRepository.java:172)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:289)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:137)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:121)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:530)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:286)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:640)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:81)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:174)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215)
+	at jdk.proxy3/jdk.proxy3.$Proxy127.deleteById(Unknown Source)
+	at com.wdm.serviceimpl.UserServiceimpl.delete(UserServiceimpl.java:47)
+	at com.wdm.controller.UserController.deleteproduct(UserController.java:70)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1071)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:964)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:931)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:702)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:779)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-01-23 17:22:44,002 INFO com.wdm.controller.UserController [http-nio-8080-exec-3] user account will delete14
+2023-01-23 17:22:53,609 INFO com.wdm.controller.UserController [http-nio-8080-exec-10] user account will delete2
+2023-01-23 17:23:13,934 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:23:38,207 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5] getProductById  productId : s
+2023-01-23 17:25:31,641 INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 4 class path changes (0 additions, 0 deletions, 4 modifications)
+2023-01-23 17:25:31,682 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Pausing ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:31,683 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping service [Tomcat]
+2023-01-23 17:25:31,686 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-01-23 17:25:31,692 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:31,698 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Destroying ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:31,706 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-5] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 17:25:31,717 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2023-01-23 17:25:31,740 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2023-01-23 17:25:32,404 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 9372 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 17:25:32,405 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 17:25:32,963 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 17:25:33,023 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 60 ms. Found 9 JPA repository interfaces.
+2023-01-23 17:25:33,181 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 17:25:33,182 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:33,184 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 17:25:33,184 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 17:25:33,223 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 17:25:33,224 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 809 ms
+2023-01-23 17:25:33,330 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 17:25:33,347 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2023-01-23 17:25:33,347 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 17:25:33,370 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2023-01-23 17:25:33,370 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 17:25:33,796 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 17:25:33,799 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 17:25:34,147 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-23 17:25:34,215 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-01-23 17:25:34,955 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-01-23 17:25:34,965 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:34,972 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-23 17:25:34,979 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 2.704 seconds (JVM running for 1999.715)
+2023-01-23 17:25:34,983 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-01-23 17:25:44,867 INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-01-23 17:25:44,879 INFO org.apache.juli.logging.DirectJDKLog [Thread-7] Pausing ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:44,880 INFO org.apache.juli.logging.DirectJDKLog [Thread-7] Stopping service [Tomcat]
+2023-01-23 17:25:44,884 INFO org.apache.juli.logging.DirectJDKLog [Thread-7] Stopping ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:44,886 INFO org.apache.juli.logging.DirectJDKLog [Thread-7] Destroying ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:44,890 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-7] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 17:25:44,891 INFO com.zaxxer.hikari.HikariDataSource [Thread-7] HikariPool-2 - Shutdown initiated...
+2023-01-23 17:25:44,901 INFO com.zaxxer.hikari.HikariDataSource [Thread-7] HikariPool-2 - Shutdown completed.
+2023-01-23 17:25:45,040 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 9372 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 17:25:45,041 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 17:25:45,453 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 17:25:45,515 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 60 ms. Found 9 JPA repository interfaces.
+2023-01-23 17:25:45,659 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 17:25:45,660 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:45,661 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 17:25:45,662 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 17:25:45,699 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 17:25:45,701 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 656 ms
+2023-01-23 17:25:45,753 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 17:25:45,766 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-3 - Starting...
+2023-01-23 17:25:45,768 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 17:25:45,798 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-3 - Start completed.
+2023-01-23 17:25:45,799 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 17:25:46,143 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 17:25:46,144 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 17:25:46,442 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-23 17:25:46,508 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-01-23 17:25:48,044 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-01-23 17:25:48,079 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:48,084 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-23 17:25:48,089 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 3.104 seconds (JVM running for 2012.825)
+2023-01-23 17:25:48,091 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-01-23 17:25:49,615 INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-01-23 17:25:49,626 INFO org.apache.juli.logging.DirectJDKLog [Thread-11] Pausing ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:49,627 INFO org.apache.juli.logging.DirectJDKLog [Thread-11] Stopping service [Tomcat]
+2023-01-23 17:25:49,631 INFO org.apache.juli.logging.DirectJDKLog [Thread-11] Stopping ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:49,633 INFO org.apache.juli.logging.DirectJDKLog [Thread-11] Destroying ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:49,636 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-11] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 17:25:49,637 INFO com.zaxxer.hikari.HikariDataSource [Thread-11] HikariPool-3 - Shutdown initiated...
+2023-01-23 17:25:49,646 INFO com.zaxxer.hikari.HikariDataSource [Thread-11] HikariPool-3 - Shutdown completed.
+2023-01-23 17:25:49,778 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 9372 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 17:25:49,779 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 17:25:50,132 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 17:25:50,180 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 48 ms. Found 9 JPA repository interfaces.
+2023-01-23 17:25:50,294 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 17:25:50,296 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:50,296 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 17:25:50,297 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 17:25:50,331 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 17:25:50,332 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 548 ms
+2023-01-23 17:25:50,381 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 17:25:50,391 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-4 - Starting...
+2023-01-23 17:25:50,392 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 17:25:50,412 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-4 - Start completed.
+2023-01-23 17:25:50,413 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 17:25:50,731 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 17:25:50,732 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 17:25:51,007 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-23 17:25:51,058 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-01-23 17:25:51,618 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-01-23 17:25:51,641 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-23 17:25:51,649 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-23 17:25:51,660 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 1.934 seconds (JVM running for 2016.395)
+2023-01-23 17:25:51,662 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-01-23 17:26:03,728 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-23 17:26:03,730 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-01-23 17:26:03,733 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 2 ms
+2023-01-23 17:26:04,389 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8080-exec-3] Init duration for springdoc-openapi is: 397 ms
+2023-01-23 17:26:17,191 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4] getProductById  productId : a
+2023-01-23 17:26:59,837 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5] getProductById  productId : s
+2023-01-23 17:27:03,317 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6] getProductById  productId : s
+2023-01-23 17:30:20,835 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:30:53,651 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:32:04,591 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 17:32:06,442 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:33:20,069 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 17:33:55,740 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 17:34:23,482 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 17:34:52,816 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2] save new product - resquestProduct= {"productName":"orange","quantity":"5kg","categoryId":"3","price":"200","userId":"35"}, file=Orange.jpg 
+2023-01-23 17:35:04,195 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 17:39:03,308 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 17:40:07,932 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:40:08,128 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:40:08,405 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 17:40:28,953 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 17:41:01,377 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 17:41:09,801 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
+2023-01-23 17:41:28,314 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 17:41:54,596 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:43:47,852 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 17:43:49,660 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 17:45:28,242 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 17:45:28,439 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:45:28,676 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 17:45:51,681 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:53:08,433 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 17:54:12,101 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 17:54:24,238 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 17:58:02,947 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 18:00:17,010 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 18:01:08,112 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 18:01:58,413 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 18:02:05,422 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 18:02:07,414 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 18:02:08,554 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 18:03:31,383 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 18:05:49,869 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 18:06:08,211 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 18:06:25,923 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 18:12:00,446 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 18:12:01,702 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 18:12:06,846 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 18:12:41,023 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 18:13:11,092 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 18:14:34,252 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 18:15:39,200 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 18:15:45,350 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-01-23 18:22:08,217 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 18:29:59,635 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 18:30:19,422 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 18:31:37,428 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 18:32:50,332 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 18:34:20,530 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 18:34:38,924 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 18:45:58,422 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 18:48:14,646 INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-01-23 18:48:14,666 INFO org.apache.juli.logging.DirectJDKLog [Thread-15] Pausing ProtocolHandler ["http-nio-8080"]
+2023-01-23 18:48:14,667 INFO org.apache.juli.logging.DirectJDKLog [Thread-15] Stopping service [Tomcat]
+2023-01-23 18:48:14,670 INFO org.apache.juli.logging.DirectJDKLog [Thread-15] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-01-23 18:48:14,677 INFO org.apache.juli.logging.DirectJDKLog [Thread-15] Stopping ProtocolHandler ["http-nio-8080"]
+2023-01-23 18:48:14,682 INFO org.apache.juli.logging.DirectJDKLog [Thread-15] Destroying ProtocolHandler ["http-nio-8080"]
+2023-01-23 18:48:14,700 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-15] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 18:48:14,708 INFO com.zaxxer.hikari.HikariDataSource [Thread-15] HikariPool-4 - Shutdown initiated...
+2023-01-23 18:48:14,720 INFO com.zaxxer.hikari.HikariDataSource [Thread-15] HikariPool-4 - Shutdown completed.
+2023-01-23 18:48:15,011 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 9372 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 18:48:15,014 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 18:48:15,722 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 18:48:15,777 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 55 ms. Found 9 JPA repository interfaces.
+2023-01-23 18:48:15,931 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 18:48:15,932 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 18:48:15,933 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 18:48:15,934 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 18:48:15,972 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 18:48:15,973 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 946 ms
+2023-01-23 18:48:16,039 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 18:48:16,052 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-5 - Starting...
+2023-01-23 18:48:16,053 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 18:48:16,078 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-5 - Start completed.
+2023-01-23 18:48:16,078 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 18:48:16,415 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 18:48:16,416 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 18:56:00,718 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-01-23 18:56:00,747 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 1184 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 18:56:00,749 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 18:56:00,915 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-01-23 18:56:00,917 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-01-23 18:56:02,671 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 18:56:02,848 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 157 ms. Found 9 JPA repository interfaces.
+2023-01-23 18:56:04,355 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 18:56:04,386 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 18:56:04,388 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 18:56:04,389 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 18:56:04,591 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 18:56:04,593 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 3664 ms
+2023-01-23 18:56:04,938 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 18:56:05,043 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-01-23 18:56:05,372 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-01-23 18:56:05,608 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-01-23 18:56:05,619 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 18:56:06,310 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-01-23 18:56:06,375 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 18:56:09,003 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 18:56:09,034 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 18:56:10,472 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-23 18:56:10,767 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-01-23 18:56:12,674 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-01-23 18:56:12,755 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-23 18:56:12,811 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-23 18:56:12,849 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 13.03 seconds (JVM running for 18.042)
+2023-01-23 18:57:22,843 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-23 18:57:22,844 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-01-23 18:57:22,852 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2023-01-23 18:57:23,152 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 18:57:45,464 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4] save new product - resquestProduct= {"productName":"apple","quantity":"20kg","categoryId":"3","price":"150","userId":"15"}, file=Apple.jpg 
+2023-01-23 18:57:45,676 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"apple","quantity":"20kg","categoryId":"3","price":"150","userId":"15"}"; line: 1, column: 36] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 18:57:52,302 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 18:57:59,714 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5] save new product - resquestProduct= {"productName":"apple","quantity":"20kg","categoryId":"3","price":"150","userId":"15"}, file=Apple.jpg 
+2023-01-23 18:57:59,720 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"apple","quantity":"20kg","categoryId":"3","price":"150","userId":"15"}"; line: 1, column: 36] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 18:58:51,538 INFO com.wdm.controller.UserController [http-nio-8080-exec-3] To create account by user/customer
+2023-01-23 18:59:06,024 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
+2023-01-23 18:59:32,989 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9] save new product - resquestProduct= {"productName":"apple","quantity":"20kg","categoryId":"3","price":"150","userId":"1"}, file=Apple.jpg 
+2023-01-23 18:59:32,996 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-9] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"apple","quantity":"20kg","categoryId":"3","price":"150","userId":"1"}"; line: 1, column: 36] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 19:00:31,534 INFO com.wdm.controller.Categorycontroller [http-nio-8080-exec-2] add to category
+2023-01-23 19:00:48,047 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3] save new product - resquestProduct= {"productName":"apple","quantity":"20kg","categoryId":"2","price":"150","userId":"1"}, file=Apple.jpg 
+2023-01-23 19:00:48,055 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"apple","quantity":"20kg","categoryId":"2","price":"150","userId":"1"}"; line: 1, column: 36] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 19:02:02,610 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-01-23 19:02:25,222 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8] save new product - resquestProduct= {"productName":"apple","quantity":"20kg","categoryId":"2","price":"150","userId":"1"}, file=Apple.jpg 
+2023-01-23 19:02:25,229 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"apple","quantity":"20kg","categoryId":"2","price":"150","userId":"1"}"; line: 1, column: 36] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 19:03:55,174 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2] save new product - resquestProduct= {"productName":"apple","quantity":"20kg","categoryId":"2","price":"150","userId":"1"}, file=Apple.jpg 
+2023-01-23 19:03:55,184 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-2] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"apple","quantity":"20kg","categoryId":"2","price":"150","userId":"1"}"; line: 1, column: 36] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 19:03:57,839 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7]  getAllproduct product :
+2023-01-23 19:04:35,176 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5] save new product - resquestProduct= {"productName": "graps", "stock": "20kg", "categoryId": 3, "userId": "2"}, file=Apple.jpg 
+2023-01-23 19:04:35,188 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [com.wdm.exception.ProductCustomException: InvalidId Not Found]
+2023-01-23 19:04:54,516 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6] save new product - resquestProduct= {"productName": "graps", "stock": "20kg", "categoryId": 2, "userId": "2"}, file=Apple.jpg 
+2023-01-23 19:04:54,527 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [com.wdm.exception.ProductCustomException: InvalidId Not Found]
+2023-01-23 19:05:12,024 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9] save new product - resquestProduct= {"productName": "graps", "stock": "20kg", "categoryId": 2, "userId": "1"}, file=Apple.jpg 
+2023-01-23 19:05:19,811 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 19:05:48,448 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4] save new product - resquestProduct= {"productName":"orange","quantity":"10kg","categoryId":"2","price":"100","userId":"1"}, file=Orange.jpg 
+2023-01-23 19:05:48,456 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [com.wdm.exception.ProductCustomException: InvalidUnrecognized field "quantity" (class com.wdm.model.RequestProduct), not marked as ignorable (5 known properties: "categoryId", "productName", "stock", "price", "userId"])<EOL> at [Source: (String)"{"productName":"orange","quantity":"10kg","categoryId":"2","price":"100","userId":"1"}"; line: 1, column: 37] (through reference chain: com.wdm.model.RequestProduct["quantity"])]
+2023-01-23 19:08:17,830 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1]  getAllproduct product :
+2023-01-23 19:08:35,245 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2] save new product - resquestProduct= {"productName":"orange","stock":"20kg","categoryId":"2","price":"200","userId":"1"}, file=Orange.jpg 
+2023-01-23 19:08:47,639 INFO com.wdm.controller.ProductController [http-nio-8080-exec-4]  getAllproduct product :
+2023-01-23 19:09:27,800 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :
+2023-01-23 19:09:52,579 INFO com.wdm.controller.ProductController [http-nio-8080-exec-10]  getAllproduct product :
+2023-01-23 19:11:50,326 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5] save new product - resquestProduct= {"productName": "graps", "stock": "20kg", "categoryId": 2, "userId": "1", "price":200}, file=grapes.jpg 
+2023-01-23 19:12:43,914 INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2023-01-23 19:12:43,946 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Pausing ProtocolHandler ["http-nio-8080"]
+2023-01-23 19:12:43,947 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping service [Tomcat]
+2023-01-23 19:12:43,949 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-01-23 19:12:43,953 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2023-01-23 19:12:43,956 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Destroying ProtocolHandler ["http-nio-8080"]
+2023-01-23 19:12:43,969 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-5] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 19:12:43,975 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2023-01-23 19:12:44,000 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2023-01-23 19:12:44,237 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 1184 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-01-23 19:12:44,237 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-01-23 19:12:44,749 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-01-23 19:12:44,828 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 76 ms. Found 9 JPA repository interfaces.
+2023-01-23 19:12:45,087 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-01-23 19:12:45,089 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-01-23 19:12:45,089 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-01-23 19:12:45,090 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-01-23 19:12:45,148 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-01-23 19:12:45,151 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 907 ms
+2023-01-23 19:12:45,272 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-01-23 19:12:45,316 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2023-01-23 19:12:45,317 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-01-23 19:12:45,357 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2023-01-23 19:12:45,357 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-01-23 19:12:45,966 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-01-23 19:12:45,968 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-01-23 19:12:46,401 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-01-23 19:12:46,478 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-01-23 19:12:47,623 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-01-23 19:12:47,639 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-01-23 19:12:47,646 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-01-23 19:12:47,655 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 3.563 seconds (JVM running for 1012.848)
+2023-01-23 19:12:47,661 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
+2023-01-23 19:13:18,778 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-01-23 19:13:18,779 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-01-23 19:13:18,783 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-01-23 19:13:18,862 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1] save new product - resquestProduct= {"productName":"graps","stock":"20kg","categoryId":"2","price":"60","userId":"1"}, file=grapes.jpg 
+2023-01-23 19:13:23,009 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-01-23 19:14:23,231 INFO com.wdm.controller.ProductController [http-nio-8080-exec-9]  getAllproduct product :

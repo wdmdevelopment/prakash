@@ -7,8 +7,8 @@ public class RequestProduct {
 	@JsonProperty("productName")
 	private String productName;
 	
-	@JsonProperty("quantity")
-	private String quantity;
+	@JsonProperty("stock")
+	private String stock;
 	 
 	 
 	
@@ -65,13 +65,16 @@ public class RequestProduct {
 	}
 
 
-	public String getQuantity() {
-		return quantity;
+	 
+
+
+	public String getStock() {
+		return stock;
 	}
 
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setStock(String stock) {
+		this.stock = stock;
 	}
 
 

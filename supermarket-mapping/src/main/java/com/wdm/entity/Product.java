@@ -34,8 +34,8 @@ public class Product {
 	@Column(name = "product_Name") 
 	private String productName;
 	
-	@Column(name = "quantity") 
-	private String quantity;
+	@Column(name = "stock") 
+	private String stock;
 	
 	@Column(name = "price") 
 	private double price;
@@ -81,16 +81,17 @@ public class Product {
 	
 	
 	
+ 
 
 
-	public String getQuantity() {
-		return quantity;
+	public String getStock() {
+		return stock;
 	}
 
 
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setStock(String stock) {
+		this.stock = stock;
 	}
 
 
@@ -134,13 +135,16 @@ public class Product {
 	 
 	
 	 
-	
-	public Product(long productId, String productName, String quantity, double price, Category category,
+ 
+
+
+
+	public Product(long productId, String productName, String stock, double price, Category category,
 			Set<ImageProduct> productImage) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
-		this.quantity = quantity;
+		this.stock = stock;
 		this.price = price;
 		this.category = category;
 		this.productImage = productImage;

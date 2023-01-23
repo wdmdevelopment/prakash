@@ -102,14 +102,14 @@ public class ProductController {
 	}
  
 	@GetMapping("/name")
-	public ResponseEntity<List<Product>> filterbyproduct(@RequestParam("product_name") String name) {
+	public ResponseEntity<List<ProductResponse>> filterbyproduct(@RequestParam("product_name") String name) {
 		
 			
 			 
 
 			logger.info("getProductById  productId : " + name);
 			
-			return new ResponseEntity<List<Product>>(productService.filterbyId(name), HttpStatus.OK);
+			return new ResponseEntity<List<ProductResponse>>(productService.filterbyId(name), HttpStatus.OK);
 		 
 	}
 	

@@ -78,7 +78,9 @@ public class ProductServiceimpl implements ProductService {
 
 				product1.setProductName(product.getProductName());
 
-				product1.setQuantity(product.getQuantity());
+				product1.setStock(product.getStock());
+				
+				product1.setPrice(product.getPrice());
 				
 				Category category = categoryRepo.findById(product.getCategoryId())
 						.orElseThrow(() -> new IdNotFoundException("Id not found"));
@@ -125,7 +127,7 @@ public class ProductServiceimpl implements ProductService {
 		try {
 		
 			List<ProductResponse> collect = productRepo.findAll().stream().map(e -> new ProductResponse(e.getProductId(),
-					e.getProductName(), e.getQuantity(),
+					e.getProductName(), e.getStock(),
 e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
 			
 			System.out.println(collect);
@@ -165,7 +167,7 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 			findById.setCategory(category);	 
 			
 			
-			findById.setQuantity(product.getQuantity());
+			findById.setStock(product.getStock());
 			
 			
 			if(file !=null) {
@@ -206,11 +208,13 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 
 	 
 
-	public List<Product> filterbyId(String pName) {
-		List<Product> findByfilterproduct = null;
+	public List<ProductResponse> filterbyId(String pName) {
+		List<ProductResponse> findByfilterproduct = null;
 		try {
 			
-			findByfilterproduct = productRepo.findByfilterproduct(pName);
+			findByfilterproduct = productRepo.findByfilterproduct(pName).stream().map(e -> new ProductResponse(e.getProductId(),
+					e.getProductName(), e.getStock(),
+e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
 		} catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}

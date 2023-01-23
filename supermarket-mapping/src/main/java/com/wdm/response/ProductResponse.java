@@ -11,7 +11,7 @@ public class ProductResponse {
 	private String ProductName;
 	
 	
-	private String quantity;
+	private String stock;
 	 
 	
 	private String categoryname;
@@ -37,15 +37,13 @@ public class ProductResponse {
 	
 	
 	
-	
-	
-
-	public String getQuantity() {
-		return quantity;
+ 
+	public String getStock() {
+		return stock;
 	}
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setStock(String stock) {
+		this.stock = stock;
 	}
 
 	public long getProductId() {
@@ -87,16 +85,18 @@ public class ProductResponse {
 		this.price = price;
 	}
 
-	public ProductResponse(long productId, String productName, String quantity, String categoryname, double price,
+	public ProductResponse(long productId, String productName, String stock, String categoryname, double price,
 			Set<ImageProduct> data) {
 		super();
 		this.productId = productId;
 		ProductName = productName;
-		this.quantity = quantity;
+		this.stock = stock;
 		this.categoryname = categoryname;
 		this.price = price;
 		this.data = data;
 	}
+
+	 
 
 	 
 

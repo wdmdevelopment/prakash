@@ -27,7 +27,7 @@ public interface ProductService {
 	
 	public Optional<Product> getProductById(long productId);
 	
-	public List<Product> filterbyId(String pName);
+	public List<ProductResponse> filterbyId(String pName);
 	
 	 
 	

@@ -80,20 +80,16 @@ $(document).ready(function(){
                     
                     success:function(response){
 
-                      alert("success"+JSON.stringify(response));
+                      alert("success");
 
                       localStorage.setItem('emailId', response.emailId);
                       localStorage.setItem('userId', response.userId);
                       localStorage.setItem('firstName', response.firstName);
-                      localStorage.setItem('lastname', response.lastName);
-                      localStorage.setItem('userRoll', response.userRole);
-                      
-                      
-                       
-                      
+                      localStorage.setItem('lastName', response.lastName);
+                      localStorage.setItem('userRole', response.userRoll);
                       
                       window.location = "index.html";
-                        console.log(response);
+                         
                         // var msg = "";
                         // if(response == 200){
                         //     window.location = "index.html";

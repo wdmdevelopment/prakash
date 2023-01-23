@@ -27,7 +27,7 @@
 
 
   
-	 <link rel="stylesheet" href="./CSS/styles.css">
+	 <!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
 	 
   
 </head>
@@ -77,7 +77,7 @@
 				</li>
 			<li class="nav-item">
 				<a class="navbar-brand 	" href="#Home.html">
-					Hi! firstName lastName <img src="./images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
+					Hi! <script>document.write(localStorage.getItem('firstName') + ' ' +localStorage.getItem('lastName'));</script> <img src="./images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
 				</a>
 				
 			</li>
@@ -174,6 +174,14 @@
 				</div>
         </div>
 
+
+		
+
+
+
+
+
+
  
 
 
@@ -194,16 +202,16 @@ $(document).ready(function(){
 		var file = $('#myFile').prop("files")[0];
 
 			var productname = $("#product").val();
-			var quantity = $("#stock").val();
+			var stock = $("#stock").val();
 			var category = $("#category").val();
 			var price = $("#price").val();
 			
   
       formData.append('data', JSON.stringify({
         "productName": productname,
-		"quantity": quantity,
+		"stock": stock,
 		"categoryId": category,
-			 "price":price,
+		"price":price,
 		"userId": localStorage.getItem("userId")
 
 	})),
@@ -246,6 +254,11 @@ function product(){
 				
 			$.each(responseText, function (index, item ) {
 
+					  localStorage.setItem('productId', responseText.productId);
+                      localStorage.setItem('productId', responseText.productId);
+                      localStorage.setItem('productId', responseText.productId);
+                      localStorage.setItem('price', responseText.price);
+					
 				 
 
 	
@@ -256,15 +269,15 @@ function product(){
 			$.each(item.data, function (indeximg, itemimg ) {
 					
 					
-					productData += '<img src="data:image/png;base64,'+itemimg.imageData+'" class="object-fit-contain"/>';
+					productData += '<img src="data:image/png;base64,'+itemimg.imageData+'" style="width: 400px; height: 300px;/>';
 					 
 					 
 				});
-	productData += '<div class="card-block"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stockDetails: "+item.quantity+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+	productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
 						
-						if(localStorage.getItem('userRoll') == 'admin'){
+						if(localStorage.getItem('userRole') == "Admin"){
 						
-						productData +='<button onclick="editProduct('+item.productId+')" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span><strong>Edit</strong></span></button> <button onclick="deleteProduct('+item.productId+')" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span> </button>';
+						productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link"><strong>Edit</strong></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><strong>Delete</strong></a>';
 						
 						}
 						else{
@@ -337,6 +350,11 @@ $(document).ready(function(){
 	
 })
 })
+ 
+
+
+
+
 
 // $(document).ready (function () {
 // 		var url = "http://localhost:8080/items";
@@ -374,6 +392,8 @@ $(document).ready(function(){
 
 
 
+
 </script>
+ 
 </body>
 </html>
