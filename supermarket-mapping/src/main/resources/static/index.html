@@ -192,67 +192,7 @@
 					</div>
 					
 	 
-  
-  <!-- Modal 
-  
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h5 class="modal-title" id="exampleModalLongTitle">Adding Product</h5>
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		</div>
-		<div class="modal-body">
-
-			<div class="container">
-				<div class="row d-flex justify-content-center">
-				  <div class="col-12">
-					<div class="card" style="border-radius: 1rem;">
-					  <div class="card-body p-5">
-			
-				<div class="form-label">
-				<label class="form-label" for="product">ProductName</label>
-				<input type="text" id="product" class="form-control form-control-lg" required />
-			   
-			 	 </div>
-
-				  <div class="form-label">
-					<label class="form-label" for="product">Quantity</label>
-					<input type="text" id="stock" class="form-control form-control-lg" required/>
-				   
-					  </div>
-					  <div class="form-label">
-						<label class="form-label" for="product">price</label>
-						<input type="text" id="price" class="form-control form-control-lg" required/>
-					   </div>	  
-					  <div class="form-label">
-						<label class="form-label" for="product">Category Name</label>
-						<input type="text" id="category" class="form-control form-control-lg" required/>
-					   
-						  </div>	  
-						  <p>Choose your product image </p>
-
-						  <div class="form-label">
-							<input type="file" id="myFile" name="filename" required>
-							 
-						  </div>
-					</div>
-					</div>
-					</div>
-					</div>
-					</div>
-			</div>
-		 
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-		  <button  type="button" data-dismiss="modal" class="btn btn-warning">ADD</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-
- -->
+   
 		
 		<h1 class=" text-center text-center">Products</h1>
 		
@@ -263,6 +203,7 @@
 				</div>
         </div>
 
+		 
 
 		
 
@@ -362,14 +303,14 @@ function product(){
 				 
 
 	
-			 productData += ' <div class="col-lg-4 "><div class="card mb-3">' ;
+			productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3">' ;
 				
 				 
 				   
 			$.each(item.data, function (indeximg, itemimg) {
 					
 					
-					productData += '<img class="img-fluid" src="data:image/png;base64,'+itemimg.imageData+'"/>';
+					productData += '<img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
 					 
 					 
 				});
@@ -377,7 +318,7 @@ function product(){
 						
 						if(localStorage.getItem('userRole') == "Admin"){
 						
-						productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+	productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 						
 						}
 						else{
@@ -465,25 +406,24 @@ $(document).ready(function(){
 }
 
 
-$(document).ready(function(){
-	$("#deletesubmit").click(function(){
-
-	var url = "http://localhost:8080/product";
-		var deletedata = null;
+function deleteProduct(productId){
+	  
+		 
 	$.ajax({
 			dataType: "JSON",
-			url: url,
+			url: "http://localhost:8080/product/"+productId,
 			type: "DELETE",
 			async:false,
 			crossDomain:true,
 			
 		success: function (responseText, status) {
-
+				
+			console.log(status);
 		}
 	})
-	
-})
-})
+}
+ 
+ 
  
 
 
@@ -501,7 +441,7 @@ $(document).ready (function () {
 			
 			$.each(response, function (index, item) {
 					console.log(item.categoryId);
-	categorytype += "<li onclick='categoryProduct(this.value)' value='"+item.categoryId+"' class='dropdown-item'>"+item.categoryName+"</li>";
+	categorytype += "<li  onclick='categoryProduct(this.value)' value='"+item.categoryId+"' class='dropdown-item'>"+item.categoryName+"<a href=''></a></li>";
 				 
 
 			})
@@ -542,7 +482,7 @@ function categoryProduct(categoryId){
 							
 							}
 							else{
-								productData +=' <button class="btn btn-outline-warning" type="button" id="Order">Order</button>';
+								productData +=' <button class="btn btn-warning" type="button" id="Order">Order</button>';
 							}
 							productData +='</div></div></div> '; 
 					
