@@ -4,16 +4,19 @@ import java.util.List;
 
 public class RequestCart {
 
-	private List<RequestItems> item;
+	private long itemId;
 
 	private double totalPrice;
+	
 
-	public List<RequestItems> getItem() {
-		return item;
+	 
+
+	public long getItemId() {
+		return itemId;
 	}
 
-	public void setItem(List<RequestItems> item) {
-		this.item = item;
+	public void setItemId(long itemId) {
+		this.itemId = itemId;
 	}
 
 	public double getTotalPrice() {

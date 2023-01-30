@@ -15,10 +15,18 @@ public class RequestOrder {
 
 	private String orderStatus;
 	
+	private long userId;
 	
 	
 	
-	
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	public long getCartId() {
 		return cartId;
 	}

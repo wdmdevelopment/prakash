@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wdm.entity.Orders;
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.exception.UserNotFoundException;
 import com.wdm.model.RequestUserAccount;
+import com.wdm.repository.OrderRepository;
 import com.wdm.repository.UserAccountRespository;
 import com.wdm.response.UserResponse;
 import com.wdm.service.UserService;
@@ -19,6 +21,9 @@ public class UserServiceimpl implements UserService {
 
 	@Autowired
 	UserAccountRespository userRepo;
+	
+	@Autowired
+	OrderRepository orderRepo;
 
 	public UserAccount saveuser(RequestUserAccount user) {
 		try {
@@ -56,9 +61,21 @@ public class UserServiceimpl implements UserService {
 
 	}
 
-	public UserAccount updateUser(UserAccount user, long id) {
+	public UserAccount updateUser(RequestUserAccount user, long id) {
 
-		return userRepo.save(user);
+		UserAccount account = userRepo.findById(id).orElseThrow(() -> new IdNotFoundException("user id not found"));
+		
+		account.setEmailId(user.getEmailId());
+		account.setFirstName(user.getFirstName());
+		account.setLastName(user.getLastName());
+		account.setPassword(user.getPassword());
+		account.setuserRoll(user.getUserRoll());
+		
+			Orders orders = orderRepo.findById(user.getOrderId()).orElseThrow(() -> new IdNotFoundException("order Id not found"));
+			
+			account.setOrder((List<Orders>) orders);
+		
+		return userRepo.save(account);
 	}
 
 	 

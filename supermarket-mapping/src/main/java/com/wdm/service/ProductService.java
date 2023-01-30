@@ -30,7 +30,7 @@ public interface ProductService {
 	public List<ProductResponse> filterbyId(String pName);
 	
 	 
-	
+	public List<ProductResponse> getBycategory(long categoryId);
 	
 
 }

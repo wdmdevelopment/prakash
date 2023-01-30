@@ -47,18 +47,10 @@ public class OrderServiceimpl implements OrderService {
 
 	
 	public Orders placeOrder(RequestOrder requestOrder, long userId) {
-		
-		UserAccount findById = userRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
-
-
+				
+			Orders orders = new Orders();
 		try {
-			
-			
-		String getuserRoll = findById.getuserRoll();
-		Orders orders = new Orders();
 			 
-		if(getuserRoll.equalsIgnoreCase("customer") || getuserRoll.equalsIgnoreCase("admin")) {
-			
 			Cart findBycart = cartRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
 	
 			Items findByItem = itemRepo.findById(userId).orElseThrow(() -> new IdNotFoundException(userId+" Not Found "));
@@ -72,6 +64,9 @@ public class OrderServiceimpl implements OrderService {
 			findByItem.setProduct(findByproduct);
 			
 		 
+	UserAccount userAccount = userRepo.findById(requestOrder.getUserId()).orElseThrow(() -> new IdNotFoundException("user id not found"));
+	orders.setUser(userAccount);
+			
 		 
 		orders.setTotalPrice(requestOrder.getTotalPrice());
 		
@@ -85,7 +80,7 @@ public class OrderServiceimpl implements OrderService {
         }
 
 		findByItem.setQuantity(findByItem.getQuantity() - requestOrder.getQuantity());
-		}
+		
 		
 		return  OrderRepo.save(orders);
 		
@@ -104,7 +99,7 @@ public class OrderServiceimpl implements OrderService {
 			
 			Cart cart = cartRepo.findById(cartId).orElseThrow(() -> new IdNotFoundException("cart not found"));
 			
-			Stream<Object> map = cart.getItem().stream().map(e -> e.getQuantity());
+			List<Long> map = cart.getItem().stream().map(e -> e.getItemId()).toList();
 			
 			
 			Items item = new Items();

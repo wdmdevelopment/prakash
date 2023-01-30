@@ -14,7 +14,7 @@ public class RequestItems {
 	private double price;
 	
 	@NotNull
-	private String productName;
+	private long productId;
 	 
 
 	public int getQuantity() {
@@ -37,15 +37,17 @@ public class RequestItems {
 	}
 
 
-	public String getProductName() {
-		return productName;
+	public long getProductId() {
+		return productId;
 	}
 
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setProductId(long productId) {
+		this.productId = productId;
 	}
 
+
+	 
 
 	
 	

@@ -41,6 +41,7 @@
 	
 			<div class="bg-blur">
 				<header>	 
+					
 		<nav id="navbarScroll" class="navbar navbar-expand-lg navbar-dark bg-dark"> 
 			 
 			<a class="navbar-brand" href="#Home-1">
@@ -160,7 +161,7 @@
 
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-		  <button id="addproduct" type="button" class="btn btn-warning">ADD</button>
+		  <button onclick="addproduct()" type="button" class="btn btn-warning">ADD</button>
 		</div>
 	  </div>
 	</div>
@@ -170,119 +171,17 @@
 
 
 
+<button onclick = "product()">get Product</button>
+		
+		<h1 class=" text-center text-center">Products</h1>
+		
+  		<div class="container-fluid">
+		<div class="row" id="mydd">
+			   
+			   
+				</div>
+        </div>
 
-		
-		<h1 class="display-4 text-xs-center m-y-3 text-muted text-center" id="speakers">Products</h1>
-		<div class="container-fluid">
-		<div class="row">
-		  <div class="col-md-6 col-lg-4">
-			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
-			  <div class="card-block">
-				<h4 class="card-title text-center" >Apple</h4>
-		
-				
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					<span><strong>Edit</strong></span>            
-				</a>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					 <span><strong>Delete</strong></span>            
-				 </a>
-
-			  </div>
-			</div>
-		  </div>
-		
-		  <div class="col-md-6 col-lg-4">
-			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
-			  <div class="card-block">
-				<h4 class="card-title">Orange</h4>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					<span><strong>Edit</strong></span>            
-				</a>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					 <span><strong>Delete</strong></span>            
-				 </a>
-				
-			  </div>
-			</div>
-		  </div>
-		
-		  <div class="col-md-6 col-lg-4">
-			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
-			  <div class="card-block">
-				<h4 class="card-title">Pine Apple</h4>
-		
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					<span><strong>Edit</strong></span>            
-				</a>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					 <span><strong>Delete</strong></span>            
-				 </a>
-			  </div>
-			</div>
-		  </div>
-		
-		  <div class="col-md-6 col-lg-4 mt-3">
-			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
-			  <div class="card-block">
-				<h4 class="card-title">Pomegrenate</h4>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					<span><strong>Edit</strong></span>            
-				</a>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					 <span><strong>Delete</strong></span>            
-				 </a>
-				
-			  </div>
-			</div>
-		  </div>
-		
-		  <div class="col-md-6 col-lg-4 mt-3">
-			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
-			  <div class="card-block">
-				<h4 class="card-title">Mango</h4>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					<span><strong>Edit</strong></span>            
-				</a>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					 <span><strong>Delete</strong></span>            
-				 </a>
-				
-			  </div>
-			</div>
-		  </div>
-		
-		  <div class="col-md-6 col-lg-4 mt-3">
-			<div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="" />
-			  <div class="card-block">
-				<h4 class="card-title">More Flavors</h4>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-					<span><strong>Edit</strong></span>            
-				</a>
-				<a href="#" class="btn btn-warning a-btn-slide-text">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					 <span><strong>Delete</strong></span>            
-				 </a>
-				
-			  </div>
-			</div>
-		  </div>
-		</div>
-		</div>
-
-
- 
 
 
 <script>
@@ -300,57 +199,64 @@ var header = document.querySelector('#navbarScroll');
 }
 
 
-$("#login").click(function () {
-            var text = $("#textarea").val();
-            $("#modal_body").html(text);
-        });
+// $("#login").click(function () {
+//             var text = $("#textarea").val();
+//             $("#modal_body").html(text);
+//         });
 
 
 
 
 
-	// Register the supermarket
-$(document).ready (function () {
-		var url = "http://localhost:8080/supermarket";
-	$.ajax({
-			dataTypa: "JSON",
-			url: url,
-			type: "POST",
+// 	// Register the supermarket
+// $(document).ready (function () {
+// 		var url = "http://localhost:8080/supermarket";
+// 	$.ajax({
+// 			dataTypa: "JSON",
+// 			url: url,
+// 			type: "POST",
 			
-		success: function (requestText) {
+// 		success: function (requestText) {
 					
-		}
+// 		}
 
-	})
+// 	})
 
-})
+// })
 
-// see info of supermarket
-$(document).ready (function () {
-		var url = "http://localhost:8080/supermarket";
-	$.ajax({
-			dataTypa: "JSON",
-			url: url,
-			type: "GET",
+// // see info of supermarket
+// $(document).ready (function () {
+// 		var url = "http://localhost:8080/supermarket";
+
+// 	$.ajax({
+// 			dataTypa: "JSON",
+// 			url: url,
+// 			type: "GET",
 			
-		success: function (responseSuperMarket) {
+// 		success: function (responseSuperMarket) {
 					
-		}
+// 		}
 
-	})
+// 	})
 
-})
+// })
 
 
-// add product with image product
+// // add product with image product
 
-$(document).ready (function () {
-	$(#addproduct).click(function(){
+ function addproduct() {
+
+	 
 		var url = "http://localhost:8080/product";
 
 		
 		var formData = new FormData();
-		formData.append('productimg', productImg);
+		var fileInput = $('#myFile')[0].files[0];
+
+		formData.append('productname', $("#product").val());
+		formData.append('productname', $("#stock").val());
+		formData.append('category', $("#category").val());
+		
 		var objArr = [];
 
 		objArr.push({"productname": productname, "stockdetails": stockdetails, "category": category});
@@ -362,8 +268,7 @@ $(document).ready (function () {
 		type: "POST",
 		url: url,
 		data: formData,
-		contentType:false,
-		processData:false,
+		 
 		 
  		 success: function (requestProduct) {
 			
@@ -372,117 +277,124 @@ $(document).ready (function () {
 				}
 			
 			})
-});
-			
+ 
 
-		
-
-	})
+	}
 
 
 
 // To get the information of products and its category
 
-$(document).ready (function () {
-		var url = "http://localhost:8080/product";
-		var result = null;
-	$.ajax({
-			dataType: "JSON",
-			url: url,
-			type: "GET",
-			async:false,
-			crossDomain:true,
-			
-		success: function (requestProduct, status) {
-				result = requestProduct;
-				var productData = "";
-				$.each(responseText, function (index, item ) {
-				
-				
-					productData +='<div class="col-md-6 col-lg-4 mt-3"><div class="card"><img alt="Card image cap" class="card-img-top img-fluid" src="'+item.imageData+'" /><div class="card-block"><h4 class="card-title text-center">'+item.ProductName+'</h4><div class=""d-flex justify-content-between"><span>Stock details</span><span>"'+item.stockdetails+'"</span> </div><div class=""d-flex justify-content-between"><span>Category</span><span>"'+item.category+'"</span> </div><a href="#" id="editsubmit" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span><strong></strong></span></a><a href="#" id="deletesubmit" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong></strong></span></a></div></div></div>';
 
 
-				   });
-				
-				$(#product).empty();
-				$(#product).append(productData);
-
-
-		}
-
-	})
-
-	$("#editsubmit").click(function(){
-		var url = "http://localhost:8080/product";
-		var editResut = null;
-	$.ajax({
-			dataType: "JSON",
-			url: url,
-			type: "PUT",
-			async:false,
-			crossDomain:true,
-			
-		success: function (responseText, status) {
-
-		}
-	})
-	
-})
-
-
-
-	$("#deletesubmit").click(function(){
-
-	var url = "http://localhost:8080/product";
-		var deletedata = null;
-	$.ajax({
-			dataType: "JSON",
-			url: url,
-			type: "DELETE",
-			async:false,
-			crossDomain:true,
-			
-		success: function (responseText, status) {
-
-		}
-	})
-	
-})
-
-
-$(document).ready (function () {
-		var url = "http://localhost:8080/items";
+function product(){	
 	$.ajax({
 			dataTypa: "JSON",
-			url: url,
-			type: "POST",
+			url: "http://localhost:8080/product",
+			type:"GET",
 			
-		success: function (requestProduct) {
+		success: function (responseText) {
+		
+					var productData ="";
+				
+				
+			$.each(responseText, function (index, item ) {
+	
+			 productData += ' <div class="col-md-6 col-lg-4"><div class="card">' ;
+				
+				 
+				   
+			$.each(item.data, function (indeximg, itemimg ) {
 					
-		}
-
-	})
-
-})
-
-
-
-
-
-$(document).ready (function () {
-		var url = "http://localhost:8080/items";
-	$.ajax({
-			dataTypa: "JSON",
-			url: url,
-			type: "GET",
+					
+					productData += '<img src="data:image/png;base64,'+itemimg.imageData+'" class="width: 400px !important; height: 400px% !important; margin-right:5%;"/>';
+					 
+					 
+				});
+					productData += '<div class="card-block"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stockDetails: "+item.stockDetails+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><button onclick="editProduct()" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span><strong>Edit</strong></span></button> <button onclick="deleteProduct()" class="btn btn-warning a-btn-slide-text"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span><strong>Delete</strong></span> </button></div></div></div>'; 
+				
+				});
+				 $("#mydd").empty();	
+				$("#mydd").append(productData);	
+			}
 			
-		success: function (requestProduct) {
+		});
+}
+
+
+// 	$("#editsubmit").click(function(){
+// 		var url = "http://localhost:8080/product";
+// 		var editResut = null;
+// 	$.ajax({
+// 			dataType: "JSON",
+// 			url: url,
+// 			type: "PUT",
+// 			async:false,
+// 			crossDomain:true,
+			
+// 		success: function (responseText, status) {
+
+// 		}
+// 	})
+	
+// })
+
+// }
+
+
+
+// 	$("#deletesubmit").click(function(){
+
+// 	var url = "http://localhost:8080/product";
+// 		var deletedata = null;
+// 	$.ajax({
+// 			dataType: "JSON",
+// 			url: url,
+// 			type: "DELETE",
+// 			async:false,
+// 			crossDomain:true,
+			
+// 		success: function (responseText, status) {
+
+// 		}
+// 	})
+	
+// })
+
+
+// $(document).ready (function () {
+// 		var url = "http://localhost:8080/items";
+// 	$.ajax({
+// 			dataTypa: "JSON",
+// 			url: url,
+// 			type: "POST",
+			
+// 		success: function (requestProduct) {
 					
-		}
+// 		}
 
-	})
+// 	})
 
-})
+// })
+
+
+
+
+
+// $(document).ready (function () {
+// 		var url = "http://localhost:8080/items";
+// 	$.ajax({
+// 			dataTypa: "JSON",
+// 			url: url,
+// 			type: "GET",
+			
+// 		success: function (requestProduct) {
+					
+// 		}
+
+// 	})
+
+// })
 
 
 

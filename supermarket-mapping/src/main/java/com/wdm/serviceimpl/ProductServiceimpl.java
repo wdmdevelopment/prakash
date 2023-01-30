@@ -39,6 +39,8 @@ import com.wdm.response.ProductResponse;
 import com.wdm.response.ResponseUpdateProduct;
 import com.wdm.service.ProductService;
 
+import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
+
 @Service
 
 public class ProductServiceimpl implements ProductService {
@@ -126,7 +128,7 @@ public class ProductServiceimpl implements ProductService {
 		
 		try {
 		
-			List<ProductResponse> collect = productRepo.findAll().stream().map(e -> new ProductResponse(e.getProductId(),
+			List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream().map(e -> new ProductResponse(e.getProductId(),
 					e.getProductName(), e.getStock(),
 e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
 			
@@ -134,7 +136,7 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 			return collect;
 			
 		}
-		catch (NotFoundException e) {
+		catch (Exception e) {
 			throw new NotFoundException(e.getMessage());
 		}
 			 
@@ -222,5 +224,28 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 		return findByfilterproduct;
 
 	}
+	
+	
+public List<ProductResponse> getBycategory(long categoryId) {
+		
+		try {
+		
+			List<ProductResponse> collect = productRepo.findBycategoryId(categoryId).stream().map(e -> new ProductResponse(e.getProductId(),
+					e.getProductName(), e.getStock(),
+e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
+			
+			System.out.println(collect);
+			return collect;
+			
+		}
+		catch (Exception e) {
+			throw new NotFoundException(e.getMessage());
+		}
+
+
+}
+	
+	
+	
 
 }

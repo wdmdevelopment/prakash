@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Cart;
- 
+import com.wdm.entity.Items;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestCart;
 import com.wdm.repository.CartRepository;
+import com.wdm.repository.ItemsRepository;
 import com.wdm.service.CartService;
 
 @Service
@@ -21,6 +22,10 @@ public class CartServiceimpl implements CartService {
 	@Autowired
 
 	CartRepository cartRepo;
+	
+	@Autowired
+	
+	ItemsRepository itemRepo;
 
 	private static final Logger logger = LoggerFactory.getLogger(CartServiceimpl.class);
 
@@ -31,7 +36,11 @@ public class CartServiceimpl implements CartService {
 		Cart cart = new Cart();
 
 		cart.setTotalPrice(requestCart.getTotalPrice());
-
+		
+		Items items = itemRepo.findById(requestCart.getItemId()).orElseThrow(() -> new IdNotFoundException("item id not found"));
+		
+		cart.setItem((List<Items>) items);
+		
 		return cartRepo.save(cart);
 		}
 		catch (Exception e) {
@@ -60,7 +69,10 @@ public class CartServiceimpl implements CartService {
 		Cart findById = cartRepo.findById(id).orElseThrow(()-> new IdNotFoundException("Not Found"+id));
 		
 		findById.setTotalPrice(cart.getTotalPrice());
-		findById.getItem();
+				
+		Items orElseThrow = itemRepo.findById(cart.getItemId()).orElseThrow(() -> new IdNotFoundException("item id not found"));
+		
+		findById.setItem((List<Items>) orElseThrow);
 		
 		 	
 		return cartRepo.save(findById);

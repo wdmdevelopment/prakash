@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
  
 import com.wdm.entity.Product;
+import com.wdm.model.RequestLogin;
 import com.wdm.model.RequestProduct;
 import com.wdm.response.ProductResponse;
 import com.wdm.service.ProductService;
@@ -101,16 +102,25 @@ public class ProductController {
 
 	}
  
-	@GetMapping("/name")
-	public ResponseEntity<List<ProductResponse>> filterbyproduct(@RequestParam("product_name") String name) {
-		
-			
-			 
+	@GetMapping("/productname")
+	public ResponseEntity<List<ProductResponse>> filterbyproduct(@RequestParam(value="productname",
+				required = false) String name) 
+	{
+	 		 
 
 			logger.info("getProductById  productId : " + name);
 			
 			return new ResponseEntity<List<ProductResponse>>(productService.filterbyId(name), HttpStatus.OK);
 		 
+	}
+	
+	
+	
+	@GetMapping("/categoryId")	
+	public ResponseEntity<?> loggingValidation(@RequestParam("id") long categoryId){
+		
+		return new ResponseEntity<>(productService.getBycategory(categoryId), HttpStatus.OK);
+		
 	}
 	
 	

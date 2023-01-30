@@ -12,6 +12,7 @@ import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestItems;
 import com.wdm.repository.ItemsRepository;
+import com.wdm.repository.ProductMappingRespository;
 import com.wdm.service.ItemService;
 
 @Service
@@ -19,6 +20,9 @@ public class ItemServiceimpl implements ItemService {
 
 	@Autowired
 	ItemsRepository itemRepo;
+	
+	@Autowired
+	ProductMappingRespository productRepo;
 
 	public Items saveItems(RequestItems requestitem) {
 		try {
@@ -27,12 +31,13 @@ public class ItemServiceimpl implements ItemService {
 			items.setQuantity(requestitem.getQuantity());
 			items.setPrice(requestitem.getPrice());
 			
-			Product product = new Product();
+			Product product = productRepo.findById(requestitem.getProductId())
+			.orElseThrow(() -> new IdNotFoundException("product id not found"));
 			
-			product.setProductName(requestitem.getProductName());
 			items.setProduct(product);
-
+			 
 			return itemRepo.save(items);
+			
 		} catch (Exception e) {
 			throw new ProductCustomException("Invalid " + e.getMessage());
 		}
@@ -64,6 +69,11 @@ public class ItemServiceimpl implements ItemService {
 
 		items1.setPrice(items.getPrice());
 		items1.setQuantity(items.getQuantity());
+		
+		Product product = productRepo.findById(items.getProductId())
+				.orElseThrow(() -> new IdNotFoundException("product id not found"));
+				
+		items1.setProduct(product);
 
 		return itemRepo.save(items1);
 

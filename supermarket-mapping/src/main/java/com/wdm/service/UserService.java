@@ -15,7 +15,7 @@ public interface UserService {
 
 	public void delete(long id) throws Exception;
 	
-	public UserAccount updateUser(UserAccount user, long id);
+	public UserAccount updateUser(RequestUserAccount user, long id);
 	
 	public List<UserAccount> getAlluser();
 	
