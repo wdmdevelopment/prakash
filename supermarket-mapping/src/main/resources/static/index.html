@@ -76,29 +76,53 @@
 				<li class="nav-item">
 					<a class="nav-link" href="#Home-1" aria-current="page">Home</a>
 				</li>
-			<li class="nav-item">
-					<a class="nav-link" href="#Product-1">Product</a>
-				</li>
+			 
+				
+				<li>
+					<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+									Products
+								  </a>
+								  <ul class="dropdown-menu dropdown-menu-dark menu_scroll" id="product_Name">
+									 
+								  </ul>
+								</li>
+							  </ul>
+						
+								</div>
+							</li>
+				
+				
+				<li>
 				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Category
 							  </a>
-							  <ul class="dropdown-menu dropdown-menu-dark" id="categoryName">
+							  <ul class="dropdown-menu dropdown-menu-dark menu_scroll" id="categoryName">
 								 
 							  </ul>
 							</li>
 						  </ul>
 					
 							</div>
-			 
+						</li>
+						<li class="nav-item">
+							<div id="cart">
+								<span id="nav-cart-cout">0</span>
+				<a href=" " class="text"><img src="./Images/images.png" style="font-size: 36px;"> </a>
+							</div>
+						</li>
 			<li class="nav-item">
 				<a class="navbar-brand" href="#Home.html">
 					Hi! <script>document.write(localStorage.getItem('firstName') + ' ' +localStorage.getItem('lastName'));</script> <img src="./images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
 				</a>
 				
 			</li>
+			
 			<li class="nav-item">
 				<a class="nav-link" href="Login.html" onclick="clearUser()">Logout</a>
 				
@@ -245,7 +269,7 @@ $(document).ready(function(){
 		"userId": localStorage.getItem("userId")
 
 	})),
-		console.log(formData);
+		 
 		formData.append('imagefile',file);
  
 		$.ajax({
@@ -283,6 +307,8 @@ function product(){
 		success: function (responseText) {
 		
 					
+				
+
 			if(localStorage.getItem('userRole') == "Admin"){
 
 			var productAdmin = '<button type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
@@ -294,6 +320,8 @@ function product(){
 
 				
 			$.each(responseText, function (index, item ) {
+
+		$("#product_Name").append("<li  onclick='productById(this.value)' value='"+item.productId+"' class='dropdown-item trans'>"+item.productName+"<a href=''></a></li>");
 
 					  localStorage.setItem('productId', responseText.productId);
                       localStorage.setItem('productName', responseText.productName);
@@ -322,7 +350,7 @@ function product(){
 						
 						}
 						else{
-							productData +=' <button class="btn btn-outline-warning" type="button" id="Order">Order</button>';
+							productData +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
 						}
 						productData +='</div></div></div> '; 
 				
@@ -440,8 +468,8 @@ $(document).ready (function () {
 		success: function (response) {
 			
 			$.each(response, function (index, item) {
-					console.log(item.categoryId);
-	categorytype += "<li  onclick='categoryProduct(this.value)' value='"+item.categoryId+"' class='dropdown-item'>"+item.categoryName+"<a href=''></a></li>";
+					 
+	categorytype += "<li  onclick='categoryProduct(this.value)' value='"+item.categoryId+"' class='dropdown-item trans'>"+item.categoryName+"<a href=''></a></li>";
 				 
 
 			})
@@ -455,7 +483,7 @@ $(document).ready (function () {
 })
 
 function categoryProduct(categoryId){
-
+			var categoryValue="";
 	var uri = "http://localhost:8080/product/categoryId?id="+categoryId;
 	$.ajax({
 			dataTypa: "JSON",
@@ -465,31 +493,31 @@ function categoryProduct(categoryId){
 				
 				$.each(response, function (index, item) {
 
-				productData += ' <div class="col-lg-4 "><div class="card mb-3">' ;
+					categoryValue += ' <div class="col-lg-4 "><div class="card mb-3">' ;
 				  
 				$.each(item.data, function (indeximg, itemimg) {
 						
 						
-		productData += '<img class="img-fluid" src="data:image/png;base64,'+itemimg.imageData+'"/>';
+					categoryValue += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
 						 
 						 
 					});
-		productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+					categoryValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
 							
 							if(localStorage.getItem('userRole') == "Admin"){
 							
-			productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+								categoryValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 							
 							}
 							else{
-								productData +=' <button class="btn btn-warning" type="button" id="Order">Order</button>';
+								categoryValue +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
 							}
-							productData +='</div></div></div> '; 
+							categoryValue +='</div></div></div> '; 
 					
 					});
 					
 					$("#myproduct").empty();
-					$("#myproduct").append(productData);
+					$("#myproduct").append(categoryValue);
 					
  
 				
@@ -498,6 +526,63 @@ function categoryProduct(categoryId){
 		})
 		 
 }
+
+
+
+
+
+
+
+
+
+
+function productById(productId){
+			var productIdValue ="";
+			console.log(productId);
+	var uri = "http://localhost:8080/product/"+productId;
+	$.ajax({
+			dataTypa: "JSON",
+			url: uri,
+			type: "GET",
+			success: function (response) {
+					
+				$.each(response, function (index, item) {
+
+					productIdValue += ' <div class="col-lg-4 "><div class="card mb-3">' ;
+				  
+				$.each(item.data, function (indeximg, itemimg) {
+						
+						
+					productIdValue += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
+						 
+						 
+					});
+					productIdValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+							
+							if(localStorage.getItem('userRole') == "Admin"){
+							
+								productIdValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+							
+							}
+							else{
+								productIdValue +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
+							}
+							productIdValue +='</div></div></div> '; 
+					
+					});
+					
+					$("#myproduct").empty();
+					$("#myproduct").append(productIdValue);
+					
+ 
+				
+			}
+
+		})
+		 
+}
+
+
 
 
 

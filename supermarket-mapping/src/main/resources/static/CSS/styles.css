@@ -16,3 +16,13 @@ body{
 }
 
  
+.trans {
+	transition-delay: 1s;
+}
+
+.menu_scroll {
+
+	max-height: 200px;
+	overflow: scroll;
+
+}
