@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
    
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
+  <script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
    <!-- font icon -->
   
  	                             
@@ -68,7 +68,7 @@
 					
 				
 			<div class="collapse navbar-collapse" id="navbarScroll">
-				<input class="form-control"  id="serach_product" type="search" placeholder="Search" aria-label="Search">
+		<input class="form-control my-sm-2" id="fillter" onkeyup="filterProduct()" type="search" placeholder="Search Product, category" aria-label="Search">
 			<button class="btn btn-warning my-4 my-sm-2" style="border-radius: 50px;"  type="submit">Search</button>
 				
 			<ul class="navbar-nav  d-flex">
@@ -111,14 +111,14 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<div id="cart">
-								<span id="nav-cart-cout">0</span>
-				<a href=" " class="text"><img src="./Images/images.png" style="font-size: 36px;"> </a>
-							</div>
+					<div>	
+						<span class="text-white" id="cart-count">0</span> 		 
+				<a href=" " class="float-top"><i class="fa fa-shopping-cart" style="font-size: 25px; color: white; "></i></a>
+			</div>
 						</li>
 			<li class="nav-item">
 				<a class="navbar-brand" href="#Home.html">
-					Hi! <script>document.write(localStorage.getItem('firstName') + ' ' +localStorage.getItem('lastName'));</script> <img src="./images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
+					  Hi! <script>document.write(localStorage.getItem('firstName') + ' ' +localStorage.getItem('lastName'));</script> <img src="./images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
 				</a>
 				
 			</li>
@@ -164,7 +164,7 @@
 					  </div>
 	
 					  <div class="form-label">
-						<label class="form-label" for="product">Quantity</label>
+						<label class="form-label" for="product">Qty</label>
 						<input type="text" id="stock" class="form-control form-control-lg" required/>
 					   
 						  </div>
@@ -206,7 +206,7 @@
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<p>Product added</p>
+				<p class="not_added">Product added</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -285,7 +285,7 @@ $(document).ready(function(){
 			 
 				}, error: function (e) {
 			  
-					alert(e);
+					alert("Fill the all fields");
 			   
 				  }
 			
@@ -342,7 +342,7 @@ function product(){
 					 
 					 
 				});
-	productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+	productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
 						
 						if(localStorage.getItem('userRole') == "Admin"){
 						
@@ -363,22 +363,51 @@ function product(){
 		});
 }
 
-$(document).ready(function(){
-    $('#serach_product').on('keyup', function() {
-         
+function filterProduct(){
+			var productFilter="";
+
 		$.ajax({
 			dataType: "JSON",
-			url: "http://localhost:8080/product/"+$(this).val(),
+			url: "http://localhost:8080/product/productname?productname="+$("#fillter").val(),
 			type: "GET",
 			
 			success: function (response){
+				
+				$("#myproduct").empty();
 
+				  $.each(response, function (index, item) {
+						  
+						productFilter += ' <div class="col-lg-4 "><div class="card mb-3">' ;
+
+				$.each(item.data, function (indeximg, itemimg) {
+
+					productFilter += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
+						   
+						   
+					  });
+
+					  productFilter += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+							  
+							  if(localStorage.getItem('userRole') == "Admin"){
+							  
+								productFilter +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+							  
+							  }
+							  else{
+								productFilter +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
+							  }
+							  productFilter +='</div></div></div> '; 
+					  
+							});
+					  
+					 
+					  $("#myproduct").append(productFilter);
 			
 			}
 
 		})
-    });
-});
+     
+}
 
 
 
@@ -399,6 +428,19 @@ $(document).ready(function(){
 				$("#product").val(response.productName);
 				$("#stock").val(response.stockDetails);
 				$("#category").val(response.categoryname);
+
+
+				document.addEventListener("click",function (e){
+   				if(e.target.classList.contains("gallery-item"))
+				{
+   	 	 	const src = e.target.getAttribute("src");
+   	 			 document.querySelector(".modal-img").src = src;
+   	 		 const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
+   	  			myModal.show();
+   				}
+ })
+
+
 
 			$.ajax({
 			dataType: "JSON",
@@ -502,7 +544,7 @@ function categoryProduct(categoryId){
 						 
 						 
 					});
-					categoryValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+					categoryValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
 							
 							if(localStorage.getItem('userRole') == "Admin"){
 							
@@ -537,42 +579,34 @@ function categoryProduct(categoryId){
 
 
 function productById(productId){
-			var productIdValue ="";
-			console.log(productId);
-	var uri = "http://localhost:8080/product/"+productId;
+	 
+			var productValue="";
+	 
 	$.ajax({
 			dataTypa: "JSON",
-			url: uri,
+			url: "http://localhost:8080/product/"+productId,
 			type: "GET",
 			success: function (response) {
-					
-				$.each(response, function (index, item) {
-
-					productIdValue += ' <div class="col-lg-4 "><div class="card mb-3">' ;
-				  
-				$.each(item.data, function (indeximg, itemimg) {
-						
-						
-					productIdValue += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
-						 
-						 
-					});
-					productIdValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"stock: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
+				
+				 $.each(response, function (index, item) {
+								
+								
+					productValue += ' <div class="col-lg-4 "><div class="card mb-3"> <img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+item.productImage.imageData+'"/><div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
 							
 							if(localStorage.getItem('userRole') == "Admin"){
 							
-								productIdValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+								productValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 							
 							}
 							else{
-								productIdValue +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
+								productValue +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
 							}
-							productIdValue +='</div></div></div> '; 
+							productValue +='</div></div></div> '; 
 					
-					});
+					 });
 					
 					$("#myproduct").empty();
-					$("#myproduct").append(productIdValue);
+					$("#myproduct").append(productValue);
 					
  
 				
@@ -583,27 +617,10 @@ function productById(productId){
 }
 
 
+ 
 
 
-
-
-
-
-// $(document).ready (function () {
-// 		var url = "http://localhost:8080/items";
-// 	$.ajax({
-// 			dataTypa: "JSON",
-// 			url: url,
-// 			type: "GET",
-			
-// 		success: function (requestProduct) {
-					
-// 		}
-
-// 	})
-
-// })
-
+ 
 
 
 

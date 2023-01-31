@@ -36,8 +36,8 @@ public class Cart {
 		return item;
 	}
 
-	public void setItem(List<Items> item) {
-		this.item = item;
+	public void setItem(List<Items> items) {
+		this.item = items;
 	}
 
 	public double getTotalPrice() {

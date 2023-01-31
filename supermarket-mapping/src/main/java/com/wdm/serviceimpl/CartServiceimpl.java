@@ -55,10 +55,8 @@ public class CartServiceimpl implements CartService {
 		try {
 			cartRepo.deleteById(id);
 		} catch (Exception e) {
-
-			logger.info("card id not found" + id);
-
-			throw new IdNotFoundException("id not found" + e);
+			 
+			throw new IdNotFoundException("id not found" + e.getMessage());
 		}
 	}
 

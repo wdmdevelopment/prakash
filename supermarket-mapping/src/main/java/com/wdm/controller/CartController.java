@@ -67,7 +67,8 @@ public class CartController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteCart(@PathVariable("id") long id) {
 			
-		logger.info("remove from the cart deleteId={}", deleteCart(id));
+		logger.info("remove from the cart deleteId={}");
+			
 			cartservice.deleteById(id);
 			
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
@@ -78,7 +79,7 @@ public class CartController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> updateCart(@RequestBody RequestCart Cart, @PathVariable("id") long id) {
 		
-		logger.info("update the cart update data={}", updateCart(Cart, id));
+		logger.info("update the cart update data={}");
 		
 		cartservice.updateCart(Cart, id);
 
