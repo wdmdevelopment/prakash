@@ -69,7 +69,7 @@
 				
 			<div class="collapse navbar-collapse" id="navbarScroll">
 		<input class="form-control my-sm-2" id="fillter" onkeyup="filterProduct()" type="search" placeholder="Search Product, category" aria-label="Search">
-			<button class="btn btn-warning my-4 my-sm-2" style="border-radius: 50px;"  type="submit">Search</button>
+			 
 				
 			<ul class="navbar-nav  d-flex">
 				
@@ -143,11 +143,12 @@
 	<div class="productAdmin"></div>
 	 
 
-	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade update-change" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 		  <div class="modal-content">
 			<div class="modal-header">
-			  <h1 class="modal-title fs-5" id="exampleModalLabel">Adding Product</h1>
+			  <h1 class="modal-title fs-5" id="addModalLabel">Adding Product</h1>
+			  <h1 class="modal-title fs-5" id="updateModalLabel" hidden>updating Product</h1>
 			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
@@ -174,12 +175,15 @@
 						   </div>	  
 						  <div class="form-label">
 							<label class="form-label" for="product">Category Name</label>
-							<input type="text" id="category" class="form-control form-control-lg" required/>
+							<select required  id="category" class="select form-control-lg" >
+                      
+							  </select>
+							 
 						   
 							  </div>	  
 							  <p>Choose your product image </p>
 	
-							  <div class="form-label">
+							  <div class="form-label changeImg">
 								<input type="file" id="myFile" name="filename" required>
 								 
 							  </div>
@@ -192,6 +196,7 @@
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 			  <button data-bs-toggle="modal" data-bs-target="#smallModel"  type="button" id="addprod" class="btn btn-warning">Add</button>
+			  <button data-bs-toggle="modal" hidden data-bs-target="#smallModel"  type="button" id="updateprod" class="btn btn-warning">Update</button>
 			</div>
 		  </div>
 		</div>
@@ -248,9 +253,14 @@
 // // add product with image product
 
 $(document).ready(function(){
+			document.getElementById("updateprod").hidden = true;
+			document.getElementById('addprod').hidden = false;
+			document.getElementById('addModalLabel').hidden = false;
+			document.getElementById('updateModalLabel').hidden = true;
         $("#addprod").click(function(){
 		var url = "http://localhost:8080/product";
-
+		
+			
 		
 		const formData = new FormData();
 		var file = $('#myFile').prop("files")[0];
@@ -323,10 +333,13 @@ function product(){
 
 		$("#product_Name").append("<li  onclick='productById(this.value)' value='"+item.productId+"' class='dropdown-item trans'>"+item.productName+"<a href=''></a></li>");
 
+		
+
 					  localStorage.setItem('productId', responseText.productId);
                       localStorage.setItem('productName', responseText.productName);
                       localStorage.setItem('stock', responseText.stock);
                       localStorage.setItem('price', responseText.price);
+					
 					
 				 
 
@@ -336,7 +349,7 @@ function product(){
 				 
 				   
 			$.each(item.data, function (indeximg, itemimg) {
-					
+				localStorage.setItem('imageId', itemimg.imageId);
 					
 					productData += '<img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
 					 
@@ -346,7 +359,7 @@ function product(){
 						
 						if(localStorage.getItem('userRole') == "Admin"){
 						
-	productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+	productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 						
 						}
 						else{
@@ -390,7 +403,7 @@ function filterProduct(){
 							  
 							  if(localStorage.getItem('userRole') == "Admin"){
 							  
-								productFilter +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+								productFilter +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 							  
 							  }
 							  else{
@@ -414,7 +427,7 @@ function filterProduct(){
 
 
  
-	function editProduct(productId){
+	function editProduct(productId) {
 
 		var url = "http://localhost:8080/product/"+productId;
 		
@@ -424,34 +437,40 @@ function filterProduct(){
 			type: "GET",
  
 			success: function (response){
-
-				$("#product").val(response.productName);
-				$("#stock").val(response.stockDetails);
-				$("#category").val(response.categoryname);
-
+					 
+				var productUpdate = $("#product").val(response.productName);
+				var stockUpdate = $("#stock").val(response.stock);
+				var categoryUpdate = $(".category-name").val(response.categoryname);
+				var priceUpdate = $("#price").val(response.price);
 
 				document.addEventListener("click",function (e){
-   				if(e.target.classList.contains("gallery-item"))
+   				if(e.target.classList.contains("update-change"))
 				{
-   	 	 	const src = e.target.getAttribute("src");
-   	 			 document.querySelector(".modal-img").src = src;
+   	 	 		const src = e.target.getElementById("src");
+   	 			 document.querySelector(".changeImg").src = src;
    	 		 const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
    	  			myModal.show();
    				}
- })
-
-
-
-			$.ajax({
+ 					})
+			document.getElementById("updateprod").hidden = false;
+			document.getElementById('addprod').hidden = true;
+			document.getElementById('addModalLabel').hidden = true;
+			document.getElementById('updateModalLabel').hidden = false;
+					
+			 
+			$("#updateprod").click(function(){
+				$.ajax({
 			dataType: "JSON",
 			url: url,
 			type: "PUT",
-			
- 
+			data: {"productName": productUpdate, "stock":stockUpdate, "categoryUpdate":categoryUpdate, "price":priceUpdate, "imageId": localStorage.getItem("imageId", imageId), "userId":localStorage.getItem("userId", userId)},
+					
 			success: function (response){
-
+				
 			}
 		})
+			})
+			
 
 
 				}
@@ -459,17 +478,7 @@ function filterProduct(){
 
 		 
 	
-		$.ajax({
-			dataType: "JSON",
-			url: url,
-			type: "PUT",
-			async:false,
-			crossDomain:true,
-			
-		success: function (responseText, status) {
-
-		}
-	})
+		
 	
 
 
@@ -511,6 +520,8 @@ $(document).ready (function () {
 			
 			$.each(response, function (index, item) {
 					 
+	$("#category").append("<option value='"+item.categoryId+"'>"+item.categoryName+"</option>");
+
 	categorytype += "<li  onclick='categoryProduct(this.value)' value='"+item.categoryId+"' class='dropdown-item trans'>"+item.categoryName+"<a href=''></a></li>";
 				 
 
@@ -548,7 +559,7 @@ function categoryProduct(categoryId){
 							
 							if(localStorage.getItem('userRole') == "Admin"){
 							
-								categoryValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+								categoryValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 							
 							}
 							else{
@@ -595,7 +606,7 @@ function productById(productId){
 							
 							if(localStorage.getItem('userRole') == "Admin"){
 							
-								productValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+								productValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link data-bs-toggle="modal" data-bs-target="#exampleModal""><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
 							
 							}
 							else{
