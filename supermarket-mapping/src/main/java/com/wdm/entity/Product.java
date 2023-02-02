@@ -40,7 +40,7 @@ public class Product {
 	@Column(name = "price") 
 	private double price;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "categoryId")
 	@JsonIgnore
 	private Category category;

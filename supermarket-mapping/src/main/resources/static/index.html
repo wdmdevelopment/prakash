@@ -363,7 +363,7 @@ function product(){
 						
 						}
 						else{
-							productData +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
+							productData +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a>';
 						}
 						productData +='</div></div></div> '; 
 				
@@ -407,7 +407,7 @@ function filterProduct(){
 							  
 							  }
 							  else{
-								productFilter +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
+								productFilter +='<a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a>';
 							  }
 							  productFilter +='</div></div></div> '; 
 					  
@@ -466,6 +466,7 @@ function filterProduct(){
 			data: {"productName": productUpdate, "stock":stockUpdate, "categoryUpdate":categoryUpdate, "price":priceUpdate, "imageId": localStorage.getItem("imageId", imageId), "userId":localStorage.getItem("userId", userId)},
 					
 			success: function (response){
+				
 				
 			}
 		})
@@ -563,7 +564,7 @@ function categoryProduct(categoryId){
 							
 							}
 							else{
-								categoryValue +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
+								categoryValue +='<a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a>';
 							}
 							categoryValue +='</div></div></div> '; 
 					
