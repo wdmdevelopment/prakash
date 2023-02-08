@@ -27,15 +27,16 @@
         <div class="card shadow-2-strong card-registration rounded">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form > 
+            <form id="myForm"> 
 
               <div class="row">
+                
                 <div class="col-md-6 mb-4">
 
                   <div class="form-outline">
                     <label class="form-label" for="firstName" >First Name</label>
-                    <input type="text" id="fname" required  class="form-control form-control-lg" />
-                    
+                    <input type="text" id="fname" class="form-control form-control-lg" required/>
+                    <div class="error" style="color: red;" id="fnameError"></div>
                   </div>
 
                 </div>
@@ -43,8 +44,8 @@
 
                   <div class="form-outline">
                     <label class="form-label" for="lastName" >Last Name</label>
-                    <input type="text" id="l_name" required class="form-control form-control-lg" />
-                    
+                    <input type="text" id="l_name" required class="form-control form-control-lg" required />
+                    <div class="error" style="color: red;" id="lnameError"></div>
                   </div>
 
                 </div>
@@ -56,8 +57,8 @@
 
                   <div class="form-outline">
                     <label class="form-label" for="emailAddress"  >Email</label>
-                    <input required type="email" id="useremail"  class="form-control form-control-lg" />
-                  
+                  <input required type="email" id="useremail"  class="form-control form-control-lg" required/>
+                  <div class="error" style="color: red;" id="emailError"></div>
                   </div>
 
                 </div>
@@ -65,8 +66,8 @@
 
                   <div class="form-outline">
                     <label class="form-label" for="password" >Password</label>
-                    <input required type="tel" id="paswd" class="form-control form-control-lg" />
-                  
+                    <input required type="tel" id="paswd" class="form-control form-control-lg" required/>
+                    <div class="error" style="color: red;" id="passError"></div>
                   </div>
 
                 </div>
@@ -75,7 +76,7 @@
               <div class="row">
                 <div class="col-12">
 
-                  <select required  id="userrole"  class="select form-control-lg" >
+                  <select required  id="userrole"  class="select form-control-lg" required >
                     
                     <option value="Customer">Customer</option>
                     <option value="Admin">Admin</option>
@@ -83,6 +84,7 @@
                   </select>
                   <label class="form-label select-label">Choose User Role</label>
 
+                  <div class="error" style="color: red;" id="roleError"></div>
                 </div>
               </div>
 
@@ -106,14 +108,46 @@
 <script>
   $(document).ready (function () {
     $("#inputdata").click(function () {
-    
+      
+      var fname = jQuery.trim($("#fname").val());
+          if(fname == ''){
+          $('#fnameError').text('This field is required');
+          return false;
+          }
+
+          var lname = jQuery.trim($("#l_name").val());
+          if(lname == ''){
+          $('#lnameError').text('This field is required');
+          return false;
+          }
+
+      var email = jQuery.trim($("#useremail").val());
+          if(email == ''){
+          $('#emailError').text('This field is required');
+          return false;
+          }
+
+          var pass = jQuery.trim($("#paswd").val());
+          if(pass == ''){
+          $('#passError').text('This field is required');
+          return false;
+          }
+
+          var role = jQuery.trim($("#paswd").val());
+          if(role == ''){
+          $('#roleError').text('This field is required');
+          return false;
+          }
+
+
+
 
               var firstname=$('#fname').val();
             var lastname=$('#l_name').val();
             var email=$('#useremail').val();
             var password=$('#paswd').val();
            
-            alert( $('#userrole').val());
+            
  
 
             var user={
@@ -133,9 +167,10 @@
       contentType: "application/json",
 			
 		success: function (requestProduct) {
-      
-           
+         
       alert("success");
+      $('#myForm')[0].reset();
+      window.location = "Login.html";
 		},
       error: function (e) {
         console.log(e);

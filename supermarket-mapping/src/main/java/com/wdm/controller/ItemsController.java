@@ -48,17 +48,18 @@ public class ItemsController {
 	@GetMapping
 	public ResponseEntity<List<RequestItems>> getItems(){
 		
-		logger.info("To get all data"+itemservice.getItems());
+		logger.info("To get all products");
 		
 		List<Items> items = itemservice.getItems();
 		
 		List<RequestItems> reitem = new ArrayList<>();
 		
 		for(Items item : items) {
-			
+			 
 			RequestItems reqitem = new RequestItems();
 			reqitem.setQuantity(item.getQuantity());
 			reqitem.setPrice(item.getPrice());
+			reqitem.setProductId(item.getProduct().getProductId());
 			reitem.add(reqitem);
 		}
 		

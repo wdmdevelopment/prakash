@@ -44,7 +44,7 @@ public class CartServiceimpl implements CartService {
 		return cartRepo.save(cart);
 		}
 		catch (Exception e) {
-			throw new ProductCustomException("Invalid"+e.getMessage());
+			throw new ProductCustomException(e.getMessage());
 		}
 	}
 

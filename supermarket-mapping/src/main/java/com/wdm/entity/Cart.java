@@ -2,7 +2,7 @@ package com.wdm.entity;
 
 import java.util.List;
 
- 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
  
 import javax.persistence.GeneratedValue;
@@ -20,6 +20,7 @@ public class Cart {
 	private long cartId;
 
 	@OneToMany(mappedBy = "cart")
+	
 	private List<Items> item;
 
 	private double totalPrice;

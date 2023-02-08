@@ -2,6 +2,8 @@ package com.wdm.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,7 @@ public class UserController {
 	
 	@PostMapping("/create")
 
-	public ResponseEntity<UserAccount> saveuser( @RequestBody RequestUserAccount resquestProduct) {
+	public ResponseEntity<UserAccount> saveuser(@Valid @RequestBody RequestUserAccount resquestProduct) {
 		
 		logger.info("To create account by user/customer");
 		

@@ -47,7 +47,7 @@ public class Product {
 	
 	
 	
-	 @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	
 	private Set<ImageProduct> productImage;
 

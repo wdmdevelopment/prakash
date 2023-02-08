@@ -49,7 +49,7 @@ public class CategoryServiceimpl implements CategoryService {
 			}
 			
 			else {
-				throw new ProductCustomException("Y"+getuserRoll);
+				throw new ProductCustomException("You are a not a admin"+getuserRoll);
 			}
 		}
 		return save;

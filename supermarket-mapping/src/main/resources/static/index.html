@@ -1,642 +1,705 @@
 <html>
+
 <head>
-<title>Home Page</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
-   <!-- font icon -->
-  
- 	                             
-  <link rel="stylesheet" href="./CSS/styles.css">
-     
+	<title>Home Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-	let name = localStorage.getItem('firstName')?localStorage.getItem('firstName'):''
-			 
-		if(name==''){
-			  alert('login');
-			  window.location = "Login.html";  
-}
-	function clearUser(){
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
 
-		localStorage.removeItem("userRole");
-		localStorage.removeItem("emailId");
-		localStorage.removeItem("lastName");
-		localStorage.removeItem("firstName");
-		localStorage.removeItem("userId");
-	}
-
-</script>	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<!-- font icon -->
 
 
-  
-	 <!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
-	 
-  
+	<link rel="stylesheet" href="./CSS/styles.css">
+
+	<!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
+
+
 </head>
-<body onload="product()">
-	 
+
+<body>
+ <div class="aaaa">
+
+	</div>
+  
+	<script>
+		$(document).ready(function(){ 
 	
-	
-			 
-				<header>	 
-					
-		<nav id="navbarScroll" class="navbar navbar-expand-lg navbar-dark bg-dark"> 
-			 
-			<a class="navbar-brand" href="#Home-1">
-				<img src="./images/logo.jpg" alt="graphic design logo" class="logo rounded-circle" width="50px" height="40px"/>
-			</a>
-			
-			
-			<!-- Navigation menu -->
-			
-			 <button class="navbar-toggler btn-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-			</button>
-					<!-- Navigation menu End -->
-					
-					 
-					
-				
-					
-			
-					   
-					
-				
-			<div class="collapse navbar-collapse" id="navbarScroll">
-		<input class="form-control my-sm-2" id="fillter" onkeyup="filterProduct()" type="search" placeholder="Search Product, category" aria-label="Search">
-			 
-				
-			<ul class="navbar-nav  d-flex">
-				
-				<li class="nav-item">
-					<a class="nav-link" href="#Home-1" aria-current="page">Home</a>
-				</li>
-			 
-				
-				<li>
-					<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-						<ul class="navbar-nav">
-							<li class="nav-item dropdown">
-								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Products
-								  </a>
-								  <ul class="dropdown-menu dropdown-menu-dark menu_scroll" id="product_Name">
-									 
-								  </ul>
-								</li>
-							  </ul>
-						
-								</div>
-							</li>
-				
-				
-				<li>
-				<div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
-					<ul class="navbar-nav">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								Category
-							  </a>
-							  <ul class="dropdown-menu dropdown-menu-dark menu_scroll" id="categoryName">
-								 
-							  </ul>
-							</li>
-						  </ul>
-					
-							</div>
-						</li>
-						<li class="nav-item">
-					<div>	
-						<span class="text-white" id="cart-count">0</span> 		 
-				<a href=" " class="float-top"><i class="fa fa-shopping-cart" style="font-size: 25px; color: white; "></i></a>
-			</div>
-						</li>
-			<li class="nav-item">
-				<a class="navbar-brand" href="#Home.html">
-					  Hi! <script>document.write(localStorage.getItem('firstName') + ' ' +localStorage.getItem('lastName'));</script> <img src="./images/profile-icon.jpg" alt="graphic design logo" class="logo rounded-circle mt-3" width="40px"/>
-				</a>
-				
-			</li>
-			
-			<li class="nav-item">
-				<a class="nav-link" href="Login.html" onclick="clearUser()">Logout</a>
-				
-			</li>
-					
-		</ul>
-		
-		
-		</div>		
-			 
-			
-			</nav>
-		</header>	
+		  if(localStorage.getItem('userRole') !== ''&& localStorage.getItem('emailId') !=""){
+			$(".aaaa").load("navbar.html");
+					   product();
+		  }else{
+			location.replace("/");
+		  }
+		 
+		});
+		</script> 
+
+	<!-- Button trigger modal -->
  
-
-		<!-- Button trigger modal -->
-		
 	<div class="productAdmin"></div>
-	 
 
-	<div class="modal fade update-change" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+	<div class="modal fade update-change" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <h1 class="modal-title fs-5" id="addModalLabel">Adding Product</h1>
-			  <h1 class="modal-title fs-5" id="updateModalLabel" hidden>updating Product</h1>
-			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-					  <div class="col-12">
-						<div class="card" style="border-radius: 1rem;">
-						  <div class="card-body p-5">
-				
-					<div class="form-label">
-					<label class="form-label" for="product">ProductName</label>
-					<input type="text" id="product" class="form-control form-control-lg" required />
-				   
-					  </div>
-	
-					  <div class="form-label">
-						<label class="form-label" for="product">Qty</label>
-						<input type="text" id="stock" class="form-control form-control-lg" required/>
-					   
-						  </div>
-						  <div class="form-label">
-							<label class="form-label" for="product">price</label>
-							<input type="text" id="price" class="form-control form-control-lg" required/>
-						   </div>	  
-						  <div class="form-label">
-							<label class="form-label" for="product">Category Name</label>
-							<select required  id="category" class="select form-control-lg" >
-                      
-							  </select>
-							 
-						   
-							  </div>	  
-							  <p>Choose your product image </p>
-	
-							  <div class="form-label changeImg">
-								<input type="file" id="myFile" name="filename" required>
-								 
-							  </div>
-						</div>
-						</div>
-						</div>
-						</div>
-						</div>
-			</div>
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			  <button data-bs-toggle="modal" data-bs-target="#smallModel"  type="button" id="addprod" class="btn btn-warning">Add</button>
-			  <button data-bs-toggle="modal" hidden data-bs-target="#smallModel"  type="button" id="updateprod" class="btn btn-warning">Update</button>
-			</div>
-		  </div>
-		</div>
-	  </div>
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="addModalLabel">Adding Product</h1>
+					<h1 class="modal-title fs-5" id="updateModalLabel" hidden>updating Product</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="container">
+						<div class="row d-flex justify-content-center">
+							<div class="col-12">
+								<div class="card" style="border-radius: 1rem;">
+									<div class="card-body p-5">
+
+										<div class="form-label">
+											<label class="form-label" for="product">ProductName</label>
+											<input type="text" id="product" class="form-control form-control-lg"
+												required />
+
+										</div>
+
+										<div class="form-label">
+											<label class="form-label" for="product">Qty</label>
+											<input type="text" id="stock" class="form-control form-control-lg"
+												required />
+
+										</div>
+										<div class="form-label">
+											<label class="form-label" for="product">price</label>
+											<input type="text" id="price" class="form-control form-control-lg"
+												required />
+										</div>
+										<div class="form-label">
+											<label class="form-label" for="product">Category Name</label>
+											<select required id="category" class="select form-control-lg">
+
+											</select>
 
 
-<div class="modal fade" id="smallModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <h1 class="modal-title fs-5" id="exampleModalLabel">Adding Product</h1>
-			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<p class="not_added">Product added</p>
+										</div>
+										<p>Choose your product image </p>
+
+										<div class="form-label changeImg">
+											<input type="file" id="myFile" name="filename" required>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					</div>
-					</div>
-					</div>
-					</div>
-					
-	 
-   
-		
-		<h1 class=" text-center text-center">Products</h1>
-		
-  		<div class="container">
-		<div class="row" id="myproduct">
-			   
-			   
+					<button data-bs-toggle="modal" data-bs-target="#smallModel" type="button" id="addprod"
+						class="btn btn-warning">Add</button>
+					<button data-bs-toggle="modal" hidden data-bs-target="#smallModel" type="button" id="updateprod"
+						class="btn btn-warning">Update</button>
 				</div>
-        </div>
-
-		 
-
-		
+			</div>
+		</div>
+	</div>
 
 
+	<div class="modal fade" id="smallModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Adding Product</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p class="not_added">Product added</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
+
+
+	<h1 class=" text-center text-center">Products</h1>
+
+	<div class="container">
+		<div class="row" id="myproduct">
+
+
+		</div>
+	</div>
+
+
+ 
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="exampleModalLabel">My Cart</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div id="cart">
+
+			</div>
+			<div class="total position-sticky py-3 bg-white" style="bottom: 0">
+
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Place Order</button>
+		</div>
+	  </div>
+	</div>
+  </div>
 
 
  
 
 
-<script>
+
+	<script>
 
 
 
- 
 
-// // add product with image product
 
-$(document).ready(function(){
+		// // add product with image product
+
+		$(document).ready(function () {
 			document.getElementById("updateprod").hidden = true;
 			document.getElementById('addprod').hidden = false;
 			document.getElementById('addModalLabel').hidden = false;
 			document.getElementById('updateModalLabel').hidden = true;
-        $("#addprod").click(function(){
-		var url = "http://localhost:8080/product";
-		
-			
-		
-		const formData = new FormData();
-		var file = $('#myFile').prop("files")[0];
-
-			var productname = $("#product").val();
-			var stock = $("#stock").val();
-			var category = $("#category").val();
-			var price = $("#price").val();
-			
-  
-      formData.append('data', JSON.stringify({
-        "productName": productname,
-		"stock": stock,
-		"categoryId": category,
-		"price":price,
-		"userId": localStorage.getItem("userId")
-
-	})),
-		 
-		formData.append('imagefile',file);
- 
-		$.ajax({
-		type: "POST",
-		url: url,
-		data: formData,
-		contentType: false,
-    	processData: false,
-		 
- 		 success: function (requestProduct) {
-			  
-			product();
-			 
-				}, error: function (e) {
-			  
-					alert("Fill the all fields");
-			   
-				  }
-			
-			})
- 
-		})
-	
-	})
-
- 
-	var productData ="";
-
-function product(){	
-	$.ajax({
-			dataTypa: "JSON",
-			url: "http://localhost:8080/product",
-			type:"GET",
-			
-		success: function (responseText) {
-		
-					
-				
-
-			if(localStorage.getItem('userRole') == "Admin"){
-
-			var productAdmin = '<button type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
-
-
-				
-			}
-
-
-				
-			$.each(responseText, function (index, item ) {
-
-		$("#product_Name").append("<li  onclick='productById(this.value)' value='"+item.productId+"' class='dropdown-item trans'>"+item.productName+"<a href=''></a></li>");
-
-		
-
-					  localStorage.setItem('productId', responseText.productId);
-                      localStorage.setItem('productName', responseText.productName);
-                      localStorage.setItem('stock', responseText.stock);
-                      localStorage.setItem('price', responseText.price);
-					
-					
-				 
-
-	
-			productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3">' ;
-				
-				 
-				   
-			$.each(item.data, function (indeximg, itemimg) {
-				localStorage.setItem('imageId', itemimg.imageId);
-					
-					productData += '<img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
-					 
-					 
-				});
-	productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
-						
-						if(localStorage.getItem('userRole') == "Admin"){
-						
-	productData +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
-						
-						}
-						else{
-							productData +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a>';
-						}
-						productData +='</div></div></div> '; 
-				
-				});
-				$("#myproduct").empty();
-				$("#myproduct").append(productData);
-				$(".productAdmin").append(productAdmin);	
-			}
-			
-		});
-}
-
-function filterProduct(){
-			var productFilter="";
-
-		$.ajax({
-			dataType: "JSON",
-			url: "http://localhost:8080/product/productname?productname="+$("#fillter").val(),
-			type: "GET",
-			
-			success: function (response){
-				
-				$("#myproduct").empty();
-
-				  $.each(response, function (index, item) {
-						  
-						productFilter += ' <div class="col-lg-4 "><div class="card mb-3">' ;
-
-				$.each(item.data, function (indeximg, itemimg) {
-
-					productFilter += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
-						   
-						   
-					  });
-
-					  productFilter += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
-							  
-							  if(localStorage.getItem('userRole') == "Admin"){
-							  
-								productFilter +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
-							  
-							  }
-							  else{
-								productFilter +='<a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a>';
-							  }
-							  productFilter +='</div></div></div> '; 
-					  
-							});
-					  
-					 
-					  $("#myproduct").append(productFilter);
-			
-			}
-
-		})
-     
-}
+			$("#addprod").click(function () {
+				var url = "http://localhost:8080/product";
 
 
 
+				const formData = new FormData();
+				var file = $('#myFile').prop("files")[0];
+
+				var productname = $("#product").val();
+				var stock = $("#stock").val();
+				var category = $("#category").val();
+				var price = $("#price").val();
 
 
- 
-	function editProduct(productId) {
+				formData.append('data', JSON.stringify({
+					"productName": productname,
+					"stock": stock,
+					"categoryId": category,
+					"price": price,
+					"userId": localStorage.getItem("userId")
 
-		var url = "http://localhost:8080/product/"+productId;
-		
-		$.ajax({
-			dataType: "JSON",
-			url: url,
-			type: "GET",
- 
-			success: function (response){
-					 
-				var productUpdate = $("#product").val(response.productName);
-				var stockUpdate = $("#stock").val(response.stock);
-				var categoryUpdate = $(".category-name").val(response.categoryname);
-				var priceUpdate = $("#price").val(response.price);
+				})),
 
-				document.addEventListener("click",function (e){
-   				if(e.target.classList.contains("update-change"))
-				{
-   	 	 		const src = e.target.getElementById("src");
-   	 			 document.querySelector(".changeImg").src = src;
-   	 		 const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
-   	  			myModal.show();
-   				}
- 					})
-			document.getElementById("updateprod").hidden = false;
-			document.getElementById('addprod').hidden = true;
-			document.getElementById('addModalLabel').hidden = true;
-			document.getElementById('updateModalLabel').hidden = false;
-					
-			 
-			$("#updateprod").click(function(){
+					formData.append('imagefile', file);
+
 				$.ajax({
-			dataType: "JSON",
-			url: url,
-			type: "PUT",
-			data: {"productName": productUpdate, "stock":stockUpdate, "categoryUpdate":categoryUpdate, "price":priceUpdate, "imageId": localStorage.getItem("imageId", imageId), "userId":localStorage.getItem("userId", userId)},
-					
-			success: function (response){
-				
-				
-			}
-		})
+					type: "POST",
+					url: url,
+					data: formData,
+					contentType: false,
+					processData: false,
+
+					success: function (requestProduct) {
+
+						product();
+
+					}, error: function (e) {
+
+						alert("Fill the all fields");
+
+					}
+
+				})
+
 			})
-			
+
+		})
+
+
+		var productData = "";
+
+		function product() {
+			$.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/product",
+				type: "GET",
+
+				success: function (responseText) {
+
+
+
+
+					if (localStorage.getItem('userRole') == "Admin") {
+
+						var productAdmin = '<button type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
+
+
+
+					}
+
+
+
+					$.each(responseText, function (index, item) {
+
+						$("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
+
+  
+
+						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3">';
+
+
+
+						$.each(item.data, function (indeximg, itemimg) {
+							localStorage.setItem('imageId', itemimg.imageId);
+
+							productData += '<img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + itemimg.imageData + '"/>';
+
+
+						});
+						productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
+
+						if (localStorage.getItem('userRole') == "Admin") {
+
+							productData += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+
+						}
+						else {
+							productData += ' <a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
+						}
+						productData += '</div></div></div> ';
+
+					});
+					$("#myproduct").empty();
+					$("#myproduct").append(productData);
+					$(".productAdmin").append(productAdmin);
+				}
+
+			});
+		}
+
+		function filterProduct() {
+			var productFilter = "";
+
+			 
+			$.ajax({
+				dataType: "JSON",
+				url: "http://localhost:8080/product/productname?productname=" + $("#fillter").val(),
+				type: "GET",
+
+				success: function (response) {
+
+					$("#myproduct").empty();
+
+					$.each(response, function (index, item) {
+
+						productFilter += ' <div class="col-lg-4 "><div class="card mb-3">';
+
+						$.each(item.data, function (indeximg, itemimg) {
+
+							productFilter += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + itemimg.imageData + '"/>';
+
+
+						});
+
+						productFilter += '<div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="card-text text-center">' + "price: " + item.price + '</p>';
+
+						if (localStorage.getItem('userRole') == "Admin") {
+
+							productFilter += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+
+						}
+						else {
+							productFilter += '<a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
+						}
+						productFilter += '</div></div></div> ';
+
+					});
+
+
+					$("#myproduct").append(productFilter);
+					
+				}
+
+			})
+
+		}
+
+
+
+
+
+
+		function editProduct(productId) {
+
+			var url = "http://localhost:8080/product/" + productId;
+
+			$.ajax({
+				dataType: "JSON",
+				url: url,
+				type: "GET",
+
+				success: function (response) {
+
+					var productUpdate = $("#product").val(response.productName);
+					var stockUpdate = $("#stock").val(response.stock);
+					var categoryUpdate = $(".category-name").val(response.categoryname);
+					var priceUpdate = $("#price").val(response.price);
+
+					document.addEventListener("click", function (e) {
+						if (e.target.classList.contains("update-change")) {
+							const src = e.target.getElementById("src");
+							document.querySelector(".changeImg").src = src;
+							const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
+							myModal.show();
+						}
+					})
+					document.getElementById("updateprod").hidden = false;
+					document.getElementById('addprod').hidden = true;
+					document.getElementById('addModalLabel').hidden = true;
+					document.getElementById('updateModalLabel').hidden = false;
+
+
+					$("#updateprod").click(function () {
+						$.ajax({
+							dataType: "JSON",
+							url: url,
+							type: "PUT",
+							data: { "productName": productUpdate, "stock": stockUpdate, "categoryUpdate": categoryUpdate, "price": priceUpdate, "imageId": localStorage.getItem("imageId", imageId), "userId": localStorage.getItem("userId", userId) },
+
+							success: function (response) {
+
+
+							}
+						})
+					})
+
 
 
 				}
-		})
-
-		 
-	
-		
-	
+			})
 
 
-}
 
 
-function deleteProduct(productId){
-	  
-		 
-	$.ajax({
-			dataType: "JSON",
-			url: "http://localhost:8080/product/"+productId,
-			type: "DELETE",
-			async:false,
-			crossDomain:true,
-			
-		success: function (responseText, status) {
-				
-			console.log(status);
+
+
+
 		}
-	})
-}
- 
- 
- 
+
+
+		function deleteProduct(productId) {
+
+
+			$.ajax({
+				dataType: "JSON",
+				url: "http://localhost:8080/product/" + productId,
+				type: "DELETE",
+				async: false,
+				crossDomain: true,
+
+				success: function (responseText, status) {
+
+					console.log(status);
+					product();
+				}
+			})
+		}
 
 
 
 
-var categorytype = "";
-$(document).ready (function () {
-		var url = "http://localhost:8080/category/ordercategory";
-	$.ajax({
-			dataTypa: "JSON",
-			url: url,
-			type: "GET",
-			
-		success: function (response) {
-			
-			$.each(response, function (index, item) {
-					 
-	$("#category").append("<option value='"+item.categoryId+"'>"+item.categoryName+"</option>");
 
-	categorytype += "<li  onclick='categoryProduct(this.value)' value='"+item.categoryId+"' class='dropdown-item trans'>"+item.categoryName+"<a href=''></a></li>";
-				 
+
+
+		var categorytype = "";
+		$(document).ready(function () {
+			var url = "http://localhost:8080/category/ordercategory";
+			$.ajax({
+				dataTypa: "JSON",
+				url: url,
+				type: "GET",
+
+				success: function (response) {
+
+					$.each(response, function (index, item) {
+
+						$("#category").append("<option value='" + item.categoryId + "'>" + item.categoryName + "</option>");
+
+						categorytype += "<li  onclick='categoryProduct(this.value)' value='" + item.categoryId + "' class='dropdown-item trans'>" + item.categoryName + "<a href=''></a></li>";
+
+
+					})
+
+					$("#categoryName").append(categorytype);
+
+				}
 
 			})
 
-			$("#categoryName").append(categorytype);
+		})
+
+		function categoryProduct(categoryId) {
+			var categoryValue = "";
+			var uri = "http://localhost:8080/product/categoryId?id=" + categoryId;
+			$.ajax({
+				dataTypa: "JSON",
+				url: uri,
+				type: "GET",
+				success: function (response) {
+
+					$.each(response, function (index, item) {
+
+						categoryValue += ' <div class="col-lg-4 "><div class="card mb-3">';
+
+						$.each(item.data, function (indeximg, itemimg) {
+
+
+							categoryValue += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + itemimg.imageData + '"/>';
+
+
+						});
+						categoryValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="card-text text-center">' + "price: " + item.price + '</p>';
+
+						if (localStorage.getItem('userRole') == "Admin") {
+
+							categoryValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+
+						}
+						else {
+							categoryValue += '<a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
+						}
+						categoryValue += '</div></div></div> ';
+
+					});
+
+					$("#myproduct").empty();
+					$("#myproduct").append(categoryValue);
+
+
+
+				}
+
+			})
 
 		}
 
-	})
 
-})
 
-function categoryProduct(categoryId){
-			var categoryValue="";
-	var uri = "http://localhost:8080/product/categoryId?id="+categoryId;
-	$.ajax({
-			dataTypa: "JSON",
-			url: uri,
-			type: "GET",
-			success: function (response) {
-				
-				$.each(response, function (index, item) {
 
-					categoryValue += ' <div class="col-lg-4 "><div class="card mb-3">' ;
-				  
-				$.each(item.data, function (indeximg, itemimg) {
-						
-						
-					categoryValue += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+itemimg.imageData+'"/>';
-						 
-						 
+
+
+
+
+
+
+		function productById(productId) {
+
+			var productValue = "";
+
+			$.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/product/" + productId,
+				type: "GET",
+				success: function (response) {
+
+					$.each(response, function (index, item) {
+
+
+						productValue += ' <div class="col-lg-4 "><div class="card mb-3"> <img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.productImage.imageData + '"/><div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="card-text text-center">' + "price: " + item.price + '</p>';
+
+						if (localStorage.getItem('userRole') == "Admin") {
+
+							productValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link data-bs-toggle="modal" data-bs-target="#exampleModal""><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+
+						}
+						else {
+							productValue += ' <a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
+						}
+						productValue += '</div></div></div> ';
+
 					});
-					categoryValue += '<div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
-							
-							if(localStorage.getItem('userRole') == "Admin"){
-							
-								categoryValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
-							
-							}
-							else{
-								categoryValue +='<a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a>';
-							}
-							categoryValue +='</div></div></div> '; 
-					
-					});
-					
-					$("#myproduct").empty();
-					$("#myproduct").append(categoryValue);
-					
- 
-				
-			}
 
-		})
-		 
-}
-
-
-
-
-
-
-
-
-
-
-function productById(productId){
-	 
-			var productValue="";
-	 
-	$.ajax({
-			dataTypa: "JSON",
-			url: "http://localhost:8080/product/"+productId,
-			type: "GET",
-			success: function (response) {
-				
-				 $.each(response, function (index, item) {
-								
-								
-					productValue += ' <div class="col-lg-4 "><div class="card mb-3"> <img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,'+item.productImage.imageData+'"/><div class="card-body"><h4 class="card-title text-center">' + item.productName +'</h4><p class="card-text text-center">' +"Qty: "+item.stock+'</p><p class="card-text text-center">' +"categoryname: "+item.categoryname+'</p><p class="card-text text-center">' +"price: "+item.price+'</p>';
-							
-							if(localStorage.getItem('userRole') == "Admin"){
-							
-								productValue +='<a onclick="editProduct('+item.productId+')" class="btn btn-warning btn-sm float-left card-link data-bs-toggle="modal" data-bs-target="#exampleModal""><b>Edit</b></a> <a onclick="deleteProduct('+item.productId+')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
-							
-							}
-							else{
-								productValue +=' <a class="btn btn-warning float-left" style="border-radius:50px" type="button" id="cart">Add to Cart</a><a class="btn btn-warning float-right" style="border-radius:50px" type="button" id="Order">Order</a>';
-							}
-							productValue +='</div></div></div> '; 
-					
-					 });
-					
 					$("#myproduct").empty();
 					$("#myproduct").append(productValue);
-					
- 
+
+
+
+				}
+
+			})
+
+		}
+
+
+
+		function cartTotal() {
+
+			let count = $(".item-in-cart-cost").length;
+
+			$(".item-in-cart-count").html(count);
+
+
+			if (count > 0) {
+				let totalCost = $(".item-in-cart-cost").toArray().map(el => el.innerHTML).reduce((x, y) => Number(x) + Number(y));
+				// console.log(typeof totalCost);
+				$(".total").html(`
+
+	<div class="d-flex justify-content-between font-weight-bold px-3">
+		<h4>Total</h4>
+		<h4>Rs. <span class="cart-cost-total">${Number(totalCost).toFixed(2)}</span></h4>
+	</div>
+
+`)
+			} else {
+				$(".total").html("empty cart")
+			}
+
+		}
+
+
+
+		$("#myproduct").delegate(".add-to-cart", "click", function () {
+			let currentItemId = $(this).attr("data-id");
+				console.log(currentItemId);
+			 
+				if($(".item-in-cart")==currentItemId)
+				{
+					alert("Already Added");
+				}
+				//includes(currentItemId)
+			if ($(".item-in-cart").toArray().map(el => el.getAttribute("data-id")).includes(currentItemId)) {
+
+				alert("Already Added");
+
+			} else {
+
 				
+				$.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/product/" + currentItemId,
+				type: "GET",
+				success: function (currentproduct) {
+
+					$("#cart").append(`
+        <div class="card border-0 item-in-cart" data-id="${currentproduct.id}">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-end">
+                     
+                    <button class="btn btn-outline-danger remove-from-cart">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+                <p class="mt-3">
+                    ${currentproduct.productName}
+                </p>
+                <div class="d-flex justify-content-between align-items-end">
+                    <div class="form-row">
+                        <button class="btn btn-outline-primary quantity-minus">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="form-control w-25 mx-2 quantity" unitPrice="${currentproduct.price}" value="1" min="1">
+                        <button class="btn btn-outline-primary quantity-plus">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <p class="mb-0">Rs. <span class="item-in-cart-cost">${currentproduct.price}</span></p>
+                </div>
+                <hr>
+            </div>
+        </div>
+        `);
+				}
+
+				
+			});
+
+
+				
+
+			}
+
+			cartTotal();
+
+		})
+
+
+		$("#cart").delegate(".remove-from-cart", "click", function () {
+
+			$(this).parentsUntil("#cart").remove();
+			cartTotal();
+
+		})
+
+		$("#cart").delegate(".quantity-plus", "click", function () {
+
+			let q = $(this).siblings(".quantity").val();
+			let p = $(this).siblings(".quantity").attr("unitPrice");
+			let newQ = Number(q) + 1;
+			let newCost = p * newQ;
+			// console.log(p);
+			$(this).siblings(".quantity").val(newQ);
+			$(this).parent().siblings("p").find(".item-in-cart-cost").html(newCost.toFixed(2));
+			cartTotal();
+		})
+
+		$("#cart").delegate(".quantity-minus", "click", function () {
+
+			let q = $(this).siblings(".quantity").val();
+			let p = $(this).siblings(".quantity").attr("unitPrice");
+			if (q > 1) {
+
+				let newQ = Number(q) - 1;
+				let newCost = p * newQ;
+				// console.log(p);
+				$(this).siblings(".quantity").val(newQ);
+				$(this).parent().siblings("p").find(".item-in-cart-cost").html(newCost.toFixed(2));
+				cartTotal();
+
 			}
 
 		})
-		 
-}
+
+		$("#cart").delegate(".quantity", "keyup change", function () {
+
+			let q = $(this).val();
+			let p = $(this).attr("unitPrice");
+			if (q > 1) {
+
+				let newQ = Number(q);
+				let newCost = p * newQ;
+				// console.log(p);
+				$(this).val(newQ);
+				$(this).parent().siblings("p").find(".item-in-cart-cost").html(newCost.toFixed(2));
+				cartTotal();
+
+			} else {
+				alert("more than one");
+			}
+
+		})
 
 
- 
 
 
- 
+	</script>
 
-
-
-</script>
- 
 </body>
+
 </html>

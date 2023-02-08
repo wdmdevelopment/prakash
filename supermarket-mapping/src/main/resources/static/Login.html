@@ -21,7 +21,8 @@
 <body>
     <a href="Login.html"></a>
     <div class="bg-blur">
-    <section class="vh-100 ">
+    <section class="vh-100">
+      <form id="loginform">
         <div class="container">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -35,14 +36,14 @@
                   
                     <div class="form-label">
                         <label class="form-label" for="Email">Email</label>
-                        <input type="text" id="emailid" class="form-control form-control-lg" />
-                       
+                        <input type="text" id="emailid" class="form-control form-control-lg" required />
+                          <div class="error" style="color: red;" id="emailError"></div>
                       </div>
 
                       <div class="form-label">
                         <label class="form-label" for="Password">Password</label>
-                        <input type="text" id="paswd" class="form-control form-control-lg" />
-                       
+                        <input type="text" id="paswd" class="form-control form-control-lg" required />
+                        <div class="error" style="color: red;" id="passError"></div>
                       </div>
 
                  
@@ -62,6 +63,7 @@
             </div>
           </div>
         </div>
+      </form>
       </section>
       </div>
 
@@ -71,8 +73,62 @@
 
   <script>
 
+
+
+
+
+
+
+
+
 $(document).ready(function(){
+    
+   
         $("#butsubmit").click(function(){
+
+          var email_regex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+   
+        var email = jQuery.trim($("#emailid").val());
+          if(email == ''){
+          $('#emailError').text('This field is required');
+          return false;
+          }
+          // if(email != "") {
+          // if(!email_regex.test(email)){
+          // $('#emailError').text('The e-mail address entered is invalid.');
+          // return false;
+          // }
+          // }
+          var pass = jQuery.trim($("#paswd").val());
+          if(pass == ''){
+          $('#passError').text('This field is required');
+          return false;
+          }
+          // if(pass != "") {
+          // if(!email_regex.test(pass)){
+          // $('#passError').text('The password entered is invalid.');
+          // return false;
+          // }
+          // }
+
+  
+          if(email != "") {
+          if(!email_regex.test(email)){
+          $('#emailError').text('The e-mail address entered is invalid.');
+          return false;
+          }
+          }
+
+
+
+
+
+
+
+
+
+
+
             var email = $("#emailid").val().trim();
             var pass  = $("#paswd").val().trim();
     
@@ -92,16 +148,17 @@ $(document).ready(function(){
                       localStorage.setItem('lastName', response.lastName);
                       localStorage.setItem('userRole', response.userRoll);
                       
+                     
+                     
                       window.location = "index.html";
-                         
-                        // var msg = "";
-                        // if(response == 200){
-                        //     window.location = "index.html";
-                        // }else{
-                        //     msg = "Invalid username and password!";
-                        // }
-                        // $("#message").html(msg);
-                    }
+                      
+                      $('#loginform')[0].reset();
+                        
+                    },
+                      error: function(e){
+                          alert("Please enter the Valid email and password");
+
+                      }
                 });
             }
         });
