@@ -521,3 +521,76 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2023-02-08 12:41:24,558 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2]  getAllproduct product :
 2023-02-08 12:44:06,800 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8]  getAllproduct product :
 2023-02-08 12:44:17,048 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-02-08 12:48:09,707 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-02-08 12:48:09,748 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 2920 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-02-08 12:48:09,750 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 12:48:09,946 INFO org.springframework.boot.logging.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-02-08 12:48:09,948 INFO org.springframework.boot.logging.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-02-08 12:48:12,207 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 12:48:12,417 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 184 ms. Found 9 JPA repository interfaces.
+2023-02-08 12:48:13,931 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-08 12:48:13,962 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:48:13,964 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-02-08 12:48:13,965 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-02-08 12:48:14,165 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-02-08 12:48:14,167 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 4216 ms
+2023-02-08 12:48:14,518 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 12:48:14,653 INFO org.hibernate.Version [restartedMain] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-02-08 12:48:15,024 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [restartedMain] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-02-08 12:48:15,277 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-02-08 12:48:15,289 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-02-08 12:48:15,961 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-02-08 12:48:16,024 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-02-08 12:48:17,813 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 12:48:17,836 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 12:48:19,555 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 12:48:19,872 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-02-08 12:48:21,518 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-02-08 12:48:21,551 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:48:21,610 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-08 12:48:21,650 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 12.826 seconds (JVM running for 14.088)
+2023-02-08 12:48:26,526 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-08 12:48:26,527 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-02-08 12:48:26,532 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 3 ms
+2023-02-08 12:48:27,193 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-02-08 12:49:31,365 INFO com.wdm.controller.ProductController [http-nio-8080-exec-3]  getAllproduct product :
+2023-02-08 12:49:47,569 INFO com.wdm.controller.ProductController [http-nio-8080-exec-2] getProductById  productId : 82
+2023-02-08 12:49:48,874 INFO com.wdm.controller.ProductController [http-nio-8080-exec-1] getProductById  productId : 80
+2023-02-08 12:50:05,107 INFO com.wdm.controller.ProductController [http-nio-8080-exec-7] getProductById  productId : 80
+2023-02-08 12:50:12,825 INFO com.wdm.controller.ProductController [http-nio-8080-exec-8] getProductById  productId : 82
+2023-02-08 12:50:24,949 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-02-08 12:50:29,275 INFO com.wdm.controller.ProductController [http-nio-8080-exec-6]  getAllproduct product :
+2023-02-08 12:52:33,842 INFO com.wdm.controller.ProductController [http-nio-8080-exec-5]  getAllproduct product :
+2023-02-08 12:52:54,055 INFO org.springframework.boot.devtools.autoconfigure.LocalDevToolsAutoConfiguration$RestartingClassPathChangeChangedEventListener [File Watcher] Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
+2023-02-08 12:52:54,128 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Pausing ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:52:54,129 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping service [Tomcat]
+2023-02-08 12:52:54,131 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-02-08 12:52:54,140 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:52:54,145 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Destroying ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:52:54,156 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [Thread-5] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 12:52:54,164 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2023-02-08 12:52:54,188 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2023-02-08 12:52:54,416 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting SupermarketMappingApplication using Java 17.0.4.1 on DESKTOP-K8IL69S with PID 2920 (C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping\target\classes started by admin in C:\Users\admin\Documents\workspace-spring-tool-suite-4-4.16.1.RELEASE\prakash\supermarket-mapping)
+2023-02-08 12:52:54,417 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 12:52:56,004 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 12:52:56,083 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 78 ms. Found 9 JPA repository interfaces.
+2023-02-08 12:52:56,276 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 8080 (http)
+2023-02-08 12:52:56,279 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:52:56,280 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-02-08 12:52:56,281 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/9.0.70]
+2023-02-08 12:52:56,341 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-02-08 12:52:56,342 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1919 ms
+2023-02-08 12:52:56,451 INFO org.hibernate.jpa.internal.util.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-02-08 12:52:56,466 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2023-02-08 12:52:56,467 WARN com.zaxxer.hikari.util.DriverDataSource [restartedMain] Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2023-02-08 12:52:56,509 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2023-02-08 12:52:56,510 INFO org.hibernate.dialect.Dialect [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-02-08 12:52:57,129 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-02-08 12:52:57,130 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 12:52:57,594 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 12:52:57,688 INFO org.springframework.boot.autoconfigure.web.servlet.WelcomePageHandlerMapping [restartedMain] Adding welcome page: class path resource [static/index.html]
+2023-02-08 12:52:58,505 INFO org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-02-08 12:52:58,519 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-08 12:52:58,529 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [restartedMain] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-08 12:52:58,540 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started SupermarketMappingApplication in 4.244 seconds (JVM running for 290.977)
+2023-02-08 12:52:58,544 INFO org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener [restartedMain] Condition evaluation unchanged
