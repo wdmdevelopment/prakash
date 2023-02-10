@@ -1,5 +1,6 @@
 package com.wdm.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,11 +10,15 @@ import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
+import com.wdm.entity.Product;
+import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestCart;
 import com.wdm.repository.CartRepository;
 import com.wdm.repository.ItemsRepository;
+import com.wdm.repository.ProductMappingRespository;
+import com.wdm.repository.UserAccountRespository;
 import com.wdm.service.CartService;
 
 @Service
@@ -23,9 +28,12 @@ public class CartServiceimpl implements CartService {
 
 	CartRepository cartRepo;
 	
+	 
 	@Autowired
+	ProductMappingRespository productRepo;
 	
-	ItemsRepository itemRepo;
+	@Autowired
+	UserAccountRespository userRepo;
 
 	private static final Logger logger = LoggerFactory.getLogger(CartServiceimpl.class);
 
@@ -35,14 +43,32 @@ public class CartServiceimpl implements CartService {
 		try {
 		Cart cart = new Cart();
 
-		cart.setTotalPrice(requestCart.getTotalPrice());
+		 
 		
-		Items items = itemRepo.findById(requestCart.getItemId()).orElseThrow(() -> new IdNotFoundException("item id not found"));
+		Items items = new  Items();
 		
-		cart.setItem((List<Items>) items);
+		Product product = productRepo.findById(requestCart.getProductId()).orElseThrow(() -> new IdNotFoundException("product id not found"));
 		
+		 items.setQuantity(requestCart.getQuantity());
+		 
+		 items.setTotalPrice(requestCart.getTotalPrice());
+		 
+		 items.setProduct(product);
+		
+		List<Items> items1 = new ArrayList<>();
+			items1.add(items);
+			
+			cart.setItem(items1);
+			cart.setOrderStatus(requestCart.getOrderStatus());
+			 
+			UserAccount account = userRepo.findById(requestCart.getUserId()).orElseThrow(() -> new IdNotFoundException("user id not found"));
+				
+			cart.setUser(account);
+			
 		return cartRepo.save(cart);
+		
 		}
+		
 		catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}
@@ -66,11 +92,11 @@ public class CartServiceimpl implements CartService {
 		
 		Cart findById = cartRepo.findById(id).orElseThrow(()-> new IdNotFoundException("Not Found"+id));
 		
-		findById.setTotalPrice(cart.getTotalPrice());
+		 
 				
-		Items orElseThrow = itemRepo.findById(cart.getItemId()).orElseThrow(() -> new IdNotFoundException("item id not found"));
+		//Items orElseThrow = itemRepo.findById(cart.getItemId()).orElseThrow(() -> new IdNotFoundException("item id not found"));
 		
-		findById.setItem((List<Items>) orElseThrow);
+	//	findById.setItem((List<Items>) orElseThrow);
 		
 		 	
 		return cartRepo.save(findById);

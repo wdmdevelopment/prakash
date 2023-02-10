@@ -8,7 +8,10 @@ public class ResponseUpdateProduct {
 	private String productName;
 	
 	@JsonProperty("stock")
-	private String stock;
+	private long stock;
+	
+	@JsonProperty("unit")
+	private String unit;
 	 
 	@JsonProperty("price")
 	private double price;
@@ -37,13 +40,28 @@ public class ResponseUpdateProduct {
 
 	 
 
-	public String getStock() {
+	 
+
+	 
+
+
+	public long getStock() {
 		return stock;
 	}
 
 
-	public void setStock(String stock) {
+	public void setStock(long stock) {
 		this.stock = stock;
+	}
+
+
+	public String getUnit() {
+		return unit;
+	}
+
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 
@@ -67,14 +85,7 @@ public class ResponseUpdateProduct {
 	}
 
 
-	public long getImageId() {
-		return imageId;
-	}
-
-
-	public void setImageId(long imageId) {
-		this.imageId = imageId;
-	}
+	 
 
 
 	public long getUserId() {
@@ -84,6 +95,16 @@ public class ResponseUpdateProduct {
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+
+
+	public long getImageId() {
+		return imageId;
+	}
+
+
+	public void setImageId(long imageId) {
+		this.imageId = imageId;
 	}
 
 

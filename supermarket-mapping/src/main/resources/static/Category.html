@@ -9,7 +9,7 @@
 
 
 
-	
+	 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
 
@@ -17,28 +17,242 @@
 	<!-- font icon -->
 
 
-	<link rel="stylesheet" href="./CSS/styles.css">
-
 	 
 
-</head>
-<body>
-    <a href="Category.html"></a>
-    <section id="holder">
-
-	</section>
-  
-	 <script>
+	 
+    <script>
 		$(document).ready(function(){ 
-	
+            document.getElementById("exampleModalLabel-add").hidden = false;
+    document.getElementById("exampleModalLabel-update").hidden = true;
+    document.getElementById("adding").hidden = false;
+    document.getElementById("update").hidden = true;
+
 		  if(localStorage.getItem('userRole') !== ''&& localStorage.getItem('emailId') !=""){
 			$("#holder").load("navbar.html");
 					 
 		  }
 		  
-		 
-		});
+
+          $.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/category/ordercategory",
+				type: "GET",
+
+				success: function (responseText, status) { 
+                     
+                   
+                
+             $.each(responseText, function (index, item) {
+   $("#categoryName").append('<tr><td>'+item.categoryName+'</td><td><div style="padding-right:5%;><button" onclick="deleteCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart" ><i class="fas fa-trash-alt"></i></button></div></td><td style="width: 10%;"><button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart">  <i class="fa-solid fa-pen-to-square"></i></button></td></tr>');
+                
+                });
+                }
+
+            });
+});
+
+function deleteCategory(categoryId){
+    $.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/category/"+categoryId,
+				type: "DELETE",
+
+				success: function (responseText, status) { 
+                    alert(status);
+                },
+                error: function(e, status){
+                    alert(JSON.stringify(e));
+                }
+
+            })
+
+
+}
+ 
+function editCategory(categoryId){
+     
+       
+    document.getElementById("exampleModalLabel-add").hidden = true;
+    document.getElementById("exampleModalLabel-update").hidden = false;
+    document.getElementById("adding").hidden = true;
+    document.getElementById("update").hidden = false;
+    
+    $.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/category/"+categoryId,
+				type: "GET",
+                success: function (responseText, status) { 
+                  
+                    var categoryName = $("#category").val(responseText.categoryName);
+               
+                    $("#update").click(function () {
+                        
+                        editcategory1(categoryId);
+
+                })
+        }
+    })
+
+}
+
+function editcategory1(categoryId)
+{
+
+    console.log(categoryId);
+    if(!categoryName==$("#category").val())
+            {
+
+                var categoryName = $("#category").val();
+ 
+                var details = {
+                    "userId": localStorage.getItem("userId"),
+                    'categoryName': categoryName
+
+                }
+                   
+                $.ajax({
+ 
+                    dataTypa: "JSON",
+                    url: "http://localhost:8080/category"+categoryId,
+                    type: "PUT",
+                    data: JSON.stringify(details),
+                    contentType: 'application/json',
+                    success: function (responseupdate, status) {
+                       console.log(responseupdate);
+                        alert("success");
+
+                        $('#formValue')[0].reset();
+
+                    },
+                    error: function (e, status) {
+                        console.log(JSON.stringify(e));
+                        alert("error");
+                    }
+
+                })
+            }
+}
+
+
+
+function addCategory(){
+
+    document.getElementById("exampleModalLabel-add").hidden = false;
+    document.getElementById("exampleModalLabel-update").hidden = true;
+    document.getElementById("adding").hidden = false;
+    document.getElementById("update").hidden = true;
+
+  
+        
+       var categoryName = $("#category").val();
+
+        // "userId":localStorage.getItem("userId") ;
+
+        var details ={
+            "userId":localStorage.getItem("userId") ,
+            'categoryName' : categoryName
+           
+        }
+               
+    $.ajax({
+
+            
+
+				dataTypa: "JSON",
+				url: "http://localhost:8080/category",
+				type: "POST",
+                 data: JSON.stringify(details),
+                    contentType:'application/json',
+				success: function (responseText, status) { 
+                    alert("success");
+                    
+                },
+                error: function(e, status){
+                    console.log(JSON.stringify(e));
+                }
+
+            })
+
+
+}
+
+
+
 		</script>  
+</head>
+<body style="background-color: antiquewhite;">
+    <a href="Category.html"></a>
+    <section id="holder">
+
+	</section>
+    
+     
+	<div class="container mt-5">
+       
+        <div class="row">
+            <div class="col-lg-12">
+                <button type="button" class="mt-5 btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Category</button>
+        <table class="table table-hover" style="margin-top: 12%; ">
+        <thead class="thead-dark bg-secondary text-white">
+            <tr>
+                <th>category name</th>
+                 
+                <th colspan="2">Action</th>
+                
+                
+            </tr>	
+                
+        </thead>
+            <tbody id="categoryName">
+                 
+                
+        </tbody>			
+                
+    </table>
+</div>  
+</div> 
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel-add">Adding category</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel-update" hidden>update category</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-12">
+                            <div class="card" style="border-radius: 1rem;">
+                                <div class="card-body p-5">
+                                    <form id="formValue">
+                                    <div class="form-label">
+                                        <label class="form-label" for="product">category-Name</label>
+                                 <input type="text" id="category" class="form-control form-control-lg"
+                                            required />
+
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-warning" onclick="addCategory()" data-bs-dismiss="modal" id="adding">Add</button>
+         <button type="button" class="btn btn-warning" id="update"   data-bs-dismiss="modal" hidden>update</button>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 </body>
 </html>

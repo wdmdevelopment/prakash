@@ -38,10 +38,10 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
               <div class="card" style="border-radius: 1rem;">
                 <div class="card-body p-5">
-                  <div id="message"></div>
+                 
                   <div>
                   <div class="mb-md-5">
-      
+                    <div id="message" style="color: red;"></div>
                     <h2 class="fw-bold mb-5 text-center">Login</h2>
                   
                     <div class="form-label">
@@ -98,23 +98,54 @@ $(document).ready(function(){
         $("#butsubmit").click(function(){
 
           var email_regex =/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-   
-        var email = jQuery.trim($("#emailid").val());
-          if(email == ''){
+          var pass = jQuery.trim($("#paswd").val());
+          var email = jQuery.trim($("#emailid").val());
+
+       
+
+
+          if(email == '' && pass==''){
           $('#emailError').text('This field is required');
+          $('#passError').text('This field is required');
           return false;
           }
+          else {
+
+               $('#passError').empty();
+            }
+           
+            if(email == '' && pass !=''){
+          $('#emailError').text('This field is required');
+         $('#passError').text('');
+          return false;
+          }
+          else {
+
+               $('#passError').empty();
+            }
+           
+            if(pass == '' && email != ''){
+              $('#passError').text('This field is required');
+              $('#emailError').text('');
+          return false;
+          }
+          else {
+
+            $('#passError').empty();
+          }
+
+
+
+          
           // if(email != "") {
           // if(!email_regex.test(email)){
           // $('#emailError').text('The e-mail address entered is invalid.');
           // return false;
           // }
           // }
-          var pass = jQuery.trim($("#paswd").val());
-          if(pass == ''){
-          $('#passError').text('This field is required');
-          return false;
-          }
+         
+          
+
           // if(pass != "") {
           // if(!email_regex.test(pass)){
           // $('#passError').text('The password entered is invalid.');
@@ -129,15 +160,7 @@ $(document).ready(function(){
           return false;
           }
           }
-
-
-
-
-
-
-
-
-
+ 
 
 
             var email = $("#emailid").val().trim();
@@ -150,7 +173,7 @@ $(document).ready(function(){
                     data:{"emailId":email,"password":pass},
                     
                     success:function(response){
-
+                      $("#message").empty();
                       alert("success");
 
                       localStorage.setItem('emailId', response.emailId);
@@ -167,7 +190,10 @@ $(document).ready(function(){
                         
                     },
                       error: function(e){
-                          alert("Please enter the Valid email and password");
+                        
+                        var msg = "Please enter the Valid email and password";
+                        
+                        $("#message").html(msg);
 
                       }
                 });

@@ -29,12 +29,13 @@ public class ItemServiceimpl implements ItemService {
 			Items items = new Items();
 
 			items.setQuantity(requestitem.getQuantity());
-			items.setPrice(requestitem.getPrice());
+			 
 			
 			Product product = productRepo.findById(requestitem.getProductId())
 			.orElseThrow(() -> new IdNotFoundException("product id not found"));
 			
 			items.setProduct(product);
+			 items.setTotalPrice(requestitem.getTotalprice());
 			 
 			return itemRepo.save(items);
 			
@@ -67,7 +68,7 @@ public class ItemServiceimpl implements ItemService {
 
 		Items items1 = itemRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found" + id));
 
-		items1.setPrice(items.getPrice());
+		 
 		items1.setQuantity(items.getQuantity());
 		
 		Product product = productRepo.findById(items.getProductId())

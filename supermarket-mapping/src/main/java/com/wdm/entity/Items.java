@@ -24,7 +24,7 @@ public class Items {
 
 	private int quantity;
 
-	private double price;
+	private double totalPrice;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
@@ -34,9 +34,7 @@ public class Items {
 	@JoinColumn(name = "cartId")
 	@JsonIgnore
 	private Cart cart;
-
-	
-	
+ 
 	
 	public long getItemId() {
 		return itemId;
@@ -54,13 +52,7 @@ public class Items {
 		this.quantity = quantity;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
+	 
 
 	public Product getProduct() {
 		return product;
@@ -78,6 +70,20 @@ public class Items {
 		this.cart = cart;
 	}
 
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	
+	
+	
+	
+	
+	
 	 
 
 }

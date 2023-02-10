@@ -80,7 +80,9 @@ public class ProductServiceimpl implements ProductService {
 
 				product1.setProductName(product.getProductName());
 
-				product1.setStock(product.getStock());
+				product1.setStocks(product.getStock());
+				
+				product1.setUnit(product.getUnit());
 				
 				product1.setPrice(product.getPrice());
 				
@@ -89,7 +91,7 @@ public class ProductServiceimpl implements ProductService {
 				 
 				product1.setCategory(category);
 				
-				 
+				  
 				
 				String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -99,9 +101,7 @@ public class ProductServiceimpl implements ProductService {
 				img.setImageData(file.getBytes());
 
 
-				img.setProduct(product1);
-				imageRepo.save(img);
-
+				product1.setProductImage(img); 
 				return productRepo.save(product1);
 			}
 
@@ -128,10 +128,21 @@ public class ProductServiceimpl implements ProductService {
 		
 		try {
 		
-			List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream().map(e -> new ProductResponse(e.getProductId(),
-					e.getProductName(), e.getStock(),
-e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
+List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream().map(e ->
+		new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryName(), e.getPrice(),
+				e.getProductImage().getImageData(), e.getProductImage().getImageId())).collect(Collectors.toList());
+		 
 			
+		
+		
+		
+		
+//		e.getProductId(),
+//		e.getProductName(),
+//		e.getStocks(),
+//		e.getCategory().getCategoryName(),
+//		e.getPrice(),
+//		e.getProductImage())
 			System.out.println(collect);
 			return collect;
 			
@@ -167,9 +178,10 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 					.orElseThrow(() -> new IdNotFoundException("categoryId not found"+product.getCategoryId()));
 			 
 			findById.setCategory(category);	 
+			 
+			findById.setStocks(product.getStock());
 			
-			
-			findById.setStock(product.getStock());
+			findById.setUnit(product.getUnit());
 			
 			
 			if(file !=null) {
@@ -182,8 +194,8 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 			img.setImageType(file.getContentType());
 			img.setImageData(file.getBytes());
 
-			img.setProduct(findById);
-			imageRepo.save(img);
+			findById.setProductImage(img);
+			 
 			}
 			
 
@@ -215,8 +227,8 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(C
 		try {
 			
 			findByfilterproduct = productRepo.findByfilterproduct(pName).stream().map(e -> new ProductResponse(e.getProductId(),
-					e.getProductName(), e.getStock(),
-e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
+					e.getProductName(), e.getStocks(), e.getUnit(),
+e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(), e.getProductImage().getImageId())).collect(Collectors.toList());
 		} catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}
@@ -231,8 +243,8 @@ public List<ProductResponse> getBycategory(long categoryId) {
 		try {
 		
 			List<ProductResponse> collect = productRepo.findBycategoryId(categoryId).stream().map(e -> new ProductResponse(e.getProductId(),
-					e.getProductName(), e.getStock(),
-e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage())).collect(Collectors.toList());
+					e.getProductName(), e.getStocks(), e.getUnit(),
+e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(), e.getProductImage().getImageId())).collect(Collectors.toList());
 			
 			System.out.println(collect);
 			return collect;

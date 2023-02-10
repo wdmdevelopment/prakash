@@ -14,7 +14,7 @@
   
 	 <link rel="stylesheet" href="./CSS/styles.css">
     
-    </head>
+    </head> 
     <body>
         <a href="#Login.html"></a>
         <div class="bg-blur">
@@ -110,34 +110,53 @@
     $("#inputdata").click(function () {
       
       var fname = jQuery.trim($("#fname").val());
+      var lname = jQuery.trim($("#l_name").val());
+      var email = jQuery.trim($("#useremail").val());
+      var pass = jQuery.trim($("#paswd").val());
+      
+      var isEmpty ="This Field is Required";
+      var isNotEmpty ='';
+
+      if(fname==''){
+        if(lname=='' && email=='' && pass==''){
+          $('#fnameError').text(isEmpty);
+            $('#lnameError').text(isEmpty);
+              $('#emailError').text(isEmpty);
+                $('#passError').text(isEmpty);
+        }
+       
+      }
+      else{
+            
+}
+
           if(fname == ''){
           $('#fnameError').text('This field is required');
+          $('#lnameError').text('This field is required');
+          $('#emailError').text('This field is required');
+          $('#passError').text('This field is required');
           return false;
           }
 
-          var lname = jQuery.trim($("#l_name").val());
+       
           if(lname == ''){
           $('#lnameError').text('This field is required');
           return false;
           }
 
-      var email = jQuery.trim($("#useremail").val());
+    
           if(email == ''){
           $('#emailError').text('This field is required');
           return false;
           }
 
-          var pass = jQuery.trim($("#paswd").val());
+         
           if(pass == ''){
           $('#passError').text('This field is required');
           return false;
           }
 
-          var role = jQuery.trim($("#paswd").val());
-          if(role == ''){
-          $('#roleError').text('This field is required');
-          return false;
-          }
+         
 
 
 

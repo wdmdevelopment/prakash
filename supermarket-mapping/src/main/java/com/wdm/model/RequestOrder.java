@@ -2,30 +2,31 @@ package com.wdm.model;
 
  
 
+import java.time.LocalDateTime;
+
+import javax.validation.constraints.NotNull;
+
 import lombok.NoArgsConstructor;
  
 @NoArgsConstructor
 public class RequestOrder {
 	
+	@NotNull
 	private long cartId;
-	private long itemId;
-	private long product;
-
+	@NotNull  
 	private int quantity;
 
-	private String orderStatus;
+	@NotNull
+	private double totalAmount;
 	
+	@NotNull
+	private LocalDateTime Ordertime;
+	
+	
+	@NotNull
 	private long userId;
 	
 	
-	
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
 
 	public long getCartId() {
 		return cartId;
@@ -33,22 +34,6 @@ public class RequestOrder {
 
 	public void setCartId(long cartId) {
 		this.cartId = cartId;
-	}
-
-	public long getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(long itemId) {
-		this.itemId = itemId;
-	}
-
-	public long getProduct() {
-		return product;
-	}
-
-	public void setProduct(long product) {
-		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -59,40 +44,34 @@ public class RequestOrder {
 		this.quantity = quantity;
 	}
 
-	
-	private double totalPrice;
+	public double getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(double totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public LocalDateTime getOrdertime() {
+		return Ordertime;
+	}
+
+	public void setOrdertime(LocalDateTime ordertime) {
+		Ordertime = ordertime;
+	}
 	
 	 
-	private String ordertime;
 	
 	
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-	public String getOrdertime() {
-		return ordertime;
-	}
-
-	public void setOrdertime(String ordertime) {
-		this.ordertime = ordertime;
-	}
-
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
-
-
+	 
 	
 	
 	

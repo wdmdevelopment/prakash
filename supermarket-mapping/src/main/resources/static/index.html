@@ -26,6 +26,7 @@
 
 
 <body>
+	<a href="index.html"></a>
 	<section id="holder">
 
 	</section>
@@ -40,11 +41,12 @@
 		  
 		 
 		});
+
+ 
+
 		</script>  
 
-	<!-- Button trigger modal -->
-	
-	
+
 
 
 
@@ -71,39 +73,47 @@
 							<div class="col-12">
 								<div class="card" style="border-radius: 1rem;">
 									<div class="card-body p-5">
-
+								<form class="form-control" role="form" id="productModalForm">
 										<div class="form-label">
 											<label class="form-label" for="product">ProductName</label>
-											<input type="text" id="product" class="form-control form-control-lg"
-												required />
+				<input type="text" id="product" class="form-control form-control-lg" required />
+				<div class="error" style="color: red;" id="NameError"></div>
 
 										</div>
 
 										<div class="form-label">
-											<label class="form-label" for="product">Qty</label>
-											<input type="text" id="stock" class="form-control form-control-lg"
-												required />
+											<label class="form-label" for="product">Stock details</label>
+											<div class="input-group my-group"> 
+
+			<input type="text" id="stock" class="form-control" name="snpid" placeholder="stocks"><select id="unit" class="selectpicker form-control" data-live-search="true">
+			<option>Kg</option><option>grams</option><option>pics</option><option>litre</option>
+			</select> 
+											</div>
+		<div class="error" style="color: red;" id="stockError"></div>
 
 										</div>
 										<div class="form-label">
 											<label class="form-label" for="product">price</label>
-											<input type="text" id="price" class="form-control form-control-lg"
-												required />
+		<input type="text" id="price" class="form-control form-control-lg" required />
+		<div class="error" style="color: red;" id="priceError"></div>
+
 										</div>
 										<div class="form-label">
 											<label class="form-label" for="product">Category Name</label>
-											<select required id="category" class="select form-control-lg">
+			<select required id="category" class="select form-control-lg" aria-selected="false">
 
-											</select>
+			</select>
+			<div class="error" style="color: red;" id="categoryError"></div>
 
 
 										</div>
 										<p>Choose your product image </p>
 
 										<div class="form-label changeImg">
-											<input type="file" id="myFile" name="filename" required>
-
+							<input type="file" id="myFile" name="filename" required>
+					<div class="error" style="color: red;" id="imageError"></div>
 										</div>
+									</form>
 									</div>
 								</div>
 							</div>
@@ -112,8 +122,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button data-bs-toggle="modal" data-bs-target="#smallModel" type="button" id="addprod"
-						class="btn btn-warning">Add</button>
+					<button type="button" id="addprod" data-bs-dismiss="modal" class="btn btn-warning">Add</button>
 					<button data-bs-toggle="modal" hidden data-bs-target="#smallModel" type="button" id="updateprod"
 						class="btn btn-warning">Update</button>
 				</div>
@@ -122,7 +131,7 @@
 	</div>
 
 
-	<div class="modal fade" id="smallModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	 <div class="modal fade" id="smallModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -138,7 +147,7 @@
 			</div>
 		</div>
 	</div>
-
+ 
 
 
 
@@ -178,15 +187,20 @@
   </div>
 
 
- 
+ 	 
 
 
 
 	<script>
+			var productAdmin ="";
+		if (localStorage.getItem('userRole') == "Admin") {
 
+			productAdmin = '<button type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
 
+		}
 
-
+		$(".productAdmin").empty();
+		$(".productAdmin").append(productAdmin);
 
 		// // add product with image product
 
@@ -196,6 +210,8 @@
 			document.getElementById('addModalLabel').hidden = false;
 			document.getElementById('updateModalLabel').hidden = true;
 			$("#addprod").click(function () {
+ 
+
 				var url = "http://localhost:8080/product";
 
 
@@ -205,6 +221,7 @@
 
 				var productname = $("#product").val();
 				var stock = $("#stock").val();
+				var unit =  $("#unit").val();
 				var category = $("#category").val();
 				var price = $("#price").val();
 
@@ -212,6 +229,7 @@
 				formData.append('data', JSON.stringify({
 					"productName": productname,
 					"stock": stock,
+					"unit":unit,
 					"categoryId": category,
 					"price": price,
 					"userId": localStorage.getItem("userId")
@@ -228,8 +246,10 @@
 					processData: false,
 
 					success: function (requestProduct) {
-
+						$("#myproduct").empty();
 						product();
+						
+						$('#productModalForm')[0].reset();
 
 					}, error: function (e) {
 
@@ -253,38 +273,14 @@
 				type: "GET",
 
 				success: function (responseText) {
-
-
-
-
-					if (localStorage.getItem('userRole') == "Admin") {
-
-						var productAdmin = '<button type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
-
-
-
-					}
-
-
-
+					 
 					$.each(responseText, function (index, item) {
 
-						$("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
+						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
 
-  
+					
 
-						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3">';
-
-
-
-						$.each(item.data, function (indeximg, itemimg) {
-							localStorage.setItem('imageId', itemimg.imageId);
-
-							productData += '<img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + itemimg.imageData + '"/>';
-
-
-						});
-						productData += '<div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
+						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/><p hidden>'+item.imageId+'</p> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
 
 						if (localStorage.getItem('userRole') == "Admin") {
 
@@ -299,7 +295,7 @@
 					});
 					$("#myproduct").empty();
 					$("#myproduct").append(productData);
-					$(".productAdmin").append(productAdmin);
+					
 				}
 
 			});
@@ -314,39 +310,31 @@
 				url: "http://localhost:8080/product/productname?productname=" + $("#fillter").val(),
 				type: "GET",
 
-				success: function (response) {
-
+				success: function (responseText) {
 					$("#myproduct").empty();
-
-					$.each(response, function (index, item) {
-
-						productFilter += ' <div class="col-lg-4 "><div class="card mb-3">';
-
-						$.each(item.data, function (indeximg, itemimg) {
-
-							productFilter += '<img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + itemimg.imageData + '"/>';
-
-
-						});
-
-						productFilter += '<div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="card-text text-center">' + "price: " + item.price + '</p>';
-
-						if (localStorage.getItem('userRole') == "Admin") {
-
+					 $.each(responseText, function (index, item) {
+ 
+						 // $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
+ 
+					 
+ 
+						 productFilter += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/><p hidden>'+item.imageId+'</p> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
+ 
+						 if (localStorage.getItem('userRole') == "Admin") {
+ 
 							productFilter += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
-
-						}
-						else {
-							productFilter += '<a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
-						}
-						productFilter += '</div></div></div> ';
-
-					});
-
-
-					$("#myproduct").append(productFilter);
-					
-				}
+ 
+						 }
+						 else {
+							productFilter += ' <a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
+						 }
+						 productFilter += '</div></div></div> ';
+ 
+					 });
+					 $("#myproduct").empty();
+					 $("#myproduct").append(productFilter);
+					 
+				 }
 
 			})
 
@@ -426,7 +414,8 @@
 				crossDomain: true,
 
 				success: function (responseText, status) {
-
+					
+					$("#myproduct").empty();
 					console.log(status);
 					product();
 				}
@@ -607,12 +596,13 @@
 				url: "http://localhost:8080/product/" + currentItemId,
 				type: "GET",
 				success: function (currentproduct) {
-
+					console.log(currentproduct.productImage.imageData);
+							console.log(currentproduct);
 					$("#cart").append(`
         <div class="card border-0 item-in-cart" data-id="${currentproduct.id}">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-end">
-                     
+					<img src="data:image/png;base64,${currentproduct.productImage.imageData}" class="img-in-cart"   alt="">
                     <button class="btn btn-outline-danger remove-from-cart">
                         <i class="fas fa-trash-alt"></i>
                     </button>

@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,11 +22,19 @@ public class Cart {
 	private long cartId;
 
 	@OneToMany(mappedBy = "cart")
-	
 	private List<Items> item;
 
-	private double totalPrice;
-
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user", referencedColumnName = "userId")
+	private UserAccount user;
+	
+	private String OrderStatus;
+	
+	
+	
+	
+	
 	public long getCartId() {
 		return cartId;
 	}
@@ -41,13 +51,23 @@ public class Cart {
 		this.item = items;
 	}
 
-	public double getTotalPrice() {
-		return totalPrice;
+	public UserAccount getUser() {
+		return user;
 	}
 
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setUser(UserAccount user) {
+		this.user = user;
 	}
+
+	public String getOrderStatus() {
+		return OrderStatus;
+	}
+
+	public void setOrderStatus(String orderStatus) {
+		OrderStatus = orderStatus;
+	}
+
+	 
 
 
 

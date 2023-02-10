@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 public class RequestCategory {
 	
 	@NotNull
+	private long userId;
+	
+	
+	@NotNull
 	private String categoryName;
 	
 	 
@@ -18,6 +22,14 @@ public class RequestCategory {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	 

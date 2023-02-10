@@ -2,6 +2,8 @@ package com.wdm.entity;
 
  
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,14 +27,16 @@ public class Orders {
 	@Column(name = "order_id")
 	private long orderId;
 	
-	@Column(name = "totalprice")
-	private double totalPrice;
+	 
 	
 	@Column(name = "ordertime")
-	private String ordertime;
+	private LocalDateTime ordertime;
 	
-	@Column(name = "STATUS")
-    private String orderStatus;
+	@Column(name = "total_Amount")
+	private long totalAmount;
+	
+	
+	 
 	
 	@OneToOne
 	@JoinColumn(name = "cartId",referencedColumnName = "cartId")
@@ -45,76 +49,112 @@ public class Orders {
 	 
 	 
 	 
-	public UserAccount getUser() {
-		return user;
-	}
-
-	public void setUser(UserAccount user) {
-		this.user = user;
-	}
+	 
 	
 	
-	
-	public long getOrderId() {
+public long getOrderId() {
 		return orderId;
 	}
+
+
+
+
+
 
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
 
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
 
-	public String getOrdertime() {
+
+
+ 
+
+
+
+
+
+	public LocalDateTime getOrdertime() {
 		return ordertime;
 	}
 
-	public void setOrdertime(String ordertime) {
+
+
+
+
+
+	public void setOrdertime(LocalDateTime ordertime) {
 		this.ordertime = ordertime;
 	}
 
-	
 
-	public Orders(long orderId, double totalPrice, String ordertime, Cart cart, UserAccount user) {
-		super();
-		this.orderId = orderId;
-		this.totalPrice = totalPrice;
-		this.ordertime = ordertime;
-		this.cart = cart;
-		this.user = user;
-		
-	}
 
-	
-	public Orders() {
-		
-	}
 
-	public String getOrderStatus() {
-		return orderStatus;
-	}
 
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
-	}
 
 	public Cart getCart() {
 		return cart;
 	}
 
+
+
+
+
+
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-	
-	
-	
+
+
+
+
+
+
+	public UserAccount getUser() {
+		return user;
+	}
+
+
+
+
+
+
+	public void setUser(UserAccount user) {
+		this.user = user;
+	}
+
+
+
+
+
+
+public long getTotalAmount() {
+		return totalAmount;
+	}
+
+
+
+
+
+
+	public void setTotalAmount(long totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+
+
+
+
+ 
+
+
+
+
+
+public Orders() {
+		
+	}
 	
 
 }

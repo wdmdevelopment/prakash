@@ -27,13 +27,7 @@ public class ImageProduct {
 	
 	private byte[] imageData;
 
-	
-	@ManyToOne
-    @JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
-	 @JsonIgnore
-	private Product product;
-	
-	
+	 
 	public long getImageId() {
 		return imageId;
 	}
@@ -66,14 +60,7 @@ public class ImageProduct {
 		this.imageData = imageData;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
+	 
 	
 	
 	

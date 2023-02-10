@@ -12,7 +12,7 @@ import com.wdm.model.RequestCategory;
 @Service
 public interface CategoryService {
 	
-	public Category saveCategory(RequestCategory requestCategory, long userId);
+	public Category saveCategory(RequestCategory requestCategory);
 	
 	 
 	

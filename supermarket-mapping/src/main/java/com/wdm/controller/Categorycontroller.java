@@ -35,14 +35,13 @@ public class Categorycontroller {
 
 	private static final Logger logger = LogManager.getLogger(Categorycontroller.class);
 
-	@PostMapping("/{userId}")
+	@PostMapping
 
-	public ResponseEntity<Category> saveCategory(@Valid @RequestBody RequestCategory resquestProduct,
-			@PathVariable("userId") long userId) {
+	public ResponseEntity<Category> saveCategory(@Valid @RequestBody RequestCategory resquestProduct) {
 
 		logger.info("add to category");
 
-		return new ResponseEntity<>(categoryservice.saveCategory(resquestProduct, userId), HttpStatus.CREATED);
+		return new ResponseEntity<>(categoryservice.saveCategory(resquestProduct), HttpStatus.CREATED);
 	}
 
 	 

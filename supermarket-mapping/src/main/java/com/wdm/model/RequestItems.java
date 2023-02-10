@@ -9,9 +9,9 @@ public class RequestItems {
 	@NotNull
 	private int quantity;
 	
- 
 	@NotNull
-	private double price;
+	private double totalprice;
+	 
 	
 	@NotNull
 	private long productId;
@@ -27,15 +27,7 @@ public class RequestItems {
 	}
 
 
-	public double getPrice() {
-		return price;
-	}
-
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
+	 
 
 	public long getProductId() {
 		return productId;
@@ -44,6 +36,16 @@ public class RequestItems {
 
 	public void setProductId(long productId) {
 		this.productId = productId;
+	}
+
+
+	public double getTotalprice() {
+		return totalprice;
+	}
+
+
+	public void setTotalprice(double totalprice) {
+		this.totalprice = totalprice;
 	}
 
 

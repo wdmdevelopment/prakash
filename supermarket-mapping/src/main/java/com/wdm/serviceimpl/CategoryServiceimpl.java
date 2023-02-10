@@ -29,14 +29,13 @@ public class CategoryServiceimpl implements CategoryService {
 	@Autowired
 	UserAccountRespository userRepo;
 
-	public Category saveCategory(RequestCategory requestCategory, long userId) {
+	public Category saveCategory(RequestCategory requestCategory) {
 		try {
-		Optional<UserAccount> findById = userRepo.findById(userId);
-		Category save = null;
-		if(findById.isPresent()) {
-				UserAccount userAccount = findById.get();
+			UserAccount findById = userRepo.findById(requestCategory.getUserId()).orElseThrow(() -> new IdNotFoundException("userId not found"));
 			
-			String getuserRoll = userAccount.getuserRoll();
+		Category save;
+		  
+			String getuserRoll = findById.getuserRoll();
 			if(getuserRoll.equalsIgnoreCase("admin")) {
 				
 
@@ -51,7 +50,7 @@ public class CategoryServiceimpl implements CategoryService {
 			else {
 				throw new ProductCustomException("You are a not a admin"+getuserRoll);
 			}
-		}
+		 
 		return save;
 		}
 		catch (Exception e) {

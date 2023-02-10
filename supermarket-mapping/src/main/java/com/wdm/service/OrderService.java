@@ -19,7 +19,7 @@ public interface OrderService {
 	
 	public List<Orders> getAllOrders();
 	
-	public OrderResponse  getOrderDetails(long orderId) throws Exception;
+	public Orders  getOrderDetails(long orderId) throws Exception;
 	
 	
 

@@ -39,7 +39,7 @@ public class ItemsController {
 	@PostMapping
 	public ResponseEntity<Items> saveItem(@Valid @RequestBody RequestItems resquestItems) {
 		
-		logger.info("items saved, Quantity={}, Price={}", resquestItems.getQuantity(), resquestItems.getPrice());
+		logger.info("items saved, Quantity={}, Price={}", resquestItems.getQuantity(), resquestItems.getQuantity());
 		
 		return new ResponseEntity<>(itemservice.saveItems(resquestItems), HttpStatus.CREATED);
 	}
@@ -58,7 +58,7 @@ public class ItemsController {
 			 
 			RequestItems reqitem = new RequestItems();
 			reqitem.setQuantity(item.getQuantity());
-			reqitem.setPrice(item.getPrice());
+			 
 			reqitem.setProductId(item.getProduct().getProductId());
 			reitem.add(reqitem);
 		}

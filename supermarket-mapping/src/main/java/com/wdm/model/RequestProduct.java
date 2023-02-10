@@ -8,9 +8,12 @@ public class RequestProduct {
 	private String productName;
 	
 	@JsonProperty("stock")
-	private String stock;
+	private long stock;
 	 
 	 
+	@JsonProperty("unit")
+	private String unit;
+	
 	
 	@JsonProperty("categoryId")
 	private long categoryId;
@@ -68,12 +71,12 @@ public class RequestProduct {
 	 
 
 
-	public String getStock() {
+	public long getStock() {
 		return stock;
 	}
 
 
-	public void setStock(String stock) {
+	public void setStock(long stock) {
 		this.stock = stock;
 	}
 
@@ -86,7 +89,19 @@ public class RequestProduct {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
+
+	public String getUnit() {
+		return unit;
+	}
+
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+
+	 
 	 
 
 	 

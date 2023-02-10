@@ -1,6 +1,6 @@
 package com.wdm.entity; 
  
-import java.util.Set;
+ 
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
  
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+ 
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,8 +35,12 @@ public class Product {
 	@Column(name = "product_Name") 
 	private String productName;
 	
-	@Column(name = "stock") 
-	private String stock;
+	@Column(name = "stocks") 
+	private long stocks;
+	
+	@Column(name = "unit") 
+	private String unit;
+	
 	
 	@Column(name = "price") 
 	private double price;
@@ -47,15 +52,21 @@ public class Product {
 	
 	
 	
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-	
-	private Set<ImageProduct> productImage;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ProductImage", referencedColumnName = "imageId")
+	private ImageProduct productImage;
 
 
+
+	 
+ 
 
 	public long getProductId() {
 		return productId;
 	}
+
+
+
 
 
 
@@ -65,9 +76,15 @@ public class Product {
 
 
 
+
+
+
 	public String getProductName() {
 		return productName;
 	}
+
+
+
 
 
 
@@ -75,24 +92,7 @@ public class Product {
 		this.productName = productName;
 	}
 
-
-
-	 
-	
-	
-	
  
-
-
-	public String getStock() {
-		return stock;
-	}
-
-
-
-	public void setStock(String stock) {
-		this.stock = stock;
-	}
 
 
 
@@ -102,9 +102,15 @@ public class Product {
 
 
 
+
+
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+
+
 
 
 
@@ -114,41 +120,85 @@ public class Product {
 
 
 
+
+
+
 	public void setCategory(Category category) {
 		this.category = category;
 	}
 
 
 
-	public Set<ImageProduct> getProductImage() {
+
+
+
+	public long getStocks() {
+		return stocks;
+	}
+
+
+
+
+
+
+	public void setStocks(long stocks) {
+		this.stocks = stocks;
+	}
+
+
+
+
+
+
+	public String getUnit() {
+		return unit;
+	}
+
+
+
+
+
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+
+
+
+
+
+	public ImageProduct getProductImage() {
 		return productImage;
 	}
 
 
 
-	public void setProductImage(Set<ImageProduct> productImage) {
+
+
+
+	public void setProductImage(ImageProduct productImage) {
 		this.productImage = productImage;
 	}
 
 
- 
-	 
-	
-	 
- 
 
 
 
-	public Product(long productId, String productName, String stock, double price, Category category,
-			Set<ImageProduct> productImage) {
+
+	public Product(long productId, String productName, long stocks, double price, Category category,
+			ImageProduct productImage) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
-		this.stock = stock;
+		this.stocks = stocks;
 		this.price = price;
 		this.category = category;
 		this.productImage = productImage;
 	}
+
+
+
 
 
 

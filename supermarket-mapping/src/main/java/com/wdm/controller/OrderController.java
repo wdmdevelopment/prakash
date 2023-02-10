@@ -37,7 +37,7 @@ public class OrderController {
 	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestOrder,
 			@RequestParam("user") long userId) {
 
-		logger.info("Place the order given item TotalPrice={}, Ordertime={}", resquestOrder.getTotalPrice(),
+		logger.info("Place the order given item TotalPrice={}, Ordertime={}", resquestOrder.getTotalAmount(),
 				resquestOrder.getOrdertime());
 
 		return new ResponseEntity<>(orderService.placeOrder(resquestOrder, userId), HttpStatus.CREATED);
@@ -55,7 +55,7 @@ public class OrderController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Orders> updateOrder(@RequestBody Orders order, @PathVariable("id") long id) {
 
-		logger.info("If user add extra item ", order.getOrderStatus(), order.getCart().getTotalPrice());
+		logger.info("If user add extra item ", order.getOrdertime(), order.getCart().getUser().getFirstName());
 
 		return new ResponseEntity<>(orderService.updateOrder(order, id), HttpStatus.OK);
 	}
@@ -69,11 +69,11 @@ public class OrderController {
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<OrderResponse> getorder(long id) throws Exception {
+	public ResponseEntity<Orders> getorder(long id) throws Exception {
 
 		logger.info("To get order with given id" + id);
 
-		return new ResponseEntity<OrderResponse>(orderService.getOrderDetails(id), HttpStatus.OK);
+		return new ResponseEntity<Orders>(orderService.getOrderDetails(id), HttpStatus.OK);
 	}
 
 }
