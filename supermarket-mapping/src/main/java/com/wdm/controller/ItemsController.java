@@ -17,12 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
-import com.wdm.exception.IdNotFoundException;
- 
 import com.wdm.model.RequestItems;
 import com.wdm.service.ItemService;
 
@@ -37,11 +35,11 @@ public class ItemsController {
 	
 	
 	@PostMapping
-	public ResponseEntity<Items> saveItem(@Valid @RequestBody RequestItems resquestItems) {
+	public ResponseEntity<Cart> saveItem(@Valid @RequestBody RequestItems resquestItems) {
 		
 		logger.info("items saved, Quantity={}, Price={}", resquestItems.getQuantity(), resquestItems.getQuantity());
 		
-		return new ResponseEntity<>(itemservice.saveItems(resquestItems), HttpStatus.CREATED);
+		return new ResponseEntity<Cart>(itemservice.saveItems(resquestItems), HttpStatus.CREATED);
 	}
 	
 	

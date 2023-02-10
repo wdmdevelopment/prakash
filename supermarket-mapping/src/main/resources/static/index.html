@@ -9,7 +9,7 @@
 
 
 
-	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
 
@@ -30,21 +30,21 @@
 	<section id="holder">
 
 	</section>
-  
-	 <script>
-		$(document).ready(function(){ 
-	
-		  if(localStorage.getItem('userRole') !== ''&& localStorage.getItem('emailId') !=""){
-			$("#holder").load("navbar.html");
-					product();
-		  }
-		  
-		 
+
+	<script>
+		$(document).ready(function () {
+
+			if (localStorage.getItem('userRole') !== '' && localStorage.getItem('emailId') != "") {
+				$("#holder").load("navbar.html");
+				product();
+			}
+
+
 		});
 
- 
 
-		</script>  
+
+	</script>
 
 
 
@@ -73,47 +73,60 @@
 							<div class="col-12">
 								<div class="card" style="border-radius: 1rem;">
 									<div class="card-body p-5">
-								<form class="form-control" role="form" id="productModalForm">
-										<div class="form-label">
-											<label class="form-label" for="product">ProductName</label>
-				<input type="text" id="product" class="form-control form-control-lg" required />
-				<div class="error" style="color: red;" id="NameError"></div>
+										<form class="form-control" role="form" id="productModalForm">
+											<div class="form-label">
+												<label class="form-label" for="product">ProductName</label>
+												<input type="text" id="product" class="form-control form-control-lg"
+													required />
+												<div class="error" style="color: red;" id="NameError"></div>
 
-										</div>
-
-										<div class="form-label">
-											<label class="form-label" for="product">Stock details</label>
-											<div class="input-group my-group"> 
-
-			<input type="text" id="stock" class="form-control" name="snpid" placeholder="stocks"><select id="unit" class="selectpicker form-control" data-live-search="true">
-			<option>Kg</option><option>grams</option><option>pics</option><option>litre</option>
-			</select> 
 											</div>
-		<div class="error" style="color: red;" id="stockError"></div>
 
-										</div>
-										<div class="form-label">
-											<label class="form-label" for="product">price</label>
-		<input type="text" id="price" class="form-control form-control-lg" required />
-		<div class="error" style="color: red;" id="priceError"></div>
+											<div class="form-label">
+												<label class="form-label" for="product">Stock details</label>
+												<div class="input-group my-group">
 
-										</div>
-										<div class="form-label">
-											<label class="form-label" for="product">Category Name</label>
-			<select required id="category" class="select form-control-lg" aria-selected="false">
+													<input type="text" id="stock" class="form-control" name="snpid"
+														placeholder="stocks"><select id="unit"
+														class="selectpicker form-control" data-live-search="true">
+														<option>Kg</option>
+														<option>grams</option>
+														<option>pics</option>
+														<option>litre</option>
+													</select>
+												</div>
+												<div class="error" style="color: red;" id="stockError"></div>
 
-			</select>
-			<div class="error" style="color: red;" id="categoryError"></div>
+											</div>
+											<div class="form-label">
+												<label class="form-label" for="product">price</label>
+												<input type="text" id="price" class="form-control form-control-lg"
+													required />
+												<div class="error" style="color: red;" id="priceError"></div>
+
+											</div>
+											<div class="form-label">
+												<label class="form-label" for="product">Category Name</label>
+												<select required id="category" class="select form-control-lg"
+													aria-selected="false">
+
+												</select>
+												<div class="error" style="color: red;" id="categoryError"></div>
 
 
-										</div>
-										<p>Choose your product image </p>
+											</div>
 
-										<div class="form-label changeImg">
-							<input type="file" id="myFile" name="filename" required>
-					<div class="error" style="color: red;" id="imageError"></div>
-										</div>
-									</form>
+					<div class="imageupdate"> </div>
+											<p>Choose your product image </p>
+
+											<div class="form-label changeImg">
+												<input type="file" id="myFile" name="filename" required>
+												<div class="error" style="color: red;" id="imageError"></div>
+											</div>
+							<input type="text" id="productIdUpdate" name="productId" hidden>		
+							<input type="text" id="categoryId" name="category" hidden>
+							<input type="text" id="imageId name="filename" hidden>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -122,37 +135,21 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" id="addprod" data-bs-dismiss="modal" class="btn btn-warning">Add</button>
-					<button data-bs-toggle="modal" hidden data-bs-target="#smallModel" type="button" id="updateprod"
-						class="btn btn-warning">Update</button>
+					<button hidden type="button" id="addprod" data-bs-dismiss="modal" class="btn btn-warning">Add</button>
+			<button hidden type="button" id="updateprod" onclick="editProduct1()" class="btn btn-warning">Update</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	 <div class="modal fade" id="smallModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Adding Product</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<p class="not_added">Product added</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
-	</div>
- 
+	 
+
 
 
 
 	<h1 class=" text-center text-center" style="margin-top: 5%;">Products</h1>
-	 
+
 	<div class="container">
 		<div class="row" id="myproduct">
 
@@ -160,42 +157,59 @@
 		</div>
 	</div>
 
-	 
-  
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="exampleModalLabel">My Cart</h1>
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div id="cart">
 
-			</div>
-			<div class="total position-sticky py-3 bg-white" style="bottom: 0">
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">My Cart</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div id="cart">
+
+					</div>
+					<div class="total position-sticky py-3 bg-white" style="bottom: 0">
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Place Order</button>
+				</div>
 			</div>
 		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Place Order</button>
+	</div>
+
+
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+		  <div class="modal-content">
+			<p>this product is deleted </p>
+			<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+		  </div>
 		</div>
 	  </div>
-	</div>
-  </div>
-
-
- 	 
 
 
 
 	<script>
-			var productAdmin ="";
+
+		function showData(){
+			document.getElementById('updateprod').hidden=true;
+			document.getElementById('addprod').hidden=false;
+			document.getElementById('updateModalLabel').hidden = true;
+  			document.getElementById('addModalLabel').hidden = false;
+		}
+
+
+		var products = [];
+		var productAdmin = "";
 		if (localStorage.getItem('userRole') == "Admin") {
 
-			productAdmin = '<button type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
+			productAdmin = '<button onclick="showData()" type="button" class="btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</button>';
 
 		}
 
@@ -205,13 +219,20 @@
 		// // add product with image product
 
 		$(document).ready(function () {
-			document.getElementById("updateprod").hidden = true;
-			document.getElementById('addprod').hidden = false;
-			document.getElementById('addModalLabel').hidden = false;
-			document.getElementById('updateModalLabel').hidden = true;
-			$("#addprod").click(function () {
  
 
+
+			document.getElementById('addprod').hidden = false;
+			document.getElementById('addModalLabel').hidden = false;
+
+			// $("#addprod").attr("style", "display:block");
+			// $("#addModalLabel").attr("style", "display:block");
+			// $("#updateprod").attr("style", "display:none");
+			// $("#updateModalLabel").attr("style", "display:none");
+
+			$("#addprod").click(function () {
+
+				
 				var url = "http://localhost:8080/product";
 
 
@@ -221,7 +242,7 @@
 
 				var productname = $("#product").val();
 				var stock = $("#stock").val();
-				var unit =  $("#unit").val();
+				var unit = $("#unit").val();
 				var category = $("#category").val();
 				var price = $("#price").val();
 
@@ -229,7 +250,7 @@
 				formData.append('data', JSON.stringify({
 					"productName": productname,
 					"stock": stock,
-					"unit":unit,
+					"unit": unit,
 					"categoryId": category,
 					"price": price,
 					"userId": localStorage.getItem("userId")
@@ -246,9 +267,10 @@
 					processData: false,
 
 					success: function (requestProduct) {
-						$("#myproduct").empty();
-						product();
 						
+						product();
+						$("#myproduct").empty();
+
 						$('#productModalForm')[0].reset();
 
 					}, error: function (e) {
@@ -273,18 +295,33 @@
 				type: "GET",
 
 				success: function (responseText) {
+
+					products = responseText;
 					 
 					$.each(responseText, function (index, item) {
 
 						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
+							$('#productIdUpdate').append(item.productId);
+							$('#categoryId').append(item.categoryId);
+							$('#imageId').append(item.imageId);
 
-					
 
-						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/><p hidden>'+item.imageId+'</p> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
+							 
+
+
+						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Stock Details: " + item.stock + '</p>';
+
+						if (localStorage.getItem('userRole') == "Admin") {
+							productData += '<p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p>';
+
+						}
+
+						productData += '<p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
+
 
 						if (localStorage.getItem('userRole') == "Admin") {
 
-							productData += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+							productData += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link " data-toggle="modal" data-target=".bd-example-modal-sm"><b>Delete</b></a>';
 
 						}
 						else {
@@ -295,7 +332,7 @@
 					});
 					$("#myproduct").empty();
 					$("#myproduct").append(productData);
-					
+
 				}
 
 			});
@@ -304,7 +341,7 @@
 		function filterProduct() {
 			var productFilter = "";
 
-			 
+
 			$.ajax({
 				dataType: "JSON",
 				url: "http://localhost:8080/product/productname?productname=" + $("#fillter").val(),
@@ -312,29 +349,32 @@
 
 				success: function (responseText) {
 					$("#myproduct").empty();
-					 $.each(responseText, function (index, item) {
- 
-						 // $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
- 
-					 
- 
-						 productFilter += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/><p hidden>'+item.imageId+'</p> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
- 
-						 if (localStorage.getItem('userRole') == "Admin") {
- 
-							productFilter += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
- 
-						 }
-						 else {
+					$.each(responseText, function (index, item) {
+
+						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
+							$('#productIdUpdate').append(item.productId);
+							$('#categoryId').append(item.categoryId);
+							$('#imageId').append(item.imageId);
+							 
+
+
+						productFilter += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/><p hidden>' + item.imageId + '</p> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p>';
+
+						if (localStorage.getItem('userRole') == "Admin") {
+
+							productFilter += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link " data-toggle="modal" data-target=".bd-example-modal-sm"><b>Delete</b></a>';
+
+						}
+						else {
 							productFilter += ' <a class="btn btn-warning float-left add-to-cart" data-id="' + item.productId + '" style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
-						 }
-						 productFilter += '</div></div></div> ';
- 
-					 });
-					 $("#myproduct").empty();
-					 $("#myproduct").append(productFilter);
-					 
-				 }
+						}
+						productFilter += '</div></div></div> ';
+
+					});
+					$("#myproduct").empty();
+					$("#myproduct").append(productFilter);
+
+				}
 
 			})
 
@@ -343,9 +383,17 @@
 
 
 
-
-
+var tempId = '';
 		function editProduct(productId) {
+			 tempId = productId;
+			
+			$(".imageupdate").empty();
+			
+			document.getElementById('updateprod').hidden=false;
+			document.getElementById('addprod').hidden=true;
+			document.getElementById('updateModalLabel').hidden = false;
+  			document.getElementById('addModalLabel').hidden = true;
+
 
 			var url = "http://localhost:8080/product/" + productId;
 
@@ -356,51 +404,81 @@
 
 				success: function (response) {
 
-					var productUpdate = $("#product").val(response.productName);
-					var stockUpdate = $("#stock").val(response.stock);
-					var categoryUpdate = $(".category-name").val(response.categoryname);
-					var priceUpdate = $("#price").val(response.price);
+					$("#product").val(response.productName);
+						$("#stock").val(response.stocks);
+						 $("#unit").val(response.unit);
+						 $(".category-name").val(response.categoryname);
+						$("#price").val(response.price);
 
-					document.addEventListener("click", function (e) {
-						if (e.target.classList.contains("update-change")) {
-							const src = e.target.getElementById("src");
-							document.querySelector(".changeImg").src = src;
-							const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
-							myModal.show();
-						}
-					})
-					document.getElementById("updateprod").hidden = false;
-					document.getElementById('addprod').hidden = true;
-					document.getElementById('addModalLabel').hidden = true;
-					document.getElementById('updateModalLabel').hidden = false;
+			$(".imageupdate").append('<p>if you want to change this image</p><img class="hovr" src="data:image/png;base64,'+response.productImage.imageData+'" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 100px;">');
+ 
+			console.log(response.productImage.imageData);
+ 
+					// document.addEventListener("click", function (e) {
+					// 	if (e.target.classList.contains("update-change")) {
+					// 		const src = e.target.getElementById("src");
+					// 		document.querySelector(".changeImg").src = src;
+					// 		const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
+					// 		myModal.show();
+					// 	}
+					// })
 
-
-					$("#updateprod").click(function () {
-						$.ajax({
-							dataType: "JSON",
-							url: url,
-							type: "PUT",
-							data: { "productName": productUpdate, "stock": stockUpdate, "categoryUpdate": categoryUpdate, "price": priceUpdate, "imageId": localStorage.getItem("imageId", imageId), "userId": localStorage.getItem("userId", userId) },
-
-							success: function (response) {
-
-
-							}
-						})
-					})
-
-
-
+					 
+					   
 				}
 			})
 
 
-
-
-
-
-
 		}
+
+
+function editProduct1() {
+
+		const formData1 = new FormData();
+				var file = $('#myFile').prop("files")[0];
+				formData.append('data', JSON.stringify({
+					"productName": $("#product").val(),
+					"stock": $("#stock").val(),
+					"unit": $("#unit").val(),
+					"price": $("#price").val(),
+					"categoryId": $("#catagoryId").val(),
+					"imageId": $("#imageId").val(),
+					"userId": localStorage.getItem("userId", userId)
+				})),
+
+					formData.append('imagefile', file);
+ 
+						$.ajax({
+							type: "PUT",
+							url: "http://localhost:8080/product/" + $("#productIdUpdate").val(),
+							data: formData,
+							contentType: false,
+							processData: false,
+
+							success: function (response, status) {
+
+								console.log(response);
+								console.log(status);
+							}
+						})
+					 
+				 
+				 
+
+				 
+
+
+				
+
+
+
+
+
+
+
+}
+		
+
 
 
 		function deleteProduct(productId) {
@@ -414,10 +492,7 @@
 				crossDomain: true,
 
 				success: function (responseText, status) {
-					
-					$("#myproduct").empty();
-					console.log(status);
-					product();
+
 				}
 			})
 		}
@@ -479,7 +554,7 @@
 
 						if (localStorage.getItem('userRole') == "Admin") {
 
-							categoryValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+							categoryValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link " data-toggle="modal" data-target=".bd-example-modal-sm"><b>Delete</b></a>';
 
 						}
 						else {
@@ -526,7 +601,7 @@
 
 						if (localStorage.getItem('userRole') == "Admin") {
 
-							productValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link data-bs-toggle="modal" data-bs-target="#exampleModal""><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link "><b>Delete</b></a>';
+							productValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link data-bs-toggle="modal" data-bs-target="#exampleModal""><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link " data-toggle="modal" data-target=".bd-example-modal-sm"><b>Delete</b></a>';
 
 						}
 						else {
@@ -552,7 +627,7 @@
 		function cartTotal() {
 
 			let count = $(".item-in-cart-cost").length;
-
+				console.log(count);
 			$(".item-in-cart-count").html(count);
 
 
@@ -577,36 +652,39 @@
 
 		$("#myproduct").delegate(".add-to-cart", "click", function () {
 			let currentItemId = $(this).attr("data-id");
-				console.log(currentItemId);
 			 
-				if($(".item-in-cart")==currentItemId)
-				{
-					alert("Already Added");
-				}
-				//includes(currentItemId)
+			let productInfo = products.filter(el => el.id == currentItemId)[0];
+
+			if ($(".item-in-cart").toArray().map(el => el.getAttribute("data-id")).includes(currentItemId)) {
+
+				alert("Already Added");
+			}
+			//includes(currentItemId)
 			if ($(".item-in-cart").toArray().map(el => el.getAttribute("data-id")).includes(currentItemId)) {
 
 				alert("Already Added");
 
 			} else {
 
-				
+
 				$.ajax({
-				dataTypa: "JSON",
-				url: "http://localhost:8080/product/" + currentItemId,
-				type: "GET",
-				success: function (currentproduct) {
-					console.log(currentproduct.productImage.imageData);
-							console.log(currentproduct);
-					$("#cart").append(`
+					dataTypa: "JSON",
+					url: "http://localhost:8080/product/" + currentItemId,
+					type: "GET",
+					success: function (currentproduct) {
+
+
+						$("#cart").append(`
         <div class="card border-0 item-in-cart" data-id="${currentproduct.id}">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-end">
-					<img src="data:image/png;base64,${currentproduct.productImage.imageData}" class="img-in-cart"   alt="">
-                    <button class="btn btn-outline-danger remove-from-cart">
+					<img class="hovr" src="data:image/png;base64,${currentproduct.productImage.imageData}" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 100px;">
+
+					 
+                    <button class="btn btn-outline-danger remove-from-cart" >
                         <i class="fas fa-trash-alt"></i>
                     </button>
-                </div>
+                </div>		
                 <p class="mt-3">
                     ${currentproduct.productName}
                 </p>
@@ -615,7 +693,7 @@
                         <button class="btn btn-outline-primary quantity-minus">
                             <i class="fas fa-minus"></i>
                         </button>
-                        <input type="number" class="form-control w-25 mx-2 quantity" unitPrice="${currentproduct.price}" value="1" min="1">
+          <input type="number" class="form-control w-25 mx-2 quantity" unitPrice="${currentproduct.price}" value="1" min="1">
                         <button class="btn btn-outline-primary quantity-plus">
                             <i class="fas fa-plus"></i>
                         </button>
@@ -626,13 +704,13 @@
             </div>
         </div>
         `);
-				}
-
-				
-			});
+					}
 
 
-				
+				});
+
+
+
 
 			}
 

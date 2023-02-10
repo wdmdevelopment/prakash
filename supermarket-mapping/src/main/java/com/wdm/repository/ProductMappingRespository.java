@@ -21,6 +21,5 @@ public interface ProductMappingRespository extends JpaRepository<Product, Long> 
 	
 	@Query(value = "select * from testproject.product  WHERE category_id LIKE %:category_id%", nativeQuery = true)
 	 public  List<Product> findBycategoryId(long category_id);
-	
-	
+	 
 }

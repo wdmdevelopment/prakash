@@ -173,7 +173,7 @@ $(document).ready(function(){
                     data:{"emailId":email,"password":pass},
                     
                     success:function(response){
-                      $("#message").empty();
+                      $("#message").text('');
                       alert("success");
 
                       localStorage.setItem('emailId', response.emailId);

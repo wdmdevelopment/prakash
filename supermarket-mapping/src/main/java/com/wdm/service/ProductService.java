@@ -32,5 +32,7 @@ public interface ProductService {
 	 
 	public List<ProductResponse> getBycategory(long categoryId);
 	
+	 
+	
 
 }

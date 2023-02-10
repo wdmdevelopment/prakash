@@ -6,7 +6,8 @@ public class RequestCart {
 
 	@NotNull
 	private long productId;
-	@NotNull
+	
+	
 	private double totalPrice;
 	
 	@NotNull

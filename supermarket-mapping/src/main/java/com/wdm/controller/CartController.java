@@ -38,7 +38,7 @@ public class CartController {
 	@PostMapping
 	public ResponseEntity<Cart> saveCart(@Valid @RequestBody RequestCart resquestCart) {
 		 
-		logger.info("save new product - cart={},item= {} " , resquestCart.getTotalPrice(), resquestCart.getProductId());
+		logger.info("save new product = TotalPrice={}, productId= {} " , resquestCart.getTotalPrice(), resquestCart.getProductId());
 		
 		return new ResponseEntity<>(cartservice.saveCart(resquestCart), HttpStatus.CREATED);
 	}
@@ -47,7 +47,7 @@ public class CartController {
 	@GetMapping
 	public ResponseEntity<Object> getAll() {
 		
-		logger.info("get All product - carts={}", cartservice.getAllCart());
+		logger.info("get All product ");
 		
 		List<Cart> cart = cartservice.getAllCart();
 		

@@ -15,9 +15,13 @@ public class ProductResponse {
 	 
 	private String unit;
 	
+	private long categoryId;
+	
 	private String categoryname;
 	
 	private double price;
+	
+	
 	
 	
 	
@@ -90,18 +94,29 @@ public class ProductResponse {
 		this.imageId = imageId;
 	}
 
-	public ProductResponse(long productId, String productName, long stock, String unit, String categoryname,
-			double price, byte[] data, long imageId) {
+	public ProductResponse(long productId, String productName, long stock, String unit, long categoryId,
+			String categoryname, double price, byte[] data, long imageId) {
 		super();
 		this.productId = productId;
 		ProductName = productName;
 		this.stock = stock;
 		this.unit = unit;
+		this.categoryId = categoryId;
 		this.categoryname = categoryname;
 		this.price = price;
 		this.data = data;
 		this.imageId = imageId;
 	}
+
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	 
 
 	 
 

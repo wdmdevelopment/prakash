@@ -47,7 +47,7 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
-	@JsonIgnore
+	//@JsonIgnore
 	private Category category;
 	
 	

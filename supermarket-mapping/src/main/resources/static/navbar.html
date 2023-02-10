@@ -59,8 +59,8 @@
 					<li class="nav-item">
 						<a class="nav-link" href="index.html">Product</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="Category.html">Category</a>
+					<li class="nav-item" style="display: block;">
+						<a class="nav-link category" href="Category.html">Category</a>
 					</li>
 					<li class="nav-item shoppig-cart"   style="display: block;">
 						<div> <span class="text-white" id="cart-count">0</span> <a href=" " class="float-top"
@@ -115,8 +115,13 @@
 			if (localStorage.getItem("userRole") === "Admin") {
 
 				$(".order").attr("style", "display:none");
+ 
 				}
+				if (localStorage.getItem("userRole") === "Customer") {
 
+				$(".category").attr("style", "display:none");
+
+				}
 
 
 

@@ -15,7 +15,24 @@ public class RequestItems {
 	
 	@NotNull
 	private long productId;
+	
+	@NotNull
+	private long userId;
+	
+	
+	 @NotNull
+	 private String orderStatus;
 	 
+
+	public long getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 
 	public int getQuantity() {
 		return quantity;
@@ -46,6 +63,16 @@ public class RequestItems {
 
 	public void setTotalprice(double totalprice) {
 		this.totalprice = totalprice;
+	}
+
+
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 

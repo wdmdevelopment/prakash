@@ -79,10 +79,7 @@ public class ProductController {
 	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<Product> updateProduct(@Valid @RequestPart("data") String resquestProduct, @RequestPart("imagefile")
 	MultipartFile file, long id) throws Exception{
-		
 		 
-
-	 
 		logger.info("updateProduct  product : " + resquestProduct);
 		
 		
@@ -123,6 +120,9 @@ public class ProductController {
 		
 	}
 	
+	
+	
+	 
 	
 	
 

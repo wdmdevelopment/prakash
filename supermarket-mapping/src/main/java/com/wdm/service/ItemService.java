@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
  
 import com.wdm.model.RequestItems;
@@ -12,7 +13,7 @@ import com.wdm.model.RequestItems;
 public interface ItemService {
 	
 	
-	public Items saveItems (RequestItems requestitem);
+	public Cart saveItems (RequestItems requestitem);
 	
 	public void deleteByid(long id);
 	

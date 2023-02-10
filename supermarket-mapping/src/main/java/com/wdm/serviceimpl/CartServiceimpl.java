@@ -42,8 +42,7 @@ public class CartServiceimpl implements CartService {
 		logger.info("CartServiceimpl | cart is called");
 		try {
 		Cart cart = new Cart();
-
-		 
+ 
 		
 		Items items = new  Items();
 		
@@ -55,14 +54,16 @@ public class CartServiceimpl implements CartService {
 		 
 		 items.setProduct(product);
 		
-		List<Items> items1 = new ArrayList<>();
+		 List<Items> items1 = new ArrayList<Items>();
+		
 			items1.add(items);
 			
 			cart.setItem(items1);
 			cart.setOrderStatus(requestCart.getOrderStatus());
-			 
-			UserAccount account = userRepo.findById(requestCart.getUserId()).orElseThrow(() -> new IdNotFoundException("user id not found"));
-				
+
+			UserAccount account = userRepo.findById(requestCart.getUserId())
+					.orElseThrow(() -> new IdNotFoundException("user id not found"));
+
 			cart.setUser(account);
 			
 		return cartRepo.save(cart);

@@ -127,11 +127,12 @@ public class ProductServiceimpl implements ProductService {
 	public List<ProductResponse> getAllproduct() {
 		
 		try {
-		
-List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream().map(e ->
-		new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryName(), e.getPrice(),
-				e.getProductImage().getImageData(), e.getProductImage().getImageId())).collect(Collectors.toList());
-		 
+
+			List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream()
+					.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryId(),
+							 e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(),
+							e.getProductImage().getImageId()))
+					.collect(Collectors.toList());
 			
 		
 		
@@ -225,10 +226,12 @@ List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream
 	public List<ProductResponse> filterbyId(String pName) {
 		List<ProductResponse> findByfilterproduct = null;
 		try {
-			
-			findByfilterproduct = productRepo.findByfilterproduct(pName).stream().map(e -> new ProductResponse(e.getProductId(),
-					e.getProductName(), e.getStocks(), e.getUnit(),
-e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(), e.getProductImage().getImageId())).collect(Collectors.toList());
+
+			findByfilterproduct = productRepo.findByfilterproduct(pName).stream()
+					.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryId(),
+							e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(),
+							e.getProductImage().getImageId()))
+					.collect(Collectors.toList());
 		} catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}
@@ -240,15 +243,17 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageDat
 	
 public List<ProductResponse> getBycategory(long categoryId) {
 		
-		try {
-		
-			List<ProductResponse> collect = productRepo.findBycategoryId(categoryId).stream().map(e -> new ProductResponse(e.getProductId(),
-					e.getProductName(), e.getStocks(), e.getUnit(),
-e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(), e.getProductImage().getImageId())).collect(Collectors.toList());
-			
-			System.out.println(collect);
-			return collect;
-			
+	try {
+
+		List<ProductResponse> collect = productRepo.findBycategoryId(categoryId).stream()
+				.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(),
+						e.getCategory().getCategoryId(), e.getCategory().getCategoryName(), e.getPrice(),
+						e.getProductImage().getImageData(), e.getProductImage().getImageId()))
+				.collect(Collectors.toList());
+
+		System.out.println(collect);
+		return collect;
+
 		}
 		catch (Exception e) {
 			throw new NotFoundException(e.getMessage());
@@ -256,7 +261,27 @@ e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageDat
 
 
 }
+
+
+		 
+		 
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	
 

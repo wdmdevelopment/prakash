@@ -13,6 +13,8 @@ import javax.persistence.Id;
  
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
  
 
 @Entity
@@ -30,14 +32,9 @@ public class Category {
 	
 	
 	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-	
+	@JsonIgnore
 	private List<Product> product;
-
-	
-	
-	
-	
-	
+ 	
 	
 	
 	public long getCategoryId() {
