@@ -436,7 +436,7 @@ function editProduct1() {
 
 		const formData1 = new FormData();
 				var file = $('#myFile').prop("files")[0];
-				formData.append('data', JSON.stringify({
+				formData1.append('data', JSON.stringify({
 					"productName": $("#product").val(),
 					"stock": $("#stock").val(),
 					"unit": $("#unit").val(),
@@ -446,7 +446,7 @@ function editProduct1() {
 					"userId": localStorage.getItem("userId", userId)
 				})),
 
-					formData.append('imagefile', file);
+					formData1.append('imagefile', file);
  
 						$.ajax({
 							type: "PUT",

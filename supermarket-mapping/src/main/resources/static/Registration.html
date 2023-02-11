@@ -192,7 +192,8 @@
       window.location = "Login.html";
 		},
       error: function (e) {
-        console.log(e);
+        $('#myForm')[0].reset();
+       alert('Please enter valid data');
       }
 	})
 
