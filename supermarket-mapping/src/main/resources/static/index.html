@@ -123,9 +123,9 @@
 												<input type="file" id="myFile" name="filename" required>
 												<div class="error" style="color: red;" id="imageError"></div>
 											</div>
-							<input type="text" id="productIdUpdate" name="productId" hidden>		
-							<input type="text" id="categoryId" name="category" hidden>
-							<input type="text" id="imageId name="filename" hidden>
+							 
+							<input type="text" id="categoryId"  hidden>
+							<input type="text" id="imageId" hidden>
 										</form>
 									</div>
 								</div>
@@ -301,9 +301,7 @@
 					$.each(responseText, function (index, item) {
 
 						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
-							$('#productIdUpdate').append(item.productId);
-							$('#categoryId').append(item.categoryId);
-							$('#imageId').append(item.imageId);
+						 
 
 
 							 
@@ -352,9 +350,7 @@
 					$.each(responseText, function (index, item) {
 
 						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
-							$('#productIdUpdate').append(item.productId);
-							$('#categoryId').append(item.categoryId);
-							$('#imageId').append(item.imageId);
+						 
 							 
 
 
@@ -384,6 +380,8 @@
 
 
 var tempId = '';
+var tempcategoryId ="";
+var tempimageId ='';
 		function editProduct(productId) {
 			 tempId = productId;
 			
@@ -403,62 +401,68 @@ var tempId = '';
 				type: "GET",
 
 				success: function (response) {
-
+					
 					$("#product").val(response.productName);
 						$("#stock").val(response.stocks);
 						 $("#unit").val(response.unit);
 						 $(".category-name").val(response.categoryname);
 						$("#price").val(response.price);
+						// $('#myFile').val(response.productImage.data);
 
 			$(".imageupdate").append('<p>if you want to change this image</p><img class="hovr" src="data:image/png;base64,'+response.productImage.imageData+'" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 100px;">');
- 
-			console.log(response.productImage.imageData);
- 
-					// document.addEventListener("click", function (e) {
-					// 	if (e.target.classList.contains("update-change")) {
-					// 		const src = e.target.getElementById("src");
-					// 		document.querySelector(".changeImg").src = src;
-					// 		const myModal = new bootstrap.Modal(document.getElementById('gallery-modal'));
-					// 		myModal.show();
-					// 	}
-					// })
+					
+			
 
-					 
-					   
+				tempcategoryId = response.category.categoryId;
+				tempimageId = response.productImage.imageId;
+			 
+
+
+			 
+ 	   
 				}
 			})
-
-
+ 
 		}
 
 
 function editProduct1() {
 
 		const formData1 = new FormData();
+				
+				
 				var file = $('#myFile').prop("files")[0];
+
+				 
+				formData1.append('imagefile', file);
+				 
+
 				formData1.append('data', JSON.stringify({
 					"productName": $("#product").val(),
 					"stock": $("#stock").val(),
 					"unit": $("#unit").val(),
 					"price": $("#price").val(),
-					"categoryId": $("#catagoryId").val(),
-					"imageId": $("#imageId").val(),
-					"userId": localStorage.getItem("userId", userId)
+					"categoryId": tempcategoryId,
+					"imageId": tempimageId,
+					"userId": localStorage.getItem("userId")
 				})),
 
-					formData1.append('imagefile', file);
- 
+					
+								 
 						$.ajax({
 							type: "PUT",
-							url: "http://localhost:8080/product/" + $("#productIdUpdate").val(),
-							data: formData,
+							url: "http://localhost:8080/product/" + tempId,
+							data: formData1,
 							contentType: false,
 							processData: false,
 
 							success: function (response, status) {
-
+								alert("success");
 								console.log(response);
 								console.log(status);
+							},
+							error: function (e){
+								alert("error");
 							}
 						})
 					 

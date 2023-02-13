@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -75,11 +76,11 @@ public class ProductController {
 			return new ResponseEntity<Object>(productService.getProductById(id), HttpStatus.OK);
 		 
 	}
-	
+
 	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Product> updateProduct(@Valid @RequestPart("data") String resquestProduct, @RequestPart("imagefile")
-	MultipartFile file, long id) throws Exception{
-		 
+	public ResponseEntity<Product> updateProduct(@Valid @RequestPart("data") String resquestProduct,
+			@RequestPart(value="imagefile", required = false) MultipartFile file, long id) throws Exception {
+
 		logger.info("updateProduct  product : " + resquestProduct);
 		
 		

@@ -183,7 +183,7 @@ public class ProductServiceimpl implements ProductService {
 			findById.setStocks(product.getStock());
 			
 			findById.setUnit(product.getUnit());
-			
+			findById.setPrice(product.getPrice());
 			
 			if(file !=null) {
 			String fileName = StringUtils.cleanPath(file.getOriginalFilename());
