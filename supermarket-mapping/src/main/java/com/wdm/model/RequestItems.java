@@ -20,8 +20,7 @@ public class RequestItems {
 	private long userId;
 	
 	
-	 @NotNull
-	 private String orderStatus;
+	 
 	 
 
 	public long getUserId() {
@@ -63,16 +62,6 @@ public class RequestItems {
 
 	public void setTotalprice(double totalprice) {
 		this.totalprice = totalprice;
-	}
-
-
-	public String getOrderStatus() {
-		return orderStatus;
-	}
-
-
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
 	}
 
 

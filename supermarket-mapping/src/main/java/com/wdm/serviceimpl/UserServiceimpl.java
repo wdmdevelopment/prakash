@@ -43,7 +43,7 @@ public class UserServiceimpl implements UserService {
 		return userRepo.save(userAccount);
 		}
 		catch (Exception e) {
-			throw new ProductCustomException(e.getMessage());
+			throw new UserNotFoundException("Please Enter the valid input");
 		}
 	}
 

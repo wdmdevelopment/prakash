@@ -33,7 +33,7 @@ public class Orders {
 	private LocalDateTime ordertime;
 	
 	@Column(name = "total_Amount")
-	private long totalAmount;
+	private double totalAmount;
 	
 	
 	 
@@ -44,7 +44,7 @@ public class Orders {
 	
 	 @ManyToOne(cascade = CascadeType.ALL)
 	 @JoinColumn(name = "userId")
-	 @JsonIgnore
+	
 	 private UserAccount user;
 	 
 	 
@@ -129,7 +129,16 @@ public long getOrderId() {
 
 
 
-public long getTotalAmount() {
+ 
+
+
+ 
+
+
+
+
+
+public double getTotalAmount() {
 		return totalAmount;
 	}
 
@@ -138,15 +147,10 @@ public long getTotalAmount() {
 
 
 
-	public void setTotalAmount(long totalAmount) {
+	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
-
-
-
-
- 
 
 
 

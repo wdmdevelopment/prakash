@@ -34,13 +34,12 @@ public class OrderController {
 	private static final Logger logger = LogManager.getLogger(OrderController.class);
 
 	@PostMapping("/user")
-	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestOrder,
-			@RequestParam("user") long userId) {
+	public ResponseEntity<Orders> saveOrder(@Valid @RequestBody RequestOrder resquestOrder) {
 
 		logger.info("Place the order given item TotalPrice={}, Ordertime={}", resquestOrder.getTotalAmount(),
 				resquestOrder.getOrdertime());
 
-		return new ResponseEntity<>(orderService.placeOrder(resquestOrder, userId), HttpStatus.CREATED);
+		return new ResponseEntity<>(orderService.placeOrder(resquestOrder), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")

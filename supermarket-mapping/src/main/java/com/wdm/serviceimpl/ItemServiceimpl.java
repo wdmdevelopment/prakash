@@ -1,5 +1,6 @@
 package com.wdm.serviceimpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,106 +48,46 @@ public class ItemServiceimpl implements ItemService {
 	public Cart saveItems(RequestItems requestitem) {
 		try {
 		 
-		 
-			Cart cart = cartRepo.findByUser(requestitem.getUserId());
+			 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
+						.orElseThrow(() -> new IdNotFoundException("userId not found"));
+			 
+			 Product product = productRepo.findById(requestitem.getProductId())
+						.orElseThrow(() -> new IdNotFoundException("product id not found"));
+			 
+			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
+			 
 			if(cart == null) {
 				cart = new Cart();
 				cart.setOrderStatus("ACTIVE");
 			} 
-			
-			System.out.println(cart);
-
+			 
 			Items items = new Items();
 
 			items.setQuantity(requestitem.getQuantity());
+			  
+			 items.setProduct(product);
 			 
+			 double totalPriceValue =  product.getPrice() * requestitem.getQuantity();
+			 
+			 
+			 items.setTotalPrice(totalPriceValue);
+			 
+			 List<Items> item2 = cart.getItem();
 			
-			Product product = productRepo.findById(requestitem.getProductId())
-			.orElseThrow(() -> new IdNotFoundException("product id not found"));
+			 item2.add(items);
+			   
+			 cart.setItem(item2);
+			  
 			
-			items.setProduct(product);
-			 items.setTotalPrice(requestitem.getTotalprice());
-			 
-			 
-			 items.setCart(cart);
-			 
-			 cart.setOrderStatus(requestitem.getOrderStatus());
-			 
-			 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
-						.orElseThrow(() -> new IdNotFoundException("userId not found"));
-			 
-			 List<Items> item = cart.getItem();
-			 item.add(items);
-			 
+			
 			 cart.setUser(userAccount);
 			 
 			 return cartRepo.save(cart);
 			 
-			
-			
-//			if(cartRepo.existsByUser(requestitem.getUserId())) {
-//				 
-//				Cart cart = cartRepo.findByUser(requestitem.getUserId());
-//				
-//				System.out.println(cart);
-//
-//				Items items = new Items();
-//
-//				items.setQuantity(requestitem.getQuantity());
-//				 
-//				
-//				Product product = productRepo.findById(requestitem.getProductId())
-//				.orElseThrow(() -> new IdNotFoundException("product id not found"));
-//				
-//				items.setProduct(product);
-//				 items.setTotalPrice(requestitem.getTotalprice());
-//				 
-//				 
-//				 items.setCart(cart);
-//				 
-//				 cart.setOrderStatus(requestitem.getOrderStatus());
-//				 
-//				 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
-//							.orElseThrow(() -> new IdNotFoundException("userId not found"));
-//				 
-//				 cart.setUser(userAccount);
-//				 
-//				 return cartRepo.save(cart);
-//				 
-//				 
-//				
-//			}
-//			else {
-//				
-//				Cart newCart = new Cart();
-//				
-//				
-//				Items items = new Items();
-//
-//				items.setQuantity(requestitem.getQuantity());
-//				 
-//				
-//				Product product = productRepo.findById(requestitem.getProductId())
-//				.orElseThrow(() -> new IdNotFoundException("product id not found"));
-//				
-//				items.setProduct(product);
-//				 items.setTotalPrice(requestitem.getTotalprice());
-//				 
-//				 items.setCart(newCart);
-//				 
-//				 newCart.setOrderStatus(requestitem.getOrderStatus());
-//				 
-//				 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
-//							.orElseThrow(() -> new IdNotFoundException("userId not found"));
-//				 
-//				 newCart.setUser(userAccount);
-//				 
-//				 return cartRepo.save(newCart);
-//				
-//			}
-			
+		 
 			 
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new ProductCustomException("Invalid " + e.getMessage());
 		}
 	}
@@ -173,17 +114,18 @@ public class ItemServiceimpl implements ItemService {
 
 	public Items updatecategory(RequestItems items, long id) {
 
-		Items items1 = itemRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found" + id));
+//		Items items1 = itemRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found" + id));
+//
+//		 
+//		items1.setQuantity(items.getQuantity());
+//		
+//		Product product = productRepo.findById(items.getProductId())
+//				.orElseThrow(() -> new IdNotFoundException("product id not found"));
+//				
+//		items1.setProduct(product);
 
-		 
-		items1.setQuantity(items.getQuantity());
-		
-		Product product = productRepo.findById(items.getProductId())
-				.orElseThrow(() -> new IdNotFoundException("product id not found"));
-				
-		items1.setProduct(product);
-
-		return itemRepo.save(items1);
+//		return itemRepo.save(items1);
+		return null;
 
 	}
 

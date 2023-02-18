@@ -15,6 +15,7 @@ import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestCart;
+import com.wdm.model.RequestItems;
 import com.wdm.repository.CartRepository;
 import com.wdm.repository.ItemsRepository;
 import com.wdm.repository.ProductMappingRespository;
@@ -37,48 +38,52 @@ public class CartServiceimpl implements CartService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CartServiceimpl.class);
 
-	public Cart saveCart(RequestCart requestCart) {
+	public Cart saveCart(RequestItems requestitem) {
 
 		logger.info("CartServiceimpl | cart is called");
 		try {
+			 
+			 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
+						.orElseThrow(() -> new IdNotFoundException("userId not found"));
+			 
+			 Product product = productRepo.findById(requestitem.getProductId())
+						.orElseThrow(() -> new IdNotFoundException("product id not found"));
+			 
+			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
+			 
+			if(cart == null) {
+				cart = new Cart();
+				cart.setOrderStatus("ACTIVE");
+			} 
+			 
+			Items items = new Items();
+
+			items.setQuantity(requestitem.getQuantity());
+			  
+			 items.setProduct(product);
+			 
+			 double totalPriceValue =  product.getPrice() * requestitem.getQuantity();
+			 
+			 
+			 items.setTotalPrice(totalPriceValue);
+			 
+			 List<Items> item2 = cart.getItem();
 			
-			UserAccount account = userRepo.findById(requestCart.getUserId())
-					.orElseThrow(() -> new IdNotFoundException("user id not found"));
-
+			 item2.add(items);
+			   
+			 cart.setItem(item2);
+			  
 			
-			Product product = productRepo.findById(requestCart.getProductId())
-					.orElseThrow(() -> new IdNotFoundException("product id not found"));
 			
-		
-			Cart cart = new Cart();
-  
-		Items items = new  Items();
-		
-		
-
-		items.setQuantity(requestCart.getQuantity());
-
-		items.setTotalPrice(requestCart.getTotalPrice());
-
-		items.setProduct(product);
-
-		List<Items> items1 = new ArrayList<Items>();
-
-		items1.add(items);
-
-			cart.setItem(items1);
-			cart.setOrderStatus(requestCart.getOrderStatus());
-
-			
-			cart.setUser(account);
-			
-		return cartRepo.save(cart);
-		
-		}
-		
+			 cart.setUser(userAccount);
+			 
+			 return cartRepo.save(cart);
+			 
+	}
 		catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
-		}
+	}
+		
 	}
 
 	public void deleteById(long id) {

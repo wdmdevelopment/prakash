@@ -30,7 +30,7 @@ public class Items {
 	@JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
 	private Product product;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "cartId")
 	@JsonIgnore
 	private Cart cart;

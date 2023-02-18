@@ -1,13 +1,14 @@
 package com.wdm.entity;
 
-import java.sql.Date;
+ 
+import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -27,7 +28,7 @@ public class User {
 	private String lastName;
 	
 	@Column(name = "date_of_birth")
-	private Date dob;
+	private LocalDate dob;
 	
 	@Column(name = "password")
 	private String password;
@@ -41,18 +42,15 @@ public class User {
 	@Column(name = "about")
 	private String about;
 	
-	@Column(name = "one_time_password")
-	private String ontimePassword;
+	 
 	
-	@Column(name = "otp_request_time")
-	private Date otpRequestedTime;
-
-	
-	
-	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private PostEntity postentity;
+	private List<Post> post;
 	
+	
+	
+ 
 	
 	
 	
@@ -83,13 +81,17 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public Date getDob() {
+	 
+
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
+
+	 
 
 	public String getPassword() {
 		return password;
@@ -123,24 +125,21 @@ public class User {
 		this.about = about;
 	}
 
-	public String getOntimePassword() {
-		return ontimePassword;
+	 
+ 
+	
+	
+	
+	public List<Post> getPost() {
+		return post;
 	}
 
-	public void setOntimePassword(String ontimePassword) {
-		this.ontimePassword = ontimePassword;
+	public void setPost(List<Post> post) {
+		this.post = post;
 	}
 
-	public Date getOtpRequestedTime() {
-		return otpRequestedTime;
-	}
-
-	public void setOtpRequestedTime(Date otpRequestedTime) {
-		this.otpRequestedTime = otpRequestedTime;
-	}
-
-	public User(String userId, String fisrtName, String lastName, Date dob, String password, String email, long phoneNo,
-			String about, String ontimePassword, Date otpRequestedTime) {
+	public User(String userId, String fisrtName, String lastName, LocalDate dob, String password, String email,
+			long phoneNo, String about, List<Post> post) {
 		super();
 		this.userId = userId;
 		this.fisrtName = fisrtName;
@@ -150,12 +149,9 @@ public class User {
 		this.email = email;
 		this.phoneNo = phoneNo;
 		this.about = about;
-		this.ontimePassword = ontimePassword;
-		this.otpRequestedTime = otpRequestedTime;
+		this.post = post;
 	}
-	
-	
-	
+
 	public User()
 	{
 		

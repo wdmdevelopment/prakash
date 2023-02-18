@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
 import com.wdm.model.RequestItems;
+import com.wdm.response.CartResponse;
 import com.wdm.service.ItemService;
 
 @RestController
@@ -37,25 +38,27 @@ public class ItemsController {
 	@PostMapping
 	public ResponseEntity<Cart> saveItem(@Valid @RequestBody RequestItems resquestItems) {
 		
-		logger.info("items saved, Quantity={}, Price={}", resquestItems.getQuantity(), resquestItems.getQuantity());
+		logger.info("items saved, Quantity={}, totalPrice={}", resquestItems.getQuantity(), resquestItems.getTotalprice());
 		
 		return new ResponseEntity<Cart>(itemservice.saveItems(resquestItems), HttpStatus.CREATED);
 	}
 	
 	
 	@GetMapping
-	public ResponseEntity<List<RequestItems>> getItems(){
+	public ResponseEntity<List<CartResponse>> getItems(){
 		
 		logger.info("To get all products");
 		
 		List<Items> items = itemservice.getItems();
 		
-		List<RequestItems> reitem = new ArrayList<>();
+		List<CartResponse> reitem = new ArrayList<CartResponse>();
 		
 		for(Items item : items) {
 			 
-			RequestItems reqitem = new RequestItems();
+			CartResponse reqitem = new CartResponse();
 			reqitem.setQuantity(item.getQuantity());
+			reqitem.setTotalPrice(item.getTotalPrice());
+			
 			 
 			reqitem.setProductId(item.getProduct().getProductId());
 			reitem.add(reqitem);

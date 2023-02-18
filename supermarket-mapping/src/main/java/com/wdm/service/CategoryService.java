@@ -21,10 +21,9 @@ public interface CategoryService {
 	public Category updatecategory(RequestCategory Category, long id);
 
 	public void deleteById(long id);
-
-	 
-	
+ 
 	public List<Category> findbyOrder();
 	
+	public Category findbyCategoryName(String name);
 		
 }

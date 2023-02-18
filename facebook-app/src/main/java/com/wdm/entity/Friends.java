@@ -1,10 +1,12 @@
 package com.wdm.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -16,13 +18,13 @@ public class Friends {
 	@Column(name = "friendsId")
 	private String friendId;
 	
-	@ManyToMany
-	@JoinColumn(name = "requestUser", referencedColumnName = "requestUserId")
-	private User requestUser;
-	
-	@ManyToMany
-	@JoinColumn(name = "acceptUser", referencedColumnName = "acceptUserId")
-	private User acceptUser;
+//	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+//	@JoinColumn(name = "requestUser", referencedColumnName = "user_id")
+//	private User requestUser;
+//	
+//	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+//	@JoinColumn(name = "acceptUser", referencedColumnName = "user_id")
+//	private User acceptUser;
 	
 	@Column(name = "requeststatus")
 	private String RequestStatus;
@@ -35,21 +37,9 @@ public class Friends {
 		this.friendId = friendId;
 	}
 
-	public User getRequestUser() {
-		return requestUser;
-	}
+	 
 
-	public void setRequestUser(User requestUser) {
-		this.requestUser = requestUser;
-	}
-
-	public User getAcceptUser() {
-		return acceptUser;
-	}
-
-	public void setAcceptUser(User acceptUser) {
-		this.acceptUser = acceptUser;
-	}
+	 
 
 	public String getRequestStatus() {
 		return RequestStatus;
@@ -59,11 +49,10 @@ public class Friends {
 		RequestStatus = requestStatus;
 	}
 
-	public Friends(String friendId, User requestUser, User acceptUser, String requestStatus) {
+	public Friends(String friendId, String requestStatus) {
 		super();
 		this.friendId = friendId;
-		this.requestUser = requestUser;
-		this.acceptUser = acceptUser;
+		 
 		RequestStatus = requestStatus;
 	}
 	

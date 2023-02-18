@@ -13,8 +13,7 @@ public class RequestOrder {
 	
 	@NotNull
 	private long cartId;
-	@NotNull  
-	private int quantity;
+	 
 
 	@NotNull
 	private double totalAmount;
@@ -36,13 +35,7 @@ public class RequestOrder {
 		this.cartId = cartId;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+	 
 
 	public double getTotalAmount() {
 		return totalAmount;

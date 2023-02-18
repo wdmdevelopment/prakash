@@ -26,6 +26,7 @@
       <div class="col-12 col-lg-9 col-xl-7">
         <div class="card shadow-2-strong card-registration rounded">
           <div class="card-body p-4 p-md-5">
+            <div id="message" style="color: red;"></div>
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
             <form id="myForm"> 
 
@@ -57,7 +58,7 @@
 
                   <div class="form-outline">
                     <label class="form-label" for="emailAddress"  >Email</label>
-                  <input required type="email" id="useremail"  class="form-control form-control-lg" required/>
+                  <input type="email" id="useremail"  class="form-control form-control-lg" required/>
                   <div class="error" style="color: red;" id="emailError"></div>
                   </div>
 
@@ -66,7 +67,7 @@
 
                   <div class="form-outline">
                     <label class="form-label" for="password" >Password</label>
-                    <input required type="tel" id="paswd" class="form-control form-control-lg" required/>
+                    <input  type="text" id="paswd" class="form-control form-control-lg" required/>
                     <div class="error" style="color: red;" id="passError"></div>
                   </div>
 
@@ -89,7 +90,7 @@
               </div>
 
               <div class="mt-4 pt-2">
-                <input type="button" class="btn bg-warning" style="background-color: #F0C12B;" id="inputdata" value="Submit"/>
+                <input type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn bg-warning" style="background-color: #F0C12B;" id="inputdata" value="Submit"/>
               </div>
               
 
@@ -192,8 +193,10 @@
       window.location = "Login.html";
 		},
       error: function (e) {
+       
+        console.log(e);
+        $("#message").html(JSON.stringify(e));
         $('#myForm')[0].reset();
-       alert('Please enter valid data');
       }
 	})
 
@@ -208,7 +211,23 @@
 
 </script>
 
-
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="message"> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="loginLoad()" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="loginLoad()" data-bs-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     </body>
 </html>

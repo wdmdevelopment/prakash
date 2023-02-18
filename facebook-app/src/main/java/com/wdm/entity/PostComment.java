@@ -18,7 +18,7 @@ public class PostComment {
 	private String commentId;
 	
 	@OneToOne
-	private PostEntity post;
+	private Post post;
 	
 	@ManyToOne
 	private User user;
@@ -37,11 +37,11 @@ public class PostComment {
 		this.commentId = commentId;
 	}
 
-	public PostEntity getPost() {
+	public Post getPost() {
 		return post;
 	}
 
-	public void setPost(PostEntity post) {
+	public void setPost(Post post) {
 		this.post = post;
 	}
 
@@ -69,7 +69,7 @@ public class PostComment {
 		this.commentTime = commentTime;
 	}
 
-	public PostComment(String commentId, PostEntity post, User user, String commentText, Date commentTime) {
+	public PostComment(String commentId, Post post, User user, String commentText, Date commentTime) {
 		super();
 		this.commentId = commentId;
 		this.post = post;

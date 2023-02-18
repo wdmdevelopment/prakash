@@ -73,6 +73,9 @@ public class ProductServiceimpl implements ProductService {
 			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
 					.orElseThrow(() -> new IdNotFoundException("Id Not Found"));
 			
+			Category category = categoryRepo.findById(product.getCategoryId())
+					.orElseThrow(() -> new IdNotFoundException("Id not found"));
+			
 			String userId = useraccount.getuserRoll();
 			 	 
 			if(userId.equalsIgnoreCase("admin")) {
@@ -86,8 +89,7 @@ public class ProductServiceimpl implements ProductService {
 				
 				product1.setPrice(product.getPrice());
 				
-				Category category = categoryRepo.findById(product.getCategoryId())
-						.orElseThrow(() -> new IdNotFoundException("Id not found"));
+				
 				 
 				product1.setCategory(category);
 				
@@ -110,7 +112,7 @@ public class ProductServiceimpl implements ProductService {
 			}
 
 		} catch (Exception e) {
-			throw new ProductCustomException("Invalid" + e.getMessage());
+			throw new ProductCustomException(e.getMessage());
 		}
 	}
 	
@@ -129,11 +131,10 @@ public class ProductServiceimpl implements ProductService {
 		try {
 
 			List<ProductResponse> collect = productRepo.findAllOrderByProductIdDesc().stream()
-					.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryId(),
-							 e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(),
-							e.getProductImage().getImageId()))
+					.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(),
+							e.getCategory().getCategoryId(), e.getCategory().getCategoryName(), e.getPrice(),
+							e.getProductImage().getImageData(), e.getProductImage().getImageId()))
 					.collect(Collectors.toList());
-			
 		
 		
 		

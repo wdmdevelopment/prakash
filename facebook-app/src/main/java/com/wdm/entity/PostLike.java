@@ -18,7 +18,7 @@ public class PostLike {
 	private String likeId;
 	
 	 @OneToOne
-	 private PostEntity post;
+	 private Post post;
 	 
 	 @ManyToOne
 	 private User user;
@@ -33,11 +33,11 @@ public class PostLike {
 		this.likeId = likeId;
 	}
 
-	public PostEntity getPost() {
+	public Post getPost() {
 		return post;
 	}
 
-	public void setPost(PostEntity post) {
+	public void setPost(Post post) {
 		this.post = post;
 	}
 
@@ -57,7 +57,7 @@ public class PostLike {
 		this.liketime = liketime;
 	}
 
-	public PostLike(String likeId, PostEntity post, User user, Date liketime) {
+	public PostLike(String likeId, Post post, User user, Date liketime) {
 		super();
 		this.likeId = likeId;
 		this.post = post;

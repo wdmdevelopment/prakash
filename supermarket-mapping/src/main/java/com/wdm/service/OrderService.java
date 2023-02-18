@@ -11,7 +11,7 @@ import com.wdm.response.OrderResponse;
 @Service
 public interface OrderService {
 	
-	public Orders placeOrder(RequestOrder requestOrder, long userId);
+	public Orders placeOrder(RequestOrder requestOrder);
 	
 	public void cancelOrder(long id) throws Exception;
 	

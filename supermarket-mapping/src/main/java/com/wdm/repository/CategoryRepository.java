@@ -17,6 +17,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 		
 	
-	 
+//	@Query(value ="select * from testproject.category  WHERE name LIKE %:name%" , nativeQuery = true )
+	
+	public Category findByCategoryNameContaining(String name);
 
 }

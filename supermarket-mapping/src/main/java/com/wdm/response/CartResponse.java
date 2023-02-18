@@ -6,10 +6,11 @@ public class CartResponse {
 
 	private int quantity;
 
-	private String productName;
+	private String orderStatus;
 	
+	private long cartId;
 	
-	
+	private long productId;
 	
 
 	public double getTotalPrice() {
@@ -28,12 +29,29 @@ public class CartResponse {
 		this.quantity = quantity;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
+	public long getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+
+	public long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(long productId) {
+		this.productId = productId;
+	}
+
+	 
 }

@@ -2,14 +2,9 @@ package com.wdm.serviceimpl;
 
  
 import java.util.List;
-import java.util.Optional;
- 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.wdm.entity.Category;
- 
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
@@ -31,10 +26,11 @@ public class CategoryServiceimpl implements CategoryService {
 
 	public Category saveCategory(RequestCategory requestCategory) {
 		try {
-			UserAccount findById = userRepo.findById(requestCategory.getUserId()).orElseThrow(() -> new IdNotFoundException("userId not found"));
-			
-		Category save;
-		  
+			UserAccount findById = userRepo.findById(requestCategory.getUserId())
+					.orElseThrow(() -> new IdNotFoundException("userId not found"));
+
+			Category save;
+
 			String getuserRoll = findById.getuserRoll();
 			if(getuserRoll.equalsIgnoreCase("admin")) {
 				
@@ -64,6 +60,9 @@ public class CategoryServiceimpl implements CategoryService {
 	
 
 	public Category getCategory(long id) {
+		 
+		
+		
 		
 		Category category;
 		
@@ -84,14 +83,35 @@ public class CategoryServiceimpl implements CategoryService {
 	 
 	public Category updatecategory(RequestCategory category, long id) {
 		
-		Category category2 = categoryRepo.findById(id).orElseThrow(() -> new IdNotFoundException("Not Found"+id));
+		try {
+			UserAccount findById = userRepo.findById(category.getUserId())
+					.orElseThrow(() -> new IdNotFoundException("userId not found"));
+
+				
+
+			String getuserRoll = findById.getuserRoll();
+			if(getuserRoll.equalsIgnoreCase("admin")) {
+				
+
+				Category category1 = categoryRepo.
+						findById(id).orElseThrow(() -> new IdNotFoundException("categoryId not found"));
+
+				category1.setCategoryName(category.getCategoryName());
+
+				return 	categoryRepo.save(category1);
+				
+			}
 			
-		
-		
-		category2.setCategoryName(category.getCategoryName());
+			else {
+				throw new ProductCustomException("You are a not a admin"+getuserRoll);
+			}
 		 
-		 	return categoryRepo.save(category2);
-		 
+			
+		}
+		
+		catch (Exception e) {
+			throw new ProductCustomException("Invalid"+e.getMessage());
+		}
 		 
 	}
 
@@ -110,6 +130,18 @@ public class CategoryServiceimpl implements CategoryService {
 		return categoryRepo.findByOrdercategory();
 	}
 	 
+	public Category findbyCategoryName(String name) {
+		Category category= null;
+		try {
+			category = categoryRepo.findByCategoryNameContaining(name);
+		}
+		catch (Exception e) {
+			throw new ProductCustomException(e.getMessage());
+		}
+		
+		
+		return category;
+	}
 	
 
 }

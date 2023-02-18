@@ -62,16 +62,17 @@
 					<li class="nav-item" style="display: block;">
 						<a class="nav-link category" href="Category.html">Category</a>
 					</li>
+					
+					<li class="nav-item" style="display: block;">
+						<a class="nav-link order"  href="Orders.html">Orders</a>
+						 
+					</li>
 					<li class="nav-item shoppig-cart"   style="display: block;">
 						<div> <span class="text-white" id="cart-count">0</span> <a href=" " class="float-top"
 								data-bs-toggle="modal" data-bs-target="#exampleModal5"><i class="fa fa-shopping-cart"
 									style="font-size: 25px; color: white; "></i></a></div>
 					</li>
-					<li class="nav-item" style="display: block;">
-						<a class="nav-link order"  href="Orders.html">Orders</a>
-						 
-					</li>
-					<li class="nav-item" style="padding-right: 2%;">
+					<li class="nav-item" style="padding-left: 2%;">
 						<a href=""><img src="./Images/profile-icon.jpg" class="rounded-pill" alt="graphic design logo"
 								height="40" width="40" /></a>
 					</li>
@@ -91,8 +92,29 @@
 	</nav>
 
 
+<!-- cart model -->
+<div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">My Cart</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<div id="cart">
 
+				</div>
+				<div class="total position-sticky py-3 bg-white" style="bottom: 0">
 
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Place Order</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 
 
@@ -102,10 +124,12 @@
 	<script>
 
 
-
+		
 
 
 		$(document).ready(function () {
+
+			document.getElementById("fillter").size = "50";
 
 			if (localStorage.getItem("userRole") === "Admin") {
 
@@ -149,7 +173,7 @@
 		let name = localStorage.getItem('firstName') ? localStorage.getItem('firstName') : ''
 
 		if (name == '') {
-			alert('login');
+				
 			window.location = "Login.html";
 		}
 		function clearUser() {

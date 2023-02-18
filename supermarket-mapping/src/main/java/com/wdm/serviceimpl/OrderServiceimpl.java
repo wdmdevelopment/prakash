@@ -37,14 +37,16 @@ public class OrderServiceimpl implements OrderService {
 	@Autowired
 	ItemsRepository itemRepo;
 
-	public Orders placeOrder(RequestOrder requestOrder, long userId) {
+	public Orders placeOrder(RequestOrder requestOrder) {
 
 		Orders orders = new Orders();
 		try {
 
-			Cart findBycart = cartRepo.findById(userId)
-					.orElseThrow(() -> new IdNotFoundException(userId + " Not Found "));
-
+			Cart findBycart = cartRepo.findById(requestOrder.getCartId())
+					.orElseThrow(() -> new IdNotFoundException(requestOrder.getCartId() + " Not Found "));
+				
+			findBycart.setOrderStatus("INACTIVE");
+			
 			orders.setCart(findBycart);
 
 			UserAccount userAccount = userRepo.findById(requestOrder.getUserId())
@@ -53,15 +55,27 @@ public class OrderServiceimpl implements OrderService {
 			orders.setUser(userAccount);
 
 			orders.setOrdertime(requestOrder.getOrdertime());
-
-			Items findByItem = itemRepo.findById(userId)
-					.orElseThrow(() -> new IdNotFoundException(userId + " Not Found "));
-
-			if (findByItem.getQuantity() < requestOrder.getQuantity()) {
-				throw new ProductCustomException("INSUFFICIENT_QUANTITY");
+			
+			
+			List<Items> item = findBycart.getItem();
+			double orderTotalAmount = 0;
+			for(Items items : item) {
+				
+				orderTotalAmount+= items.getTotalPrice();
+				
 			}
+			
+			
+			orders.setTotalAmount(orderTotalAmount);
 
-			findByItem.setQuantity(findByItem.getQuantity() - requestOrder.getQuantity());
+//			Items findByItem = itemRepo.findById(userId)
+//					.orElseThrow(() -> new IdNotFoundException(userId + " Not Found "));
+
+//			if (findByItem.getQuantity() < requestOrder.getQuantity()) {
+//				throw new ProductCustomException("INSUFFICIENT_QUANTITY");
+//			}
+
+//			findByItem.setQuantity(findByItem.getQuantity() - requestOrder.getQuantity());
 
 			return OrderRepo.save(orders);
 

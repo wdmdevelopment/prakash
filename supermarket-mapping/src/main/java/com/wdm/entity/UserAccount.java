@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.UniqueElements;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
  
 @Entity
 @Table(name = "User")
@@ -33,7 +35,7 @@ public class UserAccount {
 	private String userRole;
 
 	@OneToMany(mappedBy = "user")
-	
+	 @JsonIgnore
 	private List<Orders> order;
 
 	

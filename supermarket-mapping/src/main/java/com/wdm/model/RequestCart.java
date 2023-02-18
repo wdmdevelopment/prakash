@@ -20,6 +20,7 @@ public class RequestCart {
 	 @NotNull
 		private long userId;
 	 
+	 
 
 	public int getQuantity() {
 		return quantity;

@@ -1,6 +1,7 @@
 package com.wdm.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -75,6 +76,29 @@ public class Category {
 	
 	public Category() {
 		
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(categoryId, categoryName, product);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		return categoryId == other.categoryId && Objects.equals(categoryName, other.categoryName)
+				&& Objects.equals(product, other.product);
+	}
+
+	@Override
+	public String toString() {
+		return "Category [categoryId=" + categoryId + ", categoryName=" + categoryName + ", product=" + product + "]";
 	}
 	
 	

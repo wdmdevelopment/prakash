@@ -12,6 +12,7 @@ import com.wdm.entity.Items;
 public interface ItemsRepository extends JpaRepository<Items, Long> {
 	
 	 
+	 
 
 
 }

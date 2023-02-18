@@ -30,6 +30,7 @@ public class SuperMarketServiceimpl implements SuperMarketService {
 		Supermarket supermarket = new Supermarket();
 
 		supermarket.setSuperMarketName(requestSuperMarket.getSuperMarketName());
+		
 		Address address = new Address();
 		address.setdoorNo(requestSuperMarket.getDoorNo());
 		address.setState(requestSuperMarket.getState());

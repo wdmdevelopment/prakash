@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wdm.entity.Cart;
 
 import com.wdm.model.RequestCart;
+import com.wdm.model.RequestItems;
 import com.wdm.response.CartResponse;
 import com.wdm.service.CartService;
 
@@ -32,34 +33,37 @@ public class CartController {
 	@Autowired
 
 	CartService cartservice;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
-	
+
 	@PostMapping
-	public ResponseEntity<Cart> saveCart(@Valid @RequestBody RequestCart resquestCart) {
-		 
-		logger.info("save new product = TotalPrice={}, productId= {} " , resquestCart.getTotalPrice(), resquestCart.getProductId());
-		
-		return new ResponseEntity<>(cartservice.saveCart(resquestCart), HttpStatus.CREATED);
+	public ResponseEntity<Cart> saveCart(@Valid @RequestBody RequestItems requestitem) {
+
+		logger.info("save new product = TotalPrice={}, productId= {} ", requestitem.getTotalprice(),
+				requestitem.getProductId());
+
+		return new ResponseEntity<>(cartservice.saveCart(requestitem), HttpStatus.CREATED);
 	}
-	
-	
+
 	@GetMapping
-	public ResponseEntity<Object> getAll() {
+	public ResponseEntity<List<Cart>> getAll() {
+
+		logger.info("get All cart ");
 		
-		logger.info("get All product ");
+//		List<Cart> cart = ;
+//		
+//		List<CartResponse> res = new ArrayList<>();
+//		
+//		for(Cart carts: cart) {
+//			CartResponse rescart = new CartResponse();
+//			rescart.setCartId(carts.getCartId());
+//			
+//			
+//			
+//			res.add(rescart);
+//		}
 		
-		List<Cart> cart = cartservice.getAllCart();
-		
-		List<CartResponse> res = new ArrayList<>();
-		
-		for(Cart carts: cart) {
-			CartResponse rescart = new CartResponse();
-			 
-			res.add(rescart);
-		}
-		
-		return new ResponseEntity<Object>( res, HttpStatus.OK);
+		return new ResponseEntity<List<Cart>>( cartservice.getAllCart(), HttpStatus.OK);
 	}
 
 	

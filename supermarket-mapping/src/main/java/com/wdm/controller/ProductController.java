@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
- 
 import com.wdm.entity.Product;
 import com.wdm.model.RequestLogin;
 import com.wdm.model.RequestProduct;
@@ -42,89 +41,70 @@ public class ProductController {
 	ProductService productService;
 	private static final Logger logger = LogManager.getLogger(ProductController.class);
 
-	@PostMapping (consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	
-	public ResponseEntity<Product> save(@Valid @RequestPart("data") String resquestProduct, @RequestPart("imagefile")
-		MultipartFile file) throws IOException {
- 
-		logger.info("save new product - resquestProduct= {}, file={} ", resquestProduct , file.getOriginalFilename());
-		
+	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+
+	public ResponseEntity<Product> save(@RequestPart("data") String resquestProduct,
+			@RequestPart("imagefile") MultipartFile file) throws IOException {
+
+		logger.info("save new product - resquestProduct= {}, file={} ", resquestProduct, file.getOriginalFilename());
+
 		Product saveProduct = productService.saveProduct(resquestProduct, file);
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body(saveProduct);
 	}
 
 	@GetMapping
 	public ResponseEntity<List<ProductResponse>> getAll() {
-		
-		 
-		
-	
+
 		logger.info(" getAllproduct product :");
-		
+
 		return new ResponseEntity<List<ProductResponse>>(productService.getAllproduct(), HttpStatus.OK);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getByid(@PathVariable("id") long id) {
-		
-			
-			 
 
-			logger.info("getProductById  productId : " + id);
-			
-			return new ResponseEntity<Object>(productService.getProductById(id), HttpStatus.OK);
-		 
+		logger.info("getProductById  productId : " + id);
+
+		return new ResponseEntity<Object>(productService.getProductById(id), HttpStatus.OK);
+
 	}
 
-	@PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Product> updateProduct(@Valid @RequestPart("data") String resquestProduct,
-			@RequestPart(value="imagefile", required = false) MultipartFile file, long id) throws Exception {
+	@PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<Product> updateProduct(@RequestPart("data") String resquestProduct,
+			@RequestPart(value = "imagefile", required = false) MultipartFile file, @PathVariable("id") long id)
+			throws Exception {
 
 		logger.info("updateProduct  product : " + resquestProduct);
-		
-		
-		
+
 		return new ResponseEntity<Product>(productService.updateProduct(resquestProduct, file, id), HttpStatus.OK);
 	}
-	
-	
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteproduct(@PathVariable("id") long id) {
-		
+
 		logger.info("deleteproduct  product : " + id);
-		
-			  productService.deletebyId(id);
+
+		productService.deletebyId(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 
 	}
- 
-	@GetMapping("/productname")
-	public ResponseEntity<List<ProductResponse>> filterbyproduct(@RequestParam(value="productname",
-				required = false) String name) 
-	{
-	 		 
 
-			logger.info("getProductById  productId : " + name);
-			
-			return new ResponseEntity<List<ProductResponse>>(productService.filterbyId(name), HttpStatus.OK);
-		 
+	@GetMapping("/productname")
+	public ResponseEntity<List<ProductResponse>> filterbyproduct(
+			@RequestParam(value = "productname", required = false) String name) {
+
+		logger.info("getProductById  productId : " + name);
+
+		return new ResponseEntity<List<ProductResponse>>(productService.filterbyId(name), HttpStatus.OK);
+
 	}
-	
-	
-	
-	@GetMapping("/categoryId")	
-	public ResponseEntity<?> loggingValidation(@RequestParam("id") long categoryId){
-		
+
+	@GetMapping("/categoryId")
+	public ResponseEntity<?> loggingValidation(@RequestParam("id") long categoryId) {
+
 		return new ResponseEntity<>(productService.getBycategory(categoryId), HttpStatus.OK);
-		
+
 	}
-	
-	
-	
-	 
-	
-	
 
 }

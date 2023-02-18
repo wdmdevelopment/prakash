@@ -20,14 +20,7 @@
     </head>
 <body>
 
-  
-
-
-
-
-
-
-
+   
 
     <a href="Login.html"></a>
     <div class="bg-blur">
@@ -41,7 +34,7 @@
                  
                   <div>
                   <div class="mb-md-5">
-                    <div id="message" style="color: red;"></div>
+                    
                     <h2 class="fw-bold mb-5 text-center">Login</h2>
                   
                     <div class="form-label">
@@ -60,7 +53,7 @@
       
                     
       
-               <button id="butsubmit" class="mt-mb-5 pb-lg-2 btn btn-warning text-center rounded" type="button">Login</button>
+               <button id="butsubmit" data-bs-toggle="modal" data-bs-target="#exampleModal" class="mt-mb-5 pb-lg-2 btn btn-warning text-center rounded" type="button">Login</button>
       
                   
                   <div>
@@ -76,22 +69,30 @@
       </form>
       </section>
       </div>
+ 
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p id="message"> </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" onclick="indexLoad()" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" onclick="indexLoad()" data-bs-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-    
-    
 
 
   <script>
-
-
-
-
-
-
-
-
-
+ 
 $(document).ready(function(){
     
    
@@ -173,8 +174,9 @@ $(document).ready(function(){
                     data:{"emailId":email,"password":pass},
                     
                     success:function(response){
-                      $("#message").text('');
-                      alert("success");
+                      
+
+                      
 
                       localStorage.setItem('emailId', response.emailId);
                       localStorage.setItem('userId', response.userId);
@@ -182,25 +184,27 @@ $(document).ready(function(){
                       localStorage.setItem('lastName', response.lastName);
                       localStorage.setItem('userRole', response.userRoll);
                       
+                      
+                      $("#message").append("You login Successfully");
                      
-                     
-                      window.location = "index.html";
                       
                       $('#loginform')[0].reset();
                         
                     },
                       error: function(e){
+                        $("#message").empty();
+                        $("#message").append(JSON.stringify(e.responseJSON.message));
                         
-                        var msg = "Please enter the Valid email and password";
-                        
-                        $("#message").html(msg);
-
                       }
                 });
             }
         });
     });
     
+    function indexLoad(){
+ 
+      window.location = "index.html";
+    }
       </script>
 </body>
 

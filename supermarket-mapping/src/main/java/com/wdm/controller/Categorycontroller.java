@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.Category;
 
 import com.wdm.model.RequestCategory;
+import com.wdm.response.ProductResponse;
 import com.wdm.service.CategoryService;
 
 @RestController
@@ -72,11 +74,25 @@ public class Categorycontroller {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> updateCategory(@RequestBody RequestCategory Category, @PathVariable("id") long id) {
+	public ResponseEntity<Category> updateCategory(@RequestBody RequestCategory Category, @PathVariable("id") long id) {
 
-		categoryservice.updatecategory(Category, id);
+			
 		logger.info("update the category" + id);
-		return new ResponseEntity<>(HttpStatus.OK);
+		
+		return new ResponseEntity<>(categoryservice.updatecategory(Category, id), HttpStatus.OK);
 	}
+	
+	
+	@GetMapping("/categoryname")
+	public ResponseEntity<Category> filterbyproduct(
+			@RequestParam(value = "categoryname", required = false) String name) {
+
+		logger.info("getProductById  productId : " + name);
+
+		return new ResponseEntity<Category>(categoryservice.findbyCategoryName(name), HttpStatus.OK);
+
+	}
+	
+	
 
 }

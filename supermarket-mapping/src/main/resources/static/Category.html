@@ -43,7 +43,7 @@
                    
                 
              $.each(responseText, function (index, item) {
-   $("#categoryName").append('<tr><td>'+item.categoryName+'</td><td><div style="padding-right:5%;><button" onclick="deleteCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart" ><i class="fas fa-trash-alt"></i></button></div></td><td style="width: 10%;"><button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart">  <i class="fa-solid fa-pen-to-square"></i></button></td></tr>');
+   $("#categoryName").append('<tr><td>'+item.categoryName+'</td><td class="text-center"><div style="padding-right:5%;><button" onclick="deleteCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart" ><i class="fas fa-trash-alt"></i></button></div></td><td class="text-center "><button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart">  <i class="fa-solid fa-pen-to-square"></i></button></td></tr>');
                 
                 });
                 }
@@ -68,10 +68,11 @@ function deleteCategory(categoryId){
 
 
 }
- 
-function editCategory(categoryId){
+var categoryName ="";
+var categoryId = "";
+function editCategory(cateId){
      
-       
+     
     document.getElementById("exampleModalLabel-add").hidden = true;
     document.getElementById("exampleModalLabel-update").hidden = false;
     document.getElementById("adding").hidden = true;
@@ -79,46 +80,38 @@ function editCategory(categoryId){
     
     $.ajax({
 				dataTypa: "JSON",
-				url: "http://localhost:8080/category/"+categoryId,
+				url: "http://localhost:8080/category/"+cateId,
+                contentType: 'application/json',
 				type: "GET",
                 success: function (responseText, status) { 
                   
-                    var categoryName = $("#category").val(responseText.categoryName);
-               
-                    $("#update").click(function () {
-                        
-                        editcategory1(categoryId);
+                    categoryName = $("#category").val(responseText.categoryName);
 
-                })
+                        categoryId =responseText.categoryId;
+                
         }
     })
 
 }
 
-function editcategory1(categoryId)
-{
-
-    console.log(categoryId);
-    if(!categoryName==$("#category").val())
-            {
-
-                var categoryName = $("#category").val();
+function editcategory1()
+{  
  
                 var details = {
                     "userId": localStorage.getItem("userId"),
-                    'categoryName': categoryName
+                    "categoryName": $("#category").val()
 
                 }
-                   
+                   console.log(categoryId);
                 $.ajax({
  
                     dataTypa: "JSON",
-                    url: "http://localhost:8080/category"+categoryId,
+                    url: "http://localhost:8080/category/"+categoryId,
                     type: "PUT",
                     data: JSON.stringify(details),
                     contentType: 'application/json',
                     success: function (responseupdate, status) {
-                       console.log(responseupdate);
+                       console.log(status);
                         alert("success");
 
                         $('#formValue')[0].reset();
@@ -126,12 +119,12 @@ function editcategory1(categoryId)
                     },
                     error: function (e, status) {
                         console.log(JSON.stringify(e));
-                        alert("error");
+                        alert(status);
                     }
 
                 })
             }
-}
+
 
 
 
@@ -186,18 +179,21 @@ function addCategory(){
 
 	</section>
     
+    
      
+    
 	<div class="container mt-5">
        
         <div class="row">
+            
             <div class="col-lg-12">
-                <button type="button" class="mt-5 btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Category</button>
-        <table class="table table-hover" style="margin-top: 12%; ">
+                <div style="padding-top:2%;"></div><button type="button" class="mt-5 btn btn-warning mt-3 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" >Add Category</button></div>
+        <table class="table table-hover mt-3">
         <thead class="thead-dark bg-secondary text-white">
             <tr>
                 <th>category name</th>
                  
-                <th colspan="2">Action</th>
+                <th colspan="2" class="text-center">Action</th>
                 
                 
             </tr>	
@@ -231,6 +227,8 @@ function addCategory(){
                                         <label class="form-label" for="product">category-Name</label>
                                  <input type="text" id="category" class="form-control form-control-lg"
                                             required />
+                                <input type="text" id="categoryId" class="form-control form-control-lg"
+                                            hidden />
 
                                     </div>
                                 </form>
@@ -244,7 +242,7 @@ function addCategory(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-warning" onclick="addCategory()" data-bs-dismiss="modal" id="adding">Add</button>
-         <button type="button" class="btn btn-warning" id="update"   data-bs-dismiss="modal" hidden>update</button>
+         <button type="button" class="btn btn-warning" id="update" onclick="editcategory1()"  data-bs-dismiss="modal" hidden>update</button>
                 
             </div>
         </div>
