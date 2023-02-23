@@ -8,8 +8,6 @@ public class RequestCart {
 	private long productId;
 	
 	
-	private double totalPrice;
-	
 	@NotNull
 	private int quantity;
 	
@@ -36,14 +34,6 @@ public class RequestCart {
 
 	public void setProductId(long productId) {
 		this.productId = productId;
-	}
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
 	}
 
 	public String getOrderStatus() {

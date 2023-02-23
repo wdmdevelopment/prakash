@@ -11,8 +11,10 @@ import com.wdm.entity.Items;
 
 public interface ItemsRepository extends JpaRepository<Items, Long> {
 	
+	  
+	
+	 public List<Items> findByCart_CartId(long cartId);
 	 
 	 
-
 
 }

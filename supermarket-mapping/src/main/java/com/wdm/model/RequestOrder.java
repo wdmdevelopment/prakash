@@ -2,6 +2,8 @@ package com.wdm.model;
 
  
 
+import java.security.Timestamp;
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
@@ -14,18 +16,21 @@ public class RequestOrder {
 	@NotNull
 	private long cartId;
 	 
-
-	@NotNull
-	private double totalAmount;
-	
-	@NotNull
-	private LocalDateTime Ordertime;
-	
+  
 	
 	@NotNull
 	private long userId;
 	
+	private LocalDateTime dateTime=LocalDateTime.now();
 	
+
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
+	}
 
 	public long getCartId() {
 		return cartId;
@@ -36,14 +41,7 @@ public class RequestOrder {
 	}
 
 	 
-
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public void setTotalAmount(double totalAmount) {
-		this.totalAmount = totalAmount;
-	}
+ 
 
 	public long getUserId() {
 		return userId;
@@ -53,14 +51,10 @@ public class RequestOrder {
 		this.userId = userId;
 	}
 
-	public LocalDateTime getOrdertime() {
-		return Ordertime;
-	}
-
-	public void setOrdertime(LocalDateTime ordertime) {
-		Ordertime = ordertime;
-	}
 	
+
+	 
+
 	 
 	
 	

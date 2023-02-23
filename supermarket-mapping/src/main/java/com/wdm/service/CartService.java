@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.wdm.entity.Cart;
 import com.wdm.model.RequestCart;
 import com.wdm.model.RequestItems;
+import com.wdm.model.ResponseCart;
 
 @Service
 public interface CartService {
@@ -19,6 +20,10 @@ public interface CartService {
 	public Cart updateCart(RequestCart requestCart, long id);
 	
 	public List<Cart> getAllCart();
+	
+	public Cart getCartByUser(ResponseCart responseCart);
+
+	 
 	
 	
 }

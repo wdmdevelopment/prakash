@@ -1,6 +1,5 @@
 package com.wdm.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wdm.entity.Cart;
-
 import com.wdm.model.RequestCart;
 import com.wdm.model.RequestItems;
-import com.wdm.response.CartResponse;
+import com.wdm.model.ResponseCart;
 import com.wdm.service.CartService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/cart")
 public class CartController {
 
@@ -39,32 +39,32 @@ public class CartController {
 	@PostMapping
 	public ResponseEntity<Cart> saveCart(@Valid @RequestBody RequestItems requestitem) {
 
-		logger.info("save new product = TotalPrice={}, productId= {} ", requestitem.getTotalprice(),
+		logger.info("save new product = TotalPrice={}, productId= {} ", 
 				requestitem.getProductId());
 
 		return new ResponseEntity<>(cartservice.saveCart(requestitem), HttpStatus.CREATED);
 	}
 
-	@GetMapping
-	public ResponseEntity<List<Cart>> getAll() {
-
-		logger.info("get All cart ");
-		
-//		List<Cart> cart = ;
+//	@GetMapping
+//	public ResponseEntity<List<Cart>> getAll() {
+//
+//		logger.info("get All cart ");
 //		
-//		List<CartResponse> res = new ArrayList<>();
+////		List<Cart> cart = ;
+////		
+////		List<CartResponse> res = new ArrayList<>();
+////		
+////		for(Cart carts: cart) {
+////			CartResponse rescart = new CartResponse();
+////			rescart.setCartId(carts.getCartId());
+////			
+////			
+////			
+////			res.add(rescart);
+////		}
 //		
-//		for(Cart carts: cart) {
-//			CartResponse rescart = new CartResponse();
-//			rescart.setCartId(carts.getCartId());
-//			
-//			
-//			
-//			res.add(rescart);
-//		}
-		
-		return new ResponseEntity<List<Cart>>( cartservice.getAllCart(), HttpStatus.OK);
-	}
+//		return new ResponseEntity<List<Cart>>( cartservice.getAllCart(), HttpStatus.OK);
+//	}
 
 	
 
@@ -90,8 +90,14 @@ public class CartController {
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
-	
-	
+
+	@GetMapping
+	public ResponseEntity<Cart> getAllbyuser(ResponseCart responseCart) {
+
+		  
+		return new ResponseEntity<Cart>(cartservice.getCartByUser(responseCart), HttpStatus.OK);
+	}
+ 
 	
 	
 	

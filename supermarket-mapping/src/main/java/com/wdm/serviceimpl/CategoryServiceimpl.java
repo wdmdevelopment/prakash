@@ -130,8 +130,8 @@ public class CategoryServiceimpl implements CategoryService {
 		return categoryRepo.findByOrdercategory();
 	}
 	 
-	public Category findbyCategoryName(String name) {
-		Category category= null;
+	public List<Category> findbyCategoryName(String name) {
+		List<Category> category= null;
 		try {
 			category = categoryRepo.findByCategoryNameContaining(name);
 		}

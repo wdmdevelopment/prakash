@@ -31,8 +31,15 @@
 			$("#holder").load("navbar.html");
 					 
 		  }
-		  
 
+           
+     $('#fillter').attr("placeholder", "Search Category");
+        
+
+
+        });
+		  var categoryGet="";
+function getCategory() {
           $.ajax({
 				dataTypa: "JSON",
 				url: "http://localhost:8080/category/ordercategory",
@@ -43,13 +50,51 @@
                    
                 
              $.each(responseText, function (index, item) {
-   $("#categoryName").append('<tr><td>'+item.categoryName+'</td><td class="text-center"><div style="padding-right:5%;><button" onclick="deleteCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart" ><i class="fas fa-trash-alt"></i></button></div></td><td class="text-center "><button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart">  <i class="fa-solid fa-pen-to-square"></i></button></td></tr>');
+
+                categoryGet +='<tr><td>'+item.categoryName+'</td><td class="text-center"><div style="padding-right:5%;><button" onclick="deleteCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart" ><i class="fas fa-trash-alt"></i></button></div></td><td class="text-center "><button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editCategory('+item.categoryId+')" class="btn btn-outline-danger remove-from-cart">  <i class="fa-solid fa-pen-to-square"></i></button></td></tr>';
+
+ 
                 
                 });
+                $("#categoryName").empty();
+                $("#categoryName").append(categoryGet);
                 }
 
             });
-});
+        }
+ 
+
+
+function filterProductAndCategory() {
+			var categoryFilter = "";
+           
+            $("#categoryName").empty();
+
+			$.ajax({
+				dataType: "JSON",
+				url: "http://localhost:8080/category/categoryname?categoryname=" + $("#fillter").val(),
+				type: "GET",
+
+                success: function (responseText) {
+                    $("#categoryName").empty();
+                    $.each(responseText, function (index, item) {
+
+                        categoryFilter += '<tr><td>' + item.categoryName + '</td><td class="text-center"><div style="padding-right:5%;><button" onclick="deleteCategory(' + item.categoryId + ')" class="btn btn-outline-danger remove-from-cart" ><i class="fas fa-trash-alt"></i></button></div></td><td class="text-center "><button data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editCategory(' + item.categoryId + ')" class="btn btn-outline-danger remove-from-cart">  <i class="fa-solid fa-pen-to-square"></i></button></td></tr>';
+
+
+
+                    });
+                    
+                    $("#categoryName").append(categoryFilter);
+
+                }
+
+            })
+
+		}
+
+
+
 
 function deleteCategory(categoryId){
     $.ajax({
@@ -58,7 +103,9 @@ function deleteCategory(categoryId){
 				type: "DELETE",
 
 				success: function (responseText, status) { 
+                   
                     alert(status);
+                    window.location("Category.html");
                 },
                 error: function(e, status){
                     alert(JSON.stringify(e));
@@ -111,8 +158,11 @@ function editcategory1()
                     data: JSON.stringify(details),
                     contentType: 'application/json',
                     success: function (responseupdate, status) {
-                       console.log(status);
-                        alert("success");
+                        $("#categoryName").empty();
+                        getCategory();
+                        
+                        console.log(status);
+                        
 
                         $('#formValue')[0].reset();
 
@@ -157,7 +207,8 @@ function addCategory(){
                  data: JSON.stringify(details),
                     contentType:'application/json',
 				success: function (responseText, status) { 
-                    alert("success");
+                    $("#categoryName").empty();
+                    window.location("Category.html");
                     
                 },
                 error: function(e, status){
@@ -173,7 +224,7 @@ function addCategory(){
 
 		</script>  
 </head>
-<body style="background-color: antiquewhite;">
+<body onload="getCategory()" style="background-color: antiquewhite;">
     <a href="Category.html"></a>
     <section id="holder">
 
@@ -240,10 +291,10 @@ function addCategory(){
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                
                 <button type="button" class="btn btn-warning" onclick="addCategory()" data-bs-dismiss="modal" id="adding">Add</button>
          <button type="button" class="btn btn-warning" id="update" onclick="editcategory1()"  data-bs-dismiss="modal" hidden>update</button>
-                
+         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

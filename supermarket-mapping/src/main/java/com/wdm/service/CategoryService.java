@@ -24,6 +24,6 @@ public interface CategoryService {
  
 	public List<Category> findbyOrder();
 	
-	public Category findbyCategoryName(String name);
+	public List<Category> findbyCategoryName(String name);
 		
 }

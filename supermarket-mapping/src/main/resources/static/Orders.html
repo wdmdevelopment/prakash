@@ -11,13 +11,13 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
+		
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	<!-- font icon -->
 
 
-	<link rel="stylesheet" href="./CSS/styles.css">
+	<!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
 
 	<!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
 
@@ -25,7 +25,7 @@
 </head>
 
 
-<body>
+<body style="background-color: whitesmoke">
 	<a href="Orders.html"></a>
 	<div id="holder">
 
@@ -36,8 +36,65 @@
 
 			if (localStorage.getItem('userRole') !== '' && localStorage.getItem('emailId') != "") {
 				$("#holder").load("navbar.html");
-				product();
+					
 			}
+
+			var myOrderGet='';
+			var orderfootValue = '';
+
+			$.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/order/"+localStorage.getItem("userId"),
+				type: "GET",
+				success: function(response, status){
+					
+					 
+				 $.each(response, function (index, item1) {
+
+						
+						orderfootValue +=`<div class="row">
+								
+					<div class="col lg-4"><div class="date" ><i class="fa fa-calendar" aria-hidden="true">${item1.dateTime}</i> </div></div>
+		<div class="col lg-4"><div class="status" style="color: darkgreen;"><strong>Status: </strong><span style="color: dimgrey;">success</span></div></div>
+		<div class="col lg-4"><div class="finalTotal" id="totalAmount"> 
+			TotalAmount:   <strong><i class="fa fa-inr"></i>  ${item1.totalAmount}</strong></div></div>
+					
+			  </div>`;
+
+
+						
+							
+					$.each(item1.item, function (index, item2) {
+
+						console.log(item2.product.productImage.imageData);
+						
+						
+		myOrderGet +='<div class="col-lg-2 "><img class="hovr" src="data:image/png;base64,'+item2.product.productImage.imageData+'" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;"></div><div class="col-lg-7"><h5 class="card-title">'+productData.product.productName+'</h5><p class="card-text">quantity</p><p class="card-text">price ('+itemdata.quantity+' * '+productData.product.price+')</p></div><div class="col-lg-3"><p class="card-text">'+itemdata.totalPrice+'</p></div>';
+				 	
+						
+
+				});
+
+				});
+					$('#myOrderList').empty();
+					$('#myOrderList').append(myOrderGet);
+					
+					$('#footValue').empty();
+					$('#footValue').append(orderfootValue);
+							
+
+				},
+				error: function(e, status){
+
+					alert("--------");
+				}
+
+			});
+
+
+
+
+
 
 
 		});
@@ -47,29 +104,24 @@
 	</script>
 	<section style="padding-top: 7%;">
 
-		<div class="container border border-white">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="row"><p style="color:white;">order placed</p></div>
-					<div class="row"><p style="color:white;">Date:</p></div>
+		<div class="container">
+			<div class="card">
+				<h5 class="card-header" style="background-color:lightgray;">ORDER DETAILS</h5>
+				<div class="card-body" >
+					<div class="row" id="myOrderList">
+						
+		 	
 				</div>
-				<div class="col-lg-3">
-					<div class="row">Total Amount</div>
-					<div class="row" id="total-amount"></div>
-				</div>
-				<div class="col-lg-3" id="user-name">
-					<div class="row">Ship TO</div>
-					<div class="row" id="user-name"></div>				
-				</div>
-				<div class="col-lg-3" id="product-image">
-					</div>
-					<div class="col-lg-3" id="productName">
-						<div class="row"></div>
-						<div class="row"></div>
-					</div>	
+			  </div>
 
-				</div>
+			  <div class="card-footer" id="footValue">
+				
 			</div>
+
+			</div>
+				
+
+
 		</div>
 	</section>
 	

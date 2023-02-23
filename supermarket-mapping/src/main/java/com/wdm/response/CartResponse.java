@@ -2,7 +2,7 @@ package com.wdm.response;
 
 public class CartResponse {
 
-	private double totalPrice;
+	//private double totalPrice;
 
 	private int quantity;
 
@@ -13,13 +13,13 @@ public class CartResponse {
 	private long productId;
 	
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+//	public double getTotalPrice() {
+//		return totalPrice;
+//	}
+//
+//	public void setTotalPrice(double totalPrice) {
+//		this.totalPrice = totalPrice;
+//	}
 
 	public int getQuantity() {
 		return quantity;

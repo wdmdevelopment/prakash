@@ -1,6 +1,7 @@
 package com.wdm.entity;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,22 +20,24 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Items {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long itemId;
 
 	private int quantity;
 
+	@Column(name="total_price")
 	private double totalPrice;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
 	private Product product;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cartId")
+	@ManyToOne
+	@JoinColumn(name = "cart_id")
 	@JsonIgnore
 	private Cart cart;
  
+	
 	
 	public long getItemId() {
 		return itemId;
@@ -78,9 +81,11 @@ public class Items {
 		this.totalPrice = totalPrice;
 	}
 
-	
-	
-	
+//	@Override
+//	public String toString() {
+//		return "Items [itemId=" + itemId + ", quantity=" + quantity + ", totalPrice=" + totalPrice + ", product="
+//				+ product + "]";
+//	}
 	
 	
 	

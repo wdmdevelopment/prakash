@@ -73,7 +73,9 @@ public class UserServiceimpl implements UserService {
 		
 			Orders orders = orderRepo.findById(user.getOrderId()).orElseThrow(() -> new IdNotFoundException("order Id not found"));
 			
-			account.setOrder((List<Orders>) orders);
+			List<Orders> order = account.getOrder();
+			order.add(orders);
+			account.setOrder(order);
 		
 		return userRepo.save(account);
 	}

@@ -1,19 +1,15 @@
 package com.wdm.serviceimpl;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wdm.controller.ItemsController;
 import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
-import com.wdm.entity.Product;
-import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestItems;
@@ -48,43 +44,43 @@ public class ItemServiceimpl implements ItemService {
 	public Cart saveItems(RequestItems requestitem) {
 		try {
 		 
-			 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
-						.orElseThrow(() -> new IdNotFoundException("userId not found"));
+//			 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
+//						.orElseThrow(() -> new IdNotFoundException("userId not found"));
+//			 
+//			 Product product = productRepo.findById(requestitem.getProductId())
+//						.orElseThrow(() -> new IdNotFoundException("product id not found"));
+//			 
+//			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
+//			 
+//			if(cart == null) {
+//				cart = new Cart();
+//				cart.setOrderStatus("ACTIVE");
+//			} 
+//			 
+//			Items items = new Items();
+//
+//			items.setQuantity(requestitem.getQuantity());
+//			  
+//			 items.setProduct(product);
+//			 
+//			 double totalPriceValue =  product.getPrice() * requestitem.getQuantity();
+//			 
+//			 
+//			 items.setTotalPrice(totalPriceValue);
+//			 
+//			 List<Items> item2 = cart.getItem();
+//			
+//			 item2.add(items);
+//			   
+//			 cart.setItem(item2);
+//			  
+//			
+//			
+//			 cart.setUser(userAccount);
+//			 
+//			 return cartRepo.save(cart);
 			 
-			 Product product = productRepo.findById(requestitem.getProductId())
-						.orElseThrow(() -> new IdNotFoundException("product id not found"));
-			 
-			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
-			 
-			if(cart == null) {
-				cart = new Cart();
-				cart.setOrderStatus("ACTIVE");
-			} 
-			 
-			Items items = new Items();
-
-			items.setQuantity(requestitem.getQuantity());
-			  
-			 items.setProduct(product);
-			 
-			 double totalPriceValue =  product.getPrice() * requestitem.getQuantity();
-			 
-			 
-			 items.setTotalPrice(totalPriceValue);
-			 
-			 List<Items> item2 = cart.getItem();
-			
-			 item2.add(items);
-			   
-			 cart.setItem(item2);
-			  
-			
-			
-			 cart.setUser(userAccount);
-			 
-			 return cartRepo.save(cart);
-			 
-		 
+		 return null;
 			 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,15 +88,36 @@ public class ItemServiceimpl implements ItemService {
 		}
 	}
 
-	public void deleteByid(long id) {
-
-		Optional<Items> findById = itemRepo.findById(id);
-		if (findById.isPresent()) {
-			itemRepo.deleteById(id);
-		} else {
-			throw new IdNotFoundException("Id not present");
+	public Cart deleteByid(long id) {
+		try {
+		System.out.println("------cart---------->"+id);
+		//	Items itemId = itemRepo.findById(id).orElseThrow(() -> new IdNotFoundException("item id not found"));
+		//	System.out.println(itemId.getTotalPrice());
+			
+			
+			Cart cart = cartRepo.findById(117L).get();
+			System.out.println("------cart-----1----->"+cart.getItem().size());
+			Set<Items> itemss = cart.getItem();
+			itemss.removeIf(e -> e.getItemId() == id);
+			System.out.println("------cart-----2----->"+cart.getItem().size());
+			return cartRepo.save(cart);
+			
+			
+			
+			
+			
+			
+			
+			
+			//itemRepo.delete(itemId);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ProductCustomException(e.getMessage());
 		}
 	}
+	
+	
 
 	public Items getItemsByid(long id) throws Exception {
 		try {

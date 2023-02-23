@@ -1,7 +1,9 @@
 package com.wdm.serviceimpl;
 
 import java.rmi.NotBoundException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.List;import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +18,11 @@ import com.wdm.exception.OrderCustomException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestItems;
 import com.wdm.model.RequestOrder;
+import com.wdm.model.ResponseOrder;
 import com.wdm.repository.CartRepository;
 import com.wdm.repository.ItemsRepository;
 import com.wdm.repository.OrderRepository;
+import com.wdm.repository.ProductMappingRespository;
 import com.wdm.repository.UserAccountRespository;
 import com.wdm.service.OrderService;
 
@@ -37,6 +41,9 @@ public class OrderServiceimpl implements OrderService {
 	@Autowired
 	ItemsRepository itemRepo;
 
+	@Autowired
+	ProductMappingRespository productRepo;
+
 	public Orders placeOrder(RequestOrder requestOrder) {
 
 		Orders orders = new Orders();
@@ -44,9 +51,9 @@ public class OrderServiceimpl implements OrderService {
 
 			Cart findBycart = cartRepo.findById(requestOrder.getCartId())
 					.orElseThrow(() -> new IdNotFoundException(requestOrder.getCartId() + " Not Found "));
-				
+
 			findBycart.setOrderStatus("INACTIVE");
-			
+
 			orders.setCart(findBycart);
 
 			UserAccount userAccount = userRepo.findById(requestOrder.getUserId())
@@ -54,35 +61,29 @@ public class OrderServiceimpl implements OrderService {
 
 			orders.setUser(userAccount);
 
-			orders.setOrdertime(requestOrder.getOrdertime());
-			
-			
-			List<Items> item = findBycart.getItem();
-			double orderTotalAmount = 0;
-			for(Items items : item) {
-				
-				orderTotalAmount+= items.getTotalPrice();
-				
+			orders.setTotalAmount(findBycart.getTotalAmount());
+
+			List<Items> list = itemRepo.findByCart_CartId(requestOrder.getCartId());
+
+			for (Items item : list) {
+
+				if (item.getProduct().getStocks() > item.getQuantity()) {
+					item.getProduct().setStocks(item.getProduct().getStocks() - item.getQuantity());
+				} else {
+
+					throw new ProductCustomException("INSUFFICIENT QUANTITY");
+
+				}
+
 			}
-			
-			
-			orders.setTotalAmount(orderTotalAmount);
-
-//			Items findByItem = itemRepo.findById(userId)
-//					.orElseThrow(() -> new IdNotFoundException(userId + " Not Found "));
-
-//			if (findByItem.getQuantity() < requestOrder.getQuantity()) {
-//				throw new ProductCustomException("INSUFFICIENT_QUANTITY");
-//			}
-
-//			findByItem.setQuantity(findByItem.getQuantity() - requestOrder.getQuantity());
 
 			return OrderRepo.save(orders);
 
 		}
 
 		catch (Exception e) {
-			throw new ProductCustomException("Invalid " + e.getMessage());
+			e.printStackTrace();
+			throw new ProductCustomException(e.getMessage());
 		}
 	}
 
@@ -114,14 +115,45 @@ public class OrderServiceimpl implements OrderService {
 		return OrderRepo.save(order);
 	}
 
-	public List<Orders> getAllOrders() {
+	public List<Orders> getAllOrders(long userId) {
 
-		return OrderRepo.findAll();
+		return OrderRepo.findByUser_UserId(userId);
+	}
+
+	//public List<ResponseOrder> getOrders(long userId) {
+//
+//		List<ResponseOrder> findByUser_UserId = OrderRepo.findByUser_UserId(userId).stream()
+//				.filter(e -> new ResponseOrder(e.getDateTime(), e.getTotalAmount(),
+//						e.getCart().getItem().stream().filter(e -> e.getProduct().getProductName()).collect(
+//								Collectors.toList()),
+//						e.getCart().getItem().stream().filter(e -> e.getQuantity()),
+//						e.getCart().getItem().stream().filter(e -> e.getTotalPrice()),
+//						e.getCart().getItem().stream().filter(e -> e.getProduct().getPrice()).toList(),
+//						e.getCart().getItem().stream().filter(e -> e.getProduct().getProductImage().getImageData()))).
+//				collect(Collectors.toList());
+//
+//		return null;
+
+//		List<ResponseOrder> responseOrder=new ArrayList<>();
+//		for(Orders o:findByUser_UserId)
+//		{
+//			ResponseOrder resOrder = new ResponseOrder();
+//			resOrder.setDateTime(o.getDateTime());
+//			
+//			resOrder.setImageData(o.getCart().getItem().stream().map(e -> e.getProduct().getProductImage()
+//		.getImageData()).collect(Collectors.toList()));
+//			
+//		}
+
+	//}
+
+	public List<Cart> getAllorderInActive(long userId) {
+
+		return cartRepo.findByOrderStatusUser(userId, "INACTIVE");
 	}
 
 	public Orders getOrderDetails(long orderId) throws Exception {
 
-		 
 		try {
 			Orders order = OrderRepo.findById(orderId).get();
 			return order;
@@ -139,10 +171,6 @@ public class OrderServiceimpl implements OrderService {
 			throw new NotBoundException(e.getMessage());
 		}
 
-		 
 	}
-
-
-
 
 }

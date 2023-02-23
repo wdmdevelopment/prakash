@@ -1,8 +1,9 @@
 package com.wdm.entity;
 
- 
-
+import java.security.Timestamp;
+import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,144 +22,69 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "Orders")
 
 public class Orders {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id")
 	private long orderId;
-	
-	 
-	
+
 	@Column(name = "ordertime")
-	private LocalDateTime ordertime;
-	
+	private LocalDateTime dateTime = LocalDateTime.now();
+
 	@Column(name = "total_Amount")
 	private double totalAmount;
-	
-	
-	 
-	
+
 	@OneToOne
-	@JoinColumn(name = "cartId",referencedColumnName = "cartId")
+	@JoinColumn(name = "cartId", referencedColumnName = "cartId")
 	private Cart cart;
-	
-	 @ManyToOne(cascade = CascadeType.ALL)
-	 @JoinColumn(name = "userId")
-	
-	 private UserAccount user;
-	 
-	 
-	 
-	 
-	
-	
-public long getOrderId() {
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userId")
+
+	private UserAccount user;
+
+	public long getOrderId() {
 		return orderId;
 	}
-
-
-
-
-
 
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
 
-
-
-
-
- 
-
-
-
-
-
-	public LocalDateTime getOrdertime() {
-		return ordertime;
+	public LocalDateTime getDateTime() {
+		return dateTime;
 	}
 
-
-
-
-
-
-	public void setOrdertime(LocalDateTime ordertime) {
-		this.ordertime = ordertime;
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
-
-
-
-
-
 
 	public Cart getCart() {
 		return cart;
 	}
 
-
-
-
-
-
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-
-
-
-
-
 
 	public UserAccount getUser() {
 		return user;
 	}
 
-
-
-
-
-
 	public void setUser(UserAccount user) {
 		this.user = user;
 	}
 
-
-
-
-
-
- 
-
-
- 
-
-
-
-
-
-public double getTotalAmount() {
+	public double getTotalAmount() {
 		return totalAmount;
 	}
-
-
-
-
-
 
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 
+	public Orders() {
 
-
-
-
-
-public Orders() {
-		
 	}
-	
 
 }

@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Postcomment")
-public class PostComment {
+public class Comment {
 	
 	@Id
 	@Column(name = "commentId")
@@ -69,7 +69,7 @@ public class PostComment {
 		this.commentTime = commentTime;
 	}
 
-	public PostComment(String commentId, Post post, User user, String commentText, Date commentTime) {
+	public Comment(String commentId, Post post, User user, String commentText, Date commentTime) {
 		super();
 		this.commentId = commentId;
 		this.post = post;
@@ -79,7 +79,7 @@ public class PostComment {
 	}
 	
 	
-	public PostComment() {
+	public Comment() {
 		
 	}
 	

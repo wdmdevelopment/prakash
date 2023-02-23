@@ -135,17 +135,7 @@ public class ProductServiceimpl implements ProductService {
 							e.getCategory().getCategoryId(), e.getCategory().getCategoryName(), e.getPrice(),
 							e.getProductImage().getImageData(), e.getProductImage().getImageId()))
 					.collect(Collectors.toList());
-		
-		
-		
-		
-//		e.getProductId(),
-//		e.getProductName(),
-//		e.getStocks(),
-//		e.getCategory().getCategoryName(),
-//		e.getPrice(),
-//		e.getProductImage())
-			System.out.println(collect);
+	
 			return collect;
 			
 		}
@@ -227,15 +217,27 @@ public class ProductServiceimpl implements ProductService {
 	public List<ProductResponse> filterbyId(String pName) {
 		List<ProductResponse> findByfilterproduct = null;
 		try {
-
+			
+			if(pName.isEmpty()) {
+				findByfilterproduct = productRepo.findAllOrderByProductIdDesc().stream()
+						.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryId(),
+								e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(),
+								e.getProductImage().getImageId()))
+						.collect(Collectors.toList());
+			 	 
+			}
+			else {
 			findByfilterproduct = productRepo.findByfilterproduct(pName).stream()
 					.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(), e.getCategory().getCategoryId(),
 							e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(),
 							e.getProductImage().getImageId()))
 					.collect(Collectors.toList());
-		} catch (Exception e) {
+			}
+			} 
+		catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}
+		
 
 		return findByfilterproduct;
 

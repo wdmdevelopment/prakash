@@ -84,12 +84,12 @@ public class Categorycontroller {
 	
 	
 	@GetMapping("/categoryname")
-	public ResponseEntity<Category> filterbyproduct(
+	public ResponseEntity<List<Category>> filterbyproduct(
 			@RequestParam(value = "categoryname", required = false) String name) {
 
 		logger.info("getProductById  productId : " + name);
 
-		return new ResponseEntity<Category>(categoryservice.findbyCategoryName(name), HttpStatus.OK);
+		return new ResponseEntity<List<Category>>(categoryservice.findbyCategoryName(name), HttpStatus.OK);
 
 	}
 	

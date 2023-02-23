@@ -10,10 +10,6 @@ public class RequestItems {
 	private int quantity;
 	
 	@NotNull
-	private double totalprice;
-	 
-	
-	@NotNull
 	private long productId;
 	
 	@NotNull
@@ -55,20 +51,7 @@ public class RequestItems {
 	}
 
 
-	public double getTotalprice() {
-		return totalprice;
-	}
-
-
-	public void setTotalprice(double totalprice) {
-		this.totalprice = totalprice;
-	}
-
-
 	 
-
-	
-	
 	
 	
 

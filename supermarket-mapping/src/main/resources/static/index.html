@@ -11,6 +11,7 @@
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	<script src="https://kit.fontawesome.com/54e0ebeaef.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -19,7 +20,7 @@
 
 	<link rel="stylesheet" href="./CSS/styles.css">
 
-	<!-- <link rel="stylesheet" href="./CSS/styles.css"> -->
+
 
 
 </head>
@@ -36,17 +37,23 @@
 
 			if (localStorage.getItem('userRole') !== '' && localStorage.getItem('emailId') != "") {
 				$("#holder").load("navbar.html");
+
 				product();
 			}
 
 
+			
+
+
+
+
+
+
+
+
 		});
 
-
-
 	</script>
-
-
 
 
 	<div class="productAdmin"></div>
@@ -59,7 +66,8 @@
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="addModalLabel">Adding Product</h1>
 					<h1 class="modal-title fs-5" id="updateModalLabel" hidden>updating Product</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" onclick="clearValue()" aria-label="Close"></button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" onclick="clearValue()"
+						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="container">
@@ -81,7 +89,7 @@
 												<label class="form-label" for="product">Stock details</label>
 												<div class="input-group my-group">
 
-													<input type="text" id="stock" class="form-control" name="snpid"
+													<input type="number" id="stock" class="form-control" name="snpid"
 														placeholder="stocks"><select id="unit"
 														class="selectpicker form-control" data-live-search="true">
 														<option>Kg</option>
@@ -102,8 +110,8 @@
 											</div>
 											<div class="form-label">
 												<label class="form-label" for="product">Category Name</label>
-												<select required id="category" class="select form-control-lg category-name"
-													aria-selected="false">
+												<select required id="category"
+													class="select form-control-lg category-name" aria-selected="false">
 
 												</select>
 												<div class="error" style="color: red;" id="categoryError"></div>
@@ -111,16 +119,16 @@
 
 											</div>
 
-					<div class="imageupdate"> </div>
+											<div class="imageupdate"> </div>
 											<p>Choose your product image </p>
 
 											<div class="form-label changeImg">
 												<input type="file" id="myFile" name="filename" required>
 												<div class="error" style="color: red;" id="imageError"></div>
 											</div>
-							 
-							<input type="text" id="categoryId"  hidden>
-							<input type="text" id="imageId" hidden>
+
+											<input type="text" id="categoryId" hidden>
+											<input type="text" id="imageId" hidden>
 										</form>
 									</div>
 								</div>
@@ -129,21 +137,18 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="">Close</button>
-					<button hidden type="button" id="addprod" 	 class="btn btn-warning">Add</button>
-			<button hidden type="button" id="updateprod" data-bs-dismiss="modal" onclick="editProduct1()" class="btn btn-warning">Update</button>
+					
+					<button hidden type="button" id="addprod" class="btn btn-warning">Add</button>
+					<button hidden type="button" id="updateprod" data-bs-dismiss="modal" onclick="editProduct1()"
+						class="btn btn-warning">Update</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="">Close</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	 
-
-
-
-
-	<h1 class=" text-center text-center" style="margin-top: 5%;">Products</h1>
+	<h1 class=" text-center text-center" style="margin-top: 7%;">Products</h1>
 
 	<div class="container">
 		<div class="row" id="myproduct">
@@ -155,36 +160,39 @@
 
 
 	<!-- Modal -->
-	
 
 
-	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-sm">
-		  <div class="modal-content">
-			<p>this product is deleted </p>
-			<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-		  </div>
+			<div class="modal-content">
+				<p>this product is deleted </p>
+				<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+			</div>
 		</div>
-	  </div>
-
-<!-- model for delete operation -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
-		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		  <p id="message"></p>
-		</div>
-		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" onclick="product()" data-bs-dismiss="modal">Close</button>
-		  <button type="button" class="btn btn-primary" onclick="product()" data-bs-dismiss="modal">Ok</button>
-		</div>
-	  </div>
 	</div>
-  </div>
+
+	<!-- model for delete operation -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel" style="color: red;">Delete</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<p id="message"></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" onclick="product()"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="product()"
+						data-bs-dismiss="modal">Ok</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -196,14 +204,11 @@
 			$('#productModalForm')[0].reset();
 		}
 
-
-
-
-		function showData(){
-			document.getElementById('updateprod').hidden=true;
-			document.getElementById('addprod').hidden=false;
+		function showData() {
+			document.getElementById('updateprod').hidden = true;
+			document.getElementById('addprod').hidden = false;
 			document.getElementById('updateModalLabel').hidden = true;
-  			document.getElementById('addModalLabel').hidden = false;
+			document.getElementById('addModalLabel').hidden = false;
 		}
 
 
@@ -218,23 +223,23 @@
 		$(".productAdmin").empty();
 		$(".productAdmin").append(productAdmin);
 
-		// // add product with image product
-
 		$(document).ready(function () {
- 
+			
+
+			$("#quantity").change(function(){
+				 
+		});
+
+			$('#fillter').attr("placeholder", "Search Product");
 
 
 			document.getElementById('addprod').hidden = false;
 			document.getElementById('addModalLabel').hidden = false;
 
-			// $("#addprod").attr("style", "display:block");
-			// $("#addModalLabel").attr("style", "display:block");
-			// $("#updateprod").attr("style", "display:none");
-			// $("#updateModalLabel").attr("style", "display:none");
 
 			$("#addprod").click(function () {
 
-				
+
 				var url = "http://localhost:8080/product";
 
 
@@ -247,13 +252,13 @@
 				var unit = $("#unit").val();
 				var category = $("#category").val();
 				var price = $("#price").val();
-						if(productname =='' || stock =='' || unit =='' || category =='' || price ==''){
-							$('#productError').append('Please fill the all fields');	
-							$("#addpord").removeAttr("data-bs-dismiss","modal");
-							}
-						else {
-							$("#addpord").attr("data-bs-dismiss","modal");
-						}
+				if (productname == '' || stock == '' || unit == '' || category == '' || price == '') {
+					$('#productError').append('Please fill the all fields');
+					$("#addpord").removeAttr("data-bs-dismiss", "modal");
+				}
+				else {
+					$("#addpord").attr("data-bs-dismiss", "modal");
+				}
 
 
 				formData.append('data', JSON.stringify({
@@ -277,7 +282,7 @@
 
 					success: function (requestProduct) {
 						$('#productError').text("");
-						$("#addpord").attr("data-bs-dismiss","modal");
+						$("#addpord").attr("data-bs-dismiss", "modal");
 						product();
 						$("#myproduct").empty();
 
@@ -299,7 +304,8 @@
 		var productData = "";
 
 		function product() {
-			
+
+
 			$.ajax({
 				dataTypa: "JSON",
 				url: "http://localhost:8080/product",
@@ -307,16 +313,12 @@
 
 				success: function (responseText) {
 
+					
 					products = responseText;
-					 
+
 					$.each(responseText, function (index, item) {
-
-						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
-						 
-
-
-							 
-
+								
+						$("#category").append("<option value='" + item.categoryId + "' selected>" + item.categoryname + "</option>");
 
 						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Stock Details: " + item.stock + '</p>';
 
@@ -325,16 +327,16 @@
 
 						}
 
-						productData += '<p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p><div class="card-footer bg-primary text-center">';
+						productData += '<p class="card-text text-center">' + "price: " + item.price + '</p><div class="card-footer bg-primary text-center">';
 
 
 						if (localStorage.getItem('userRole') == "Admin") {
 
-							productData += ' <a onclick="editProduct(' + item.productId + ')" class="btn border border-white btn-sm px-2 card-link" data-bs-toggle="modal" data-bs-target="#deleteModal" style="color:white;"><i class="fa-solid fa-pen-to-square"></i><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn border border-white btn-sm px-2	card-link " data-bs-toggle="modal" data-bs-target="#deleteModal"  style="color:white;" ><i class="fas fa-trash-alt"></i><b>Delete</b></a> ';
+							productData += ' <a onclick="editProduct(' + item.productId + ')" class="btn border border-white btn-sm px-2 card-link" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white;"><i class="fa-solid fa-pen-to-square"></i><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn border border-white btn-sm px-2	card-link " data-bs-toggle="modal" data-bs-target="#deleteModal"  style="color:white;" ><i class="fas fa-trash-alt"></i><b>Delete</b></a> ';
 
 						}
 						else {
-							productData += '<a class="btn panel-footer panel-custom add-to-cart" data-productid="' + item.productId + '" id="cart1">Add to Cart</a>';
+							productData += '<a class="btn panel-footer panel-custom add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal5" onclick=myItem("' + item.productId + '") data-id="' + item.productId + '" id="cart1">Add to Cart</a>';
 						}
 						productData += '</div></div></div></div> ';
 
@@ -347,7 +349,8 @@
 			});
 		}
 
-		function filterProduct() {
+		function filterProductAndCategory() {
+
 			var productFilter = "";
 
 
@@ -360,30 +363,25 @@
 					$("#myproduct").empty();
 					$.each(responseText, function (index, item) {
 
-						// $("#product_Name").append("<li  onclick='productById(this.value)' value='" + item.productId + "' class='dropdown-item trans'>" + item.productName + "<a href=''></a></li>");
-						 
-							 
-
-
 						productFilter += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Stock Details: " + item.stock + '</p>';
 
-								if (localStorage.getItem('userRole') == "Admin") {
-									productData += '<p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p>';
+						if (localStorage.getItem('userRole') == "Admin") {
+							productData += '<p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p>';
 
-								}
+						}
 
-								productFilter += '<p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p><div class="card-footer bg-primary text-center">';
+						productFilter += '<p class="item-in-cart-cost card-text text-center">' + "price: " + item.price + '</p><div class="card-footer bg-primary text-center">';
 
 
-								if (localStorage.getItem('userRole') == "Admin") {
+						if (localStorage.getItem('userRole') == "Admin") {
 
-									productFilter += '<a onclick="editProduct(' + item.productId + ')" class="btn border border-white btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#deleteModal" style="color:white;"><i class="fa-solid fa-pen-to-square"></i><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn border border-white btn-sm float-right card-link " data-bs-toggle="modal" data-bs-target="#deleteModal" style="color:white;" ><i class="fas fa-trash-alt"></i><b>Delete</b></a>';
+							productFilter += '<a onclick="editProduct(' + item.productId + ')" class="btn border border-white btn-sm float-left card-link" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color:white;"><i class="fa-solid fa-pen-to-square"></i><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn border border-white btn-sm float-right card-link " data-bs-toggle="modal" data-bs-target="#deleteModal" style="color:white;" ><i class="fas fa-trash-alt"></i><b>Delete</b></a>';
 
-								}
-								else {
-									productFilter += '<a class="btn panel-footer panel-custom add-to-cart" data-productid="' + item.productId + '" id="cart1">Add to Cart</a>';
-								}
-								productFilter += '</div></div></div></div> ';
+						}
+						else {
+							productFilter += '<a class="btn panel-footer panel-custom add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal5" onclick=myItem("' + item.productId + '")  data-id="' + item.productId + '" id="cart1">Add to Cart</a>';
+						}
+						productFilter += '</div></div></div></div> ';
 
 					});
 					$("#myproduct").empty();
@@ -397,19 +395,18 @@
 
 
 
-
-var tempId = '';
-var tempcategoryId ="";
-var tempimageId ='';
+		var tempId = '';
+		var tempcategoryId = "";
+		var tempimageId = '';
 		function editProduct(productId) {
-			 tempId = productId;
-			
+			tempId = productId;
+
 			$(".imageupdate").empty();
-			
-			document.getElementById('updateprod').hidden=false;
-			document.getElementById('addprod').hidden=true;
+
+			document.getElementById('updateprod').hidden = false;
+			document.getElementById('addprod').hidden = true;
 			document.getElementById('updateModalLabel').hidden = false;
-  			document.getElementById('addModalLabel').hidden = true;
+			document.getElementById('addModalLabel').hidden = true;
 
 
 			var url = "http://localhost:8080/product/" + productId;
@@ -420,77 +417,73 @@ var tempimageId ='';
 				type: "GET",
 
 				success: function (response) {
-						console.log(response.category.categoryName);
+					console.log(response.category.categoryName);
 					$("#product").val(response.productName);
-						$("#stock").val(response.stocks);
-						 $("#unit").val(response.unit);
-			 $("#category").append("<option value='" + response.category.categoryId + "' selected>" + response.category.categoryName + "</option>");
-						$("#price").val(response.price);
-						// $('#myFile').val(response.productImage.data);
+					$("#stock").val(response.stocks);
+					$("#unit").val(response.unit);
+					$("#category").append("<option value='" + response.category.categoryId + "' selected>" + response.category.categoryName + "</option>");
+					$("#price").val(response.price);
+					// $('#myFile').val(response.productImage.data);
 
-			$(".imageupdate").append('<p>if you want to change this image</p><img class="hovr" src="data:image/png;base64,'+response.productImage.imageData+'" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 100px;">');
-					
-			
+					$(".imageupdate").append('<p>if you want to change this image</p><img class="hovr" src="data:image/png;base64,' + response.productImage.imageData + '" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 100px;">');
 
-				tempcategoryId = response.category.categoryId;
-				tempimageId = response.productImage.imageId;
-			 
-					
 
-			 
- 	   
+
+					tempcategoryId = response.category.categoryId;
+					tempimageId = response.productImage.imageId;
+
+
 				}
 			})
- 
+
 		}
 
+		function editProduct1() {
 
-function editProduct1() {
+			const formData1 = new FormData();
 
-		const formData1 = new FormData();
-				
-				
-				var file = $('#myFile').prop("files")[0];
 
-				 
-				formData1.append('imagefile', file);
-				 
+			var file = $('#myFile').prop("files")[0];
 
-				formData1.append('data', JSON.stringify({
-					"productName": $("#product").val(),
-					"stock": $("#stock").val(),
-					"unit": $("#unit").val(),
-					"price": $("#price").val(),
-					"categoryId": tempcategoryId,
-					"imageId": tempimageId,
-					"userId": localStorage.getItem("userId")
-				})),
 
-					
-								 
-						$.ajax({
-							type: "PUT",
-							url: "http://localhost:8080/product/" + tempId,
-							data: formData1,
-							contentType: false,
-							processData: false,
+			formData1.append('imagefile', file);
 
-							success: function (response, status) {
-							$('#message').append('updated');
 
-								$("#myproduct").empty();
-								product();
-								
-							},
-							error: function (e){
-								alert("error");
-							}
-						})
-					 
- 
+			formData1.append('data', JSON.stringify({
+				"productName": $("#product").val(),
+				"stock": $("#stock").val(),
+				"unit": $("#unit").val(),
+				"price": $("#price").val(),
+				"categoryId": tempcategoryId,
+				"imageId": tempimageId,
+				"userId": localStorage.getItem("userId")
+			})),
 
-}
-	function deleteProduct(productId) {
+
+
+				$.ajax({
+					type: "PUT",
+					url: "http://localhost:8080/product/" + tempId,
+					data: formData1,
+					contentType: false,
+					processData: false,
+
+					success: function (response, status) {
+						$('#message').append('updated');
+						window.location("index.html");
+						$("#myproduct").empty();
+						product();
+
+					},
+					error: function (e) {
+						 
+					}
+				})
+
+
+
+		}
+		function deleteProduct(productId) {
 
 
 			$.ajax({
@@ -504,213 +497,238 @@ function editProduct1() {
 					$('#message').append('This product is Deleted');
 					$("#myproduct").empty();
 
-								product();
+					product();
 				}
 			})
 		}
 
 
+		 
 
- 
- 
+		/************** cart ***************  */
+			let tempcart="";
 
-		function productById(productId) {
+		function myItem(productId) {
 
-			var productValue = "";
+			tempcart = productId;
+
+			var myItem = "";
+			var url = "http://localhost:8080/product/" + productId;
 
 			$.ajax({
-				dataTypa: "JSON",
-				url: "http://localhost:8080/product/" + productId,
+				dataType: "JSON",
+				url: url,
 				type: "GET",
-				success: function (response) {
 
-					$.each(response, function (index, item) {
+				success: function (currentproduct) {
+					console.log(currentproduct);
+
+					let currentItemId = $(this).attr("data-id");
+
+					let productInfo = products.filter(el => el.id == currentItemId)[0];
+
+					console.log(productInfo);
+					if ($(".item-in-cart").toArray().map(el => el.getAttribute("data-id")).includes(currentItemId)) {
+
+						alert("Already Added")
+
+					} else {
+							
+						$("#cart").empty();
+						$("#cart").append(`
+			<div class="card border-0 item-in-cart" data-id="${currentproduct.productId}">
+			<div class="card-body">
+				<p class="mt-3"><strong>${currentproduct.productName}</strong>
+				</p>
+					<div class="row"> <div class="col-lg-6">
+					<img class="hovr" src="data:image/png;base64,${currentproduct.productImage.imageData}" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;">
+					 
+				</div>
+				
+				<div class="col-lg-6">
+					<div class="form-row">
+
+				<div class="input-group mb-3">
+  				<input type="number" class="form-control" id="quantity" onchange="changeQuantity(${currentproduct.price});" aria-describedby="basic-addon2" value="1" min="1">
+  			<span class="input-group-text" id="basic-addon2">${currentproduct.unit}</span>
+				</div>
+						
+						
+						
+							
+					</div>
+					<p class="mb-0" id="productPrice"><strong>Rs. <span class="item-in-cart-cost" >${currentproduct.price}</span></strong></p>
+				</div>
+				<hr>
+			</div>
+			</div>
+
+ 
+
+`);
+ 
+
+}
+
+ 
+				}
+ 
+			});
+		}
 
 
-						productValue += ' <div class="col-lg-4 "><div class="card mb-3"> <img class="img-fluid" style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.productImage.imageData + '"/><div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Qty: " + item.stock + '</p><p class="card-text text-center">' + "categoryname: " + item.categoryname + '</p><p class="card-text text-center">' + "price: " + item.price + '</p>';
 
-						if (localStorage.getItem('userRole') == "Admin") {
-
-							productValue += '<a onclick="editProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-left card-link data-bs-toggle="modal" data-bs-target="#exampleModal""><b>Edit</b></a> <a onclick="deleteProduct(' + item.productId + ')" class="btn btn-warning btn-sm float-right card-link " data-toggle="modal" data-target=".bd-example-modal-sm"><b>Delete</b></a>';
-
-						}
-						else {
-				productValue += ' <a class="btn btn-warning float-left add-to-cart" data-productid='+ item.productId +' style="border-radius:50px" type="button" id="cart1">Add to Cart</a>';
-						}
-						productValue += '</div></div></div> ';
-							console.log(item.productId);
-					});
-
-					$("#myproduct").empty();
-					$("#myproduct").append(productValue);
+		function changeQuantity(price){
+			
+			$("#productPrice").empty();
+			$("#productPrice").append("<strong>Rs. <span class='item-in-cart-cost' >" + $("#quantity").val() * price) + "</strong></span>";
+		}
 
 
+		function myCart(productId) {
+			var details={"quantity": $("#quantity").val(),
+					"productId": tempcart,
+					"userId": localStorage.getItem("userId")
+				};
 
+			$.ajax({
+				dataType: "JSON",
+				url: "http://localhost:8080/cart",
+				type: "POST",
+				contentType: false,
+				processData: false,
+				data: JSON.stringify(details),
+				contentType: "application/json; charset=utf-8",
+				success: function (responseText) {
+					
+					console.log(responseText);
+					window.location = "index.html";
+					// product();
+				
 				}
 
-			})
+				
+
+
+
+			});
 
 		}
 
+		/********* Get My cart  *********/
+		let tempcartId='';
+		function getMyCart() {
+			let addcart='';
+			$.ajax({
+				dataTypa: "JSON",
+				url: "http://localhost:8080/cart",
+				type: "GET",
+				data: {
+					"userId": localStorage.getItem("userId"),
+					"orderStatus": "ACTIVE"
+				},
+				success: function (response) {
+					tempcartId = response.cartId;
+					console.log(response);	
 
+					$.each(response.item, function (index, productData) {
 
-		function cartTotal() {
-
-			let count = $(".item-in-cart-cost").length;
-				console.log(count);
-			$(".item-in-cart-count").html(count);
-
-
-			if (count > 0) {
-				let totalCost = $(".item-in-cart-cost").toArray().map(el => el.innerHTML).reduce((x, y) => Number(x) + Number(y));
-				// console.log(typeof totalCost);
-				$(".total").html(`
-
-	<div class="d-flex justify-content-between font-weight-bold px-3">
-		<h4>Total</h4>
-		<h4>Rs. <span class="cart-cost-total">${Number(totalCost).toFixed(2)}</span></h4>
-	</div>
-
-`)
-			} else {
-				$(".total").html("empty cart")
-			}
-
-		}
-
-
-
-		$("#myproduct").delegate(".add-to-cart", "click", function () {
-			let currentItemId = $(this).attr("data-productid");
-			 
-			let productInfo = products.filter(el => el.id == currentItemId)[0];
-
-			if ($(".item-in-cart").toArray().map(el => el.getAttribute("data-productid")).includes(currentItemId)) {
-
-				alert("Already Added");
-			}
-			//includes(currentItemId)
-			if ($(".item-in-cart").toArray().map(el => el.getAttribute("data-productid")).includes(currentItemId)) {
-
-				alert("Already Added");
-
-			} else {
-
-
-				$.ajax({
-					dataTypa: "JSON",
-					url: "http://localhost:8080/product/" + currentItemId,
-					type: "GET",
-					success: function (currentproduct) {
-
-
-						$("#cart").append(`
-        <div class="card border-0 item-in-cart" data-productid="${currentproduct.id}">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-end">
-					<img class="hovr" src="data:image/png;base64,${currentproduct.productImage.imageData}" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 100px;">
-
-					 
-                    <button class="btn btn-outline-danger remove-from-cart" >
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
-                </div>		
-                <p class="mt-3">
-                    ${currentproduct.productName}
-                </p>
-                <div class="d-flex justify-content-between align-items-end">
-                    <div class="form-row">
-                        <button class="btn btn-outline-primary quantity-minus">
-                            <i class="fas fa-minus"></i>
-                        </button>
-          <input type="number" class="form-control w-25 mx-2 quantity" unitPrice="${currentproduct.price}" value="1" min="1">
-                        <button class="btn btn-outline-primary quantity-plus">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <p class="mb-0">Rs. <span class="item-in-cart-cost">${currentproduct.price}</span></p>
-                </div>
-                <hr>
-            </div>
-        </div>
-        `);
-					}
-
+						
+		addcart += '<div class="row"><div class="col-lg-6"><img class="hovr" src="data:image/png;base64,'+productData.product.productImage.imageData+'" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;"></div><div class="col lg-4">	';
+						 
+							
+					
+	addcart += '<div class="col-lg-3" style="padding-right: 3%"><strong>'+productData.product.productName+'</strong></div><div class="col-lg-3"><p>Quantity: '+productData.quantity+'</p></br>Price('+productData.quantity+'x '+productData.product.price+'): <i class="fa fa-inr"></i>  '+productData.totalPrice+'</div><div class="col-lg-2"><button class="btn btn-outline-danger" onclick="deleteMyCartItem('+productData.itemId+')"><i class="fas fa-trash-alt"></i></button></div></div>	';
 
 				});
 
+	addcart += '<div class="col-lg-6"></div><div class="col-lg-6"><strong>Total Amount <i class="fa fa-inr"></i>'+response.totalAmount+'</strong></div></div>';
+				 
 
-
-
-			}
-
-			cartTotal();
-
-		})
-
-
-		$("#cart").delegate(".remove-from-cart", "click", function () {
-
-			$(this).parentsUntil("#cart").remove();
-			cartTotal();
-
-		})
-
-		$("#cart").delegate(".quantity-plus", "click", function () {
-
-			let q = $(this).siblings(".quantity").val();
-			let p = $(this).siblings(".quantity").attr("unitPrice");
-			let newQ = Number(q) + 1;
-			let newCost = p * newQ;
-			// console.log(p);
-			$(this).siblings(".quantity").val(newQ);
-			$(this).parent().siblings("p").find(".item-in-cart-cost").html(newCost.toFixed(2));
-			cartTotal();
-		})
-
-		$("#cart").delegate(".quantity-minus", "click", function () {
-
-			let q = $(this).siblings(".quantity").val();
-			let p = $(this).siblings(".quantity").attr("unitPrice");
-			if (q > 1) {
-
-				let newQ = Number(q) - 1;
-				let newCost = p * newQ;
-				// console.log(p);
-				$(this).siblings(".quantity").val(newQ);
-				$(this).parent().siblings("p").find(".item-in-cart-cost").html(newCost.toFixed(2));
-				cartTotal();
-
-			}
-
-		})
-
-		$("#cart").delegate(".quantity", "keyup change", function () {
-
-			let q = $(this).val();
-			let p = $(this).attr("unitPrice");
-			if (q > 1) {
-
-				let newQ = Number(q);
-				let newCost = p * newQ;
-				// console.log(p);
-				$(this).val(newQ);
-				$(this).parent().siblings("p").find(".item-in-cart-cost").html(newCost.toFixed(2));
-				cartTotal();
-
-			} else {
-				alert("more than one");
-			}
-
-		})
-
+				
+					$('#addCart').empty();
+					$('#addCart').append(addcart);
+				}
+			})
 
  
+
+			 
+		}
+
+
+		/********* Delete My cart item  *********/
+		function deleteMyCartItem(itemId) {
+ 
+
+			$.ajax({
+				dataType: "JSON",
+				url: "http://localhost:8080/items/" + itemId,
+				type: "DELETE",
+				async: false,
+				crossDomain: true,
+
+				success: function (responseText, status) {
+					console.log(responseText);
+					 
+
+				},
+				error: function (e, status) {
+					console.log(e.responseJSON);
+				}
+
+			})
+
+
+		}
+
+
+			function placeOrder() {
+				var date = new Date();
+				var orderDetails={"cartId": tempcartId,
+								"userId": localStorage.getItem("userId"),
+								"date":date
+								 
+				};
+
+			$.ajax({
+				dataType: "JSON",
+				url: "http://localhost:8080/order/user",
+				type: "POST",
+				contentType: false,
+				processData: false,
+				data: JSON.stringify(orderDetails),
+				contentType: "application/json; charset=utf-8",
+				success: function (responseText, status) {
+					$('#cart-count').empty();
+					$('#messageorder').append('<p style="color: darkgreen;">Order Placed</p>');
+						
+					console.log(responseText);
+				 				
+				},
+				error : function(e, status){
+
+						console.log(e);
+						
+
+				}
+
+				
+
+
+
+			});
+
+			}
+     
+			
+
+
 
 
 	</script>
 
- 
+
 
 
 </body>

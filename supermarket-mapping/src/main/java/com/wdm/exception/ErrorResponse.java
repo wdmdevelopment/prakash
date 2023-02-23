@@ -44,18 +44,5 @@ public class ErrorResponse {
 		this.timeStamp = timeStamp;
 	}
 
-	public ErrorResponse(String statuserrorCode, String message) {
-		super();
-		this.statuserrorCode = statuserrorCode;
-		this.message = message;
-	}
-
-	public ErrorResponse() {
-		 
-	}
-
-	 
-	
-	
 
 }

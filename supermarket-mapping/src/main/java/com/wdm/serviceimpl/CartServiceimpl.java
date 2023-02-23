@@ -1,7 +1,7 @@
 package com.wdm.serviceimpl;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,7 @@ import com.wdm.exception.IdNotFoundException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.model.RequestCart;
 import com.wdm.model.RequestItems;
+import com.wdm.model.ResponseCart;
 import com.wdm.repository.CartRepository;
 import com.wdm.repository.ItemsRepository;
 import com.wdm.repository.ProductMappingRespository;
@@ -35,6 +36,10 @@ public class CartServiceimpl implements CartService {
 	
 	@Autowired
 	UserAccountRespository userRepo;
+	
+	@Autowired
+	ItemsRepository itemRepo;
+	
 
 	private static final Logger logger = LoggerFactory.getLogger(CartServiceimpl.class);
 
@@ -49,38 +54,61 @@ public class CartServiceimpl implements CartService {
 			 Product product = productRepo.findById(requestitem.getProductId())
 						.orElseThrow(() -> new IdNotFoundException("product id not found"));
 			 
+			  
+			 
 			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
 			 
 			if(cart == null) {
 				cart = new Cart();
 				cart.setOrderStatus("ACTIVE");
 			} 
-			 
-			Items items = new Items();
-
-			items.setQuantity(requestitem.getQuantity());
-			  
-			 items.setProduct(product);
-			 
+			 System.out.println("======58======>");
+			Items item = new Items();
+				item.setQuantity(requestitem.getQuantity());
+				
+//			if(item.getProduct().getStocks() > item.getQuantity()) {
+//			
+//			
+//			}
+//			else {
+//				throw new ProductCustomException("Insufficient Quantity");
+//			}
+			
+			 item.setProduct(product);
+				
 			 double totalPriceValue =  product.getPrice() * requestitem.getQuantity();
 			 
-			 
-			 items.setTotalPrice(totalPriceValue);
-			 
-			 List<Items> item2 = cart.getItem();
-			
-			 item2.add(items);
-			   
-			 cart.setItem(item2);
+				
+			 item.setTotalPrice(totalPriceValue);
 			  
-			
+			 Set<Items> itemList = cart.getItem();
+			 item.setCart(cart);
+			 itemList.add(item);
+			   
+			 cart.setItem(itemList);
+			  
+			 List<Items> itemlist = itemRepo.findByCart_CartId(cart.getCartId());
+				
+			 
+			 
+				double totalAmount= 0;
+				for(Items itemcart : itemlist) {
+					 
+					totalAmount += itemcart.getTotalPrice();
+					
+				}
+				
+				cart.setTotalAmount(totalAmount + totalPriceValue);
+				
+				
 			
 			 cart.setUser(userAccount);
-			 
+				
 			 return cartRepo.save(cart);
 			 
 	}
 		catch (Exception e) {
+			e.printStackTrace();
 			throw new ProductCustomException(e.getMessage());
 	}
 		
@@ -121,6 +149,40 @@ public class CartServiceimpl implements CartService {
 		return cartRepo.findAll();
 
 	}
+	
+	
+	
+	public Cart getCartByUser(ResponseCart responseCart) {
+		Cart cart=null;
+		try {
+		cart = cartRepo.findByOrderStatusAndUser(responseCart.getUserId(), responseCart.getOrderStatus());
+		
+			
+		
+		return cart;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			throw new ProductCustomException(e.getMessage());
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	 
 }

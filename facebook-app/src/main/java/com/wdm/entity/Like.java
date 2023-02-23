@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "postLike")
-public class PostLike {
+public class Like {
 	
 	@Id
 	@Column(name = "likeId")
@@ -57,7 +57,7 @@ public class PostLike {
 		this.liketime = liketime;
 	}
 
-	public PostLike(String likeId, Post post, User user, Date liketime) {
+	public Like(String likeId, Post post, User user, Date liketime) {
 		super();
 		this.likeId = likeId;
 		this.post = post;
@@ -66,7 +66,7 @@ public class PostLike {
 	}
 	 
 	 
-	public PostLike() {
+	public Like() {
 		
 	}
 	

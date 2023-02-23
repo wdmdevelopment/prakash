@@ -38,7 +38,7 @@ public class ItemsController {
 	@PostMapping
 	public ResponseEntity<Cart> saveItem(@Valid @RequestBody RequestItems resquestItems) {
 		
-		logger.info("items saved, Quantity={}, totalPrice={}", resquestItems.getQuantity(), resquestItems.getTotalprice());
+		//logger.info("items saved, Quantity={}, totalPrice={}", resquestItems.getQuantity());
 		
 		return new ResponseEntity<Cart>(itemservice.saveItems(resquestItems), HttpStatus.CREATED);
 	}
@@ -57,7 +57,7 @@ public class ItemsController {
 			 
 			CartResponse reqitem = new CartResponse();
 			reqitem.setQuantity(item.getQuantity());
-			reqitem.setTotalPrice(item.getTotalPrice());
+			//reqitem.setTotalPrice(item.getTotalPrice());
 			
 			 
 			reqitem.setProductId(item.getProduct().getProductId());
@@ -84,13 +84,12 @@ public class ItemsController {
 	
 	@DeleteMapping("/{id}")
 	
-	public ResponseEntity<Void> deleteItembyid(@PathVariable("id") long id) {
+	public ResponseEntity<Cart> deleteItembyid(@PathVariable("id") long id) {
 		
 		logger.info("To get item data itemservice.deleteByid(id)");
 		
-		itemservice.deleteByid(id);
 		
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(itemservice.deleteByid(id), HttpStatus.OK);
 	}
 	
 	
