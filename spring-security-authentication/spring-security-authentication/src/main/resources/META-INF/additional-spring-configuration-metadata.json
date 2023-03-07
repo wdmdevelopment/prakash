@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "bezkoder.app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'bezkoder.app.jwtSecret'"
+  },
+  {
+    "name": "bezkoder.app.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'bezkoder.app.jwtExpirationMs'"
+  },
+  {
+    "name": "springdoc.swagger-ui.path",
+    "type": "java.lang.String",
+    "description": "A description for 'springdoc.swagger-ui.path'"
+  },
+  {
+    "name": "wdm.app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'wdm.app.jwtSecret'"
+  },
+  {
+    "name": "wdm.app.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'wdm.app.jwtExpirationMs'"
+  }
+]}
