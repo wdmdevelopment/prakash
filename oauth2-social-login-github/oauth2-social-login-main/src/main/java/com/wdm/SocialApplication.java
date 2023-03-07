@@ -1,4 +1,4 @@
-package com.alibou.oauth2.social;
+package com.wdm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

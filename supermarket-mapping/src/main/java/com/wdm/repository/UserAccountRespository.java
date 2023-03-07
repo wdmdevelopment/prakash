@@ -11,5 +11,7 @@ import com.wdm.entity.UserAccount;
 public interface UserAccountRespository extends JpaRepository<UserAccount, Long>{
 	
 	public UserAccount findByEmailIdAndPassword(String emailId, String password);
+	
+	
 
 }
