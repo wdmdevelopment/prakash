@@ -26,14 +26,15 @@ public class CategoryServiceimpl implements CategoryService {
 
 	public Category saveCategory(RequestCategory requestCategory) {
 		try {
-			UserAccount findById = userRepo.findById(requestCategory.getUserId())
-					.orElseThrow(() -> new IdNotFoundException("userId not found"));
+			
+//			UserAccount findById = userRepo.findById(requestCategory.getUserId())
+//					.orElseThrow(() -> new IdNotFoundException("userId not found"));
 
 			Category save;
 
-			String getuserRoll = findById.getuserRoll();
-			if(getuserRoll.equalsIgnoreCase("admin")) {
-				
+//			String getuserRoll = findById.getUserRole();
+//			if(getuserRoll.equalsIgnoreCase("admin")) {
+//				
 
 				Category category = new Category();
 
@@ -41,16 +42,19 @@ public class CategoryServiceimpl implements CategoryService {
 
 				save = categoryRepo.save(category);
 				
-			}
+//			}
 			
-			else {
-				throw new ProductCustomException("You are a not a admin"+getuserRoll);
-			}
+//			else {
+//				throw new ProductCustomException("You are a not a admin"+getuserRoll);
+//			}
 		 
 		return save;
+		
 		}
+	
 		catch (Exception e) {
-			throw new ProductCustomException("Invalid"+e.getMessage());
+			
+			throw new ProductCustomException(e.getMessage());
 		}
 	 		
 	}
@@ -89,7 +93,7 @@ public class CategoryServiceimpl implements CategoryService {
 
 				
 
-			String getuserRoll = findById.getuserRoll();
+			String getuserRoll = findById.getUserRole();
 			if(getuserRoll.equalsIgnoreCase("admin")) {
 				
 

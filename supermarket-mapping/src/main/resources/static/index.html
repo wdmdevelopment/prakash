@@ -42,13 +42,7 @@
 			}
 
 
-			
-
-
-
-
-
-
+ 
 
 
 		});
@@ -137,11 +131,11 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					
+
 					<button hidden type="button" id="addprod" class="btn btn-warning">Add</button>
 					<button hidden type="button" id="updateprod" data-bs-dismiss="modal" onclick="editProduct1()"
 						class="btn btn-warning">Update</button>
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="">Close</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="">Close</button>
 				</div>
 			</div>
 		</div>
@@ -224,11 +218,11 @@
 		$(".productAdmin").append(productAdmin);
 
 		$(document).ready(function () {
-			
 
-			$("#quantity").change(function(){
-				 
-		});
+
+			$("#quantity").change(function () {
+
+			});
 
 			$('#fillter').attr("placeholder", "Search Product");
 
@@ -313,11 +307,11 @@
 
 				success: function (responseText) {
 
-					
+
 					products = responseText;
 
 					$.each(responseText, function (index, item) {
-								
+
 						$("#category").append("<option value='" + item.categoryId + "' selected>" + item.categoryname + "</option>");
 
 						productData += ' <div class="col-lg-4 col-md-4"><div class="card mb-3"> <img class="img-fluid"  style="object-fit: cover; height: max(17rem, 30vh);" src="data:image/png;base64,' + item.data + '"/> <div class="card-body"><h4 class="card-title text-center">' + item.productName + '</h4><p class="card-text text-center">' + "Stock Details: " + item.stock + '</p>';
@@ -476,7 +470,7 @@
 
 					},
 					error: function (e) {
-						 
+
 					}
 				})
 
@@ -503,10 +497,10 @@
 		}
 
 
-		 
+
 
 		/************** cart ***************  */
-			let tempcart="";
+		let tempcart = "";
 
 		function myItem(productId) {
 
@@ -533,7 +527,7 @@
 						alert("Already Added")
 
 					} else {
-							
+
 						$("#cart").empty();
 						$("#cart").append(`
 			<div class="card border-0 item-in-cart" data-id="${currentproduct.productId}">
@@ -541,7 +535,8 @@
 				<p class="mt-3"><strong>${currentproduct.productName}</strong>
 				</p>
 					<div class="row"> <div class="col-lg-6">
-					<img class="hovr" src="data:image/png;base64,${currentproduct.productImage.imageData}" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;">
+					<img class="hovr" src="data:image/png;base64,${currentproduct.productImage.imageData}" 
+					style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;">
 					 
 				</div>
 				
@@ -557,7 +552,7 @@
 						
 							
 					</div>
-					<p class="mb-0" id="productPrice"><strong>Rs. <span class="item-in-cart-cost" >${currentproduct.price}</span></strong></p>
+<p class="mb-0" id="productPrice"><strong>Rs. <span class="item-in-cart-cost" >${currentproduct.price}</span></strong></p>
 				</div>
 				<hr>
 			</div>
@@ -566,30 +561,32 @@
  
 
 `);
- 
 
-}
 
- 
+					}
+
+
 				}
- 
+
 			});
 		}
 
 
 
-		function changeQuantity(price){
-			
+		function changeQuantity(price) {
+
 			$("#productPrice").empty();
-			$("#productPrice").append("<strong>Rs. <span class='item-in-cart-cost' >" + $("#quantity").val() * price) + "</strong></span>";
+			$("#productPrice").append("<strong>Rs. <span class='item-in-cart-cost' >" 
+			+ $("#quantity").val() * price) + "</strong></span>";
 		}
 
 
 		function myCart(productId) {
-			var details={"quantity": $("#quantity").val(),
-					"productId": tempcart,
-					"userId": localStorage.getItem("userId")
-				};
+			var details = {
+				"quantity": $("#quantity").val(),
+				"productId": tempcart,
+				"userId": localStorage.getItem("userId")
+			};
 
 			$.ajax({
 				dataType: "JSON",
@@ -600,14 +597,14 @@
 				data: JSON.stringify(details),
 				contentType: "application/json; charset=utf-8",
 				success: function (responseText) {
-					
+
 					console.log(responseText);
 					window.location = "index.html";
 					// product();
-				
+
 				}
 
-				
+
 
 
 
@@ -616,9 +613,9 @@
 		}
 
 		/********* Get My cart  *********/
-		let tempcartId='';
+		let tempcartId = '';
 		function getMyCart() {
-			let addcart='';
+			let addcart = '';
 			$.ajax({
 				dataTypa: "JSON",
 				url: "http://localhost:8080/cart",
@@ -629,37 +626,37 @@
 				},
 				success: function (response) {
 					tempcartId = response.cartId;
-					console.log(response);	
+					console.log(response);
 
 					$.each(response.item, function (index, productData) {
 
-						
-		addcart += '<div class="row"><div class="col-lg-6"><img class="hovr" src="data:image/png;base64,'+productData.product.productImage.imageData+'" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;"></div><div class="col lg-4">	';
-						 
-							
-					
-	addcart += '<div class="col-lg-3" style="padding-right: 3%"><strong>'+productData.product.productName+'</strong></div><div class="col-lg-3"><p>Quantity: '+productData.quantity+'</p></br>Price('+productData.quantity+'x '+productData.product.price+'): <i class="fa fa-inr"></i>  '+productData.totalPrice+'</div><div class="col-lg-2"><button class="btn btn-outline-danger" onclick="deleteMyCartItem('+productData.itemId+')"><i class="fas fa-trash-alt"></i></button></div></div>	';
 
-				});
+						addcart += '<div class="row"><div class="col-lg-6"><img class="hovr" src="data:image/png;base64,' + productData.product.productImage.imageData + '" style="width:100px; border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 200px;"></div><div class="col lg-4">	';
 
-	addcart += '<div class="col-lg-6"></div><div class="col-lg-6"><strong>Total Amount <i class="fa fa-inr"></i>'+response.totalAmount+'</strong></div></div>';
-				 
 
-				
+
+						addcart += '<div class="col-lg-3" style="padding-right: 3%"><strong>' + productData.product.productName + '</strong></div><div class="col-lg-3"><p>Quantity: ' + productData.quantity + '</p></br>Price(' + productData.quantity + 'x ' + productData.product.price + '): <i class="fa fa-inr"></i>  ' + productData.totalPrice + '</div><div class="col-lg-2"><button class="btn btn-outline-danger" onclick="deleteMyCartItem(' + productData.itemId + ')"><i class="fas fa-trash-alt"></i></button></div></div>	';
+
+					});
+
+					addcart += '<div class="col-lg-6"></div><div class="col-lg-6"><strong>Total Amount <i class="fa fa-inr"></i>' + response.totalAmount + '</strong></div></div>';
+
+
+
 					$('#addCart').empty();
 					$('#addCart').append(addcart);
 				}
 			})
 
- 
 
-			 
+
+
 		}
 
 
 		/********* Delete My cart item  *********/
 		function deleteMyCartItem(itemId) {
- 
+
 
 			$.ajax({
 				dataType: "JSON",
@@ -670,7 +667,7 @@
 
 				success: function (responseText, status) {
 					console.log(responseText);
-					 
+
 
 				},
 				error: function (e, status) {
@@ -683,13 +680,14 @@
 		}
 
 
-			function placeOrder() {
-				var date = new Date();
-				var orderDetails={"cartId": tempcartId,
-								"userId": localStorage.getItem("userId"),
-								"date":date
-								 
-				};
+		function placeOrder() {
+			var date = new Date();
+			var orderDetails = {
+				"cartId": tempcartId,
+				"userId": localStorage.getItem("userId"),
+				"date": date
+
+			};
 
 			$.ajax({
 				dataType: "JSON",
@@ -702,26 +700,26 @@
 				success: function (responseText, status) {
 					$('#cart-count').empty();
 					$('#messageorder').append('<p style="color: darkgreen;">Order Placed</p>');
-						
-					console.log(responseText);
-				 				
-				},
-				error : function(e, status){
 
-						console.log(e);
-						
+					console.log(responseText);
+
+				},
+				error: function (e, status) {
+
+					console.log(e);
+
 
 				}
 
-				
+
 
 
 
 			});
 
-			}
-     
-			
+		}
+
+
 
 
 

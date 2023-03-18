@@ -21,13 +21,15 @@ public class UserAccount {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long userId;
+	private Long userId;
 
 	private String firstName;
 
 	private String lastName;
 	 
-	 
+	private String userName;
+	
+	
 	private String emailId;
 
 	private String password;
@@ -42,75 +44,87 @@ public class UserAccount {
 	public UserAccount() {
 		
 	}
-	
-	
-	
-	public List<Orders> getOrder() {
-		return order;
-	}
 
-	public void setOrder(List<Orders> order) {
-		this.order = order;
-	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) {
+
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
 
 	public String getFirstName() {
 		return firstName;
 	}
 
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 
 	public String getLastName() {
 		return lastName;
 	}
 
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 
 	public String getEmailId() {
 		return emailId;
 	}
 
+
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getuserRoll() {
+
+	public String getUserRole() {
 		return userRole;
 	}
 
-	public void setuserRoll(String userRole) {
+
+	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
 
-	public UserAccount(long userId, String firstName, String lastName, String emailId, String password, String userRole,
-			List<Orders> order) {
-		super();
-		this.userId = userId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
-		this.password = password;
-		this.userRole = userRole;
+
+	public List<Orders> getOrder() {
+		return order;
+	}
+
+
+	public void setOrder(List<Orders> order) {
 		this.order = order;
 	}
-
+	
+	
+ 
 }

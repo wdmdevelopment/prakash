@@ -24,10 +24,10 @@ public class RequestUserAccount {
 	@NotBlank
 	private String userRoll;
 
+	 
 	private long orderId;
-
 	
-	
+	private String userName;
 	
 	
 	
@@ -70,6 +70,16 @@ public class RequestUserAccount {
 
 	public void setUserRoll(String userRoll) {
 		this.userRoll = userRoll;
+	}
+
+ 
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public long getOrderId() {

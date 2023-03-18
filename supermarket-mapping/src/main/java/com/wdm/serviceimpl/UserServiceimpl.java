@@ -38,7 +38,7 @@ public class UserServiceimpl implements UserService {
 
 		userAccount.setPassword(user.getPassword());
 		
-		userAccount.setuserRoll(user.getUserRoll());
+		userAccount.setUserRole(user.getUserRoll());
 
 		return userRepo.save(userAccount);
 		}
@@ -69,7 +69,7 @@ public class UserServiceimpl implements UserService {
 		account.setFirstName(user.getFirstName());
 		account.setLastName(user.getLastName());
 		account.setPassword(user.getPassword());
-		account.setuserRoll(user.getUserRoll());
+		account.setUserRole(user.getUserRoll());
 		
 			Orders orders = orderRepo.findById(user.getOrderId()).orElseThrow(() -> new IdNotFoundException("order Id not found"));
 			
@@ -101,7 +101,7 @@ public class UserServiceimpl implements UserService {
 		
 		UserResponse userRes = new UserResponse();
 		userRes.setFirstName(user.getFirstName());
-		userRes.setUserRole(user.getuserRoll());
+		userRes.setUserRole(user.getUserRole());
 		return userRes;
 	}
 	

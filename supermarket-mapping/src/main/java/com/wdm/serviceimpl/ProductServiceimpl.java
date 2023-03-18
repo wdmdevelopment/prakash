@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 import org.webjars.NotFoundException;
 
@@ -42,7 +43,7 @@ import com.wdm.service.ProductService;
 import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 @Service
-
+@CrossOrigin
 public class ProductServiceimpl implements ProductService {
 
 	
@@ -70,15 +71,15 @@ public class ProductServiceimpl implements ProductService {
 			 
 			RequestProduct product = mapper.readValue(requestProduct, RequestProduct.class);
 			
-			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
-					.orElseThrow(() -> new IdNotFoundException("Id Not Found"));
+//			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
+//					.orElseThrow(() -> new IdNotFoundException("userId Not Found"));
 			
 			Category category = categoryRepo.findById(product.getCategoryId())
-					.orElseThrow(() -> new IdNotFoundException("Id not found"));
+					.orElseThrow(() -> new IdNotFoundException("categoryId not found " +product.getCategoryId() ));
 			
-			String userId = useraccount.getuserRoll();
+//			String userId = useraccount.getUserRole();
 			 	 
-			if(userId.equalsIgnoreCase("admin")) {
+			//if(userId.equalsIgnoreCase("admin")) {
 				Product product1 = new Product();
 
 				product1.setProductName(product.getProductName());
@@ -105,11 +106,11 @@ public class ProductServiceimpl implements ProductService {
 
 				product1.setProductImage(img); 
 				return productRepo.save(product1);
-			}
+			//}
 
-			else {
-				throw new ProductCustomException("you are not admin can't add product"+userId);
-			}
+//			else {
+//				throw new ProductCustomException("you are not admin can't add product"+userId);
+//			}
 
 		} catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
@@ -154,12 +155,12 @@ public class ProductServiceimpl implements ProductService {
 		
 		ResponseUpdateProduct product = mapper.readValue(updateProduct, ResponseUpdateProduct.class);
 		
-		UserAccount useraccount = useraccountRepo.findById(product.getUserId())
-				.orElseThrow(() -> new IdNotFoundException("userId Not Found"+product.getUserId()));
-		
-		String userId = useraccount.getuserRoll();
-		 	 
-		if(userId.equalsIgnoreCase("admin")) {
+//		UserAccount useraccount = useraccountRepo.findById(product.getUserId())
+//				.orElseThrow(() -> new IdNotFoundException("userId Not Found"+product.getUserId()));
+//		
+//		String userId = useraccount.getUserRole();
+//		 	 
+//		if(userId.equalsIgnoreCase("admin")) {
 		
 
 		Product findById = productRepo.findById(id).orElseThrow(() -> new IdNotFoundException("id not found"));
@@ -192,11 +193,11 @@ public class ProductServiceimpl implements ProductService {
 			
 
 			return productRepo.save(findById);
-		}
-		
-		else {
-			throw new ProductCustomException("You are not updated in this product"+userId);
-		}
+//		}
+//		
+//		else {
+//			throw new ProductCustomException("You are not updated in this product"+userId);
+//		}
 	}
 
 	public Optional<Product> getProductById(long productId) {
@@ -216,6 +217,9 @@ public class ProductServiceimpl implements ProductService {
 
 	public List<ProductResponse> filterbyId(String pName) {
 		List<ProductResponse> findByfilterproduct = null;
+			
+		System.out.println("--------------------");
+		
 		try {
 			
 			if(pName.isEmpty()) {
@@ -232,13 +236,17 @@ public class ProductServiceimpl implements ProductService {
 							e.getCategory().getCategoryName(), e.getPrice(), e.getProductImage().getImageData(),
 							e.getProductImage().getImageId()))
 					.collect(Collectors.toList());
+			
+					System.out.println("===========================");
 			}
 			} 
 		catch (Exception e) {
+			 
 			throw new ProductCustomException(e.getMessage());
 		}
 		
-
+		 
+		
 		return findByfilterproduct;
 
 	}
