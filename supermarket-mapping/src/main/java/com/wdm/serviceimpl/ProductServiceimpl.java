@@ -71,15 +71,15 @@ public class ProductServiceimpl implements ProductService {
 			 
 			RequestProduct product = mapper.readValue(requestProduct, RequestProduct.class);
 			
-//			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
-//					.orElseThrow(() -> new IdNotFoundException("userId Not Found"));
+			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
+					.orElseThrow(() -> new IdNotFoundException("userId Not Found"));
 			
 			Category category = categoryRepo.findById(product.getCategoryId())
 					.orElseThrow(() -> new IdNotFoundException("categoryId not found " +product.getCategoryId() ));
 			
-//			String userId = useraccount.getUserRole();
+			String userId = useraccount.getUserRole();
 			 	 
-			//if(userId.equalsIgnoreCase("admin")) {
+			if(userId.equalsIgnoreCase("admin")) {
 				Product product1 = new Product();
 
 				product1.setProductName(product.getProductName());
@@ -106,11 +106,11 @@ public class ProductServiceimpl implements ProductService {
 
 				product1.setProductImage(img); 
 				return productRepo.save(product1);
-			//}
+			}
 
-//			else {
-//				throw new ProductCustomException("you are not admin can't add product"+userId);
-//			}
+			else {
+				throw new ProductCustomException("you are not admin can't add product"+userId);
+			}
 
 		} catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
@@ -155,15 +155,17 @@ public class ProductServiceimpl implements ProductService {
 		
 		ResponseUpdateProduct product = mapper.readValue(updateProduct, ResponseUpdateProduct.class);
 		
-//		UserAccount useraccount = useraccountRepo.findById(product.getUserId())
-//				.orElseThrow(() -> new IdNotFoundException("userId Not Found"+product.getUserId()));
-//		
-//		String userId = useraccount.getUserRole();
-//		 	 
-//		if(userId.equalsIgnoreCase("admin")) {
+		UserAccount useraccount = useraccountRepo.findById(product.getUserId())
+				.orElseThrow(() -> new IdNotFoundException("userId Not Found"+product.getUserId()));
+		
+		String userId = useraccount.getUserRole();
+		 	 
+		if(userId.equalsIgnoreCase("admin")) {
 		
 
 		Product findById = productRepo.findById(id).orElseThrow(() -> new IdNotFoundException("id not found"));
+			
+			
 		
 			findById.setProductName(product.getProductName());
 		
@@ -193,11 +195,11 @@ public class ProductServiceimpl implements ProductService {
 			
 
 			return productRepo.save(findById);
-//		}
-//		
-//		else {
-//			throw new ProductCustomException("You are not updated in this product"+userId);
-//		}
+		}
+		
+		else {
+			throw new ProductCustomException("You are not updated in this product"+userId);
+		}
 	}
 
 	public Optional<Product> getProductById(long productId) {

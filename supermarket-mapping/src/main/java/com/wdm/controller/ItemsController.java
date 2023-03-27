@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ import com.wdm.response.CartResponse;
 import com.wdm.service.ItemService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/items")
 public class ItemsController {
 
@@ -84,26 +86,19 @@ public class ItemsController {
 	
 	@DeleteMapping("/{id}")
 	
-	public ResponseEntity<Cart> deleteItembyid(@PathVariable("id") long id) {
+	public ResponseEntity<?> deleteItembyid(@PathVariable("id") long id) {
 		
 		logger.info("To get item data itemservice.deleteByid(id)");
+			
+		System.out.println("-----------93----------");
+		itemservice.deleteByid(id);
 		
-		
-		return new ResponseEntity<>(itemservice.deleteByid(id), HttpStatus.OK);
+		return new ResponseEntity<>( HttpStatus.NO_CONTENT);
 	}
 	
 	
 	
-
-	
-	
-	
-	
-	
-	
-	 
-	
-	
+ 
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> updateitems(@RequestBody RequestItems item, @PathVariable("id") long id) {

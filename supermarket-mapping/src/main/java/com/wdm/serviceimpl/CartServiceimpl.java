@@ -54,9 +54,11 @@ public class CartServiceimpl implements CartService {
 			 Product product = productRepo.findById(requestitem.getProductId())
 						.orElseThrow(() -> new IdNotFoundException("product id not found"));
 			 
-			  
+			  System.out.println("----------------");
 			 
 			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
+			
+			
 			 
 			if(cart == null) {
 				cart = new Cart();
@@ -109,7 +111,7 @@ public class CartServiceimpl implements CartService {
 	}
 		catch (Exception e) {
 			e.printStackTrace();
-			throw new ProductCustomException(e.getMessage());
+			throw new ProductCustomException("Invalid   " + e.getMessage());
 	}
 		
 	}
@@ -117,7 +119,7 @@ public class CartServiceimpl implements CartService {
 	public void deleteById(long id) {
 
 		logger.info("Cart removing is called");
-
+			System.out.println("----------122------------");
 		try {
 			cartRepo.deleteById(id);
 		} catch (Exception e) {
@@ -153,11 +155,18 @@ public class CartServiceimpl implements CartService {
 	
 	
 	public Cart getCartByUser(ResponseCart responseCart) {
-		Cart cart=null;
+		Cart cart= new Cart();
 		try {
+			 
+			
 		cart = cartRepo.findByOrderStatusAndUser(responseCart.getUserId(), responseCart.getOrderStatus());
 		
-			
+		System.out.println("=========164=========");
+		
+		if(cart==null) {
+			throw new IdNotFoundException("cart is empty");
+		}
+		
 		
 		return cart;
 		}

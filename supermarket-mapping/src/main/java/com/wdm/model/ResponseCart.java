@@ -1,19 +1,18 @@
 package com.wdm.model;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+ 
+import javax.validation.constraints.NotNull;
 
 public class ResponseCart {
 	
-	
+	@NotNull
 	private long userId;
 	
+	@NotNull
 	private String orderStatus;
 
+	
+	
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -27,6 +26,12 @@ public class ResponseCart {
 	}
 
 	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public ResponseCart(@NotNull long userId, @NotNull String orderStatus) {
+		super();
+		this.userId = userId;
 		this.orderStatus = orderStatus;
 	}
 	

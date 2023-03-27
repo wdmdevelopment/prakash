@@ -43,7 +43,7 @@ public class ProductController {
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 
-	public ResponseEntity<Product> save(@RequestPart("data") String resquestProduct,
+	public ResponseEntity<Product> save(@Valid @RequestPart("data") String resquestProduct,
 			@RequestPart("imagefile") MultipartFile file) throws IOException {
 
 		logger.info("save new product - resquestProduct= {}, file={} ", resquestProduct, file.getOriginalFilename());
@@ -71,7 +71,7 @@ public class ProductController {
 	}
 
 	@PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<Product> updateProduct(@RequestPart("data") String resquestProduct,
+	public ResponseEntity<Product> updateProduct(@Valid @RequestPart("data") String resquestProduct,
 			@RequestPart(value = "imagefile", required = false) MultipartFile file, @PathVariable("id") long id)
 			throws Exception {
 

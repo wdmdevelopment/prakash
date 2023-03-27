@@ -103,7 +103,10 @@ public class UserController {
 	@PostMapping("/signup")
 	  public ResponseEntity<?> registerUser(@Valid @RequestBody RequestUserAccount signUpRequest) {
 	   
-		  if (UserRepository.existsByUserName(signUpRequest.getUserName())) {
+		System.out.println("-------------------");
+		
+		
+		if (UserRepository.existsByUserName(signUpRequest.getUserName())) {
 	      return ResponseEntity
 	          .badRequest()
 	          .body(new MessageResponse("Error: Username is already taken!"));
@@ -114,8 +117,11 @@ public class UserController {
 	          .badRequest()
 	          .body(new MessageResponse("Error: Email is already in use!"));
 	    }
+	  
+	    logger.info("User create success username={}",signUpRequest.getUserName() );
 	    
-	
+	    
+	   
 	    UserAccount user = new UserAccount();
 	    
 	    user.setEmailId(signUpRequest.getEmailId());
@@ -126,7 +132,7 @@ public class UserController {
 	    user.setUserName(signUpRequest.getUserName());
 	    user.setUserRole(signUpRequest.getUserRoll());
 	    
-	     
+	    System.out.println("---------135----------");
  
 	    UserRepository.save(user);
 

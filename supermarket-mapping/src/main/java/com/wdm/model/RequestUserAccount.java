@@ -15,6 +15,7 @@ public class RequestUserAccount {
 	private String firstName;
 	@NotNull
 	private String lastName;
+	
 	@Email
 	private String emailId;
 	
