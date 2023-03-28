@@ -139,8 +139,6 @@ public class UserController {
 	    return ResponseEntity.ok(new MessageResponse("Your Account registered successfully..!"));
 	  }
 	
-	
-	
 	 
 
 	@PostMapping("/signin")	
@@ -183,5 +181,11 @@ public class UserController {
 		 
 		 
 	}
+	
+	
+	
+	
+	
+	
 
 }
