@@ -106,5 +106,9 @@ public class ProductController {
 		return new ResponseEntity<>(productService.getBycategory(categoryId), HttpStatus.OK);
 
 	}
+	
+	
+	
+	
 
 }

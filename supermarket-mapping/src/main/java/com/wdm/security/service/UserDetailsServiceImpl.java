@@ -25,13 +25,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	  		
 	 UserAccount user = userRepo.findByEmailId(email_Id);
 	 
+	 
+	 
 	 if(user==null) {
+		 
 		 throw new IdNotFoundException("Email Id not found");
 	 }
 	 
-	 
-    
-  
+	  
      
     return UserDetailsImpl.build(user);
   }

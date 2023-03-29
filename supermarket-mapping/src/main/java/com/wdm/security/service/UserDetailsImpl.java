@@ -37,7 +37,8 @@ public class UserDetailsImpl implements UserDetails {
 
   public static UserDetailsImpl build(UserAccount user) {
      
-
+	  System.out.println(user.getPassword() + "  40 user detailsimpl class");
+	  
     return new UserDetailsImpl(
         user.getUserId(), 
         user.getUserName(), 

@@ -2,8 +2,6 @@ package com.wdm.controller;
 
  
 import java.util.List;
- 
- 
 
 import javax.validation.Valid;
 
@@ -29,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
 import com.wdm.model.RequestLogin;
+import com.wdm.model.RequestSocialLogin;
 import com.wdm.model.RequestUserAccount;
 import com.wdm.repository.UserAccountRespository;
 import com.wdm.response.JwtResponse;
@@ -51,7 +50,7 @@ public class UserController {
 	AuthenticationManager authenticationManager;
 
 	@Autowired
-	UserAccountRespository UserRepository;
+	UserAccountRespository userRepo;
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
@@ -101,21 +100,27 @@ public class UserController {
 	
 	
 	@PostMapping("/signup")
-	  public ResponseEntity<?> registerUser(@Valid @RequestBody RequestUserAccount signUpRequest) {
+	  public UserAccount  registerUser(@Valid @RequestBody RequestUserAccount signUpRequest) {
 	   
-		System.out.println("-------------------");
+		System.out.println("-----105--------------");
 		
 		
-		if (UserRepository.existsByUserName(signUpRequest.getUserName())) {
-	      return ResponseEntity
-	          .badRequest()
-	          .body(new MessageResponse("Error: Username is already taken!"));
+		if (userRepo.existsByUserName(signUpRequest.getUserName())) {
+			
+			throw new IdNotFoundException("Error: Username is already taken!");
+			
+//			return ResponseEntity
+//	          .badRequest()
+//	          .body(new MessageResponse("Error: Username is already taken!"));
 	    }
 
-	    if (UserRepository.existsByEmailId(signUpRequest.getEmailId())) {
-	      return ResponseEntity
-	          .badRequest()
-	          .body(new MessageResponse("Error: Email is already in use!"));
+	    if (userRepo.existsByEmailId(signUpRequest.getEmailId())) {
+	     
+	    	throw new IdNotFoundException("Error: Email is already in use!");
+	    	
+//	    	return ResponseEntity
+//	          .badRequest()
+//	          .body(new MessageResponse("Error: Email is already in use!"));
 	    }
 	  
 	    logger.info("User create success username={}",signUpRequest.getUserName() );
@@ -134,9 +139,11 @@ public class UserController {
 	    
 	    System.out.println("---------135----------");
  
-	    UserRepository.save(user);
+	    
 
-	    return ResponseEntity.ok(new MessageResponse("Your Account registered successfully..!"));
+	    return 	userRepo.save(user);
+	    
+ 
 	  }
 	
 	 
@@ -144,16 +151,16 @@ public class UserController {
 	@PostMapping("/signin")	
 	public ResponseEntity<?> loggingValidation(@RequestBody RequestLogin requst) throws Exception{
 		try {	
-		System.out.println("---------------------------");
+		System.out.println("------------154---------------");
 		
-		 
+		 	System.out.println(requst.getUserName());
 		
 		 Authentication authentication = authenticationManager.authenticate(
 			        new UsernamePasswordAuthenticationToken(requst.getUserName(), requst.getPassword()));
-		
+		 	
+		 	
 		 
 		 
-		 System.out.println("====================");
 		
 		 SecurityContextHolder.getContext().setAuthentication(authentication);
 		    String jwt = jwtutils.generateJwtToken(authentication);
@@ -177,10 +184,86 @@ public class UserController {
 			 
 			throw new IdNotFoundException(e.getMessage());
 		}
-//				new ResponseEntity<>(userService.getuserbyEmail(requst.getEmailId(), requst.getPassword()), HttpStatus.OK);
+
 		 
 		 
 	}
+	
+	
+	@PostMapping("/socialLogin")
+	public ResponseEntity<?> socialLogin (@RequestBody RequestSocialLogin socialLogin) throws Exception {
+			
+		 
+		UserAccount userAccount = userRepo.findByEmailId(socialLogin.getEmail());
+		
+	  
+		
+		
+		System.out.println(socialLogin.getPassword());
+			
+		if(userAccount!=null) {
+			 
+			String jwt = jwtutils.generateTokenSocial(socialLogin.getUserName(), socialLogin.getEmail());
+			
+			  System.out.println(jwt);
+			  
+
+				return ResponseEntity.ok(new JwtResponse(jwt, 
+						userAccount.getUserId(), 
+						userAccount.getUserName(), 
+						userAccount.getEmailId(),
+						userAccount.getUserRole()
+			            ));
+		
+		}
+		
+		else {
+			RequestUserAccount user = new RequestUserAccount();
+				
+			  user.setEmailId(socialLogin.getEmail());
+			  user.setFirstName(socialLogin.getFirstName());
+			  user.setLastName(socialLogin.getLastName());
+			  user.setPassword(passwordEncoder.encode(socialLogin.getPassword()));
+			  user.setUserName(socialLogin.getUserName());
+			  user.setUserRoll("Customer");
+			  
+			  		 UserAccount registerUser = registerUser(user);
+			  	
+			  		String jwt = jwtutils.generateTokenSocial(socialLogin.getUserName(), socialLogin.getEmail());
+					
+					  System.out.println(jwt);
+					  
+
+						return ResponseEntity.ok(new JwtResponse(jwt, 
+								registerUser.getUserId(), 
+								registerUser.getUserName(), 
+								registerUser.getEmailId(),
+								registerUser.getUserRole()
+					            ));
+					
+		     
+			  
+//			  RequestLogin requestLogin = new RequestLogin();
+//				
+//			  
+//			  
+//				requestLogin.setPassword(socialLogin.getPassword());
+//				requestLogin.setUserName(socialLogin.getEmail());
+//				
+//				ResponseEntity<?> loggingValidation = loggingValidation(requestLogin);
+//			  
+//			return loggingValidation;
+		}
+	 
+	 
+	}
+	
+	
+	 
+	
+	
+	
+	
 	
 	
 	

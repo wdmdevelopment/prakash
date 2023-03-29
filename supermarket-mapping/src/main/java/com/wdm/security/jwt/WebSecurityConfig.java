@@ -45,10 +45,7 @@ public class WebSecurityConfig {
 		return authConfig.getAuthenticationManager();
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
@@ -67,7 +64,7 @@ public class WebSecurityConfig {
 //	        .antMatchers("/cart/data").permitAll()
 				.antMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
 	        .antMatchers("/forget-password/**").permitAll()
-	        .antMatchers("/reset-password").permitAll()
+	        
 	         
 
 				.anyRequest().authenticated();
@@ -78,5 +75,13 @@ public class WebSecurityConfig {
 
 		return http.build();
 	}
-
+	
+	
+	
+	
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }
