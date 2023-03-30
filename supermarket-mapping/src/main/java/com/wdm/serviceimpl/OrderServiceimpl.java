@@ -117,7 +117,9 @@ public class OrderServiceimpl implements OrderService {
 
 	public List<Orders> getAllOrders(long userId) {
 
-		return OrderRepo.findByUser_UserId(userId);
+		List<Orders> user_UserId = OrderRepo.findByUser_UserId(userId);
+		
+		return user_UserId;
 	}
 
 	//public List<ResponseOrder> getOrders(long userId) {

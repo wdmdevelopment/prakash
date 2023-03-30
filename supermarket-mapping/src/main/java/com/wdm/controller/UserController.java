@@ -103,7 +103,8 @@ public class UserController {
 	  public UserAccount  registerUser(@Valid @RequestBody RequestUserAccount signUpRequest) {
 	   
 		System.out.println("-----105--------------");
-		
+			
+		System.out.println(signUpRequest.getPassword());
 		
 		if (userRepo.existsByUserName(signUpRequest.getUserName())) {
 			
@@ -220,6 +221,9 @@ public class UserController {
 		else {
 			RequestUserAccount user = new RequestUserAccount();
 				
+			System.out.println("-------------  "+socialLogin.getPassword());
+			
+			
 			  user.setEmailId(socialLogin.getEmail());
 			  user.setFirstName(socialLogin.getFirstName());
 			  user.setLastName(socialLogin.getLastName());
