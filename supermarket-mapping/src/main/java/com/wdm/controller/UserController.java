@@ -152,18 +152,17 @@ public class UserController {
 	@PostMapping("/signin")	
 	public ResponseEntity<?> loggingValidation(@RequestBody RequestLogin requst) throws Exception{
 		try {	
-		System.out.println("------------154---------------");
+		 
 		
 		 	System.out.println(requst.getUserName());
 		
 		 Authentication authentication = authenticationManager.authenticate(
 			        new UsernamePasswordAuthenticationToken(requst.getUserName(), requst.getPassword()));
 		 	
-		 	
-		 
-		 
+		 	 
 		
 		 SecurityContextHolder.getContext().setAuthentication(authentication);
+		 
 		    String jwt = jwtutils.generateJwtToken(authentication);
 		    
 		    System.out.println(jwt);
@@ -245,18 +244,8 @@ public class UserController {
 								registerUser.getUserRole()
 					            ));
 					
-		     
-			  
-//			  RequestLogin requestLogin = new RequestLogin();
-//				
-//			  
-//			  
-//				requestLogin.setPassword(socialLogin.getPassword());
-//				requestLogin.setUserName(socialLogin.getEmail());
-//				
-//				ResponseEntity<?> loggingValidation = loggingValidation(requestLogin);
-//			  
-//			return loggingValidation;
+		      
+ 
 		}
 	 
 	 
