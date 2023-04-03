@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -64,21 +65,23 @@ public class ProductServiceimpl implements ProductService {
 	
 	@Transactional
 	public Product saveProduct(String requestProduct, MultipartFile file) throws IOException {
- 
+		
+		RequestProduct product = mapper.readValue(requestProduct, RequestProduct.class);
 
 		try {
-			
 			 
-			RequestProduct product = mapper.readValue(requestProduct, RequestProduct.class);
-			
+			  
 			
 			UserAccount useraccount = useraccountRepo.findById(product.getUserId())
 					.orElseThrow(() -> new IdNotFoundException("userId Not Found"));
+			
+			 
 			
 			Category category = categoryRepo.findById(product.getCategoryId())
 					.orElseThrow(() -> new IdNotFoundException("categoryId not found " +product.getCategoryId() ));
 			
 			String userId = useraccount.getUserRole();
+			
 			 	 
 			if(userId.equalsIgnoreCase("admin")) {
 				Product product1 = new Product();
@@ -112,10 +115,17 @@ public class ProductServiceimpl implements ProductService {
 			else {
 				throw new ProductCustomException("you are not admin can't add product"+userId);
 			}
+			
 
-		} catch (Exception e) {
+		} 
+		catch (DataIntegrityViolationException  e) {
+			 
+			throw new IllegalArgumentException(product.getProductName()  + " already exists");
+		}
+		catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}
+		
 	}
 	
 	 

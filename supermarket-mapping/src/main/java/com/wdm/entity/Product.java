@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
  
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  
 
 @Entity
-@Table(name = "product")
+@Table(name = "product", uniqueConstraints = {@UniqueConstraint(columnNames = "product_Name")})
 public class Product {
 	
 	@Id
@@ -32,7 +33,7 @@ public class Product {
 	@Column(name = "product_Id")
 	private long productId;
 
-	@Column(name = "product_Name") 
+	@Column(name = "product_Name", nullable = false, unique = true) 
 	private String productName;
 	
 	@Column(name = "stocks") 

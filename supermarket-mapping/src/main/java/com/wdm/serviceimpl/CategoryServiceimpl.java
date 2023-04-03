@@ -3,6 +3,7 @@ package com.wdm.serviceimpl;
  
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import com.wdm.entity.Category;
 import com.wdm.entity.UserAccount;
@@ -25,16 +26,19 @@ public class CategoryServiceimpl implements CategoryService {
 	UserAccountRespository userRepo;
 
 	public Category saveCategory(RequestCategory requestCategory) {
+		
 		try {
 			
-//			UserAccount findById = userRepo.findById(requestCategory.getUserId())
-//					.orElseThrow(() -> new IdNotFoundException("userId not found"));
+			UserAccount findById = userRepo.findById(requestCategory.getUserId())
+					.orElseThrow(() -> new IdNotFoundException("userId not found"));
+								
+		 
 
 			Category save;
 
-//			String getuserRoll = findById.getUserRole();
-//			if(getuserRoll.equalsIgnoreCase("admin")) {
-//				
+			String getuserRoll = findById.getUserRole();
+			if(getuserRoll.equalsIgnoreCase("admin")) {
+				
 
 				Category category = new Category();
 
@@ -42,20 +46,24 @@ public class CategoryServiceimpl implements CategoryService {
 
 				save = categoryRepo.save(category);
 				
-//			}
+			}
 			
-//			else {
-//				throw new ProductCustomException("You are a not a admin"+getuserRoll);
-//			}
+			else {
+				throw new ProductCustomException("You are a not a admin"+getuserRoll);
+			}
 		 
 		return save;
 		
 		}
-	
+		catch (DataIntegrityViolationException  e) {
+			 
+			throw new IllegalArgumentException(requestCategory.getCategoryName()  + " already exists");
+		}
 		catch (Exception e) {
-			
 			throw new ProductCustomException(e.getMessage());
 		}
+	
+		 
 	 		
 	}
  
@@ -87,6 +95,8 @@ public class CategoryServiceimpl implements CategoryService {
 	 
 	public Category updatecategory(RequestCategory category, long id) {
 		
+			System.out.println(category.getCategoryName());
+		
 		try {
 			UserAccount findById = userRepo.findById(category.getUserId())
 					.orElseThrow(() -> new IdNotFoundException("userId not found"));
@@ -114,7 +124,7 @@ public class CategoryServiceimpl implements CategoryService {
 		}
 		
 		catch (Exception e) {
-			throw new ProductCustomException("Invalid"+e.getMessage());
+			throw new ProductCustomException("Invalid "+e.getMessage());
 		}
 		 
 	}

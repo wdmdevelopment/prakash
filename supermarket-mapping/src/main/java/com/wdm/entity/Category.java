@@ -14,20 +14,21 @@ import javax.persistence.Id;
  
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
  
 
 @Entity
-@Table(name = "Catagory")
+@Table(name = "Catagory", uniqueConstraints = {@UniqueConstraint(columnNames ="name" )})
 public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
+	 
 	private long categoryId;
 	
-	@Column(name = "name")
+	@Column(name = "name", nullable = false, unique = true)
 	private String categoryName;
 	
 	

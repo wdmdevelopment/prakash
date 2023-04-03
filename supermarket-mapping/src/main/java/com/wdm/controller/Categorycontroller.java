@@ -1,6 +1,5 @@
 package com.wdm.controller;
 
- 
 import java.util.List;
 
 import javax.validation.Valid;
@@ -46,7 +45,6 @@ public class Categorycontroller {
 		return new ResponseEntity<>(categoryservice.saveCategory(resquestProduct), HttpStatus.CREATED);
 	}
 
-	 
 	@GetMapping("/ordercategory")
 	public ResponseEntity<List<Category>> getbyfiltercategory() {
 
@@ -74,15 +72,14 @@ public class Categorycontroller {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Category> updateCategory(@RequestBody RequestCategory Category, @PathVariable("id") long id) {
+	public ResponseEntity<Category> updateCategory(@Valid @RequestBody RequestCategory Category,
+			@PathVariable("id") long id) {
 
-			
 		logger.info("update the category" + id);
-		
+
 		return new ResponseEntity<>(categoryservice.updatecategory(Category, id), HttpStatus.OK);
 	}
-	
-	
+
 	@GetMapping("/categoryname")
 	public ResponseEntity<List<Category>> filterbyproduct(
 			@RequestParam(value = "categoryname", required = false) String name) {
@@ -92,7 +89,5 @@ public class Categorycontroller {
 		return new ResponseEntity<List<Category>>(categoryservice.findbyCategoryName(name), HttpStatus.OK);
 
 	}
-	
-	
 
 }
