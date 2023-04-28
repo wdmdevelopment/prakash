@@ -43,11 +43,28 @@ public class OrderServiceimpl implements OrderService {
 
 	@Autowired
 	ProductMappingRespository productRepo;
+	
+	@Autowired
+	CartServiceimpl cartservice;
+	
+	
 
 	public Orders placeOrder(RequestOrder requestOrder) {
 
 		Orders orders = new Orders();
 		try {
+			
+			if(requestOrder.getQuantity() != 0 && requestOrder.getProductId()!= 0) {
+				RequestItems reqItem = new RequestItems();
+				reqItem.setProductId(requestOrder.getProductId());
+				reqItem.setQuantity(requestOrder.getQuantity());
+				reqItem.setUserId(requestOrder.getUserId());
+				
+				cartservice.saveCart(reqItem);
+				
+			}
+			
+			  
 
 			Cart findBycart = cartRepo.findById(requestOrder.getCartId())
 					.orElseThrow(() -> new IdNotFoundException(requestOrder.getCartId() + " Not Found "));
@@ -117,7 +134,7 @@ public class OrderServiceimpl implements OrderService {
 
 	public List<Orders> getAllOrders(long userId) {
 
-		List<Orders> user_UserId = OrderRepo.findByUser_UserId(userId);
+		List<Orders> user_UserId = OrderRepo.findAllByUserUserIdOrderByDateTimeDesc(userId);
 		
 		return user_UserId;
 	}

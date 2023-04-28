@@ -71,9 +71,7 @@ public class ItemsController {
 	 
 	}
 	
-	
-	
-	
+	 
 	
 	
 	@GetMapping("/{id}")
@@ -84,14 +82,14 @@ public class ItemsController {
 		return new ResponseEntity<>(itemservice.getItemsByid(id), HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{itemId}/{cartid}")
 	
-	public ResponseEntity<?> deleteItembyid(@PathVariable("id") long id) {
+	public ResponseEntity<?> deleteItembyid(@PathVariable("itemId") long itemId, @PathVariable("cartid") long cartid) {
 		
 		logger.info("To get item data itemservice.deleteByid(id)");
 			
 		System.out.println("-----------93----------");
-		itemservice.deleteByid(id);
+		itemservice.deleteByid(itemId, cartid);
 		
 		return new ResponseEntity<>( HttpStatus.NO_CONTENT);
 	}
@@ -101,11 +99,11 @@ public class ItemsController {
  
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> updateitems(@RequestBody RequestItems item, @PathVariable("id") long id) {
+	public ResponseEntity<Void> updateitems( @PathVariable("id") long id, @RequestBody RequestItems item) {
 
 		itemservice.updatecategory(item, id);
 	
-		logger.info("update the item"+id);
+		logger.info("update the item" + id);
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}

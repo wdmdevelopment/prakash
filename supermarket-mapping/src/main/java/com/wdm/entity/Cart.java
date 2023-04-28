@@ -23,20 +23,17 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cartId;
 
-	@OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Items> item = new HashSet<>();
 
-	
 	@OneToOne
 	@JoinColumn(name = "user", referencedColumnName = "userId")
 	private UserAccount user;
-	
+
 	private String OrderStatus;
-	
-	
+
 	private double totalAmount;
-	
-	
+
 	public long getCartId() {
 		return cartId;
 	}
@@ -44,8 +41,6 @@ public class Cart {
 	public void setCartId(long cartId) {
 		this.cartId = cartId;
 	}
-
-	
 
 	public Set<Items> getItem() {
 		return item;
@@ -78,10 +73,5 @@ public class Cart {
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
 	}
-
-	 
-
-
-
 
 }

@@ -28,7 +28,7 @@ public class Items {
 	@Column(name="total_price")
 	private double totalPrice;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne 
 	@JoinColumn(name = "product_Id", referencedColumnName = "product_Id")
 	private Product product;
 

@@ -15,7 +15,7 @@ public interface ItemService {
 	
 	public Cart saveItems (RequestItems requestitem);
 	
-	public Cart deleteByid(long id);
+	public void deleteByid(long itemId, long cartId);
 	
 	public Items getItemsByid(long id) throws Exception;
 	

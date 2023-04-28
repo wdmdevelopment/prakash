@@ -9,6 +9,8 @@ import com.wdm.entity.Orders;
 public interface OrderRepository extends JpaRepository<Orders, Long> {
 
 	
-	public List<Orders> findByUser_UserId(long userId);
+	public List<Orders> findAllByUserUserIdOrderByDateTimeDesc(long userId);
+	
+	
 
 }

@@ -58,14 +58,17 @@ public class CartServiceimpl implements CartService {
 			 
 			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
 			
-			
+			// Set<Items> set = cart.getItem().stream().filter(e -> e.getItemId() ==)
 			 
 			if(cart == null) {
 				cart = new Cart();
 				cart.setOrderStatus("ACTIVE");
 			} 
 			 System.out.println("======58======>");
-			Items item = new Items();
+			
+			
+			 
+			 Items item = new Items();
 				item.setQuantity(requestitem.getQuantity());
 				
 //			if(item.getProduct().getStocks() > item.getQuantity()) {

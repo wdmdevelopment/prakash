@@ -57,8 +57,7 @@ public class Product {
 	@JoinColumn(name = "ProductImage", referencedColumnName = "imageId")
 	private ImageProduct productImage;
 
-
-
+	  
 	 
  
 

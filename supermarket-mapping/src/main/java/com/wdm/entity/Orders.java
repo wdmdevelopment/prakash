@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+ 
 
 @Entity
 @Table(name = "Orders")
@@ -28,6 +28,7 @@ public class Orders {
 	@Column(name = "order_id")
 	private long orderId;
 
+	
 	@Column(name = "ordertime")
 	private LocalDateTime dateTime = LocalDateTime.now();
 
