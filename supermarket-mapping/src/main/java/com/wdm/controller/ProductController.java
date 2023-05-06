@@ -1,6 +1,7 @@
 package com.wdm.controller;
 
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -44,7 +45,7 @@ public class ProductController {
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 
 	public ResponseEntity<Product> save(@Valid @RequestPart("data") String resquestProduct,
-			@RequestPart("imagefile") MultipartFile file) throws IOException {
+			@RequestPart("imagefile") MultipartFile file) throws IOException, SQLIntegrityConstraintViolationException {
 
 		logger.info("save new product - resquestProduct= {}, file={} ", resquestProduct, file.getOriginalFilename());
 

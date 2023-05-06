@@ -15,9 +15,25 @@ public class RequestItems {
 	@NotNull
 	private long userId;
 	
+	@NotNull
+	private long cartId;
+	
+	
+	
+	
 	
 	 
 	 
+
+	public long getCartId() {
+		return cartId;
+	}
+
+
+	public void setCartId(long cartId) {
+		this.cartId = cartId;
+	}
+
 
 	public long getUserId() {
 		return userId;

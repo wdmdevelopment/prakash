@@ -33,85 +33,70 @@ public class ItemsController {
 
 	@Autowired
 	ItemService itemservice;
-	
+
 	private static final Logger logger = LogManager.getLogger(ItemsController.class);
-	
-	
+
 	@PostMapping
 	public ResponseEntity<Cart> saveItem(@Valid @RequestBody RequestItems resquestItems) {
-		
-		//logger.info("items saved, Quantity={}, totalPrice={}", resquestItems.getQuantity());
-		
+
+		// logger.info("items saved, Quantity={}, totalPrice={}",
+		// resquestItems.getQuantity());
+
 		return new ResponseEntity<Cart>(itemservice.saveItems(resquestItems), HttpStatus.CREATED);
 	}
-	
-	
+
 	@GetMapping
-	public ResponseEntity<List<CartResponse>> getItems(){
-		
+	public ResponseEntity<List<CartResponse>> getItems() {
+
 		logger.info("To get all products");
-		
+
 		List<Items> items = itemservice.getItems();
-		
+
 		List<CartResponse> reitem = new ArrayList<CartResponse>();
-		
-		for(Items item : items) {
-			 
+
+		for (Items item : items) {
+
 			CartResponse reqitem = new CartResponse();
 			reqitem.setQuantity(item.getQuantity());
-			//reqitem.setTotalPrice(item.getTotalPrice());
-			
-			 
+			// reqitem.setTotalPrice(item.getTotalPrice());
+
 			reqitem.setProductId(item.getProduct().getProductId());
 			reitem.add(reqitem);
 		}
-		
-		
+
 		return new ResponseEntity<>(reitem, HttpStatus.OK);
-	 
+
 	}
-	
-	 
-	
-	
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Items> getBookingById(@PathVariable("id") long id) throws Exception {
-		
+
 		logger.info("To get item data", id);
-		
+
 		return new ResponseEntity<>(itemservice.getItemsByid(id), HttpStatus.OK);
 	}
+
+	@DeleteMapping("/{itemId}/{cartid}/{userId}")
 	
-	@DeleteMapping("/{itemId}/{cartid}")
-	
-	public ResponseEntity<?> deleteItembyid(@PathVariable("itemId") long itemId, @PathVariable("cartid") long cartid) {
+	public ResponseEntity<?> deleteItembyid(@PathVariable("itemId") long itemId, @PathVariable("cartid")
+	long cartid, @PathVariable("userId") long userId) {
 		
 		logger.info("To get item data itemservice.deleteByid(id)");
 			
 		System.out.println("-----------93----------");
-		itemservice.deleteByid(itemId, cartid);
+		itemservice.deleteByid(itemId, cartid, userId);
 		
 		return new ResponseEntity<>( HttpStatus.NO_CONTENT);
 	}
-	
-	
-	
- 
-	
+
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> updateitems( @PathVariable("id") long id, @RequestBody RequestItems item) {
+	public ResponseEntity<Void> updateitems(@PathVariable("id") long id, @RequestBody RequestItems item) {
 
 		itemservice.updatecategory(item, id);
-	
+
 		logger.info("update the item" + id);
-		
+
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
 
 }

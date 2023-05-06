@@ -1,21 +1,27 @@
 package com.wdm.response;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ResponseUpdateProduct {
 	
+	@NotNull
 	@JsonProperty("productName")
 	private String productName;
 	
+	@NotNull
 	@JsonProperty("stock")
 	private long stock;
 	
+	@NotNull
 	@JsonProperty("unit")
 	private String unit;
-	 
+	@NotNull
 	@JsonProperty("price")
 	private double price;
 	
+	@NotNull
 	@JsonProperty("categoryId")
 	private long categoryId;
 	

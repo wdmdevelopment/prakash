@@ -88,7 +88,7 @@ public class OrderServiceimpl implements OrderService {
 					item.getProduct().setStocks(item.getProduct().getStocks() - item.getQuantity());
 				} else {
 
-					throw new ProductCustomException("INSUFFICIENT QUANTITY");
+			throw new ProductCustomException("INSUFFICIENT QUANTITY"+" Remaining stocks "+item.getProduct().getStocks());
 
 				}
 
@@ -135,6 +135,13 @@ public class OrderServiceimpl implements OrderService {
 	public List<Orders> getAllOrders(long userId) {
 
 		List<Orders> user_UserId = OrderRepo.findAllByUserUserIdOrderByDateTimeDesc(userId);
+		
+		if(user_UserId==null) {
+			
+			throw new IdNotFoundException("This can encourage them to explore products and make a purchase");
+		}
+		
+		
 		
 		return user_UserId;
 	}

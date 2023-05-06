@@ -2,6 +2,8 @@ package com.wdm.entity;
  
  
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,6 +47,9 @@ public class Product {
 	
 	@Column(name = "price") 
 	private double price;
+	
+	@Column(name = "addedAt")
+	private LocalDateTime addedAt;
 	
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
@@ -179,6 +184,24 @@ public class Product {
 
 	public void setProductImage(ImageProduct productImage) {
 		this.productImage = productImage;
+	}
+
+
+
+
+
+
+	public LocalDateTime getAddedAt() {
+		return addedAt;
+	}
+
+
+
+
+
+
+	public void setAddedAt(LocalDateTime addedAt) {
+		this.addedAt = addedAt;
 	}
 
 

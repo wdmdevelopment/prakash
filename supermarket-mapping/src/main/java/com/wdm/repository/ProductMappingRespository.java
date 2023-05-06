@@ -19,8 +19,8 @@ public interface ProductMappingRespository extends JpaRepository<Product, Long> 
  
 	
 	 
-	@Query(value = "SELECT * FROM product ORDER BY product_id DESC;", nativeQuery = true)
-	public List<Product> findAllOrderByProductIdDesc();
+	@Query(value = "SELECT * FROM product ORDER BY added_at DESC;", nativeQuery = true)
+	public List<Product> findAllOrderByAddedAtDesc();
 	
 	@Query(value = "select * from testproject.product  WHERE category_id LIKE %:category_id%", nativeQuery = true)
 	 public  List<Product> findBycategoryId(long category_id);

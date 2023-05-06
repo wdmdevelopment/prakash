@@ -71,7 +71,7 @@ public class CartController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteCart(@PathVariable("id") long id) {
 			
-		logger.info("remove from the cart deleteId={}");
+		logger.info("remove from the cart deleteId={}", id);
 			
 			cartservice.deleteById(id);
 			
@@ -94,8 +94,7 @@ public class CartController {
 	@PostMapping("/data") 
 	public ResponseEntity<Cart> getAllbyuser(@Valid @RequestBody ResponseCart responseCart) {
 			
-		System.out.println("===================>"+responseCart.getUserId());
-		System.out.println("===================>"+responseCart.getOrderStatus());
+		 
 		  
 		return new ResponseEntity<Cart>(cartservice.getCartByUser(responseCart), HttpStatus.OK);
 	}

@@ -2,6 +2,7 @@ package com.wdm.service;
 
  
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ import com.wdm.response.ProductResponse;
 public interface ProductService {
 	
 	
-	public Product saveProduct (String requestProduct, MultipartFile file) throws IOException;
+	public Product saveProduct (String requestProduct, MultipartFile file) throws IOException, SQLIntegrityConstraintViolationException;
 	
 	public void deletebyId(long id);
 	

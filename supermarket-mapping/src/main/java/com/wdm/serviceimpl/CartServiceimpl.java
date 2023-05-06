@@ -51,33 +51,47 @@ public class CartServiceimpl implements CartService {
 			 UserAccount userAccount = userRepo.findById(requestitem.getUserId())
 						.orElseThrow(() -> new IdNotFoundException("userId not found"));
 			 
-			 Product product = productRepo.findById(requestitem.getProductId())
-						.orElseThrow(() -> new IdNotFoundException("product id not found"));
+			
+			 
+			 
+			 
+			 
+			
 			 
 			  System.out.println("----------------");
 			 
 			Cart cart = cartRepo.findByOrderStatusAndUser(requestitem.getUserId(), "ACTIVE");
 			
-			// Set<Items> set = cart.getItem().stream().filter(e -> e.getItemId() ==)
+			 
+			
+			
 			 
 			if(cart == null) {
 				cart = new Cart();
 				cart.setOrderStatus("ACTIVE");
 			} 
-			 System.out.println("======58======>");
+			  
+			Product product = productRepo.findById(requestitem.getProductId())
+					.orElseThrow(() -> new IdNotFoundException("product id not found"));
 			
+			
+			Items productId = itemRepo.findByProduct_ProductIdAndCart_CartId(requestitem.getProductId(), cart.getCartId());
+			
+			if(productId != null) {
+				
+				throw new IdNotFoundException("This product already added in your cart");
+			}
+			 
+			
+			
+			 
+			 
+			 
 			
 			 
 			 Items item = new Items();
 				item.setQuantity(requestitem.getQuantity());
 				
-//			if(item.getProduct().getStocks() > item.getQuantity()) {
-//			
-//			
-//			}
-//			else {
-//				throw new ProductCustomException("Insufficient Quantity");
-//			}
 			
 			 item.setProduct(product);
 				
@@ -162,15 +176,14 @@ public class CartServiceimpl implements CartService {
 		try {
 			 
 			
-		cart = cartRepo.findByOrderStatusAndUser(responseCart.getUserId(), responseCart.getOrderStatus());
+		cart = cartRepo.findByOrderStatusAndUser(responseCart.getUserId(), "ACTIVE");
 		
 		System.out.println("=========164=========");
 		
 		if(cart==null) {
 			throw new IdNotFoundException("cart is empty");
 		}
-		
-		
+		 
 		return cart;
 		}
 		catch (Exception e) {

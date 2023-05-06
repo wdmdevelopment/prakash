@@ -88,7 +88,7 @@ public class ItemServiceimpl implements ItemService {
 		}
 	}
 
-	public void deleteByid(long itemId, long cartId) {
+	public void deleteByid(long itemId, long cartId, long userId) {
  
 		Optional<Cart> cart = cartRepo.findById(cartId);
 				 
@@ -102,6 +102,7 @@ public class ItemServiceimpl implements ItemService {
 	            if (itemToRemove.isPresent()) {
 	            	
 	                item2.remove(itemToRemove.get());
+	              
 	                cartRepo.save(cart.get());
 	            } else {
 	                throw new EntityNotFoundException("Item with id " + itemId + " not found in cart with id " + cartId);
@@ -109,6 +110,22 @@ public class ItemServiceimpl implements ItemService {
 	        } else {
 	            throw new EntityNotFoundException("Cart with id " + cartId + " not found");
 	        }
+	      
+	      Cart cart2 = cartRepo.findByOrderStatusAndUser(userId, "ACTIVE");
+          
+          List<Items> item = itemRepo.findByCart_CartId(cart2.getCartId());
+          
+          double totalAmount= 0;
+			for(Items itemcart : item) {
+				 
+				totalAmount += itemcart.getTotalPrice();
+				
+			}
+			
+			cart2.setTotalAmount(totalAmount);
+			 
+				cartRepo.save(cart2);
+	     
 		
 		
 				
@@ -173,7 +190,22 @@ public class ItemServiceimpl implements ItemService {
 
 		Cart cart = cartRepo.findById(items1.getCart().getCartId())
 				.orElseThrow(() -> new IdNotFoundException(" cart Not found "));
-		cart.setTotalAmount(total);
+		
+		  
+		 List<Items> itemlist = itemRepo.findByCart_CartId(cart.getCartId());
+			
+		 
+		 
+			double totalAmount= 0;
+			for(Items itemcart : itemlist) {
+				 
+				totalAmount += itemcart.getTotalPrice();
+				
+			}
+			
+			cart.setTotalAmount(totalAmount);
+			
+			
 
 		cartRepo.save(cart);
 
