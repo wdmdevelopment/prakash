@@ -1,28 +1,33 @@
 package com.wdm.model;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RequestProduct {
 	
+	@NotNull
 	@JsonProperty("productName")
 	private String productName;
 	
+	@NotNull
 	@JsonProperty("stock")
 	private long stock;
 	 
 	 
+	@NotNull
 	@JsonProperty("unit")
 	private String unit;
 	
-	
+	@NotNull
 	@JsonProperty("categoryId")
 	private long categoryId;
 	
-	
+	@NotNull
 	@JsonProperty("userId")
 	private long userId;
 
-
+	@NotNull
 	@JsonProperty("price")
 	private double price;
 	

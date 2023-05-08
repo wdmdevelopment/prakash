@@ -33,7 +33,6 @@ public interface ProductService {
 	 
 	public List<ProductResponse> getBycategory(long categoryId);
 	
-	 
-	
 
+	public List<Product> searchProductByNameOrCategory(String query);
 }

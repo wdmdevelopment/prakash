@@ -92,8 +92,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/productname")
-	public ResponseEntity<List<ProductResponse>> filterbyproduct(
-			@RequestParam(value = "productname", required = false) String name) {
+	public ResponseEntity<List<ProductResponse>> filterbyproduct(@RequestParam("name") String name) {
 
 		logger.info("getProductById  productId : " + name);
 
@@ -108,8 +107,10 @@ public class ProductController {
 
 	}
 	
-	
-	
-	
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductResponse>> searchProduct(@RequestParam("query") String query) {
+    	
+    	return new ResponseEntity<List<ProductResponse>>(productService.filterbyId(query), HttpStatus.OK);
+    }
 
 }

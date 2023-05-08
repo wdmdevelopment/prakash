@@ -2,12 +2,9 @@ package com.wdm.serviceimpl;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -15,7 +12,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,13 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.webjars.NotFoundException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wdm.controller.ProductController;
 import com.wdm.entity.Category;
 import com.wdm.entity.ImageProduct;
 import com.wdm.entity.Product;
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
-import com.wdm.exception.InvalidDataException;
 import com.wdm.exception.ProductCustomException;
 import com.wdm.exception.ProductNotFoundException;
 import com.wdm.model.RequestProduct;
@@ -40,8 +34,6 @@ import com.wdm.repository.UserAccountRespository;
 import com.wdm.response.ProductResponse;
 import com.wdm.response.ResponseUpdateProduct;
 import com.wdm.service.ProductService;
-
-import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 @Service
 @CrossOrigin
@@ -80,7 +72,16 @@ public class ProductServiceimpl implements ProductService {
 			if (userId.equalsIgnoreCase("admin")) {
 				Product product1 = new Product();
 
-				product1.setProductName(product.getProductName());
+				Product product2 = productRepo.findByProductName(product.getProductName());
+				
+				if(product2==null) {
+					product1.setProductName(product.getProductName());
+				}
+				else {
+		throw new IdNotFoundException(product.getProductName() +" already exists.  Please add some other new product");
+				}
+				
+			
 
 				product1.setStocks(product.getStock());
 
@@ -107,10 +108,7 @@ public class ProductServiceimpl implements ProductService {
 				throw new ProductCustomException("you are not admin can't add product" + userId);
 			}
 
-		} catch (DataIntegrityViolationException e) {
-
-			throw new IllegalArgumentException(product.getProductName() + " already exists");
-		} catch (Exception e) {
+		}  catch (Exception e) {
 			throw new ProductCustomException(e.getMessage());
 		}
 
@@ -217,7 +215,7 @@ public class ProductServiceimpl implements ProductService {
 						.collect(Collectors.toList());
 
 			} else {
-				findByfilterproduct = productRepo.findByfilterproduct(pName).stream()
+				findByfilterproduct = productRepo.findByproductNameContainingOrCategory_categoryNameContaining(pName,pName).stream()
 						.map(e -> new ProductResponse(e.getProductId(), e.getProductName(), e.getStocks(), e.getUnit(),
 								e.getCategory().getCategoryId(), e.getCategory().getCategoryName(), e.getPrice(),
 								e.getProductImage().getImageData(), e.getProductImage().getImageId()))
@@ -252,5 +250,12 @@ public class ProductServiceimpl implements ProductService {
 		}
 
 	}
+
+	@Override
+	public List<Product> searchProductByNameOrCategory(String query) {
+		
+		 return productRepo.findByproductNameContainingOrCategory_categoryNameContaining(query, query);
+	}
+
 
 }
