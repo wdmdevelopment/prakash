@@ -103,7 +103,7 @@ public class PasswordOtpController {
 
 		MimeMessageHelper helper = new MimeMessageHelper(message);
 
-		helper.setFrom("BuyitToday@shopme.com", "Shopping with me, Support");
+		helper.setFrom("QuickBuy@shopme.com", "QuickBuy");
 		helper.setTo(email);
 
 		String subject = "Here's your One Time Password (OTP) - Expire in 10 minutes!";

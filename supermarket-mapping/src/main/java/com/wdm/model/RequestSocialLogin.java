@@ -1,20 +1,25 @@
 package com.wdm.model;
 
+import javax.validation.constraints.NotNull;
 
 public class RequestSocialLogin {
 	
 	
-	
+	@NotNull
 	private String firstName;
-	
+	@NotNull
 	private String lastName;
 	
+	@NotNull
 	private String email;
 	
+	@NotNull
 	private String password;
 	
+	@NotNull
 	private String userRole;
 	
+	@NotNull
 	private String userName;
 
 	public String getFirstName() {

@@ -1,9 +1,7 @@
 package com.wdm.entity;
 
-import java.security.Timestamp;
-import java.sql.Date;
+ 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -41,8 +39,22 @@ public class Orders {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userId")
-
 	private UserAccount user;
+	
+	
+	@OneToOne
+	@JoinColumn(name = "orderPay_id", referencedColumnName = "orderPay_id")
+	private OrderPay orderPay;
+	
+	
+
+	public OrderPay getOrderPay() {
+		return orderPay;
+	}
+
+	public void setOrderPay(OrderPay orderPay) {
+		this.orderPay = orderPay;
+	}
 
 	public long getOrderId() {
 		return orderId;

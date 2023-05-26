@@ -2,7 +2,9 @@ package com.wdm.serviceimpl;
 
 import java.rmi.NotBoundException;
 import java.util.ArrayList;
-import java.util.List;import java.util.stream.Collector;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.wdm.entity.Cart;
 import com.wdm.entity.Items;
+import com.wdm.entity.OrderPay;
 import com.wdm.entity.Orders;
 import com.wdm.entity.UserAccount;
 import com.wdm.exception.IdNotFoundException;
@@ -21,6 +24,7 @@ import com.wdm.model.RequestOrder;
 import com.wdm.model.ResponseOrder;
 import com.wdm.repository.CartRepository;
 import com.wdm.repository.ItemsRepository;
+import com.wdm.repository.OrderPayRepository;
 import com.wdm.repository.OrderRepository;
 import com.wdm.repository.ProductMappingRespository;
 import com.wdm.repository.UserAccountRespository;
@@ -43,28 +47,27 @@ public class OrderServiceimpl implements OrderService {
 
 	@Autowired
 	ProductMappingRespository productRepo;
-	
+
 	@Autowired
 	CartServiceimpl cartservice;
-	
-	
+
+	@Autowired
+	OrderPayRepository orderPayRepo;
 
 	public Orders placeOrder(RequestOrder requestOrder) {
 
 		Orders orders = new Orders();
 		try {
-			
-			if(requestOrder.getQuantity() != 0 && requestOrder.getProductId()!= 0) {
+
+			if (requestOrder.getQuantity() != 0 && requestOrder.getProductId() != 0) {
 				RequestItems reqItem = new RequestItems();
 				reqItem.setProductId(requestOrder.getProductId());
 				reqItem.setQuantity(requestOrder.getQuantity());
 				reqItem.setUserId(requestOrder.getUserId());
-				
+
 				cartservice.saveCart(reqItem);
-				
+
 			}
-			
-			  
 
 			Cart findBycart = cartRepo.findById(requestOrder.getCartId())
 					.orElseThrow(() -> new IdNotFoundException(requestOrder.getCartId() + " Not Found "));
@@ -80,15 +83,21 @@ public class OrderServiceimpl implements OrderService {
 
 			orders.setTotalAmount(findBycart.getTotalAmount());
 
+			OrderPay orderPay = orderPayRepo.findById(requestOrder.getOrderPayId())
+					.orElseThrow(() -> new IdNotFoundException("user didn't pay for given order"));
+			
+			orders.setOrderPay(orderPay);
+
 			List<Items> list = itemRepo.findByCart_CartId(requestOrder.getCartId());
 
 			for (Items item : list) {
 
-				if (item.getProduct().getStocks() > item.getQuantity()) {
+				if (item.getProduct().getStocks() >= item.getQuantity()) {
 					item.getProduct().setStocks(item.getProduct().getStocks() - item.getQuantity());
 				} else {
 
-			throw new ProductCustomException("INSUFFICIENT QUANTITY"+" Remaining stocks "+item.getProduct().getStocks());
+					throw new ProductCustomException(
+							"INSUFFICIENT QUANTITY" + " Remaining stocks " + item.getProduct().getStocks());
 
 				}
 
@@ -134,19 +143,17 @@ public class OrderServiceimpl implements OrderService {
 
 	public List<Orders> getAllOrders(long userId) {
 
-		List<Orders> user_UserId = OrderRepo.findAllByUserUserIdOrderByDateTimeDesc(userId);
-		
-		if(user_UserId==null) {
-			
+		List<Orders> orders = OrderRepo.findAllByUserUserIdOrderByDateTimeDesc(userId);
+
+		if (orders == null) {
+
 			throw new IdNotFoundException("This can encourage them to explore products and make a purchase");
 		}
-		
-		
-		
-		return user_UserId;
+
+		return orders;
 	}
 
-	//public List<ResponseOrder> getOrders(long userId) {
+	// public List<ResponseOrder> getOrders(long userId) {
 //
 //		List<ResponseOrder> findByUser_UserId = OrderRepo.findByUser_UserId(userId).stream()
 //				.filter(e -> new ResponseOrder(e.getDateTime(), e.getTotalAmount(),
@@ -171,7 +178,7 @@ public class OrderServiceimpl implements OrderService {
 //			
 //		}
 
-	//}
+	// }
 
 	public List<Cart> getAllorderInActive(long userId) {
 

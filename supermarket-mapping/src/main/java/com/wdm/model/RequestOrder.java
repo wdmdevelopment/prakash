@@ -26,7 +26,8 @@ public class RequestOrder {
 	
 	private int quantity;
 	
-	
+	@NotNull
+	private long orderPayId;
 	
 	
 	public long getProductId() {
@@ -75,8 +76,16 @@ public class RequestOrder {
 		this.userId = userId;
 	}
 
-	
+	public long getOrderPayId() {
+		return orderPayId;
+	}
 
+	public void setOrderPayId(long orderPayId) {
+		this.orderPayId = orderPayId;
+	}
+
+	
+	
 	 
 
 	 

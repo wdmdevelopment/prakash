@@ -191,7 +191,7 @@ public class UserController {
 	
 	
 	@PostMapping("/socialLogin")
-	public ResponseEntity<?> socialLogin (@RequestBody RequestSocialLogin socialLogin) throws Exception {
+	public ResponseEntity<?> socialLogin (@Valid @RequestBody RequestSocialLogin socialLogin) throws Exception {
 			
 		 
 		UserAccount userAccount = userRepo.findByEmailId(socialLogin.getEmail());
