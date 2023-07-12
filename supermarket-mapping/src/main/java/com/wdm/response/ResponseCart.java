@@ -1,13 +1,14 @@
-package com.wdm.model;
+package com.wdm.response;
  
 import javax.validation.constraints.NotNull;
 
 public class ResponseCart {
 	
-	@NotNull
+	
+	@NotNull(message = "Please give user Id")
 	private long userId;
 	
-	@NotNull
+	@NotNull(message = "order status missing")
 	private String orderStatus;
 
 	

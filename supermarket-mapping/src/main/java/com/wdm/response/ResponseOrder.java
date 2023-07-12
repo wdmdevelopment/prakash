@@ -1,9 +1,10 @@
-package com.wdm.model;
+package com.wdm.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class ResponseOrder {
+	
 	
 	private LocalDateTime dateTime;
 	
@@ -18,8 +19,9 @@ public class ResponseOrder {
 	 
 	private double price;
 	
-	private List<byte[]> imageData;
+	//	private List<byte[]> imageData;
 
+	
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
@@ -70,13 +72,7 @@ public class ResponseOrder {
 
 	 
 
-	public List<byte[]> getImageData() {
-		return imageData;
-	}
-
-	public void setImageData(List<byte[]> imageData) {
-		this.imageData = imageData;
-	}
+	 
 
 	 
 	

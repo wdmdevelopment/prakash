@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.wdm.entity.Orders;
 
-public interface OrderRepository extends JpaRepository<Orders, Long> {
+public interface IOrderRepository extends JpaRepository<Orders, Long> {
 	
-	public List<Orders> findAllByUserUserIdOrderByDateTimeDesc(long userId);
+	public List<Orders> findAllByUserUserIdOrderByDateTimeDesc(Long userId);
 
 }

@@ -1,20 +1,21 @@
-package com.wdm.response;
+package com.wdm.model;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ResponseUpdateProduct {
+public class RequestUpdateProduct {
 	
-	@NotNull
+	@NotBlank
 	@JsonProperty("productName")
 	private String productName;
 	
 	@NotNull
 	@JsonProperty("stock")
-	private long stock;
+	private Long stock;
 	
-	@NotNull
+	@NotBlank
 	@JsonProperty("unit")
 	private String unit;
 	@NotNull
@@ -23,15 +24,12 @@ public class ResponseUpdateProduct {
 	
 	@NotNull
 	@JsonProperty("categoryId")
-	private long categoryId;
+	private Long categoryId;
 	
-	
-	@JsonProperty("imageId")
-	private long imageId;
-	
-	
+	 
+	@NotNull
 	@JsonProperty("userId")
-	private long userId;
+	private Long userId;
 
 
 	public String getProductName() {
@@ -51,12 +49,12 @@ public class ResponseUpdateProduct {
 	 
 
 
-	public long getStock() {
+	public Long getStock() {
 		return stock;
 	}
 
 
-	public void setStock(long stock) {
+	public void setStock(Long stock) {
 		this.stock = stock;
 	}
 
@@ -81,12 +79,12 @@ public class ResponseUpdateProduct {
 	}
 
 
-	public long getCategoryId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
 
 
-	public void setCategoryId(long categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
 
@@ -94,24 +92,17 @@ public class ResponseUpdateProduct {
 	 
 
 
-	public long getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
 
-	public long getImageId() {
-		return imageId;
-	}
-
-
-	public void setImageId(long imageId) {
-		this.imageId = imageId;
-	}
+	 
 
 
 	 

@@ -2,7 +2,7 @@ package com.wdm.model;
 
 import javax.validation.constraints.Email;
 
-public class RequestEmail {
+public class RequestConfirmPassword {
 	
 	@Email
 	private String Email;
