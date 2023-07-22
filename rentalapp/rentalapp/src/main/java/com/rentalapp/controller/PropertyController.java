@@ -62,6 +62,16 @@ public class PropertyController {
 //		return new ResponseEntity<List<PropertyResponse>>(allProperty, HttpStatus.OK);
 		return null;
 	}
+	
+	
+	@GetMapping("/{propertyId}/{userId}")
+		public ResponseEntity<Property> getPropertyById(@PathVariable("propertyId") long propertyId,
+				@PathVariable("userId") long userId) {
+		Property productResponse = propertyService.getPropertyById(userId, propertyId);
+			return new ResponseEntity<Property>(productResponse, HttpStatus.OK);
+		}
+	 
+	 
 
 	@GetMapping("/search")
 	public ResponseEntity<?> searchProperty(@RequestParam(defaultValue = "", value = "type") String type,
@@ -129,6 +139,7 @@ public class PropertyController {
 		return new ResponseEntity<>(productResponse, HttpStatus.OK);
 	}
 
+	
 	@GetMapping("/{userId}/{propertyId}")
 	public ResponseEntity<Rating> getRating(@PathVariable("userId") long userId,
 			@PathVariable("propertyId") long propertyId) {

@@ -464,4 +464,9 @@ public class PropertyService {
 				.collect(Collectors.toList());
 	}
 
+	public Property getPropertyById(long userId, long propertyId) {
+		Property property = propertyRepo.findByIdAndUserId(propertyId, userId);
+		return property;
+	}
+
 }
