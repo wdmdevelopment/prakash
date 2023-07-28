@@ -4,6 +4,7 @@ public class JwtResponse {
   private String token;
   private String type = "Bearer";
   private Long id;
+  private String userName;
   private String firstName;
   private String lastName;
   private String email;
@@ -14,7 +15,7 @@ public class JwtResponse {
   
   
 
-  public JwtResponse(String token, Long id, String fname,String lname, String email, String roles, String status, String profilePic) {
+  public JwtResponse(String token, Long id, String fname,String lname, String userName, String email, String roles, String status, String profilePic) {
 	super();
 	this.token = token;
 	this.type = type;
@@ -24,6 +25,7 @@ public class JwtResponse {
 	this.lastName = lname;
 	this.email = email;
 	this.roles = roles;
+	this.userName = userName;
 	this.profilePic = profilePic;
 	
 }
@@ -115,6 +117,14 @@ public String getProfilePic() {
 
 public void setProfilePic(String profilePic) {
 	this.profilePic = profilePic;
+}
+
+public String getUserName() {
+	return userName;
+}
+
+public void setUserName(String userName) {
+	this.userName = userName;
 }
 
  

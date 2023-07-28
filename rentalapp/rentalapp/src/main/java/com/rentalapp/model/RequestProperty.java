@@ -12,11 +12,11 @@ import lombok.Data;
 public class RequestProperty {
 	
 	@NotBlank(message = "Property type is required")
-	private String type; //	private room, shared room, whole house
+	private String type; //	house, flat, guestHouse
 	@NotNull(message = "CostPerDay is required")
 	private double costPerDay;
 	@NotBlank(message = "Room type is required")
-	private String roomType;
+	private String roomType;//	private room, shared room, whole house
 	
 	@NotNull(message = "Space is required")
 	private double space;
@@ -26,9 +26,6 @@ public class RequestProperty {
 	
 	@NotBlank(message = "Rental Rules is required")
 	private String rentalRules;
-	
-	@NotBlank(message = "Location is required")
-	private String location;
 	
 	@NotBlank(message = "Address Street is required")
 	private String street;
@@ -90,9 +87,9 @@ public class RequestProperty {
 	@NotNull(message = " Number Of Bathrooms available information is required")
 	private int noOfBathrooms;
 	
-	@NotNull(message = " tenant Id is required")
-	private Long tenantId;
+	@NotNull(message = " host Id is required")
+	private Long hostId;
 	
-	@NotEmpty(message = "available Days can't emaply")
-	private List<String> availableDays;
+	@NotEmpty(message = "available Days can't empty")
+	private List<PropeertySlotDateRange> availableDays;
 }

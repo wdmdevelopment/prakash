@@ -15,22 +15,20 @@ import com.rentalapp.repository.IUserAccountRespository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+	
   @Autowired
   IUserAccountRespository userRepo;
 
   @Override
   @Transactional
-  public UserDetails loadUserByUsername(String emailId) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 	   	
-	 User user = userRepo.findByEmailIdIgnoreCase(emailId);
+	 User user = userRepo.findByUsernameIgnoreCase(username);
 	  
 	 if(user==null) {
 		 
-		 throw new IdNotFoundException("Email Id not found");
+		 throw new IdNotFoundException("Username not found");
 	 	}
-	 
-	  
-     
     return UserDetailsImpl.build(user);
   }
 

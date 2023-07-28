@@ -18,6 +18,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	private String firstName;
 	private String lastName;
+	private String userName;
 
 	private String email;
 
@@ -32,12 +33,13 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id, String firstName, String lastName, String email, String password, String userRole,
+	public UserDetailsImpl(Long id, String firstName, String lastName, String email, String userName, String password, String userRole,
 			String status, String profilePic) {
 		this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
+		this.userName = userName;
 		this.password = password;
 		this.setRole(userRole);
 		this.status = status;
@@ -45,8 +47,7 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	public static UserDetailsImpl build(User user) {
-
-		return new UserDetailsImpl(user.getUserId(), user.getFirstName(), user.getLastName(), user.getEmailId(),
+		return new UserDetailsImpl(user.getUserId(), user.getFirstName(), user.getLastName(), user.getEmailId(), user.getUsername(),
 				user.getPassword(), user.getRole(), user.getStatus(), user.getProfilePicture());
 	}
 
@@ -70,7 +71,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return email;
+		return userName;
 	}
 
 	@Override
@@ -158,7 +159,5 @@ public class UserDetailsImpl implements UserDetails {
 	public void setProfilePic(String profilePic) {
 		this.profilePic = profilePic;
 	}
-
-	 
 
 }

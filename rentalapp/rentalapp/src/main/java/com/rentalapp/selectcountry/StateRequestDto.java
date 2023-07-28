@@ -3,7 +3,6 @@ package com.rentalapp.selectcountry;
 import lombok.Data;
 
 @Data
-public class Country {
+public class StateRequestDto {
 	private String country;
-  
 }

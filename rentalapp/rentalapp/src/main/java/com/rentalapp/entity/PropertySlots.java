@@ -1,10 +1,8 @@
 package com.rentalapp.entity;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,7 +29,7 @@ public class PropertySlots {
 	
 	@ManyToOne
 	@JoinColumn(name = "propertyId")
-	@JsonIgnore
+	
 	private Property property;
 	
 	private String propertyStatus;

@@ -13,6 +13,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RequestUserAccount {
 	
+	@NotBlank(message = "User name cannot be blank")
+	private String userName;
+	
 	@NotBlank(message = "First name cannot be blank")
 	private String firstName;
 	

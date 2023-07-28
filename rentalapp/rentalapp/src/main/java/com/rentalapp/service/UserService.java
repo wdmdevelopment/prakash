@@ -60,16 +60,19 @@ public class UserService implements ApplicationRunner {
 	@Autowired
 	ObjectMapper objectMapper;
 
-	@Value("${securecart.app.admin.email}")
+	@Value("${rentalapp.app.admin.email}")
 	private String adminEmail;
 
-	@Value("${securecart.app.admin.password}")
+	@Value("${rentalapp.app.admin.password}")
 	private String adminPassword;
+	
+	@Value("${rentalapp.app.admin.username}")
+	private String adminUserName;
 
-	@Value("${securecart.app.admin.firstName}")
+	@Value("${rentalapp.app.admin.firstName}")
 	private String adminFname;
 
-	@Value("${securecart.app.admin.lastName}")
+	@Value("${rentalapp.app.admin.lastName}")
 	private String adminLname;
 
 	public User registerUser(String requestuser, MultipartFile file) {
@@ -80,6 +83,7 @@ public class UserService implements ApplicationRunner {
 			}
 			User user = new User();
 			user.setEmailId(signUpRequest.getEmailId());
+			user.setUsername(signUpRequest.getUserName());
 			user.setFirstName(signUpRequest.getFirstName());
 			user.setLastName(signUpRequest.getLastName());
 			user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
@@ -121,6 +125,7 @@ public class UserService implements ApplicationRunner {
 			String jwt = jwtutils.generateJwtToken(authentication);
 			UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 			return new JwtResponse(jwt, userDetails.getId(), userDetails.getFirstName(), userDetails.getLastName(),
+					userDetails.getUsername(),
 					userDetails.getEmail(), userDetails.getRole(), userDetails.getStatus(),
 					userDetails.getProfilePic());
 		} catch (Exception e) {
@@ -149,8 +154,7 @@ public class UserService implements ApplicationRunner {
 		User reqUser = userRepo.findByEmailIdIgnoreCase(socialLogin.getEmail());
 		if (reqUser != null) {
 			String jwt = jwtutils.generateTokenSocial(socialLogin.getEmail());
-			System.out.println(jwt);
-			return new JwtResponse(jwt, reqUser.getUserId(), reqUser.getFirstName(), reqUser.getLastName(),
+			return new JwtResponse(jwt, reqUser.getUserId(), reqUser.getFirstName(), reqUser.getLastName(),reqUser.getUsername(),
 					reqUser.getEmailId(), reqUser.getRole(), reqUser.getStatus(), reqUser.getProfilePicture());
 		}
 		else {
@@ -165,7 +169,7 @@ public class UserService implements ApplicationRunner {
 			User registerUser = registerUser(objectMapper.writeValueAsString(reqUser1), file);
 			String jwt = jwtutils.generateTokenSocial(socialLogin.getEmail());
 			return new JwtResponse(jwt, registerUser.getUserId(), registerUser.getFirstName(),
-					registerUser.getLastName(), registerUser.getEmailId(), registerUser.getRole(), registerUser.getStatus(), registerUser.getProfilePicture());
+					registerUser.getLastName(),registerUser.getUsername(), registerUser.getEmailId(), registerUser.getRole(), registerUser.getStatus(), registerUser.getProfilePicture());
 		} 
 	}
 	
@@ -227,7 +231,7 @@ public class UserService implements ApplicationRunner {
 		if (reqUser != null) {
 			String jwt = jwtutils.generateTokenSocial(email);
 			String encodeToString=reqUser.getProfilePicture();
-			return new JwtResponse(jwt, reqUser.getUserId(), reqUser.getFirstName(), reqUser.getLastName(),
+			return new JwtResponse(jwt, reqUser.getUserId(), reqUser.getFirstName(), reqUser.getLastName(),reqUser.getUsername(),
 					reqUser.getEmailId(), reqUser.getRole(), reqUser.getStatus(), encodeToString);
 		} else {
 			return null;
@@ -240,12 +244,13 @@ public class UserService implements ApplicationRunner {
 			adminUser.setFirstName(adminFname);
 			adminUser.setLastName(adminLname);
 			adminUser.setEmailId(adminEmail);
+			adminUser.setUsername(adminUserName);
 			adminUser.setPassword(passwordEncoder.encode(adminPassword));
 			adminUser.setRole(Role.ADMIN.name().toLowerCase());
-			adminUser.setStreet("10Th Floor Bgn Bank Pembangunan Jln Sultan Ismail");
-			adminUser.setCity("Kuala Lumpur");
-			adminUser.setState("Wilayah Persekutuan");
-		  	adminUser.setCountry("Malaysia");
+			adminUser.setStreet("37-39 Falirou St");
+			adminUser.setCity("Athens");
+			adminUser.setState("Attica");
+		  	adminUser.setCountry("Greece");
 			adminUser.setStatus(Status.APPROVED.name());
 			adminUser.setCreatedAt(LocalDateTime.now());
 			userRepo.save(adminUser);
@@ -266,5 +271,15 @@ public class UserService implements ApplicationRunner {
 //			userRepo.save(adminUser2);
 //		}
 
+	}
+
+	public Boolean userNameExists(String username) {
+		User reqUser = userRepo.findByUsernameIgnoreCase(username);
+		return reqUser!=null;
+	}
+	
+	public Boolean emailExists(String email) {
+		User reqUser = userRepo.findByEmailIdIgnoreCase(email);
+		return reqUser!=null;
 	}
 }

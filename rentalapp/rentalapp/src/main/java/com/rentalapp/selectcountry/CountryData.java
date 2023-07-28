@@ -5,9 +5,6 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class City {
-	
-	List<String> data;
-	
-     
+public class CountryData {
+	private List<Country> data;
 }

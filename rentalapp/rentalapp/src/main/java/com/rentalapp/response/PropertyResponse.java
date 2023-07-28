@@ -27,7 +27,6 @@ public class PropertyResponse extends RepresentationModel<PropertyResponse> {
 	private double space;
 	private String floorAreaDesc;
 	private String RentalRules;
-	private String location;
 	private String street;
 	private String city;
 	private String state;
@@ -65,9 +64,6 @@ public class PropertyResponse extends RepresentationModel<PropertyResponse> {
 	}
 	public String getRentalRules() {
 		return RentalRules;
-	}
-	public String getLocation() {
-		return location;
 	}
 	public String getStreet() {
 		return street;
@@ -125,9 +121,6 @@ public class PropertyResponse extends RepresentationModel<PropertyResponse> {
 	}
 	public void setRentalRules(String rentalRules) {
 		RentalRules = rentalRules;
-	}
-	public void setLocation(String location) {
-		this.location = location;
 	}
 	public void setStreet(String street) {
 		this.street = street;

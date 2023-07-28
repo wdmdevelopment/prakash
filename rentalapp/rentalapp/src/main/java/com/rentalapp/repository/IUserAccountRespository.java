@@ -19,4 +19,6 @@ public interface IUserAccountRespository extends JpaRepository<User, Long> {
 	public List<User> findAllByRoleNot(String lowerCase);
 
 	public User findByIdAndRole(long userId, String string);
+
+	public User findByUsernameIgnoreCase(String username);
 }

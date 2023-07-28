@@ -1,6 +1,7 @@
 package com.rentalapp.utils;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -9,17 +10,16 @@ import java.util.stream.Stream;
 
 public class DateRangeUtils {
  
-	public static List<LocalDate> getLocalDatesInRange(LocalDate startDate, LocalDate endDate) {
-
+	public static List<LocalDate> getLocalDatesInRange(String dateStringStart, String dateStringEnd) {
+		  String pattern = "yyyy-MM-dd"; 
+		 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+         LocalDate startDate = LocalDate.parse(dateStringStart, formatter);
+         LocalDate endDate = LocalDate.parse(dateStringEnd, formatter);
 		List<LocalDate> localDateList = new ArrayList<>();
 		LocalDate current = startDate;
-
 		while (!current.isAfter(endDate)) {
 			localDateList.add(current);
 			current = current.plusDays(1);
-		}
-		for (LocalDate localDate : localDateList) {
-			System.out.println(localDate);
 		}
 		return localDateList;
 

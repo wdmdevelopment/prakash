@@ -2,6 +2,7 @@ package com.rentalapp.entity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
@@ -34,7 +37,6 @@ public class Property {
 	@Column(length = 3000)
 	private String RentalRules;
 	 
-	private String location;
 	private String street;
 	private String city;
 	private String state;
@@ -50,7 +52,7 @@ public class Property {
 	@JoinColumn(name = "propertyspecId", referencedColumnName = "id")
  	private PropertySpec propertySpec;
 	
-	private String availableDays;
+	private int availableDays;
 	
 	private LocalDateTime createdAt;
 	
@@ -64,8 +66,8 @@ public class Property {
 	@OneToMany(mappedBy = "property", cascade = {CascadeType.PERSIST, CascadeType.MERGE ,CascadeType.REMOVE})
 	private List<PropertyQuestions> propertyQuestions;
 	
-	
 	@OneToMany(mappedBy = "property", cascade = {CascadeType.PERSIST, CascadeType.MERGE ,CascadeType.REMOVE})
+	@JsonIgnore
 	private List<PropertySlots> propertySlot;
 	
 	@OneToMany(mappedBy = "property", cascade = {CascadeType.PERSIST, CascadeType.MERGE ,CascadeType.REMOVE})
@@ -76,7 +78,12 @@ public class Property {
     @JoinColumn(name = "tenantId")
 	private User user;
 	
-	 
-	 
+	public double getOverAllRating() {
+			if(ratings==null) {
+				List<Double> collect = this.ratings.stream().map(e -> e.getRating()).collect(Collectors.toList());
+		return collect.stream().mapToDouble(a -> a).average().orElse(0);
+	}
+			return 0;
+	}
 	
 }

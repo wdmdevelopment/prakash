@@ -22,7 +22,7 @@ import com.rentalapp.response.MessageResponse;
 import com.rentalapp.service.OtpService;
 
 @RestController
-@RequestMapping("/forget-password")
+@RequestMapping("/api/forget-password")
 @CrossOrigin("*")
 public class PasswordOtpController {
 

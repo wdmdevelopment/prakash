@@ -1,5 +1,9 @@
 package com.rentalapp.service;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,15 +17,13 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,10 +36,12 @@ import com.rentalapp.entity.PropertyImage;
 import com.rentalapp.entity.PropertySlots;
 import com.rentalapp.entity.PropertySpec;
 import com.rentalapp.entity.Rating;
+import com.rentalapp.entity.SearchHistory;
 import com.rentalapp.entity.User;
 import com.rentalapp.exception.NotFoundException;
 import com.rentalapp.exception.PropertyException;
 import com.rentalapp.exception.RentalAppException;
+import com.rentalapp.model.PropeertySlotDateRange;
 import com.rentalapp.model.RequestProperty;
 import com.rentalapp.model.RequestRating;
 import com.rentalapp.model.RequestUpdateProperty;
@@ -46,15 +50,22 @@ import com.rentalapp.repository.PropertyImageRepository;
 import com.rentalapp.repository.PropertyRepository;
 import com.rentalapp.repository.PropertySpecRepository;
 import com.rentalapp.repository.RatingRepository;
+import com.rentalapp.repository.SearchHistoryRepository;
 import com.rentalapp.response.PropertyResponse;
 import com.rentalapp.utils.DateRangeUtils;
 import com.rentalapp.utils.ImageUtils;
 
+import io.imagekit.sdk.ImageKit;
+import io.imagekit.sdk.config.Configuration;
+import io.imagekit.sdk.models.FileCreateRequest;
+import io.imagekit.sdk.models.results.Result;
+import io.imagekit.sdk.utils.Utils;
+
 @Service
 public class PropertyService {
-	
+
 	@PersistenceContext
-    EntityManager entityManager;
+	EntityManager entityManager;
 
 	@Autowired
 	PropertyRepository propertyRepo;
@@ -72,16 +83,35 @@ public class PropertyService {
 	RatingRepository ratingRepo;
 
 	@Autowired
+	SearchHistoryRepository searchHistoryRepo;
+
+	@Autowired
 	PropertySpecRepository propertySpecRepo;
 
 	@Value("${file.upload-profile-dir}")
 	private String fileUploadProfileDir;
 
+	@Value("${file.upload.public-key}")
+	private String publicKey;
+
+	@Value("${file.upload.private-key}")
+	private String privateKey;
+
+	@Value("${file.upload.url}")
+	private String url;
+
 	public Property saveProperty(String requestProperty, MultipartFile[] files) {
 		try {
 			RequestProperty propertyObject = objectMapper.readValue(requestProperty, RequestProperty.class);
-			User user = userRepo.findById(propertyObject.getTenantId())
+
+			User user = userRepo.findById(propertyObject.getHostId())
 					.orElseThrow(() -> new NotFoundException("User id not found"));
+			if (!user.getStatus().equals("APPROVED")) {
+				throw new NotFoundException("Your account is not yet activated");
+			}
+			if (!user.getRole().equals("host")) {
+				throw new NotFoundException("You dont have permission to add property");
+			}
 			Property property = new Property();
 			property.setUser(user);
 			property.setName(propertyObject.getName());
@@ -91,7 +121,6 @@ public class PropertyService {
 			property.setSpace(propertyObject.getSpace());
 			property.setFloorAreaDesc(propertyObject.getFloorAreaDesc());
 			property.setRentalRules(propertyObject.getRentalRules());
-			property.setLocation(propertyObject.getLocation());
 			property.setStreet(propertyObject.getStreet());
 			property.setCity(propertyObject.getCity());
 			property.setState(propertyObject.getState());
@@ -113,34 +142,98 @@ public class PropertyService {
 			propertySpec.setWirelessInternet(propertyObject.isWirelessInternet());
 			property.setPropertySpec(propertySpec);
 			property.setCreatedAt(LocalDateTime.now());
-			
-			property.setAvailableDays(propertyObject.getAvailableDays().stream().collect(Collectors.joining(", ", "[", "]")));
+
+ 			
 			List<PropertySlots> slotList = new ArrayList<>();
+			List<LocalDate> dateList = collectDateRange(propertyObject.getAvailableDays());
 			
-			List<LocalDate> dateList = DateRangeUtils.getDateList(propertyObject.getAvailableDays());
-			
-			for(LocalDate date : dateList) {
+			property.setAvailableDays(dateList.size());
+
+			for (LocalDate date : dateList) {
 				PropertySlots slots = new PropertySlots();
 				slots.setAvailableDates(date);
 				slots.setProperty(property);
 				slots.setPropertyStatus(Slot.AVAILABLE.name());
 				slotList.add(slots);
 			}
-			
+
 			property.setPropertySlot(slotList);
-			 
 
 			List<PropertyImage> imageList = new ArrayList<>();
 			if (files != null) {
+				Path uploadPath = Paths.get(fileUploadProfileDir);
+
+				if (!Files.exists(uploadPath)) {
+					Files.createDirectories(uploadPath);
+				}
 				for (MultipartFile file : files) {
-					PropertyImage image = new PropertyImage();
+
 					String fileName = ImageUtils.uploadFile(file, fileUploadProfileDir);
-					if (fileName != null) {
-						image.setImagePath(fileName);
-					}
+					ImageKit imageKit = ImageKit.getInstance();
+					Configuration config = new Configuration(publicKey, privateKey, url);
+					imageKit.setConfig(config);
+
+					String base64 = Utils.fileToBase64(new File(fileName));
+					// FileCreateRequest fileCreateRequest = new FileCreateRequest(base64,
+					// file.getOriginalFilename());
+					// Result result = imageKit.upload(fileCreateRequest);
+
+					FileCreateRequest fileCreateRequest = new FileCreateRequest(base64, file.getOriginalFilename());
+//		            	List<String> responseFields=new ArrayList<>();
+//		            	responseFields.add("thumbnail");
+//		            	responseFields.add("tags");
+//		            	responseFields.add("customCoordinates");
+//		            	fileCreateRequest.setResponseFields(responseFields);
+//		            	List<String> tags=new ArrayList<>();
+//		            	tags.add("Software");
+//		            	tags.add("Developer");
+//		            	tags.add("Engineer");
+//		            	fileCreateRequest.setTags(tags);
+					Result result = ImageKit.getInstance().upload(fileCreateRequest);
+
+					System.out.println(result.getUrl());
+
+					PropertyImage image = new PropertyImage();
+					image.setImagePath(result.getUrl());
 					image.setProperty(property);
 					imageList.add(image);
+
+					// PropertyImage image = new PropertyImage();
+//		            	Files.copy(file.getInputStream(), uploadPath.resolve(file.getOriginalFilename()));
+//		            	String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+//								//.path(fileUploadProfileDir)
+//								.path(file.getOriginalFilename().trim())
+//								.toUriString();
+//						if (file.getOriginalFilename() != null) {
+//							image.setImagePath(fileDownloadUri);
+//						}
+//						image.setProperty(property);
+//						imageList.add(image);
 				}
+
+//			        if (!Files.exists(uploadPath)) {
+//			        	
+//			            Path createDirectories = Files.createDirectories(uploadPath);
+//			            System.out.println("path="+createDirectories.getFileName());
+//			            System.out.println("path2="+createDirectories.getParent());
+//			            System.out.println("path3="+createDirectories.getRoot());
+//			        }
+//			        File file2 = ResourceUtils.getFile(String.format("classpath:%s",fileUploadProfileDir));
+//					 System.out.println(file2.getAbsolutePath());
+//				for (MultipartFile file : files) {
+//					PropertyImage image = new PropertyImage();
+//					String fileName = ImageUtils.uploadFile(file, fileUploadProfileDir);
+//					String fileNameF = StringUtils.cleanPath(file.getOriginalFilename());
+//					String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+//							//.path(fileUploadProfileDir)
+//							.path(fileName.trim())
+//							.toUriString();
+//					if (fileName != null) {
+//						image.setImagePath(fileDownloadUri);
+//					}
+//					image.setProperty(property);
+//					imageList.add(image);
+//				}
 			}
 
 			property.setImagePath(imageList);
@@ -153,182 +246,188 @@ public class PropertyService {
 		}
 	}
 
+	private List<LocalDate> collectDateRange(List<PropeertySlotDateRange> dateList) {
+		
+		List<LocalDate> localDateList = new ArrayList<>();
+		for (PropeertySlotDateRange date: dateList) {
+            String startDate = date.getStartDate();
+            String endDate = date.getEndDate();
+            List<LocalDate> datesInRange = DateRangeUtils.getLocalDatesInRange(startDate, endDate);
+            localDateList.addAll(datesInRange);
+        }
+		 
+		return localDateList;
+	}
+
 	public List<PropertyResponse> getAllProperty() {
-		List<PropertyResponse> propertyResponseList = mapToProperty(propertyRepo.findAllByStatus(Status.ACTIVE.name().toLowerCase()));
+		List<PropertyResponse> propertyResponseList = mapToProperty(
+				propertyRepo.findAllByStatus(Status.ACTIVE.name().toLowerCase()));
 		return propertyResponseList;
 	}
-	public Page<Property> getAllPropertyFilter(String type,
-													  String startDate,
-													  String endDate,
-													  Double costperday,
-													  Double minCostRange,
-													  Double maxCostRange,
-													  String roomType,
-													  String city,
-													  String state, 
-													  String country,
-													  String name,
-													  Double overAllRating,
-													  boolean wirelessInternet,
-													  boolean cooling,
-													  boolean heating,
-													  boolean kitchen,
-													  boolean television,
-													  boolean freeparking,
-													  boolean ac,
-													  boolean washingMachine,
-													  boolean hottub,
-													  Long maxNoOfPersonsAllowed,
-													  Integer noOfBeds,
-													  Integer noOfBedrooms,
-													  Integer noOfBathrooms,
-													  int page,
-													  int size
-			) {
-		
-		  
-		
-		 try {
-		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Property> q = cb.createQuery(Property.class);
-		Root<Property> root = q.from(Property.class);
-		 
-		List<Predicate> predicates = new ArrayList<>();
-		
-		 
-		if(!startDate.equals("") && !endDate.equals("")) {
-			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			LocalDate startDatec = LocalDate.parse(startDate, formatter);
-			LocalDate endDatec = LocalDate.parse(endDate, formatter);
-			 
-			Predicate startPredicate = cb.lessThanOrEqualTo(root.join("propertySlot").get("availableDates"), startDatec);
-			Predicate endPredicate = cb.greaterThanOrEqualTo(root.join("propertySlot").get("availableDates"), endDatec);
-		//	Predicate available = cb.like(cb.lower(root.join("propertySlot").get("propertyStatus")),"%" + Slot.BOOKED + "%");
-		     Predicate compoundPredicate  = cb.and(startPredicate,endPredicate
-//		    		 ,available
-		    		 );
-		     predicates.add(cb.not(compoundPredicate));
-		}
-		
-		if(minCostRange!=null && maxCostRange!=null) {
+
+	public List<Property> getAllPropertyFilter(Long userId, String type, String startDate, String endDate,
+			Double costperday, Double minCostRange, Double maxCostRange, String roomType, String city, String state,
+			String country, String name, Double overAllRating, boolean wirelessInternet, boolean cooling,
+			boolean heating, boolean kitchen, boolean television, boolean freeparking, boolean ac,
+			boolean washingMachine, boolean hottub, Long maxNoOfPersonsAllowed, Integer noOfBeds, Integer noOfBedrooms,
+			Integer noOfBathrooms, int page, int size) {
+
+		try {
+				 
+			if (userId != null) {
+				User user = userRepo.findById(userId).orElseThrow(() -> new NotFoundException("userId not found"));
+				SearchHistory history = new SearchHistory();
+				history.setCity(city);
+				history.setState(state);
+				history.setCountry(country);
+				history.setPropertyName(name);
+				history.setMaxNoOfPersonsAllowed(maxNoOfPersonsAllowed);
+				history.setNoOfBeds(noOfBeds);
+				history.setRoomType(roomType);
+				history.setSerachedAt(LocalDateTime.now());
+				history.setUser(user);
+				searchHistoryRepo.save(history);
+			}
+
+			CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Property> q = cb.createQuery(Property.class);
+			Root<Property> root = q.from(Property.class);
+
+			List<Predicate> predicates = new ArrayList<>();
+
+			if (!startDate.equals("") && !endDate.equals("")) {
+
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+				LocalDate startDatec = LocalDate.parse(startDate, formatter);
+				LocalDate endDatec = LocalDate.parse(endDate, formatter);
+				  
+			        Subquery<PropertySlots> subquery = q.subquery(PropertySlots.class);
+			        Root<PropertySlots> childRoot = subquery.from(PropertySlots.class);
+			        subquery.select(childRoot);
+				
+			        Predicate dateRangePredicate = cb.between(childRoot.get("availableDates"), startDatec, endDatec);
+			        subquery.where(dateRangePredicate);
+			        
+			        Join<Property, PropertySlots> parentToChildJoin = root.join("propertySlot");
+			        Predicate existsInDateRange = parentToChildJoin.in(subquery);
+
+			        q.select(root)
+			            .distinct(true)
+			            .where(cb.not(existsInDateRange));
+			        
+			        
+				
+			//	q.select(root).where(cb.between(root.join("propertySlot").get("availableDates"), startDatec, endDatec));
+				
+//				Predicate startPredicate = cb.equal(root.join("propertySlot").get("availableDates"),
+//						startDatec);
+//				Predicate endPredicate = cb.equal(root.join("propertySlot").get("availableDates"),
+//						endDatec);
+//				 
+// 		Predicate available = cb.like(cb.lower(root.join("propertySlot").get("propertyStatus")),"%" + Slot.BOOKED + "%");
+// 			Predicate compoundPredicate = cb.and(startPredicate, endPredicate, available);
+//			 
+// 				predicates.add(cb.not(compoundPredicate));
+			}
+
+			if (minCostRange != null && maxCostRange != null) {
 				predicates.add(cb.or(cb.between(root.get("costPerDay"), minCostRange, maxCostRange)));
-		}
-		
-		if(minCostRange!=null && maxCostRange==null) {
-			predicates.add(cb.or(cb.lessThanOrEqualTo(root.get("costPerDay"), minCostRange)));
-		}
-		if(maxCostRange!=null && minCostRange==null) {
-			predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("costPerDay"), maxCostRange)));
-		}
-		
-		
-		
-		if(!type.equals("")) {
-			 
-			predicates.add(cb.or(cb.like(cb.lower(root.get("type")),"%" + type.toLowerCase() + "%")));
-		}
-		if(costperday!=null) {
-			 
-			predicates.add(cb.or(cb.lessThanOrEqualTo(root.get("costPerDay"), + costperday)));
-		}
-		if(!roomType.equals("")) {
-						
-			predicates.add(cb.or(cb.like(cb.lower(root.get("roomType")),"%" + roomType.toLowerCase() + "%")));
-		}
-		if(!city.equals("")) {
-			predicates.add(cb.or(cb.like(cb.lower(root.get("city")),"%" + city.toLowerCase() + "%")));
-		}
-		if(!state.equals("")) {
-			predicates.add(cb.or(cb.like(cb.lower(root.get("state")),"%" + state.toLowerCase() + "%")));
-		}
-		if(!country.equals("")) {
-			predicates.add(cb.or(cb.like(cb.lower(root.get("country")),"%" + country.toLowerCase() + "%")));
-		}
-		if(!name.equals("")) {
-			
-			predicates.add(cb.or(cb.like(cb.lower(root.get("name")),"%" + name.toLowerCase() + "%")));
-		}
-		if(overAllRating!=null) {
-			
-			predicates.add(cb.or(cb.lessThanOrEqualTo(root.get("overAllRating"), + overAllRating)));
-		}
-		if(wirelessInternet) {
-			 
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("wirelessInternet"))));
-		}
-		if(cooling) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("cooling"))));
-		}
-		if(heating) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("heating"))));
-		}
-		
-		if(kitchen) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("kitchen"))));
-		}
-		if(television) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("television"))));
-		}
-		if(freeparking) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("freeparking"))));
-			
-		}
-		if(ac) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("ac"))));
-		}
-		if(washingMachine) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("washingMachine"))));
-		}
-		if(hottub) {
-			predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("hottub"))));
-		}
-		
-		if (maxNoOfPersonsAllowed != null) {
-			predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("maxNoOfPersonsAllowed"),
-					 + maxNoOfPersonsAllowed )));
-		}
-		
-		if (noOfBeds != null) {
-			predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("noOfBeds"),
-						+ noOfBeds 	)));
-		}
-		if (noOfBedrooms != null) {
-			predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("noOfBedrooms"),
-						+ noOfBedrooms 	)));
-		}
-		if (noOfBathrooms != null) {
-			predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("noOfBathrooms"),
-						+ noOfBathrooms	)));
-		}
-		
-		
-		
-		q.where(predicates.toArray(new Predicate[0]));
-		 
-		TypedQuery<Property> typedQuery = entityManager.createQuery(q);
-					List<Property> resultList = typedQuery.getResultList();
-		return convertListToPage(resultList, page, size);
-		 }
-		 catch (Exception e) {
-			 e.printStackTrace();
-			 	throw new RentalAppException(e.getMessage());
+			}
+
+			if (minCostRange != null && maxCostRange == null) {
+				predicates.add(cb.or(cb.lessThanOrEqualTo(root.get("costPerDay"), minCostRange)));
+			}
+			if (maxCostRange != null && minCostRange == null) {
+				predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("costPerDay"), maxCostRange)));
+			}
+
+			if (!type.equals("")) {
+
+				predicates.add(cb.or(cb.like(cb.lower(root.get("type")), "%" + type.toLowerCase() + "%")));
+			}
+			if (costperday != null) {
+
+				predicates.add(cb.or(cb.lessThanOrEqualTo(root.get("costPerDay"), +costperday)));
+			}
+			if (!roomType.equals("")) {
+
+				predicates.add(cb.or(cb.like(cb.lower(root.get("roomType")), "%" + roomType.toLowerCase() + "%")));
+			}
+			if (!city.equals("")) {
+				predicates.add(cb.or(cb.like(cb.lower(root.get("city")), "%" + city.toLowerCase() + "%")));
+			}
+			if (!state.equals("")) {
+				predicates.add(cb.or(cb.like(cb.lower(root.get("state")), "%" + state.toLowerCase() + "%")));
+			}
+			if (!country.equals("")) {
+				predicates.add(cb.or(cb.like(cb.lower(root.get("country")), "%" + country.toLowerCase() + "%")));
+			}
+			if (!name.equals("")) {
+
+				predicates.add(cb.or(cb.like(cb.lower(root.get("name")), "%" + name.toLowerCase() + "%")));
+			}
+			if (overAllRating != null) {
+
+				predicates.add(cb.or(cb.lessThanOrEqualTo(root.get("overAllRating"), +overAllRating)));
+			}
+			if (wirelessInternet) {
+
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("wirelessInternet"))));
+			}
+			if (cooling) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("cooling"))));
+			}
+			if (heating) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("heating"))));
+			}
+
+			if (kitchen) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("kitchen"))));
+			}
+			if (television) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("television"))));
+			}
+			if (freeparking) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("freeparking"))));
+
+			}
+			if (ac) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("ac"))));
+			}
+			if (washingMachine) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("washingMachine"))));
+			}
+			if (hottub) {
+				predicates.add(cb.or(cb.isTrue(root.get("propertySpec").get("hottub"))));
+			}
+
+			if (maxNoOfPersonsAllowed != null) {
+				predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("maxNoOfPersonsAllowed"),
+						+maxNoOfPersonsAllowed)));
+			}
+
+			if (noOfBeds != null) {
+				predicates.add(cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("noOfBeds"), +noOfBeds)));
+			}
+			if (noOfBedrooms != null) {
+				predicates.add(
+						cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("noOfBedrooms"), +noOfBedrooms)));
+			}
+			if (noOfBathrooms != null) {
+				predicates.add(
+						cb.or(cb.greaterThanOrEqualTo(root.get("propertySpec").get("noOfBathrooms"), +noOfBathrooms)));
+			}
+
+			q.where(predicates.toArray(new Predicate[0]));
+
+			TypedQuery<Property> typedQuery = entityManager.createQuery(q);
+			List<Property> resultList = typedQuery.getResultList();
+			return resultList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RentalAppException(e.getMessage());
 		}
 	}
-	
-	 private Page<Property> convertListToPage(List<Property> list, int page, int size) {
-	     
-		 Pageable pageable = PageRequest.of(page, size);
-		    
-		    int startIndex = (int) pageable.getOffset();
-		    int endIndex = Math.min((startIndex + pageable.getPageSize()), list.size());
-		    
-		    List<Property> sublist = list.subList(startIndex, endIndex);
-
-		    return new PageImpl<>(sublist, pageable, list.size());
-	    }
-	 
-	  
 
 	public Property editProperty(String requestProperty, MultipartFile[] files, long propertyId, long userId) {
 		try {
@@ -345,7 +444,6 @@ public class PropertyService {
 			updateProperty.setSpace(propertyObject.getSpace());
 			updateProperty.setFloorAreaDesc(propertyObject.getFloorAreaDesc());
 			updateProperty.setRentalRules(propertyObject.getRentalRules());
-			updateProperty.setLocation(propertyObject.getLocation());
 			updateProperty.setStreet(propertyObject.getStreet());
 			updateProperty.setCity(propertyObject.getCity());
 			updateProperty.setState(propertyObject.getState());
@@ -423,18 +521,18 @@ public class PropertyService {
 		Rating rate = ratingRepo.findByPropertyIdAndUserId(rating.getPropertyId(), rating.getUserId());
 		if (rate == null) {
 			rate = new Rating();
-			User user = userRepo.findByIdAndRole(rating.getUserId(), Role.TENANT.name().toLowerCase());
-		if(user!=null) {
+		}
+		User user = userRepo.findByIdAndRole(rating.getUserId(), Role.TENANT.name().toLowerCase());
+		if (user != null) {
 			rate.setUser(user);
 			rate.setRatedAt(LocalDateTime.now());
 			rate.setReview(rating.getReview());
 			rate.setRating(rating.getRating());
 			rate.setProperty(property);
-		}else {
+		} else {
 			throw new NotFoundException("user id not found");
 		}
-		}
-		
+
 		ratingRepo.save(rate);
 		return findByProperty(rating.getPropertyId());
 
@@ -457,16 +555,20 @@ public class PropertyService {
 	private List<PropertyResponse> mapToProperty(List<Property> property) {
 		return property.stream()
 				.map(e -> new PropertyResponse(e.getId(), e.getType(), e.getCostPerDay(), e.getRoomType(), e.getSpace(),
-						e.getFloorAreaDesc(), e.getRentalRules(), e.getLocation(), e.getStreet(), e.getCity(),
-						e.getState(), e.getCountry(), e.getName(), e.getStatus(), e.getPropertySpec(), e.getCreatedAt(),
+						e.getFloorAreaDesc(), e.getRentalRules(), e.getStreet(), e.getCity(), e.getState(),
+						e.getCountry(), e.getName(), e.getStatus(), e.getPropertySpec(), e.getCreatedAt(),
 						e.getImagePath(), e.getPropertyQuestions(), e.getUser(), averageRatings(e.getId()),
 						e.getRatings().size()))
 				.collect(Collectors.toList());
 	}
 
-	public Property getPropertyById(long userId, long propertyId) {
-		Property property = propertyRepo.findByIdAndUserId(propertyId, userId);
-		return property;
+	public Property getPropertyById(long propertyId) {
+		Optional<Property> property = propertyRepo.findById(propertyId);
+		return property.get();
+	}
+
+	public List<Property> getMyPropertyById(long userId) {
+		return propertyRepo.findAllByUserIdOrderByCreatedAtDesc(userId);
 	}
 
 }

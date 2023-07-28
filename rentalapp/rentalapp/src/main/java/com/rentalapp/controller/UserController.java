@@ -37,6 +37,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	private static final Logger logger = LogManager.getLogger(UserController.class);
+	
+	
 
 	@PostMapping(value = "/signup", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<User> registerUser(@RequestPart("userData") String resquestuser,
@@ -46,10 +48,7 @@ public class UserController {
 		 return new ResponseEntity<User>(user, HttpStatus.CREATED);
 	}
 	
-	@PostMapping("/signin")
-	public ResponseEntity<?> logingValidation(@Valid @RequestBody RequestLogin requst) throws Exception {
-		return new ResponseEntity<JwtResponse>(userService.login(requst), HttpStatus.OK);
-	}
+	
 	
 	@PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<?> updateUser(@Valid @RequestPart("updateUserdata") String resquestuser,
